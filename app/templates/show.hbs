@@ -1,0 +1,75 @@
+<div id="main" class="main-background">
+    <div class="container">
+		<div class="show-background">
+			<div class="row">
+				<div class="col-xs-12">
+					<h3>{{cgTitle}}</h3>
+				</div>
+			</div>
+	        <div class="row">
+	        	{{! Mega Hack until we can update ember}}
+	        	{{#if model.showThumbnails}}
+	            <div class="col-sm-6 col-lg-8">
+	           		{{#if model.vods.firstObject}}
+	           		<div class="embed-responsive embed-responsive-16by9">
+						<video
+							{{bind-attr src=model.vods.firstObject.url}}
+							{{bind-attr poster=model.thumbnail}}
+							class="embed-responsive-item"
+							controls></video>
+					</div>
+					{{else}}
+						{{show-thumbnail show=model quality='Large' class="img-responsive"}}
+					{{/if}}
+				</div>
+				<div class="col-sm-6 col-lg-4">
+					<div class="show-details">
+						<h3>Show details</h3>
+						<p>Show ID: <strong>{{id}}</strong></p>
+						<p>Event date: <strong>{{eventDateString}}</strong></p>
+						{{#if producer.name}}
+							<p>Producer: <strong>{{producer.name}}</strong></p>
+						{{/if}}
+						
+						{{#if project.name}}
+							<p>Project: <strong>{{project.name}}</strong></p>
+						{{/if}}
+
+						{{#each reel in reels}}
+							<p>Length: <strong>{{reel.trt}}</strong></p>
+						{{/each}}
+
+						<h3>Upcoming airtimes</h3>
+						{{upcoming-shows schedule=model.schedule}}
+					</div>
+				</div>
+				{{else}}
+				<div class="col-md-12 show-details">
+					<div class="show-details col-md-6">
+						<h3>Show details</h3>
+						<p>Show ID: <strong>{{id}}</strong></p>
+						<p>Event date: <strong>{{eventDateString}}</strong></p>
+						{{#if producer.name}}
+							<p>Producer: <strong>{{producer.name}}</strong></p>
+						{{/if}}
+						
+						{{#if project.name}}
+							<p>Project: <strong>{{project.name}}</strong></p>
+						{{/if}}
+
+						{{#each reel in reels}}
+							<p>Length: <strong>{{reel.trt}}</strong></p>
+						{{/each}}
+					</div>
+					<div class="show-details col-md-6">
+
+						<h3>Upcoming airtimes</h3>
+						{{upcoming-shows schedule=model.schedule}}
+					</div>
+				</div>
+				{{/if}}
+	        </div>
+        </div>
+    </div>
+</div>
+

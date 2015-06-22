@@ -1,0 +1,40 @@
+{{#if (is-time-in-between item.start item.end)}}
+    <li>
+        <div class='plaque'>
+            <div class='plaque-content now'>
+                <div><span>NOW</span></div>
+            </div>
+        </div>
+
+        <div class="bottom-border">
+            <div class="schedule-title">
+                <span class="title">
+                    {{link-to item.show.cgTitle 'show' item.show.id}}
+                </span>
+            </div>
+        </div>
+    </li>
+{{else}}
+    <li>
+        <div class='plaque'>
+            <div class='plaque-content not-now'>
+                <div><span>{{item.scheduledTimeString}}</span></div>
+            </div>
+        </div>
+        <div class="vod">
+            {{#if item.show.vods.firstObject}}
+                <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+            {{/if}}
+        </div>
+        <div class="bottom-border">
+            <div class="schedule-title">
+                <span class="title" title="{{item.show.cgTitle}}">
+                    {{link-to item.show.cgTitle 'show' item.show.id alt=item.show.cgTitle}}
+                </span>
+                <span class="event-date">
+                    {{!-- {{item.scheduledDateTimeString}} --}}
+                </span>
+            </div>
+        </div>
+    </li>
+{{/if}}

@@ -1,0 +1,6 @@
+<nav>
+  {{#link-to "index" class="main"}}<img {{bind-attr src=model.logoUrl}}>{{/link-to}}
+	<div class="menu">
+		{{input value=tempQuery }} <button {{action 'navSearch' tempQuery}}>Search</button> <button {{action "watch"}}>Watch Live</button>
+	</div>
+</nav>

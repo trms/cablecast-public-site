@@ -1,0 +1,21 @@
+<h1>Show/Schedule route</h1>
+<table class="">
+  <tbody>
+	{{#each item in model}}
+	  <tr>
+	    <td>{{item.scheduledTimeString }}</td>
+	    <td>
+	    	{{#each vod in item.show.vods}}
+	    		<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+	    	{{else}}
+	    		NoVod
+	    	{{/each}}
+	    </td>
+	    <td>{{link-to item.show.cgTitle 'show' item.show.id}}</td>
+	    <td>{{item.show.comments}}</td>
+	  </tr>
+	{{else}}
+	  Nothing scheduled for today.
+	{{/each}}
+  </tbody>
+</table>

@@ -1,0 +1,44 @@
+
+{{#link-to 'show' show.id class="thumbnail-responsive"}}
+	{{show-thumbnail show=show quality='Large' class="img-responsive"}}
+{{/link-to}}
+<h3 class="show-name">
+	{{link-to show.cgTitle 'show' show.id}}
+</h3>
+
+{{#unless compact}}
+
+<div class="program-description">
+	Date:
+
+	<span class="program-data">
+		{{show.eventDateString}}
+	</span>
+
+</div>
+
+<div class="program-description">
+	Length:
+
+	<span class="program-data">
+		{{#each reel in show.reels}}
+			{{reel.trt}}
+		{{/each}}
+	</span>
+
+</div>
+
+<div class="program-description">
+	Producer:
+
+	<span class="program-data">
+		{{show.producer.name}}
+	</span>
+
+</div>
+
+{{else}}
+
+<p></p>
+
+{{/unless}}

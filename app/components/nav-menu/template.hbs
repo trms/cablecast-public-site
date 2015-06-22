@@ -1,0 +1,29 @@
+<div id="header" class="dark-bg">
+	<div class="container">
+		<div class="row">
+            <div class="col-sm-6">
+            	{{#link-to "index" class="main"}}
+					<img src="images/temp-peg-logo.png">
+				{{/link-to}}
+			</div>
+            <div class="col-sm-6 pull-right">
+                <div class="row">
+                    <div class="col-xs-8 header-padding ">
+                            <div class="input-group">
+                            	{{input value=tempQuery class="form-control" placeholder="Search"}} 
+                                
+                                <span class="input-group-btn">
+                                    <button class="btn btn-search" {{action 'search' tempQuery }} >Search</button>
+                                </span>
+                            </div><!-- /input-group -->
+                    </div>
+                    <div class="col-xs-4 header-padding">
+                        {{#if channel.liveStreams}}
+                            {{link-to 'Watch' 'watch' channel.liveStreams.firstObject.id class="btn btn-watch"}}
+						{{/if}}
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>
+</div>

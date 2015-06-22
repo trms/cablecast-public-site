@@ -1,0 +1,50 @@
+<div id="main" class="main-background">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7 col-md-8">
+            	{{show-carousel shows=showsWithThumbnails}}
+			</div>
+			<div class="col-sm-5 col-md-4">
+  	          <h3>COMING UP...</h3>
+				{{upcoming-shows schedule=model.channel.schedule}}
+                {{link-to 'See the entire schedule' 'schedule' class="btn btn-schedule"}}
+			</div>
+        </div>
+    </div>
+</div>			
+
+<div id="browse">
+    <div class="container">
+        <div class="row">
+        <div class="col-md-12">
+            <h3>Latest Videos</h3>
+        </div>
+        </div>
+        <div class="row" style="display: none;">
+            <div class="col-md-1"></div>
+            <div class="col-md-2">
+                <button class="btn btn-info" type="button">Education</button>
+            </div>
+            <div class="col-xs-2">
+                <button class="btn btn-info" type="button">Government</button>
+            </div>
+            <div class="col-xs-2">
+                <button class="btn btn-info" type="button">Community</button>
+            </div>
+            <div class="col-xs-2">
+                <button class="btn btn-info" type="button">Sports</button>
+            </div>
+            <div class="col-xs-2">
+                <button class="btn btn-info" type="button">Travel</button>
+            </div>
+            <div class="col-xs-1"></div>
+        </div>
+    </div>
+</div>
+
+<div id="library">
+    <div class="container">
+        {{shows-latest shows=showsWithThumbnails}}
+    </div>
+</div>
+

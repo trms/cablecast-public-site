@@ -1,0 +1,29 @@
+<div id="main" class="main-background">
+    <div class="container">
+		<div class="show-background">
+	        <div class="row">
+				<div class="col-sm-6 col-md-3">
+					<div class="input-group">
+					{{input value=tempQuery class="form-control" }} 
+						<div class="input-group-btn">
+							<button {{action 'submitSearch' tempQuery}} class="btn btn-default">
+								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+							</button>
+						</div>
+					</div>
+				</div>
+	        </div>
+	        <div class="row search">
+				{{#if model.isPending}}
+					Searching...
+				{{else}}
+					{{#each result in model}}
+						{{show-stub classNames="col-sm-6 col-md-3" show=result compact=true}}
+					{{else}}
+						<h3>Your search returned no results.</h3>
+					{{/each}}
+				{{/if}}
+	        </div>
+        </div>
+    </div>
+</div>

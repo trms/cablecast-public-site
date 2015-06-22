@@ -1,0 +1,23 @@
+<div id="main" class="main-background">
+    <div class="container">
+		<div class="show-background">
+			<div class="row">
+				<div class="col-sm-8">
+					<h3>Schedule - {{currentDay}}</h3>
+				</div>
+				<div class="col-sm-4">
+					
+					<span class="picker glyphicon glyphicon-triangle-left" aria-hidden="true" {{action 'prevDay'}}></span>
+						{{date-picker date=currentDay valueFormat='YYYY-MM-DD'}}
+						<span class="picker glyphicon glyphicon-triangle-right" aria-hidden="true" {{action 'nextDay'}}></span>
+					
+				</div>
+			</div>
+	        <div class="row">
+	            <div class="col-xs-12">
+	            	{{big-schedule schedule=model}}
+				</div>
+	        </div>
+        </div>
+    </div>
+</div>

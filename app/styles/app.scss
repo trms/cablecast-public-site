@@ -1,0 +1,360 @@
+@import 'colors.scss';
+
+body {
+	display: block; 
+	background: #FFF;
+    color: set-button-text-color(#FFFFFF);
+	width: 100%;
+	font-family: avenir;
+}
+.menu {
+	float:right;
+}
+
+
+
+#header {
+    background-color: $public-primary-darker;
+}
+
+.logo-box {
+    
+}
+
+.header-padding {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    
+}
+
+.dark-bg {
+    background-color: $public-primary-darker;
+}
+
+#main {
+    height: 100%;
+    color: set-button-text-color(#000000);
+}
+
+.main-background {
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, $public-primary),
+        color-stop(1, $public-primary-lighter)
+        // color-stop(0, #73818C),
+        // color-stop(1, #CDD2D6)
+    );
+    background-image: -o-linear-gradient(bottom, $public-primary 0%, $public-primary-lighter 100%);
+    background-image: -moz-linear-gradient(bottom, $public-primary 0%, $public-primary-lighter 100%);
+    background-image: -webkit-linear-gradient(bottom, $public-primary 0%, $public-primary-lighter 100%);
+    background-image: -ms-linear-gradient(bottom, $public-primary 0%, $public-primary-lighter 100%);
+    background-image: linear-gradient(to bottom, $public-primary 0%, $public-primary-lighter 100%);
+}
+
+
+#footer {
+
+}
+
+.footer-background {
+
+}
+
+#footer h1 {
+    text-transform: uppercase;;
+}
+
+.carousel-indicators {
+    top: 90%;
+    left: 25%;
+    text-align: right;
+    width: 100%;
+    z-index: 31;
+}
+
+.carousel-caption {
+    bottom: -17px;
+    width: 100%;
+    text-align: left;
+    padding-left: 10px;
+    left: 20px;
+}
+
+.schedule {
+    list-style: none;
+    line-height: 30px;
+}
+
+.btn-watch {
+    color: set-button-text-color($public-button-watch);
+    background-color: $public-button-watch;
+    border-color: $public-button-watch-outline;
+}
+
+.btn-search {
+    color: set-button-text-color($public-button-search);
+    background-color: $public-button-search;
+    border-color: $public-button-search-outline;
+}
+
+
+.btn-schedule {
+    color: set-button-text-color($public-button-schedule);
+    background-color: $public-button-schedule;
+    border-color: $public-button-schedule-outline;
+    margin-bottom: 20px;
+}
+
+.schedule .event-date {
+	display: none;
+}
+
+.schedule .vod {
+	display: none;
+}
+
+.schedule .schedule-title {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    margin-left: 5px;
+    color: white;
+}
+
+.schedule .schedule-title span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    color: white
+}
+
+.schedule .bottom-border {
+    display: inline-block;
+    height: 30px;
+    width: 75%;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+.schedule .schedule-title span a {
+	color: white !important;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+
+.plaque{
+    display: inline-block;
+    position: relative;
+    width: 55px;
+    height: 30px;
+    overflow: hidden;
+}
+.plaque:before{
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+.plaque-content{
+    position:  absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    color: white;
+}
+.plaque-content div {
+   display: table;
+   width: 100%;
+   height: 100%;
+}
+.plaque-content span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    color: white
+}
+
+.title {
+	overflow: hidden;
+}
+
+.now {
+    background: $public-action-badge;
+    border: 1px solid $public-action-badge-outline;
+}
+
+.not-now {
+    background: $public-badge;
+    border: 1px solid $public-badge-outline;
+    letter-spacing: -1px;
+}
+
+#browse {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+#library {
+    background-color: $public-primary-accent;
+    padding-top: 20px;
+    color: white;
+}
+
+#library .row {
+    padding-bottom: 20px;
+}
+
+#library .program-description {
+    width: 100%;
+}
+
+#library .program-data {
+   float: right;
+}
+
+.show-name a {
+	color: white;
+}
+
+.show-background {
+	background-color: white;
+	padding: 20px;
+	margin: 20px;
+	min-height: 50vh;
+}
+
+.show-background h1, .show-background h3 {
+	color: $public-primary-accent;
+	margin: 0px;
+}
+
+.show-background button, .show-background input, .show-background .picker {
+	color: black;
+}
+
+.show-details {
+	padding: 20px;
+	background-color: $public-primary-accent;
+	color: white;
+}
+
+.show-details h3 {
+	color: white;
+	padding-bottom: 10px;
+}
+
+ul {
+	padding-left: 0px;
+}
+
+.big-schedule {
+    list-style: none;
+    line-height: 30px;
+}
+
+.big-schedule li {
+	padding-top: 10px;
+	
+}
+
+.bottom-border {
+    display: inline-block;
+    height: 30px;
+    width: 75%;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+
+
+
+.big-schedule a {
+	color: black;
+}
+
+.big-schedule > span {
+	color: black;
+}
+
+.big-schedule .plaque{
+    display: inline-block;
+    position: relative;
+    width: 70px;
+    height: 30px;
+    overflow: hidden;
+}
+
+.big-schedule .event-date {
+	color: black;
+}
+
+.big-schedule .schedule-title {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    margin-left: 5px;
+    width: 75%;
+    color: black;
+}
+
+.big-schedule .schedule-title span {
+    display: table-cell;
+
+    text-align: center;
+    vertical-align: middle;
+    color: black
+}
+
+.big-schedule .schedule-title span a {
+	color: black !important;
+}
+
+.big-schedule .vod {
+	position: relative;
+	height: 30px;
+	overflow: hidden;
+	display: inline-block;
+	color: #5cb85c;
+}
+
+.search {
+	padding-top: 20px;
+}
+
+.search .show-name a {
+	color: $public-primary-accent;
+}
+
+.thumbnail-responsive {
+    /* This is applied to the A tag above the image */
+    display: block;
+    width: 100%;
+    position: relative;
+    height: 0;
+    padding: 56.25% 0 0 0;
+    overflow: hidden;
+}
+
+.thumbnail-responsive img {
+    position: absolute;
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+@media (min-width: 768px) {
+    .show-stub {
+        height: 300px;
+    }
+}
+
+@media (min-width: 992px) {
+    .show-stub {
+        height: 350px;
+    }
+}
+
