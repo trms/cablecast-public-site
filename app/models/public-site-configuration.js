@@ -10,5 +10,8 @@ export default DS.Model.extend({
   aboutTitle: DS.attr('string'),
   aboutHtml: DS.attr('string'),
   color: DS.attr('string'),
-  highlightColor: DS.attr('string')
+  highlightColor: DS.attr('string'),
+  carouselSavedSearchId: DS.belongsTo('saved-show-search', {async: true}),
+  gallerySavedSearchId: DS.belongsTo('saved-show-search', {async: true}),
+  
 });

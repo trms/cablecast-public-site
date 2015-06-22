@@ -1,20 +1,37 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+	recentPrograms: null,
 	model: function() {
 		var appParams = this.paramsFor('application');
-		var recentPrograms = this.store.find('show', {
-				pageSize: 50,
-			});
-		var thumbnails = recentPrograms.then(function(programs) {
-			return Ember.RSVP.all(programs.map(function(program) {
-				return program.get('showFile');
-			}));
-		})
+		var self = this;
+		var channel = this.store.getById('channel', appParams.channel);
+
+
+		var carouselPrograms = channel.get('publicSiteConfiguration.carouselSavedSearchId').then(function(savedSearch){
+			if (savedSearch === null){
+				return self.store.find('show', {
+					pageSize: 16,
+				});
+			}
+			var ids = savedSearch.get('results').slice(0, 20);
+			return self.store.findByIds('show', ids);
+		});
+
+		var galleryPrograms = channel.get('publicSiteConfiguration.gallerySavedSearchId').then(function(savedSearch){
+			if (savedSearch === null){
+				return self.store.find('show', {
+					pageSize: 16,
+				});
+			}
+			var ids = savedSearch.get('results').slice(0, 20);
+			return self.store.findByIds('show', ids);
+		});
+
 		return Ember.RSVP.hash({
-			channel: this.store.find('channel', appParams.channel),
-			recentPrograms: recentPrograms,
-			thumbnails: thumbnails
+			channel: channel,
+			carouselPrograms: carouselPrograms,
+			galleryPrograms: galleryPrograms
 		});
 	},
 	actions: {

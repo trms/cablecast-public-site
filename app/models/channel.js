@@ -18,7 +18,7 @@ export default DS.Model.extend({
 	}.property('vod'),
 
 	schedule: function(){
-		var today = moment();
+		var today = moment("20150523", "YYYYMMDD");
 		var _start = moment(today).startOf('hour').toISOString();
 		var _end = moment(today).add(24, 'hours').toISOString();
 
