@@ -1,9 +1,11 @@
 // Rename public to site
-// Rename 
+
 $public-primary: #73818C;
 $public-primary-lighter: lighten($public-primary, 30%);
+$public-primary-lightest: lighten($public-primary-lighter, 30%);
 $public-primary-darker: darken($public-primary, 30%);
-$public-primary-accent: lighten($public-primary, 8%);
+$public-primary-accent: lighten($public-primary-lighter, 8%);
+
 
 $public-text-light: #FFFFFF;
 $public-text-dark: #333333;
@@ -25,7 +27,7 @@ $public-button-watch-outline: darken($public-button-watch, 10%);
 
 
 @function set-button-text-color($color) {
-    @if (lightness($color) > 50) {
+    @if (lightness($public-primary) > 50) {
         @return $public-text-dark; // Lighter backgorund, return dark color
     } @else {
         @return $public-text-light; // Darker background, return light color

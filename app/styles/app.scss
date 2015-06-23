@@ -14,7 +14,7 @@ body {
 
 
 #header {
-    background-color: $public-primary-darker;
+    background-color: $public-primary;
 }
 
 .logo-box {
@@ -28,7 +28,7 @@ body {
 }
 
 .dark-bg {
-    background-color: $public-primary-darker;
+    background-color: $public-primary;
 }
 
 #main {
@@ -41,16 +41,16 @@ body {
         linear,
         left top,
         left bottom,
-        color-stop(0, $public-primary),
-        color-stop(1, $public-primary-lighter)
+        color-stop(0, $public-primary-lighter),
+        color-stop(1, $public-primary-lightest)
         // color-stop(0, #73818C),
         // color-stop(1, #CDD2D6)
     );
-    background-image: -o-linear-gradient(bottom, $public-primary 0%, $public-primary-lighter 100%);
-    background-image: -moz-linear-gradient(bottom, $public-primary 0%, $public-primary-lighter 100%);
-    background-image: -webkit-linear-gradient(bottom, $public-primary 0%, $public-primary-lighter 100%);
-    background-image: -ms-linear-gradient(bottom, $public-primary 0%, $public-primary-lighter 100%);
-    background-image: linear-gradient(to bottom, $public-primary 0%, $public-primary-lighter 100%);
+    background-image: -o-linear-gradient(bottom, $public-primary-lighter 0%, $public-primary-lightest 100%);
+    background-image: -moz-linear-gradient(bottom, $public-primary-lighter 0%, $public-primary-lightest 100%);
+    background-image: -webkit-linear-gradient(bottom, $public-primary-lighter 0%, $public-primary-lightest 100%);
+    background-image: -ms-linear-gradient(bottom, $public-primary-lighter 0%, $public-primary-lightest 100%);
+    background-image: linear-gradient(to bottom, $public-primary-lighter 0%, $public-primary-lightest 100%);
 }
 
 
@@ -120,14 +120,14 @@ body {
     position: relative;
     overflow: hidden;
     margin-left: 5px;
-    color: white;
+    color: set-button-text-color(#ffffff);
 }
 
 .schedule .schedule-title span {
     display: table-cell;
     text-align: center;
     vertical-align: middle;
-    color: white
+    color: set-button-text-color(#ffffff);
 }
 
 .schedule .bottom-border {
@@ -138,7 +138,7 @@ body {
 }
 
 .schedule .schedule-title span a {
-	color: white !important;
+	color: set-button-text-color(#ffffff) !important;
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
 
@@ -197,7 +197,7 @@ body {
 #library {
     background-color: $public-primary-accent;
     padding-top: 20px;
-    color: white;
+    color: set-button-text-color(#ffffff);
 }
 
 #library .row {
@@ -213,7 +213,7 @@ body {
 }
 
 .show-name a {
-	color: white;
+	color: set-button-text-color(#ffffff);
 }
 
 .show-background {
@@ -235,11 +235,11 @@ body {
 .show-details {
 	padding: 20px;
 	background-color: $public-primary-accent;
-	color: white;
+	color: set-button-text-color(#ffffff);
 }
 
 .show-details h3 {
-	color: white;
+	color: set-button-text-color(#ffffff);
 	padding-bottom: 10px;
 }
 
