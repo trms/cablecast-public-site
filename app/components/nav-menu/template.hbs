@@ -1,4 +1,4 @@
-<div id="header" class="dark-bg">
+<div id="header" class="primary-background">
 	<div class="container">
 		<div class="row">
             <div class="col-sm-6">
@@ -8,7 +8,7 @@
 			</div>
             <div class="col-sm-6 pull-right">
                 <div class="row">
-                    <div class="col-xs-8 header-padding ">
+                    <div class="col-xs-8 header-padding pull-right">
                             <div class="input-group">
                             	{{input value=tempQuery class="form-control" placeholder="Search"}} 
                                 
@@ -17,7 +17,7 @@
                                 </span>
                             </div><!-- /input-group -->
                     </div>
-                    <div class="col-xs-4 header-padding">
+                    <div class="col-xs-4 header-padding pull-right">
                         {{#if channel.liveStreams}}
                             {{link-to 'Watch' 'watch' channel.liveStreams.firstObject.id class="btn btn-watch"}}
 						{{/if}}

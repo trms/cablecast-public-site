@@ -12,7 +12,7 @@ export default DS.Model.extend({
 
 	scheduledTimeString: Ember.computed('runDateTime', {
 		get: function() {
-			return moment(this.get('runDateTime')).format('h:mm:ss a');
+			return moment(this.get('runDateTime')).format('h:mm:ss');
 		}
 	}),
 

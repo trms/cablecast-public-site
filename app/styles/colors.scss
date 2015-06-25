@@ -5,10 +5,11 @@ $public-primary-lighter: lighten($public-primary, 30%);
 $public-primary-lightest: lighten($public-primary-lighter, 30%);
 $public-primary-darker: darken($public-primary, 30%);
 $public-primary-accent: lighten($public-primary-lighter, 8%);
+$public-primary-accent-header: #293239;
 
 
 $public-text-light: #FFFFFF;
-$public-text-dark: #333333;
+$public-text-dark: #595959;
 
 $public-action-badge: #2FB566;
 $public-action-badge-outline: darken($public-action-badge, 10%);
@@ -27,7 +28,7 @@ $public-button-watch-outline: darken($public-button-watch, 10%);
 
 
 @function set-button-text-color($color) {
-    @if (lightness($public-primary) > 50) {
+    @if (lightness($color) > 50) {
         @return $public-text-dark; // Lighter backgorund, return dark color
     } @else {
         @return $public-text-light; // Darker background, return light color
