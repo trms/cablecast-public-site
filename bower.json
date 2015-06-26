@@ -17,7 +17,8 @@
     "moment": "~2.9.0",
     "bootstrap": "~3.3.2",
     "bootstrap-sass": "~3.3.4",
-    "foundation": "~5.5.2"
+    "foundation": "~5.5.2",
+    "font-awesome": "~4.3.0"
   },
   "resolutions": {
     "ember": "beta",

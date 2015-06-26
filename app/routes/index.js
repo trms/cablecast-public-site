@@ -9,7 +9,7 @@ export default Ember.Route.extend({
 		var channel = this.store.getById('channel', appParams.channel);
 
 
-		var carouselPrograms = channel.get('publicSiteConfiguration.carouselSavedSearchId').then(function(savedSearch){
+		var carouselPrograms = channel.get('publicSiteConfiguration.carouselSavedSearch').then(function(savedSearch){
 			if (savedSearch === null){
 				return self.store.find('show', {
 					pageSize: 16,
@@ -19,7 +19,7 @@ export default Ember.Route.extend({
 			return self.store.findByIds('show', ids);
 		});
 
-		var galleryPrograms = channel.get('publicSiteConfiguration.gallerySavedSearchId').then(function(savedSearch){
+		var galleryPrograms = channel.get('publicSiteConfiguration.gallerySavedSearch').then(function(savedSearch){
 			if (savedSearch === null){				
 				return self.store.find('show', {
 					pageSize: 16,
@@ -31,7 +31,7 @@ export default Ember.Route.extend({
 			return self.store.findByIds('show', ids);
 		});
 
-		var galleryName = channel.get('publicSiteConfiguration.gallerySavedSearchId').then(function(savedSearch){
+		var galleryName = channel.get('publicSiteConfiguration.gallerySavedSearch').then(function(savedSearch){
 			return savedSearch.get('name');
 		});
 

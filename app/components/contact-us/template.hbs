@@ -1,9 +1,15 @@
 <!-- Described channel.channelContactInfo !-->
 <h3>Station hours</h3>
-<p>{{contactInfo.description}}</p>
-<p><strong>Call us:</strong> {{contactInfo.phone}}</p>
-<p><strong>Email us:</strong> {{contactInfo.phone}}</p>
+<p>{{contactInfo.stationHoursHtml}}</p>
+<p><strong>Call us:</strong> {{contactInfo.contactPhone}}</p>
+<p><strong>Email us:</strong> {{contactInfo.contactEmail}}</p>
 <h3>Connect with us</h3>
-<ul class="social-links">
-    <li></li>
-</ul>
+{{#if contactInfo.twitterUrl}}
+	<a class="social-link" href="http://www.twitter.com/{{contactInfo.twitterUrl}}" alt="Open Twitter in a new window"><i class="fa fa-twitter-square fa-3x"></i></a>
+{{/if}}
+{{#if contactInfo.facebookUrl}}
+	<a class="social-link" href="http://www.facebook.com/{{contactInfo.facebookUrl}}" alt="Open Facebook in a new window"><i class="fa fa-facebook-square fa-3x"></i></a>
+{{/if}}
+{{#if contactInfo.blogUrl}}
+	<a class="social-link" href="{{contactInfo.blogUrl}}" alt="Open our blog in a new window"><i class="fa fa-rss-square fa-3x"></i></a>
+{{/if}}

@@ -68,6 +68,7 @@ body {
     padding: 0px;
     margin: 0px;
     background-color: $public-primary-accent;
+    color: set-button-text-color($public-primary-accent);
 }
 
 
@@ -140,7 +141,7 @@ body {
     position: relative;
     overflow: hidden;
     margin-left: 5px;
-    color: set-button-text-color($public-primary);
+    color: set-button-text-color($public-primary-accent);
     width: 90%;
 }
 
@@ -150,7 +151,7 @@ body {
 
 .schedule a,
 .schedule span {
-    color: set-button-text-color($public-primary);
+    color: set-button-text-color($public-primary-accent);
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -177,17 +178,22 @@ body {
     overflow: hidden;
     margin-left: 5px;
     color: #595959;
-    width: 70%;
+    width: 100%;
 }
 
 
 
 #footer {
+    padding-bottom: 20px;
+}
 
+.social-link {
+    color: set-button-text-color($public-primary);
 }
 
 .footer-background {
-
+    background-color: $public-primary;
+    color: set-button-text-color($public-primary);
 }
 
 #footer h1 {
@@ -281,7 +287,7 @@ body {
 
     background-color: $public-primary-accent;
     padding-top: 20px;
-    color: set-button-text-color($public-primary);
+    color: set-button-text-color($public-primary-accent);
 }
 
 
@@ -309,7 +315,7 @@ body {
 }
 
 .show-name a {
-	color: set-button-text-color($public-primary);
+	color: set-button-text-color($public-primary-accent);
 }
 
 
@@ -449,9 +455,15 @@ ul {
     margin: auto;
 }
 
-@media (min-width: 768px) {
+@media only screen and (max-device-width: 480px) {
     .show-stub {
         height: 300px;
+    }
+    .show-background {
+        margin: 0px;
+    }
+    .show-details {
+        padding: 5px;
     }
 }
 
