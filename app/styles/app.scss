@@ -88,22 +88,9 @@ body {
     
 }
 
-.schedule .upcoming-shows {
-    margin-right: 0px !important;
-    background-image: -webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, $public-primary-accent),
-        color-stop(1, $public-primary-lighter)
-        // color-stop(0, #73818C),
-        // color-stop(1, #CDD2D6)
-    );
-    background-image: -o-linear-gradient(bottom, $public-primary-accent 0%, $public-primary-lighter 100%);
-    background-image: -moz-linear-gradient(bottom, $public-primary-accent 0%, $public-primary-lighter 100%);
-    background-image: -webkit-linear-gradient(bottom, $public-primary-accent 0%, $public-primary-lighter 100%);
-    background-image: -ms-linear-gradient(bottom, $public-primary-accent 0%, $public-primary-lighter 100%);
-    background-image: linear-gradient(to bottom, $public-primary-accent 0%, $public-primary-lighter 100%);
+.container-wrapper,
+.upcoming-shows {
+    background-image: linear-gradient($public-primary-lighter, $public-primary-lightest);
 }
 
 .schedule .shows-page {
