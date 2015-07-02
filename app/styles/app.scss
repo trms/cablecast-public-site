@@ -275,6 +275,8 @@ body {
     background-color: $public-primary-accent;
     padding-top: 20px;
     color: set-button-text-color($public-primary-accent);
+    border-left: $public-primary 1px solid;
+    border-right: $public-primary 1px solid;
 }
 
 
