@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   queryParams: ['channel'],
-  channel: 4,
+  channel: null,
   actions: {
 		navSearch: function(query) {
 			this.transitionToRoute('search', {queryParams: {query: query}});

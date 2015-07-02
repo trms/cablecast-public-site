@@ -2,17 +2,14 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model: function(params){
-    if (params.channel === null) {
-      return this.store.find('channel', 1);
-    } else {
-    	
-      return this.store.find('channel', params.channel).then(function(channel) {
-
-      	return channel.get('publicSiteConfiguration').then(function(publicSiteConfiguration){
-      		
-      		return publicSiteConfiguration;
-      	});
-      });
-    }
+    return this.store.find('channel')
+    .then(function(channels) {
+      var channel = channels.findBy('id', params.channel + '');
+      if (!channel) {
+        return channels.get('firstObject');
+      } else {
+        return channel;
+      }
+    });
   }
 });
