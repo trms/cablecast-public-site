@@ -3,7 +3,7 @@
 body {
 	display: block; 
 	background: #FFF;
-    color: set-button-text-color(#FFFFFF);
+    color: set-button-text-color($public-primary);
 	width: 100%;
 	font-family: avenir;
 }
@@ -11,14 +11,8 @@ body {
 	float:right;
 }
 
-
-
 #header {
-    background-color: $public-primary-darker;
-}
-
-.logo-box {
-    
+    background-color: $public-primary;
 }
 
 .header-padding {
@@ -27,13 +21,13 @@ body {
     
 }
 
-.dark-bg {
-    background-color: $public-primary-darker;
+.primary-background {
+    background-color: $public-primary;
 }
 
 #main {
     height: 100%;
-    color: set-button-text-color(#000000);
+    color: set-button-text-color($public-primary);
 }
 
 .main-background {
@@ -41,30 +35,18 @@ body {
         linear,
         left top,
         left bottom,
-        color-stop(0, $public-primary),
-        color-stop(1, $public-primary-lighter)
+        color-stop(0, $public-primary-lighter),
+        color-stop(1, $public-primary-lightest)
         // color-stop(0, #73818C),
         // color-stop(1, #CDD2D6)
     );
-    background-image: -o-linear-gradient(bottom, $public-primary 0%, $public-primary-lighter 100%);
-    background-image: -moz-linear-gradient(bottom, $public-primary 0%, $public-primary-lighter 100%);
-    background-image: -webkit-linear-gradient(bottom, $public-primary 0%, $public-primary-lighter 100%);
-    background-image: -ms-linear-gradient(bottom, $public-primary 0%, $public-primary-lighter 100%);
-    background-image: linear-gradient(to bottom, $public-primary 0%, $public-primary-lighter 100%);
+    background-image: -o-linear-gradient(bottom, $public-primary-lighter 0%, $public-primary-lightest 100%);
+    background-image: -moz-linear-gradient(bottom, $public-primary-lighter 0%, $public-primary-lightest 100%);
+    background-image: -webkit-linear-gradient(bottom, $public-primary-lighter 0%, $public-primary-lightest 100%);
+    background-image: -ms-linear-gradient(bottom, $public-primary-lighter 0%, $public-primary-lightest 100%);
+    background-image: linear-gradient(to bottom, $public-primary-lighter 0%, $public-primary-lightest 100%);
 }
 
-
-#footer {
-
-}
-
-.footer-background {
-
-}
-
-#footer h1 {
-    text-transform: uppercase;;
-}
 
 .carousel-indicators {
     top: 90%;
@@ -82,10 +64,129 @@ body {
     left: 20px;
 }
 
+.carousel-background {
+    padding: 0px;
+    margin: 0px;
+    background-color: $public-primary-accent;
+    color: set-button-text-color($public-primary-accent);
+}
+
+
+/* Schedule */
+
 .schedule {
     list-style: none;
     line-height: 30px;
 }
+
+.schedule-row {
+    height: 40px;
+}
+
+
+.schedule .front-page {
+    
+}
+
+.container-wrapper,
+.upcoming-shows {
+    background-image: linear-gradient($public-primary-lighter, $public-primary-lightest);
+}
+
+.schedule .shows-page {
+
+}
+
+.schedule .front-page .event-date {
+    display: none;
+}
+
+.schedule .schedule-page .event-date {
+    display: none !important;
+}
+
+.schedule .shows-page .event-date {
+    display: inline-block;
+}
+
+.schedule .front-page .play-icon {
+    display: none;
+}
+
+.schedule .schedule-page .play-icon {
+    float: left;
+    display: inline-block;
+}
+
+.schedule .shows-page .play-icon {
+    display: none;
+}
+
+.schedule .front-page .schedule-title,
+.schedule .schedule-page .schedule-title {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    margin-left: 5px;
+    color: set-button-text-color($public-primary-accent);
+    width: 90%;
+}
+
+.schedule .shows-page .schedule-title {
+    display: none;
+}
+
+.schedule a,
+.schedule span {
+    color: set-button-text-color($public-primary-accent);
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.schedule .schedule-container {
+    display: inline-block;
+    width: 75%;
+    height: 30px;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+.schedule .schedule-title {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    margin-left: 5px;
+    color: set-button-text-color($public-primary);
+    width: 70%;
+}
+
+.schedule .event-date {
+    position: relative;
+    overflow: hidden;
+    margin-left: 5px;
+    color: #595959;
+    width: 100%;
+}
+
+
+
+#footer {
+    padding-bottom: 20px;
+}
+
+.social-link {
+    color: set-button-text-color($public-primary);
+}
+
+.footer-background {
+    background-color: $public-primary;
+    color: set-button-text-color($public-primary);
+}
+
+#footer h1 {
+    text-transform: uppercase;;
+}
+
 
 .btn-watch {
     color: set-button-text-color($public-button-watch);
@@ -105,50 +206,18 @@ body {
     background-color: $public-button-schedule;
     border-color: $public-button-schedule-outline;
     margin-bottom: 20px;
+    width: 95%;
 }
 
-.schedule .event-date {
-	display: none;
-}
-
-.schedule .vod {
-	display: none;
-}
-
-.schedule .schedule-title {
-    display: inline-block;
-    position: relative;
-    overflow: hidden;
-    margin-left: 5px;
-    color: white;
-}
-
-.schedule .schedule-title span {
-    display: table-cell;
-    text-align: center;
-    vertical-align: middle;
-    color: white
-}
-
-.schedule .bottom-border {
-    display: inline-block;
-    height: 30px;
-    width: 75%;
-    border-bottom: 1px solid #CCCCCC;
-}
-
-.schedule .schedule-title span a {
-	color: white !important;
-    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-}
 
 .plaque{
     display: inline-block;
     position: relative;
-    width: 55px;
+    width: 65px;
     height: 30px;
     overflow: hidden;
 }
+
 .plaque:before{
     content: "";
     display: block;
@@ -190,19 +259,41 @@ body {
 }
 
 #browse {
+    background-color: $public-primary-accent-header;
     text-align: center;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 }
+
+.gallery-name {
+    color: set-button-text-color($public-primary-accent-header);
+    text-transform: uppercase;
+}
+
 
 #library {
+
     background-color: $public-primary-accent;
     padding-top: 20px;
-    color: white;
+    color: set-button-text-color($public-primary-accent);
+    border-left: $public-primary 1px solid;
+    border-right: $public-primary 1px solid;
 }
 
+
+/* This is a hotfix */
+// It's necessary to undo the Bootstrap container gutter because the ember view div gets in the way.
 #library .row {
     padding-bottom: 20px;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
 }
+
+#library .container {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+// Hotfix end.
 
 #library .program-description {
     width: 100%;
@@ -213,8 +304,9 @@ body {
 }
 
 .show-name a {
-	color: white;
+	color: set-button-text-color($public-primary-accent);
 }
+
 
 .show-background {
 	background-color: white;
@@ -224,7 +316,7 @@ body {
 }
 
 .show-background h1, .show-background h3 {
-	color: $public-primary-accent;
+	color: set-button-text-color(#ffffff);
 	margin: 0px;
 }
 
@@ -235,11 +327,11 @@ body {
 .show-details {
 	padding: 20px;
 	background-color: $public-primary-accent;
-	color: white;
+	color: set-button-text-color($public-primary);
 }
 
 .show-details h3 {
-	color: white;
+	color: set-button-text-color($public-primary);
 	padding-bottom: 10px;
 }
 
@@ -247,74 +339,80 @@ ul {
 	padding-left: 0px;
 }
 
-.big-schedule {
-    list-style: none;
-    line-height: 30px;
-}
+// .big-schedule {
+//     list-style: none;
+//     line-height: 30px;
+// }
 
-.big-schedule li {
-	padding-top: 10px;
+// .big-schedule li {
+// 	padding-top: 10px;
 	
-}
+// }
 
-.bottom-border {
-    display: inline-block;
-    height: 30px;
-    width: 75%;
-    border-bottom: 1px solid #CCCCCC;
-}
-
-
+// .bottom-border {
+//     display: inline-block;
+//     height: 30px;
+//     width: 75%;
+//     border-bottom: 1px solid #CCCCCC;
+// }
 
 
-.big-schedule a {
-	color: black;
-}
 
-.big-schedule > span {
-	color: black;
-}
 
-.big-schedule .plaque{
-    display: inline-block;
-    position: relative;
-    width: 70px;
-    height: 30px;
-    overflow: hidden;
-}
+// .big-schedule a {
+// 	color: black;
+// }
 
-.big-schedule .event-date {
-	color: black;
-}
+// .big-schedule > span {
+// 	color: black;
+// }
 
-.big-schedule .schedule-title {
-    display: inline-block;
-    position: relative;
-    overflow: hidden;
-    margin-left: 5px;
-    width: 75%;
-    color: black;
-}
+// .big-schedule .plaque{
+//     display: inline-block;
+//     position: relative;
+//     width: 70px;
+//     height: 30px;
+//     overflow: hidden;
+// }
 
-.big-schedule .schedule-title span {
-    display: table-cell;
+// .big-schedule .event-date {
+// 	display: none;
+// }
 
-    text-align: center;
-    vertical-align: middle;
-    color: black
-}
+// .big-schedule .schedule-title {
+//     display: inline-block;
+//     position: relative;
+//     overflow: hidden;
+//     margin-left: 5px;
+//     width: auto;
+//     color: black;
+//     border-bottom: 1px solid #cccccc;
+// }
 
-.big-schedule .schedule-title span a {
-	color: black !important;
-}
+// .big-schedule .schedule-title span {
+//     display: table-cell;
 
-.big-schedule .vod {
-	position: relative;
-	height: 30px;
-	overflow: hidden;
-	display: inline-block;
-	color: #5cb85c;
-}
+//     text-align: center;
+//     vertical-align: middle;
+//     color: black
+// }
+
+// .big-schedule .schedule-title span a {
+// 	color: black !important;
+// }
+
+// .big-schedule .play-icon {
+// 	position: relative;
+// 	height: 30px;
+//     width: 15px;
+// 	overflow: hidden;
+// 	display: inline-block;
+// 	color: #5cb85c;
+// }
+
+// .big-schedule .play-icon-link {
+//     color: #5cb85c;
+// }
 
 .search {
 	padding-top: 20px;
@@ -346,9 +444,15 @@ ul {
     margin: auto;
 }
 
-@media (min-width: 768px) {
+@media only screen and (max-device-width: 480px) {
     .show-stub {
         height: 300px;
+    }
+    .show-background {
+        margin: 0px;
+    }
+    .show-details {
+        padding: 5px;
     }
 }
 
@@ -358,3 +462,8 @@ ul {
     }
 }
 
+.u-truncate-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

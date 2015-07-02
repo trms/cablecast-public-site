@@ -10,5 +10,12 @@ export default DS.Model.extend({
   aboutTitle: DS.attr('string'),
   aboutHtml: DS.attr('string'),
   color: DS.attr('string'),
-  highlightColor: DS.attr('string')
+  highlightColor: DS.attr('string'),
+  carouselSavedSearch: DS.belongsTo('saved-show-search', {async: true}),
+  gallerySavedSearch: DS.belongsTo('saved-show-search', {async: true}),
+  twitterUrl: DS.attr('string'),
+  facebookUrl: DS.attr('string'),
+  blogUrl: DS.attr('string'),
+  contactEmail: DS.attr('string'),
+  contactPhone: DS.attr('string')
 });

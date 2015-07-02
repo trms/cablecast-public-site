@@ -1,12 +1,15 @@
 // Rename public to site
-// Rename 
-$public-primary: #73818C;
+
+$public-primary: #707F89;
 $public-primary-lighter: lighten($public-primary, 30%);
+$public-primary-lightest: lighten($public-primary-lighter, 30%);
 $public-primary-darker: darken($public-primary, 30%);
-$public-primary-accent: lighten($public-primary, 8%);
+$public-primary-accent: lighten($public-primary-lighter, 8%);
+$public-primary-accent-header: #293239;
+
 
 $public-text-light: #FFFFFF;
-$public-text-dark: #333333;
+$public-text-dark: #595959;
 
 $public-action-badge: #2FB566;
 $public-action-badge-outline: darken($public-action-badge, 10%);

@@ -1,27 +1,25 @@
 <div id="main" class="main-background">
-    <div class="container">
-		<div class="show-background">
-			<div class="row">
-				<div class="col-xs-12">
-					<h3>You're watching {{channel.name}}</h3>
+	<div class="show-background">
+		<div class="row">
+			<div class="col-xs-12">
+				<h3>You're watching {{channel.name}}</h3>
+			</div>
+		</div>
+        <div class="row">
+            <div class="col-sm-6 col-lg-8">
+            	<div class="embed-responsive embed-responsive-16by9">
+           			{{{model.embedCode}}}
+           		</div>
+			</div>
+			<div class="col-sm-6 col-lg-4">
+				<div class="show-details">
+					<h3>Now playing</h3>
+					<p><span class="liveStreamName">{{name}}</span></p>
+
+					<h3>Upcoming airtimes</h3>
+					{{shows-schedule className="shows-page" schedule=channel.schedule}}
 				</div>
 			</div>
-	        <div class="row">
-	            <div class="col-sm-6 col-lg-8">
-	            	<div class="embed-responsive embed-responsive-16by9">
-	           			{{{model.embedCode}}}
-	           		</div>
-				</div>
-				<div class="col-sm-6 col-lg-4">
-					<div class="show-details">
-						<h3>Now playing</h3>
-						<p><span class="liveStreamName">{{name}}</span></p>
-
-						<h3>Upcoming airtimes</h3>
-						{{upcoming-shows schedule=channel.schedule}}
-					</div>
-				</div>
-	        </div>
         </div>
     </div>
 </div>
