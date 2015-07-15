@@ -12,13 +12,16 @@ body {
 }
 
 #header {
-    background-color: $public-primary;
+    background-color: $top-banner;
 }
 
 .header-padding {
     padding-top: 20px;
     padding-bottom: 20px;
-    
+}
+
+.extra-padding {
+    padding-right: 20px;
 }
 
 .primary-background {
@@ -179,8 +182,8 @@ body {
 }
 
 .footer-background {
-    background-color: $public-primary;
-    color: set-button-text-color($public-primary);
+    background-color: #ffffff;
+    color: $text-color;
 }
 
 #footer h1 {
@@ -259,7 +262,7 @@ body {
 }
 
 #browse {
-    background-color: $public-primary-accent-header;
+    background-color: $gallery-name-bg-color;
     text-align: center;
     padding-bottom: 10px;
 }
@@ -271,12 +274,9 @@ body {
 
 
 #library {
-
-    background-color: $public-primary-accent;
+    background-color: $thumbnail-background;
     padding-top: 20px;
     color: set-button-text-color($public-primary-accent);
-    border-left: $public-primary 1px solid;
-    border-right: $public-primary 1px solid;
 }
 
 
@@ -297,6 +297,8 @@ body {
 
 #library .program-description {
     width: 100%;
+    color: $thumbnail-text;
+    font-size: 14px;
 }
 
 #library .program-data {
@@ -304,7 +306,8 @@ body {
 }
 
 .show-name a {
-	color: set-button-text-color($public-primary-accent);
+    font-size: 18px;
+	color: $thumbnail-text;
 }
 
 
@@ -327,11 +330,11 @@ body {
 .show-details {
 	padding: 20px;
 	background-color: $public-primary-accent;
-	color: set-button-text-color($public-primary);
+	color: $thumbnail-text;
 }
 
 .show-details h3 {
-	color: set-button-text-color($public-primary);
+	color: $thumbnail-text;
 	padding-bottom: 10px;
 }
 
@@ -458,9 +461,11 @@ ul {
 
 @media (min-width: 992px) {
     .show-stub {
-        height: 350px;
+        height: 300px;
     }
 }
+
+
 
 .u-truncate-text {
   overflow: hidden;
