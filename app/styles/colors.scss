@@ -1,5 +1,11 @@
 // Rename public to site
 
+$top-banner: #293239;
+$gallery-name-bg-color: #293239;
+$text-color: #293239;
+$thumbnail-background: #7d8b98;
+$thumbnail-text: #FFFFFF;
+
 $public-primary: #707F89;
 $public-primary-lighter: lighten($public-primary, 30%);
 $public-primary-lightest: lighten($public-primary-lighter, 30%);
@@ -9,7 +15,7 @@ $public-primary-accent-header: #293239;
 
 
 $public-text-light: #FFFFFF;
-$public-text-dark: #595959;
+$public-text-dark: #293239;
 
 $public-action-badge: #2FB566;
 $public-action-badge-outline: darken($public-action-badge, 10%);
