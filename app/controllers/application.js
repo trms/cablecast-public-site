@@ -8,7 +8,7 @@ export default Ember.Controller.extend({
 			this.transitionToRoute('search', {queryParams: {query: query}});
 		},
 		watchLive: function(stream_id){
-			this.transitionToRoute('watch', stream_id);
+			this.transitionToRoute('watch-now', stream_id);
 		}
 	}
 });

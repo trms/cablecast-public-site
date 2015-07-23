@@ -10,11 +10,11 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-8 header-padding pull-right">
                             {{#if channel.liveStreams}}
-                                {{link-to 'Watch' 'watch' channel.liveStreams.firstObject.id class="btn btn-watch pull-right"}}
+                                {{link-to 'Watch' 'watch-now' channel.liveStreams.firstObject.id class="btn btn-watch pull-right"}}
                             {{/if}}
                             <div class="input-group extra-padding">
-                            	{{input value=tempQuery class="form-control" placeholder="Search"}} 
-                                
+                            	{{input value=tempQuery class="form-control" placeholder="Search"}}
+
                                 <span class="input-group-btn">
                                     <button class="btn btn-search" {{action 'search' tempQuery }} >Search</button>
                                 </span>

@@ -11,7 +11,7 @@ Router.map(function() {
 
   this.resource('channel');
 
-  this.resource('watch', { path:'watch/:stream_id' });
+  this.resource('watch-now', { path:'watch/:stream_id' });
 
   this.route('choose');
   this.route('vods');
