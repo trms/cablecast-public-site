@@ -7,51 +7,39 @@ export default Ember.Route.extend({
 		var appParams = this.paramsFor('application');
 		var self = this;
 		var channel = this.modelFor('application');
+		var galleryName = 'Recent Programs';
 
-
-		var carouselPrograms = Ember.RSVP.resolve(channel.get('publicSiteConfiguration.carouselSavedSearch')).then(function(savedSearch){
-			if (savedSearch === null){
-				return self.store.find('show', {
-					pageSize: 16,
+		return channel.get('publicSite').
+			then(function(site) {
+				return Ember.RSVP.hash({
+					logo: site.get('logo'),
+					carouselSavedSearch: site.get('carouselPrograms'),
+					gallerySavedSearch: site.get('gallerySavedSearch')
 				});
-			}
-			var ids = savedSearch.get('results').slice(0, 20);
-			return self.store.findByIds('show', ids);
-		})
-		.then(function(shows) {
-			return shows.filter(function(show) {
-				return show.get('showThumbnails.length') > 0;
-			});
-		});
+			}).
+			then(function(searches) {
+				var galleryPrograms, carouselPrograms, logo;
+				logo = searches.logo;
+				if (!searches.carouselSavedSearch) {
+					carouselPrograms = self.store.find('show', {pageSize: 16});
+				} else {
+					carouselPrograms = self.store.findByIds('show', searches.carouselSavedSearch.get('results').slice(0, 20));
+				}
+				if (!searches.gallerySavedSearch) {
+					galleryPrograms = self.store.find('show', {pageSize: 16});
+				} else {
+					galleryName = searches.gallerySavedSearch.get('name');
+					galleryPrograms = self.store.findByIds('show', searches.gallerySavedSearch.get('results').slice(0, 20));
+				}
 
-		var galleryPrograms = Ember.RSVP.resolve(channel.get('publicSiteConfiguration.gallerySavedSearch')).then(function(savedSearch){
-			if (savedSearch === null){				
-				return self.store.find('show', {
-					pageSize: 16,
+				return Ember.RSVP.hash({
+					logo: logo,
+					channel: channel,
+					galleryName: galleryName,
+					carouselPrograms: carouselPrograms,
+					galleryPrograms: galleryPrograms
 				});
-			} else {
-				
-			}
-			var ids = savedSearch.get('results').slice(0, 20);
-			return self.store.findByIds('show', ids);
-		})
-		.then(function(shows) {
-			return shows.filter(function(show) {
-				return show.get('showThumbnails.length') > 0;
 			});
-		});
-
-		var galleryName = channel.get('publicSiteConfiguration.gallerySavedSearch').then(function(savedSearch){
-			if (!savedSearch) {return 'Recent Programs'; }
-			return savedSearch.get('name');
-		});
-
-		return Ember.RSVP.hash({
-			channel: channel,
-			carouselPrograms: carouselPrograms,
-			galleryPrograms: galleryPrograms,
-			galleryName: galleryName
-		});
 	},
 	actions: {
 		schedule: function(params) {

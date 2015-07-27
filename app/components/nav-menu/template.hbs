@@ -3,7 +3,11 @@
 		<div class="row">
             <div class="col-xs-12 col-sm-4">
             	{{#link-to "index" class="main"}}
-					<img src="images/temp-peg-logo.png">
+                    {{#if channel.publicSite.logo.url}}
+					   <img src="{{channel.publicSite.logo.url}}">
+                    {{else}}
+                        <img src="images/temp-peg-logo.png">
+                    {{/if}}
 				{{/link-to}}
 			</div>
             <div class="col-xs-12 col-sm-8 pull-right">

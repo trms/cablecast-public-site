@@ -2,9 +2,8 @@ import DS from 'ember-data';
 
 export default DS.Model.extend({
 	name: DS.attr('string'),
-	publicSiteConfiguration: DS.belongsTo('public-site-configuration', {async: true}),
-	channelContactInfo: DS.belongsTo('channel-contact-info', {async: true}),
-
+	publicSite: DS.belongsTo('public-site', {async: true}),
+	
 	vods: DS.hasMany('vod', {async: true}),
 	shows: DS.hasMany('show', {async: true}),
 	liveStreams: DS.hasMany('live-stream', {async: true}),
