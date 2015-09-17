@@ -1,0 +1,24 @@
+<h3 class="show-details-header">Show details</h3>
+<p>Show ID: <strong>{{show.id}}</strong></p>
+<p>Event date: <strong>{{show.eventDateString}}</strong></p>
+
+{{#if producer.name}}
+	<p>Producer: <strong>{{show.producer.name}}</strong></p>
+{{/if}}
+
+{{#if project.name}}
+	<p>Project: <strong>{{show.project.name}}</strong></p>
+{{/if}}
+
+{{#each reels as |reel|}}
+	<p>Length: <strong>{{reel.trt}}</strong></p>
+{{/each}}
+
+<h3>Upcoming air times</h3>
+{{#each runs as |run|}}
+	<div class="show-future-runs-container">
+		{{moment-calendar run.runDateTime}}
+	</div>
+{{else}}
+	There are currently no upcoming air times.
+{{/each}}

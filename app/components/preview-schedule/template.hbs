@@ -1,0 +1,36 @@
+
+<h3 class="schedule-preview-header">Schedule</h3>
+
+<div class="schedule">
+
+		{{#if preview.channel.onAirRun.show.cgTitle}}
+		<div class="schedule-row clearfix">
+			<div class="plaque">
+				<div class="plaque-content now">
+					Now
+				</div>
+			</div>
+			<div class="schedule-container u-truncate-text">
+				{{#link-to 'watch-now' preview.channel.liveStreams.firstObject.id alt=preview.channel.onAirRun.show.cgTitle class='live-stream-name'}}
+					{{preview.channel.onAirRun.show.cgTitle}}
+				{{/link-to}}
+			</div>
+		</div>
+		{{/if}}
+
+	{{#each preview.channel.futureRuns as |run|}}
+		<div class="schedule-row clearfix">
+			<div class="plaque">
+				<div class="plaque-content not-now">
+					{{moment-format run.runDateTime 'h:mm a'}}
+				</div>
+			</div>
+			<div class="schedule-container u-truncate-text">
+				{{#link-to 'show' run.show.id}}
+					{{run.show.cgTitle}}
+				{{/link-to}}
+			</div>
+		</div>
+	{{/each}}
+</div>
+{{link-to 'See the entire schedule' 'schedule' class="btn btn-schedule"}}

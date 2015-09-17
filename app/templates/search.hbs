@@ -1,0 +1,39 @@
+<div class="search-page">
+	<div class="row">
+		<div class="col-xs-12">
+			<h1 class="search-results-header">
+				Search Results
+				{{#if model}}
+					<small>Displaying {{firstResult}} - {{lastResult}} of {{model.meta.count}} results.</small>
+				{{/if}}
+			</h1>
+		</div>
+	</div>
+	<div class="show-player clearfix">
+		<div class="col-lg-12 u-no-padding">
+				{{pagination-control
+        on-page-select='gotoPage'
+        pageSize=model.meta.pageSize
+        offset=model.meta.offset
+        count=model.meta.count
+        class="text-center"}}
+      <div class="search-results-wrapper clearfix">
+      {{#if model.isPending}}
+        Searching...
+      {{else}}
+        {{#each model as |result|}}
+          {{show-stub classNames="col-xs-12 col-sm-6 col-md-3" show=result}}
+        {{else}}
+          <h3>Your search returned no results.</h3>
+        {{/each}}
+      {{/if}}
+      </div>
+      {{pagination-control
+          on-page-select='gotoPage'
+          pageSize=model.meta.pageSize
+          offset=model.meta.offset
+          count=model.meta.count
+          class="text-center"}}
+		</div>
+	</div>
+</div>

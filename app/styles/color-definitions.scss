@@ -1,0 +1,35 @@
+//User Defined
+$banner: #219646;
+$background: #E8E8F0;
+$gradient-base: #343469;
+
+$gradient-top: $gradient-base;
+$gradient-bottom: lighten($gradient-base, 80%);
+
+//Constants
+$public-text-light: #FFFFFF;
+$public-text-dark: #293239;
+
+$public-action-badge: #2FB566;
+$public-action-badge-outline: darken($public-action-badge, 10%);
+
+$public-badge: #A2ABB3;
+$public-badge-outline: lighten($public-badge, 10%);
+
+$public-button-search: #337ab7;
+$public-button-search-outline: darken($public-button-search, 10%);
+
+$public-button-schedule: $public-button-search;
+$public-button-schedule-outline: darken($public-button-schedule, 10%);
+
+$public-button-watch: #2FB566;
+$public-button-watch-outline: darken($public-button-watch, 10%);
+
+
+@function set-button-text-color($color) {
+    @if (lightness($color) > 50) {
+        @return $public-text-dark; // Lighter backgorund, return dark color
+    } @else {
+        @return $public-text-light; // Darker background, return light color
+    }
+}

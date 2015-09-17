@@ -1,0 +1,33 @@
+<div class="podcasts">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 class="podcasts-header">Podcasts</h2>
+    </div>
+  </div>
+  <div class="podcasts-list clearfix">
+     <div class="col-xs-12">
+
+     {{podcast-list list=model}}
+{{!-- 
+<div class="row">
+  {{#each model as |project|}}
+      <div class="col-md-6">
+        <div class="podcast-card">
+        <h3>
+          {{project.podcastName}}
+          <small>{{project.producer.name}}</small>
+        </h3>
+        <p>
+          {{project.podcastDescription}}
+        </p>
+        <div>
+          <a href="{{project.itunesUrl}}" target='_blank'>iTunes</a>
+          <a href="{{project.podcastUrl}}" target='_blank'>XML</a>
+        </div>
+        </div>
+      </div>
+  {{/each}}
+  </div> --}}
+    </div>
+  </div>
+</div>
