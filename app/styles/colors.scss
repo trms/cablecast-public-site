@@ -10,7 +10,7 @@ body {
 }
 
 h1,h2,h3,h4,h5,h6 {
-	color: set-button-text-color(#ffffff);
+	color: set-button-text-color($background);
 }
 
 .schedule-header {
@@ -93,7 +93,7 @@ h1,h2,h3,h4,h5,h6 {
     color: set-button-text-color($background);
 }
 
-.footer-background {
+.footer-wrapper, .footer-header {
     color: $public-text-dark;
 }
 
@@ -150,6 +150,10 @@ h1,h2,h3,h4,h5,h6 {
 
 .show-stub-title-link {
 	color: set-button-text-color($background);
+}
+
+.show-page-header, .search-results-header {
+  color: $public-text-dark;
 }
 
 .show-details {
