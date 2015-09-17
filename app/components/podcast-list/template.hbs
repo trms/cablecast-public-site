@@ -1,0 +1,31 @@
+<div class="big-list table-responsive">
+	<table class="table">
+		<colgroup>
+			<col class="col-xs-4">
+			<col class="col-xs-6">
+			<col class="col-xs-2">
+		</colgroup>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Links</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      {{#each list as |project|}}
+
+        <tr>
+          <th scope="row">{{project.podcastName}} by <small>{{project.producer.name}}</small></th>
+          <td>{{project.podcastDescription}}</td>
+          <td>
+          	<a href="{{project.itunesUrl}}" class="btn btn-primary btn-xs" target='_blank'>iTunes</a>
+          	<a href="{{project.podcastUrl}}" class="btn btn-default btn-xs" target='_blank'>XML</a>
+          </td>
+        </tr>
+
+        {{/each}}
+      </tbody>
+    </table>
+</div>

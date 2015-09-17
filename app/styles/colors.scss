@@ -1,0 +1,213 @@
+@import 'color-definitions.scss';
+
+body {
+  background: #FFF;
+  color: set-button-text-color($background);
+}
+
+#header {
+    background-color: $banner;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	color: set-button-text-color($background);
+}
+
+.schedule-header {
+  color: $public-text-dark;
+}
+
+.schedule-date-picker {
+  color: $public-text-dark;
+}
+
+.watch-now-header {
+  color: $public-text-dark;
+}
+
+.podcasts-header {
+    color: $public-text-dark;
+}
+
+.primary-background {
+    background-color: $background;
+}
+
+.big-list {
+    background-color: #FFFFFF;
+}
+
+#main {
+    color: set-button-text-color($background);
+}
+
+.main-background {
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, $gradient-top),
+        color-stop(1, $gradient-bottom)
+    );
+    background-image: -o-linear-gradient(bottom, $gradient-top 0%, $gradient-bottom 100%);
+    background-image: -moz-linear-gradient(bottom, $gradient-top 0%, $gradient-bottom 100%);
+    background-image: -webkit-linear-gradient(bottom, $gradient-top 0%, $gradient-bottom 100%);
+    background-image: -ms-linear-gradient(bottom, $gradient-top 0%, $gradient-bottom 100%);
+    background-image: linear-gradient(to bottom, $gradient-top 0%, $gradient-bottom 100%);
+}
+
+.live-stream-name {
+    color: set-button-text-color(#FFF);
+}
+
+.show-wrapper {
+    background-color: $background;
+}
+
+.container-wrapper {
+    background-image: linear-gradient($gradient-top, $gradient-bottom);
+}
+
+#main {
+    color: set-button-text-color($background);
+}
+
+.schedule-container a {
+    color: set-button-text-color($background);
+}
+
+.liveStreamName {
+    color: set-button-text-color($background);
+}
+
+.schedule .front-page .schedule-title,
+.schedule .desktop-schedule .schedule-title {
+    color: set-button-text-color($background);
+}
+
+.schedule .schedule-title {
+    color: set-button-text-color($background);
+}
+
+.schedule .event-date {
+    color: set-button-text-color($background);
+}
+
+.footer-wrapper, .footer-header {
+    color: $public-text-dark;
+}
+
+.show-link, .show-link:hover, .show-link:active {
+  color: set-button-text-color($background);
+}
+
+.btn-watch {
+    color: set-button-text-color($public-button-watch);
+    background-color: $public-button-watch;
+    border-color: $public-button-watch-outline;
+}
+
+.btn-search {
+    color: set-button-text-color($public-button-search);
+    background-color: $public-button-search;
+    border-color: $public-button-search-outline;
+}
+
+
+.btn-schedule, .btn-schedule:hover, .btn-schedule:active, .btn-schedule:focus {
+    color: #fff;
+    background-color: $public-button-schedule;
+    border-color: $public-button-schedule-outline;
+}
+
+.plaque-content {
+    background: $public-badge;
+    border: 1px solid $public-badge-outline;
+}
+
+.plaque-content.now {
+    background: $public-action-badge;
+    border: 1px solid $public-action-badge-outline;
+}
+
+
+.gallery-title-wrapper {
+    background-color: $banner;
+}
+
+.gallery-title-header {
+  color: set-button-text-color($banner);
+}
+
+.gallery-wrapper {
+    background-color: $background;
+    color: set-button-text-color($background);
+}
+
+.gallery-wrapper .show-stub-property{
+    color: set-button-text-color($background);
+}
+
+.show-stub-title-link {
+	color: set-button-text-color($background);
+}
+
+.show-page-header, .search-results-header {
+  color: $public-text-dark;
+}
+
+.show-details {
+	background-color: $background;
+	color: set-button-text-color($background);
+}
+
+.schedule-wrapper,
+.show-player {
+    background-color: $background;
+}
+
+.show-details h3 {
+	color: set-button-text-color($background);
+}
+
+.search {
+  color:set-button-text-color($background);
+  background-color: $background;
+}
+
+.play-icon-link {
+  color: $public-button-watch;
+}
+
+.watch-now-page,
+.show-page,
+.search-page,
+.schedule-page {
+  background-color: #fff;
+}
+
+.podcasts {
+  background-color: #fff;
+}
+
+.podcasts-list {
+    color: set-button-text-color(#ffffff);
+}
+
+.watch-now-player-wrapper {
+  background-color: $background;
+}
+
+.pagination > li > a, .pagination > li > span {
+  color: $public-text-dark;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    background-color: $public-button-search;
+    border-color: $public-button-search;
+}
+
+.podcast-card {
+  color: $public-text-dark;
+	border: 1px $public-text-dark solid;
+}

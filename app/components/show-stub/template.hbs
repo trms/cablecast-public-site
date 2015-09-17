@@ -1,0 +1,67 @@
+{{#if show.showThumbnails}}
+		{{#link-to 'show' show.id class="thumbnail-responsive"}}
+			{{show-thumbnail show=show quality='Large' class="img-responsive"}}
+		{{/link-to}}
+{{else}}
+	<div class="thumbnail-responsive"></div>
+{{/if}}
+<h3 class="show-stub-title-header u-break-text">
+	{{link-to show.cgTitle 'show' show.id class="show-stub-title-link"}}
+</h3>
+
+{{#unless compact}}
+
+<div class="show-stub-property">
+	Date:
+
+	<span class="show-stub-property-value">
+		{{show.eventDateString}}
+	</span>
+
+</div>
+
+<div class="show-stub-property">
+	Length:
+
+	<span class="show-stub-property-value">
+		{{#each show.reels as |reel|}}
+			{{reel.trt}}
+		{{/each}}
+	</span>
+
+</div>
+{{#if show.producer.name}}
+	<div class="show-stub-property">
+		Producer:
+
+		<span class="show-stub-property-value">
+			{{show.producer.name}}
+		</span>
+	</div>
+{{/if}}
+
+{{#if show.project.name}}
+	<div class="show-stub-property">
+		Project:
+
+		<span class="show-stub-property-value">
+			{{show.project.name}}
+		</span>
+	</div>
+{{/if}}
+
+{{#if show.category.name}}
+	<div class="show-stub-property">
+		Category:
+
+		<span class="show-stub-property-value">
+			{{show.category.name}}
+		</span>
+	</div>
+{{/if}}
+
+{{else}}
+
+<p></p>
+
+{{/unless}}

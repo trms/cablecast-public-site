@@ -1,0 +1,29 @@
+<div class="show-page">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 class="show-page-header">{{show.cgTitle}}</h2>
+    </div>
+  </div>
+  <div class="show-player clearfix">
+  	   <div class="col-sm-6 col-lg-8 u-no-padding">
+    	<div class="embed-responsive embed-responsive-16by9">
+      	{{#if show.vods.firstObject.isReady}}
+			<div class="embed-responsive embed-responsive-16by9">
+				<video
+					src={{show.vods.firstObject.url}}
+					poster={{show.thumbnail}}
+					class="embed-responsive-item" controls>
+				</video>
+			</div>
+		{{else}}
+			{{show-thumbnail show=show quality='Large' class="img-responsive"}}
+		{{/if}}
+      </div>
+    </div>
+      <div class="col-sm-6 col-lg-4 u-no-padding">
+      <div class="additional-info u-truncate-text">
+        {{show-details show=show producer=producer reels=reels runs=runs}}
+      </div>
+    </div>
+  </div>
+</div>
