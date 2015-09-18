@@ -6,7 +6,7 @@ export default Ember.Route.extend({
 		return Ember.RSVP.hash({
 			show: this.store.find('show', params.id),
 			runs: this.store.find('schedule-item', {
-	    	show_id: params.id,
+	    	show: params.id,
     		start: start.toISOString(),
     		page_size: 5
 	    })

@@ -44,7 +44,7 @@ export default DS.Model.extend({
     	var _start = moment(today).startOf('day').format();
 
     	return this.store.find('schedule-item', {
-	    	show_id: this.id,
+	    	show: this.id,
     		start: _start,
     		page_size: 5
 	    });
