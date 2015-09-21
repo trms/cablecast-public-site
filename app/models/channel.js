@@ -35,7 +35,8 @@ export default DS.Model.extend({
 			var promise = this.store.find('schedule-item', {
 				start: _start,
 				end: _end,
-				channel: this.get('id')
+				channel: this.get('id'),
+				include: 'show,reel'
 			}).
 			then(function(items) {
 				return items.filter(function(run) {
