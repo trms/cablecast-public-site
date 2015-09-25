@@ -16,6 +16,8 @@
 	<a class="social-link" href="{{config.blogUrl}}" alt="Open our blog in a new window" target="_blank"><img src="images/website.png" /></a>
 {{/if}}
 
-{{#link-to 'podcasts' class="social-link"}}
-	<img src="images/podcast.png" />
-{{/link-to}}
+{{#if hasPodcasts}}
+	{{#link-to 'podcasts' class="social-link"}}
+		<img src="images/podcast.png" />
+	{{/link-to}}
+{{/if}}
