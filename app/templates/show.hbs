@@ -9,11 +9,7 @@
     	<div class="embed-responsive embed-responsive-16by9">
       	{{#if show.vods.firstObject.isReady}}
 			<div class="embed-responsive embed-responsive-16by9">
-				<video
-					src={{show.vods.firstObject.url}}
-					poster={{show.thumbnail}}
-					class="embed-responsive-item" controls>
-				</video>
+        {{{show.vods.firstObject.embedCode}}}
 			</div>
 		{{else}}
 			{{show-thumbnail show=show quality='Large' class="img-responsive"}}
