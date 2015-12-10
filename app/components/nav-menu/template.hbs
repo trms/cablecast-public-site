@@ -14,18 +14,24 @@
 			</div>
 			<div class="col-xs-12 col-sm-8 pull-right">
 				<div class="row">
-					<div class="col-xs-12 col-sm-8 header-controls pull-right">
-						{{#if channel.liveStreams}}
-							{{link-to 'Watch' 'watch-now' channel.liveStreams.firstObject.id class="btn btn-watch pull-right"}}
-						{{/if}}
+					<div class="col-xs-12 col-sm-6 header-controls pull-right">
 						<form {{action 'search' on='submit'}}>
-							<div class="input-group header-controls-search-wrapper">
+							<div class="input-group">
 								{{input value=tempQuery class="form-control" placeholder="Search"}}
 								<span class="input-group-btn">
 									<button class="btn btn-search" type='submit' {{action 'search' tempQuery }} >Search</button>
 								</span>
 							</div>
 						</form>
+					</div>
+					<div class="col-xs-12 col-sm-6 header-controls pull-right">
+						<div class="button-wrapper pull-right">
+							{{link-to 'Home' 'index' tagName="button" activeClass="" class="btn btn-primary btn-nav-bar"}}
+							{{link-to 'Schedule' 'schedule' tagName="button" activeClass="" class="btn btn-primary btn-nav-bar"}}
+							{{#if channel.liveStreams}}
+									{{link-to 'Watch' 'watch-now' channel.liveStreams.firstObject.id activeClass="" class="btn btn-watch btn-nav-bar"}}
+							{{/if}}
+						</div>
 					</div>
 				</div>
 			</div>
