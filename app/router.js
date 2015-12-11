@@ -13,6 +13,7 @@ Router.map(function() {
   this.resource('watch-now', { path:'watch/:stream_id' });
   this.route('vods');
   this.route('search');
+  this.route('chooser');
 });
 
 export default Router;

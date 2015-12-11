@@ -31,13 +31,15 @@ function loadCustomCss(channelId) {
   }
 }
 
-
-
 export default Ember.Route.extend({
   queryParams: {
     channel: {
       refreshModel: true
     }
+  },
+
+  channels: function() {
+    return this.store.find('channels');
   },
 
   model: function(params){
@@ -46,7 +48,8 @@ export default Ember.Route.extend({
     .then(function(channels) {
       var channel = channels.findBy('id', params.channel + '');
       if (!channel) {
-        self.transitionTo({queryParams: {channel: channels.get('firstObject.id')}});
+
+        self.transitionTo('chooser', {queryParams: {channel: channels.get('firstObject.id')}});
       } else {
         var channelId = channel.get('id');
         return Ember.RSVP.all([loadColorCss(channelId), loadCustomCss(channelId)]).

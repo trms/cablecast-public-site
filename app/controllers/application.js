@@ -3,6 +3,8 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   queryParams: ['channel'],
 
+  viewingChannelChooser: true,
+
   projects: Ember.computed('model.primaryLocation.id', function() {
     return this.store.query('project', {location: this.get('model.primaryLocation.id')})
   }),
@@ -18,6 +20,9 @@ export default Ember.Controller.extend({
   actions: {
 		navSearch: function(query) {
 			this.transitionToRoute('search', {queryParams: {query: query}});
-		}
+		},
+    showChannelChooser: function() {
+      this.set('viewingChannelChooser', true);
+    }
 	}
 });
