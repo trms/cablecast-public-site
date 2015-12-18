@@ -1,0 +1,6 @@
+{{log markers}}
+<ul>
+{{#each markers as |marker|}}
+	<li><a {{action 'cueTo' marker}}>{{marker.title}}</a></li>
+{{/each}}
+</ul>
