@@ -14,4 +14,17 @@ export default Ember.Route.extend({
 		});
 	},
 
+  setupController: function(controller, model) {
+    var params = this.paramsFor(this.get('routeName'));
+    if (params.seekto) {
+      controller.set('showingDetails', false);
+      controller.set('showingChapters', true);
+    }
+    controller.set('model', model);
+  },
+
+  resetController: function(controller) {
+    controller.set('seekto', null);
+  }
+
 });

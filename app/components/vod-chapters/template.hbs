@@ -1,6 +1,8 @@
-{{log markers}}
-<ul>
 {{#each markers as |marker|}}
-	<li><a {{action 'cueTo' marker}}>{{marker.title}}</a></li>
+  <div {{action 'cueTo' marker}}
+       data-marker={{marker.id}}
+       class="vod-chapters-chapter {{if (eq marker activeMarker) 'active'}}">
+  	<h4>{{marker.title}} <small>{{total-run-time marker.offset}}</small></h4>
+    <p>{{marker.body}}</p>
+  </div>
 {{/each}}
-</ul>

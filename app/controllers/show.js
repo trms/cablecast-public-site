@@ -7,6 +7,9 @@ export default Ember.Controller.extend({
   show: Ember.computed.alias('model.show'),
   runs: Ember.computed.alias('model.runs'),
 
+  queryParams: ['seekto'],
+  seekto: null,
+
 	actions: {
 		showChapters: function(){
 			this.set('showingDetails', false);
@@ -15,6 +18,9 @@ export default Ember.Controller.extend({
 		showDetails: function() {
 			this.set('showingDetails', true);
 			this.set('showingChapters', false);
-		}
+		},
+    setSeekTo: function(markerId) {
+      this.set('seekto', markerId);
+    }
 	}
 });

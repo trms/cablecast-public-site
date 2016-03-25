@@ -18,27 +18,27 @@
     </div>
       <div class="col-sm-6 col-lg-4 u-no-padding">
         <ul class="nav nav-tabs nav-tabs-padding" id="myTab">
-      <li class="hiddex-sx {{if showingChapters 'active'}}">
-        <a href="#" {{action 'showChapters'}} class="btn btn-link">
-          Chapters
-        </a>
-      </li>
-      <li class="{{if showingDetails 'active'}}">
-        <a href="#" {{action 'showDetails'}} class="btn btn-link">
-          Show Details
-        </a>
-      </li>
-    </ul>
+          <li class="{{if showingDetails 'active'}}">
+            <a href="#" {{action 'showDetails'}} class="btn btn-link">
+              Show Details
+            </a>
+          </li>
+          <li class="hiddex-sx {{if showingChapters 'active'}}">
+            <a href="#" {{action 'showChapters'}} class="btn btn-link">
+              Chapters
+            </a>
+          </li>
+        </ul>
     <div class="tab-content">
       <div class="tab-pane active">
-      {{#if showingChapters}}
-        <div class="additional-info u-truncate-text">
-          {{vod-chapters markers=show.vods.firstObject.markers}}
-        </div>
-      {{/if}}
       {{#if showingDetails}}
         <div class="additional-info u-truncate-text">
           {{show-details show=show producer=producer reels=reels runs=runs}}
+        </div>
+      {{/if}}
+      {{#if showingChapters}}
+        <div class="additional-info">
+          {{vod-chapters markers=show.vods.firstObject.markers seekto=seekto setSeekTo=(action 'setSeekTo')}}
         </div>
       {{/if}}
       </div></div>

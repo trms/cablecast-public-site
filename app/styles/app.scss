@@ -221,7 +221,7 @@ body {
     padding-top: 10px;
     padding-left: 10px;
     padding-right: 10px;
-    
+
 }
 
 .show-stub-property {
@@ -377,6 +377,19 @@ body {
 
 .social-link {
     margin-right: 4px;
+}
+
+.vod-chapters {
+  max-height: 350px;
+  overflow: auto;
+}
+
+.vod-chapters-chapter {
+  box-sizing: border-box;
+  border-bottom: 2px solid #ccc;
+  padding: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 
 // Define colors here. These may be overriden by customer
