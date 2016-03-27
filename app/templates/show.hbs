@@ -23,11 +23,13 @@
               Show Details
             </a>
           </li>
+          {{#if show.vods.firstObject.markers}}
           <li class="hiddex-sx {{if showingChapters 'active'}}">
             <a href="#" {{action 'showChapters'}} class="btn btn-link">
               Chapters
             </a>
           </li>
+          {{/if}}
         </ul>
     <div class="tab-content">
       <div class="tab-pane active">
