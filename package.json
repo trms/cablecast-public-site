@@ -41,7 +41,8 @@
     "express": "^4.8.5",
     "glob": "^4.4.2",
     "node-sass": "3.4.1",
-    "rimraf": "2.2.8"
+    "rimraf": "2.2.8",
+    "symlink-or-copy": "1.0.1"
   },
   "dependencies": {
     "moment": "^2.9.0"
