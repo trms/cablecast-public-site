@@ -1,8 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-	showingChapters: false,
-	showingDetails: true,
+  activeTab: 'details',
 
   show: Ember.computed.alias('model.show'),
   runs: Ember.computed.alias('model.runs'),
@@ -11,13 +10,11 @@ export default Ember.Controller.extend({
   seekto: null,
 
 	actions: {
-		showChapters: function(){
-			this.set('showingDetails', false);
-			this.set('showingChapters', true);
+		showChapters: function() {
+      this.set('activeTab', 'chapters');
 		},
 		showDetails: function() {
-			this.set('showingDetails', true);
-			this.set('showingChapters', false);
+			this.set('activeTab', 'details');
 		},
     setSeekTo: function(markerId) {
       this.set('seekto', markerId);

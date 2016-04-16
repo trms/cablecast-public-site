@@ -18,13 +18,13 @@
     </div>
       <div class="col-sm-6 col-lg-4 u-no-padding">
         <ul class="nav nav-tabs nav-tabs-padding" id="myTab">
-          <li class="{{if showingDetails 'active'}}">
+          <li class="{{if (eq activeTab 'details') 'active'}}">
             <a href="#" {{action 'showDetails'}} class="btn btn-link">
               Show Details
             </a>
           </li>
           {{#if show.vods.firstObject.markers}}
-          <li class="hiddex-sx {{if showingChapters 'active'}}">
+          <li class="hiddex-sx {{if (eq activeTab 'chapters') 'active'}}">
             <a href="#" {{action 'showChapters'}} class="btn btn-link">
               Chapters
             </a>
@@ -33,12 +33,11 @@
         </ul>
     <div class="tab-content">
       <div class="tab-pane active">
-      {{#if showingDetails}}
+      {{#if (eq activeTab 'details')}}
         <div class="additional-info u-truncate-text">
           {{show-details show=show producer=producer reels=reels runs=runs}}
         </div>
-      {{/if}}
-      {{#if showingChapters}}
+      {{else}}
         <div class="additional-info">
           {{vod-chapters markers=show.vods.firstObject.markers seekto=seekto setSeekTo=(action 'setSeekTo')}}
         </div>
