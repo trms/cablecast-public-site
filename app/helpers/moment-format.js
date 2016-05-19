@@ -1,15 +1,7 @@
 /*globals moment*/
 import Ember from 'ember';
 
-function momentFormat(date, format) {
-  var formatString = arguments.length < 3 ?
-  					'MMMM Do YYYY, h:mm:ss a' :
-  					format;
+export default Ember.Helper.helper(function([date, format]) {
+  var formatString = format || 'MMMM Do YYYY, h:mm:ss a'
   return moment(date).format(formatString);
-}
-
-export {
-  momentFormat
-};
-
-export default Ember.Handlebars.makeBoundHelper(momentFormat);
+});

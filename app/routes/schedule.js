@@ -12,7 +12,7 @@ export default Ember.Route.extend({
   		var _start = moment(params.currentDay).startOf('day').format();
 			var _end = moment(params.currentDay).add(1, 'days').format();
 
-    	return this.store.find('schedule-item', {
+    	return this.store.query('schedule-item', {
 	    	channel: appParams.channel,
     		start: _start,
     		end: _end,

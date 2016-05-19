@@ -42,7 +42,7 @@ export default Ember.Route.extend({
 
   model: function(params){
     var self = this;
-    return this.store.find('channel')
+    return this.store.findAll('channel')
     .then(function(channels) {
       var channel = channels.findBy('id', params.channel + '');
       if (!channel) {

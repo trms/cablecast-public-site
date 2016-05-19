@@ -1,6 +1,7 @@
 import ApplicationAdapter from 'public/adapters/application';
 
 export default ApplicationAdapter.extend({
+  host: 'http://tighty.tv',
   coalesceFindRequests: true,
 	buildURL: function(modelName, id, snapshot, requestType, query) {
 		var url = this._super(modelName, id, snapshot, requestType, query);

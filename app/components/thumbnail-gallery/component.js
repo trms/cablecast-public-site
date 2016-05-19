@@ -17,7 +17,7 @@ export default Ember.Component.extend({
 	  		columns = 4;
 	  	}
 
-	  	return chunkArray(this.get('items'), columns);
+	  	return chunkArray(this.get('items'), 4);
 	  }
 	})
 });
