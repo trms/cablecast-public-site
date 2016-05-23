@@ -27,7 +27,6 @@ export default Ember.Route.extend({
   setupController: function(controller, model) {
     var params = this.paramsFor(this.get('routeName'));
     if (model.show.get('vods.firstObject.markers.length') || params.seekto) {
-      debugger;
       controller.set('activeTab', 'chapters');
     }
     controller.set('model', model);
