@@ -16,8 +16,8 @@ export default Ember.Controller.extend({
 		showDetails: function() {
 			this.set('activeTab', 'details');
 		},
-    setSeekTo: function(markerId) {
-      this.set('seekto', markerId);
+    setSeekTo: function(chapterId) {
+      this.set('seekto', chapterId);
     }
 	}
 });

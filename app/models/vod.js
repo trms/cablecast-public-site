@@ -4,7 +4,7 @@ import Ember from 'ember';
 export default DS.Model.extend({
   fileName: DS.attr('string'),
   show: DS.belongsTo('show', {async: true}),
-  markers: DS.hasMany('marker', {async: true}),
+  chapters: DS.hasMany('chapter', {async: true}),
   vodConfiguration: DS.belongsTo('vod-configuration', {async: true}),
   vodTransactions: DS.hasMany('vod-transaction', {async: true}),
   lastTransaction: DS.belongsTo('vod-transaction', {async: true}),

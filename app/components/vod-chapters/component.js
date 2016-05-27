@@ -21,36 +21,36 @@ export default Ember.Component.extend({
     }
 
     if (event.data.message === 'timeupdate') {
-      var markers = this.get('markers').toArray();
-      var activeMarker = null;
+      var chapters = this.get('chapters').toArray();
+      var activeChapter = null;
       var time = event.data.value;
-      for (var i = 0; i < markers.length; i++) {
-        var offset = markers[i].get('offset');
+      for (var i = 0; i < chapters.length; i++) {
+        var offset = chapters[i].get('offset');
 
         if (offset <= time) {
-          if (i + 1 < markers.length) {
-            // Test if the next marker's offset is greater than time.
-            // If it is than we this is the active marker. If not we want to test the next marker.
-            if (markers[i + 1].get('offset') > time) {
-              activeMarker = markers[i];
+          if (i + 1 < chapters.length) {
+            // Test if the next chapter's offset is greater than time.
+            // If it is than we this is the active chapter. If not we want to test the next chapter.
+            if (chapters[i + 1].get('offset') > time) {
+              activeChapter = chapters[i];
               break;
             }
           } else {
-            // This is the last marker, so it's good until the end of the video.
-            activeMarker = markers[i];
+            // This is the last chapter, so it's good until the end of the video.
+            activeChapter = chapters[i];
             break;
           }
         }
       }
-      if (this.get('activeMarker') !== activeMarker) {
-        this.changeActiveMarker(activeMarker);
+      if (this.get('activeChapter') !== activeChapter) {
+        this.changeActiveChapter(activeChapter);
       }
     }
 	},
 
-  changeActiveMarker: function(marker) {
-    this.set('activeMarker', marker);
-    var element = Ember.$(this.$().find(`[data-marker="${marker.get('id')}"]`)[0]);
+  changeActiveChapter: function(chapter) {
+    this.set('activeChapter', chapter);
+    var element = Ember.$(this.$().find(`[data-chapter="${chapter.get('id')}"]`)[0]);
     this.$().animate({
       scrollTop: element.offset().top - this.$().offset().top + this.$().scrollTop()
     });
@@ -72,12 +72,12 @@ export default Ember.Component.extend({
   },
 
 	actions: {
-		cueTo: function(marker){
+		cueTo: function(chapter){
       var setSeekTo = this.get('setSeekTo');
       if (setSeekTo) {
-        setSeekTo(marker.get('offset'));
+        setSeekTo(chapter.get('offset'));
       }
-			this.seekTo(marker.get('offset'));
+			this.seekTo(chapter.get('offset'));
 		}
 	}
 });

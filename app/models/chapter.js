@@ -3,10 +3,10 @@ var attr = DS.attr;
 
 export default DS.Model.extend({
 	vod: DS.belongsTo('vod', {async: true}),
-	title: attr('string', {defaultValue: 'New Marker'}),
+	title: attr('string', {defaultValue: 'New Chapter'}),
 	body: attr('string', {defaultValue: ''}),
 	link: attr('string', {defaultValue: ''}),
 	offset: attr('number', {defaultValue: 0}),
 	deleted: attr('boolean', {defaultValue: false}),
-	
+
 });
