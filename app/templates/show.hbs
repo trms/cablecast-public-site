@@ -6,20 +6,44 @@
   </div>
   <div class="show-player clearfix">
   	   <div class="col-sm-6 col-lg-8 u-no-padding">
-    	<div class="embed-responsive embed-responsive-16by9">
-      	{{#if show.vods.firstObject.isReady}}
+  	{{#if show.vods.firstObject.isReady}}
 			<div class="embed-responsive embed-responsive-16by9">
         {{{show.vods.firstObject.embedCode}}}
 			</div>
 		{{else}}
-			{{show-thumbnail show=show quality='Large' class="img-responsive"}}
-		{{/if}}
+      <div class="embed-responsive embed-responsive-16by9">
+        {{show-thumbnail show=show quality='Large' class="img-responsive"}}
       </div>
+		{{/if}}
     </div>
       <div class="col-sm-6 col-lg-4 u-no-padding">
-      <div class="additional-info u-truncate-text">
-        {{show-details show=show producer=producer reels=reels runs=runs}}
-      </div>
+        <ul class="nav nav-tabs nav-tabs-padding" id="myTab">
+          <li class="{{if (eq activeTab 'details') 'active'}}">
+            <a href="#" {{action 'showDetails'}} class="btn btn-link">
+              Show Details
+            </a>
+          </li>
+          {{#if show.vods.firstObject.chapters}}
+          <li class="hiddex-sx {{if (eq activeTab 'chapters') 'active'}}">
+            <a href="#" {{action 'showChapters'}} class="btn btn-link">
+              Chapters
+            </a>
+          </li>
+          {{/if}}
+        </ul>
+    <div class="tab-content">
+      <div class="tab-pane active">
+      {{#if (eq activeTab 'details')}}
+        <div class="additional-info u-truncate-text">
+          {{show-details show=show producer=producer reels=reels runs=runs}}
+        </div>
+      {{else}}
+        <div class="additional-info">
+          {{vod-chapters chapters=show.vods.firstObject.chapters seekto=seekto setSeekTo=(action 'setSeekTo')}}
+        </div>
+      {{/if}}
+      </div></div>
+
     </div>
   </div>
 </div>

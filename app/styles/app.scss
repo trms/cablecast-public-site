@@ -217,6 +217,13 @@ body {
 	padding-left: 20px;
 }
 
+.nav-tabs-padding {
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
 .show-stub-property {
     width: 100%;
     font-size: 14px;
@@ -370,6 +377,19 @@ body {
 
 .social-link {
     margin-right: 4px;
+}
+
+.vod-chapters {
+  max-height: 350px;
+  overflow: auto;
+}
+
+.vod-chapters-chapter {
+  box-sizing: border-box;
+  border-bottom: 2px solid #ccc;
+  padding: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 
 // Define colors here. These may be overriden by customer
