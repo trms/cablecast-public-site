@@ -26,3 +26,6 @@ artifacts:
   - path: dist
     name: dist
     type: zip
+notifications:
+  - provider: Webhook
+    url: https://trms-build-kicker.herokuapp.com/appveyor?failed={{failed}}&branch=6.1&projectName=cablecast
