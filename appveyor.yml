@@ -1,0 +1,31 @@
+init:
+  - git config --global core.autocrlf true
+clone_depth: 10
+environment:
+  matrix:
+    - nodejs_version: "4.2"
+install:
+  # Get the latest stable version of Node 0.STABLE.latest
+  - ps: Install-Product node $env:nodejs_version
+  # Typical npm stuff.
+  - if not exist "C:\nc" md C:\nc
+  - npm config set cache C:\nc
+  - npm version
+  - npm install -g bower
+  - npm install --no-optional
+  - bower install
+build_script:
+  - node node_modules\ember-cli\bin\ember build --environment=production
+version: 1.0.{build}
+#cache node_modules and bower_componets between builds to speed up tests
+cache:
+  - node_modules
+  - bower_components
+  - C:\nc
+artifacts:
+  - path: dist
+    name: dist
+    type: zip
+notifications:
+  - provider: Webhook
+    url: https://trms-build-kicker.herokuapp.com/appveyor?failed={{failed}}&branch=6.0&projectName=cablecast
