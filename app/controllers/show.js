@@ -4,6 +4,9 @@ export default Ember.Controller.extend({
   activeTab: 'details',
 
   show: Ember.computed.alias('model.show'),
+  chapters: Ember.computed('show.vods.firstObject.chapters.[]', function(){
+    return this.get('show.vods.firstObject.chapters').filterBy('deleted', false);
+  }),
   runs: Ember.computed.alias('model.runs'),
 
   queryParams: ['seekto'],
