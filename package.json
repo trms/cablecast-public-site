@@ -45,6 +45,7 @@
     "symlink-or-copy": "1.0.1"
   },
   "dependencies": {
+    "broccoli-funnel": "^1.0.6",
     "moment": "^2.9.0"
   }
 }
