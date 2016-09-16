@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  headData: Ember.inject.service(),
 	model: function(params) {
 		var start = new Date();
 		return Ember.RSVP.hash({
@@ -9,7 +10,6 @@ export default Ember.Route.extend({
         include: 'thumbnail,vod'
       })
       .then(function(result) {
-        debugger;
         return result.findBy('id', params.id);
       }),
 			runs: this.store.query('schedule-item', {
@@ -18,5 +18,12 @@ export default Ember.Route.extend({
     		page_size: 5
 	    })
 		});
-	}
+	},
+
+  afterModel: function() {
+    var show = this.modelFor(this.routeName).show;
+    Ember.set(this, 'headData.title', show.get('cgTitle'));
+    Ember.set(this, 'headData.description', show.get('comments') || show.get('cgTitle'));
+    Ember.set(this, 'headData.image', show.get('showThumbnails.firstObject.url'));
+  }
 });
