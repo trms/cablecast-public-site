@@ -14,6 +14,7 @@ export default Ember.Route.extend({
 		return this.store.query('show', {
 			offset: params.page - 1,
 			search: params.query,
+      include: 'thumbnail,reel',
 			location: channel.get('primaryLocation')
 		});
 	},
@@ -21,6 +22,6 @@ export default Ember.Route.extend({
 	setupController: function(controller, model){
 		controller.set('model', model);
 		controller.set('tempQuery', this.paramsFor(this.routeName).query);
-		window.scrollTo(0,0);
+		//window.scrollTo(0,0);
 	}
 });

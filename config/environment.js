@@ -18,7 +18,7 @@ module.exports = function(environment) {
       // when it is created
     },
     fastboot: {
-      hostWhitelist: ['localhost', 'vod.easthamptonmedia.org']
+      hostWhitelist: ['localhost', 'tighty.tv', 'localhost:3000']
     }
   };
 
