@@ -1,6 +1,6 @@
 import DS from 'ember-data';
 
 export default DS.RESTAdapter.extend({
-  host: 'http://vod.easthamptonmedia.org/',
+  host: 'http://tighty.tv',
 	namespace: 'cablecastapi/v1'
 });
