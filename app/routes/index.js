@@ -28,13 +28,15 @@ export default Ember.Route.extend({
 				if (!searches.carouselSavedSearch) {
 					carouselPrograms = self.store.query('show', { pageSize: 50, include: 'vod,thumbnail'});
 				} else {
-					carouselPrograms = self.store.findByIds('show', searches.carouselSavedSearch.get('results').slice(0, 50));
+          var carouselIds = searches.carouselSavedSearch.get('results').slice(0, 50);
+					carouselPrograms = self.store.query('show', {ids: carouselIds, include: 'vod,thumbnail,project,category,producer'});
 				}
 				if (!searches.gallerySavedSearch) {
 					galleryPrograms = self.store.query('show', {pageSize: 50, include: 'vod,thumbnail,project,category,producer'});
 				} else {
+          var galleryIds = searches.gallerySavedSearch.get('results').slice(0, 50)
 					galleryName = searches.gallerySavedSearch.get('name');
-					galleryPrograms = self.store.findByIds('show', searches.gallerySavedSearch.get('results').slice(0, 50));
+					galleryPrograms = self.store.query('show', {ids: galleryIds, include: 'vod,thumbnail,project,category,producer'});
 				}
 
 				return Ember.RSVP.hash({
