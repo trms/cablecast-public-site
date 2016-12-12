@@ -16,7 +16,7 @@ export default Ember.Route.extend({
 	    	channel: appParams.channel,
     		start: _start,
     		end: _end,
-				include: 'show,reel'
+				include: 'show,reel,vod,thumbnail,vodtransaction'
 	    }).
 			then(function(runs) {
 				return runs.filter(function(run) {

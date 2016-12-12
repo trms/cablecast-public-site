@@ -9,14 +9,8 @@ var chunkArray = function chunk(arr, n) {
 
 export default Ember.Component.extend({
 	items: null,
-	groups: Ember.computed('items.[]', 'media.isMd', {
+	groups: Ember.computed('items.[]', {
 	  get: function() {
-	  	var columns = 2;
-
-	  	if (this.get('media.isMd')) {
-	  		columns = 4;
-	  	}
-
 	  	return chunkArray(this.get('items'), 4);
 	  }
 	})
