@@ -16,7 +16,9 @@ export default Ember.Route.extend({
 	    	channel: appParams.channel,
     		start: _start,
     		end: _end,
-				include: 'show,reel'
+				include: 'show,reel',
+        page_size: -1,
+        include_cg_exempt: false
 	    }).
 			then(function(runs) {
 				return runs.filter(function(run) {

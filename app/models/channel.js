@@ -36,7 +36,9 @@ export default DS.Model.extend({
 				start: _start,
 				end: _end,
 				channel: this.get('id'),
-				include: 'show,reel'
+				include: 'show,reel',
+        include_cg_exempt: false,
+        page_size: -1
 			}).
 			then(function(items) {
 				return items.filter(function(run) {
