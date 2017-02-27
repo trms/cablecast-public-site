@@ -1,5 +1,8 @@
 # Cablecast Public Site
 
+# TODO REMOVE ME
+Just here so we can get a build ;)
+
 The Cablecast Public Site is an Open Source web application that consumes the Cablecast API. It is included with Cablecast versions `6.0.0` and greater. We welcome community contributions, but please keep in mind that not all features will be accepted. We hope stations will fork this repository and customize this site to fit whatever needs they may have. Documentation and examples will be released soon, and this README will be updated with links to these resources.
 
 If you have any problems with this application please use the GitHub issue tracker to file issues.
