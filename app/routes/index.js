@@ -27,12 +27,12 @@ export default Ember.Route.extend({
 				var galleryPrograms, carouselPrograms, logo;
 				logo = searches.logo;
 				if (!searches.carouselSavedSearch) {
-					carouselPrograms = self.store.find('show', defaultQuery);
+					carouselPrograms = self.store.query('show', defaultQuery);
 				} else {
 					carouselPrograms = self.store.findByIds('show', searches.carouselSavedSearch.get('results').slice(0, 50));
 				}
 				if (!searches.gallerySavedSearch) {
-					galleryPrograms = self.store.find('show', defaultQuery);
+					galleryPrograms = self.store.query('show', defaultQuery);
 				} else {
 					galleryName = searches.gallerySavedSearch.get('name');
 					galleryPrograms = self.store.findByIds('show', searches.gallerySavedSearch.get('results').slice(0, 50));
@@ -53,8 +53,8 @@ export default Ember.Route.extend({
 					logo: null,
 					channel: channel,
 					galleryName: 'Recent Programs',
-					carouselPrograms: self.store.find('show', defaultQuery).then(filterShows),
-					galleryPrograms: self.store.find('show', defaultQuery).then(filterShows)
+					carouselPrograms: self.store.query('show', defaultQuery).then(filterShows),
+					galleryPrograms: self.store.query('show', defaultQuery).then(filterShows)
 				});
 			});
 	},

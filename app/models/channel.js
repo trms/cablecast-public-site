@@ -18,7 +18,7 @@ export default DS.Model.extend({
 	defaultPageSizeForScheduledRuns: 6,
 
 	newVods: function(){
-		return this.store.find('vod', {
+		return this.store.query('vod', {
 			sort_order: 'descending',
 			sort: 'eventDate',
 			page_size: '10'
@@ -32,7 +32,7 @@ export default DS.Model.extend({
 			var _start = moment().startOf('day').toISOString();//moment().startOf('hour').toISOString();
 			var _end = moment(today).add(24, 'hours').toISOString();
 
-			var promise = this.store.find('schedule-item', {
+			var promise = this.store.query('schedule-item', {
 				start: _start,
 				end: _end,
 				channel: this.get('id'),
