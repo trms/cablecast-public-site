@@ -41,19 +41,23 @@ export default Ember.Route.extend({
   },
 
   model: function(params){
-    var self = this;
-    return this.store.find('channel')
+    return this.store.findAll('channel')
     .then(function(channels) {
       var channel = channels.findBy('id', params.channel + '');
       if (!channel) {
-        self.transitionTo({queryParams: {channel: channels.get('firstObject.id')}});
-      } else {
-        var channelId = channel.get('id');
-        return Ember.RSVP.all([loadColorCss(channelId), loadCustomCss(channelId)]).
-          then(function() {
-            return channel;
-          });
+        channel = channels.get('firstObject');
       }
+      var channelId = channel.get('id');
+      return Ember.RSVP.all([loadColorCss(channelId), loadCustomCss(channelId)]).
+        then(function() {
+          return channel;
+        });
     });
+  },
+
+  setupController(controller, model) {
+    this._super(...arguments);
+    controller.set('channel', model.get('id'));
   }
+
 });

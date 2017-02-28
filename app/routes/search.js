@@ -11,7 +11,7 @@ export default Ember.Route.extend({
 	},
 	model: function(params) {
 		var channel = this.modelFor('application');
-		return this.store.find('show', {
+		return this.store.query('show', {
 			offset: params.page - 1,
 			search: params.query,
 			location: channel.get('primaryLocation')

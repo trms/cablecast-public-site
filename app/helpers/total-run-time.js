@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-export function totalRunTime(input) {
+export default Ember.Helper.helper(function(input) {
 	var sec_num = parseInt(input, 10); // don't forget the second param
     var hours   = Math.floor(sec_num / 3600);
     var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
@@ -11,6 +11,4 @@ export function totalRunTime(input) {
     if (seconds < 10) {seconds = "0"+seconds;}
     var time    = hours+':'+minutes+':'+seconds;
     return time;
-}
-
-export default Ember.Handlebars.makeBoundHelper(totalRunTime);
+});

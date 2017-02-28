@@ -6,11 +6,11 @@ export default Ember.Route.extend({
 		var start = new Date();
     var self = this;
 		return Ember.RSVP.hash({
-			shows: this.store.find('show', {
+			shows: this.store.query('show', {
         ids: [params.id],
         include: 'vod,scheduleitem,thumbnail,chapter'
       }),
-			runs: this.store.find('schedule-item', {
+			runs: this.store.query('schedule-item', {
 		    	show: params.id,
 	    		start: start.toISOString(),
 	    		page_size: 5
