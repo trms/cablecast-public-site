@@ -16,6 +16,17 @@ body {
 .header-controls {
     padding-top: 20px;
     padding-bottom: 20px;
+    @media screen and (max-width: 767px){
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.header-controls:last-child {
+    @media screen and (max-width: 767px){
+        padding-top: 5px;
+        padding-bottom: 10px;
+    }
 }
 
 .header-logo-wrapper {
@@ -31,8 +42,16 @@ body {
     display: block;
 }
 
-.header-controls-search-wrapper {
-    padding-right: 20px;
+.btn-nav-bar {
+    width: 32%;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.button-wrapper {
+    overflow: auto;
+    white-space: nowrap;
+    width: 100%;
 }
 
 // ----------------------------------------------------------------------------
