@@ -1,11 +1,5 @@
 <div class="row">
-{{#thumbnail-gallery items=shows columns=4 as |showGroups|}}
-	{{#each showGroups as |group|}}
-	<div class="row">
-		{{#each group as |show|}}
-			{{show-stub show=show classNames="col-xs-12 col-sm-6 col-md-3"}}
-		{{/each}}
-	</div>
+	{{#each shows as |show|}}
+		{{show-stub show=show classNames="col-xs-12 col-sm-6 col-md-3"}}
 	{{/each}}
-{{/thumbnail-gallery}}
 </div>

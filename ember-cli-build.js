@@ -38,7 +38,6 @@ module.exports = function(defaults) {
       destDir: 'fonts'
   });
 
-  app.import('bower_components/bootstrap/dist/js/bootstrap.js');
   app.import('bower_components/moment/moment.js');
 
   return app.toTree();

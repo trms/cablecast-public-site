@@ -1,21 +1,19 @@
 <div class="schedule-row clearfix">
 
-    {{#if media.isLg}}
-      <div class='plaque'>
-          {{#if (is-time-in-between item.start item.end)}}
-              <div class='plaque-content now'>
-                  Now
-              </div>
-          {{else}}
-              <div class='plaque-content not-now'>
-                  {{moment-format item.runDateTime 'hh:mm a'}}
-              </div>
-          {{/if}}
-      </div>
-    {{/if}}
+    <div class='plaque'>
+        {{#if (is-time-in-between item.start item.end)}}
+            <div class='plaque-content now'>
+                Now
+            </div>
+        {{else}}
+            <div class='plaque-content not-now'>
+                {{moment-format item.runDateTime 'hh:mm a'}}
+            </div>
+        {{/if}}
+    </div>
 
-    <div class="schedule-container {{unless media.isLg 'is-mobile'}}">
-        <div class="play-icon {{if media.isLg 'is-desktop'}}">
+    <div class="schedule-container">
+        <div class="play-icon is-desktop">
         {{#if item.show.vods.firstObject.isReady}}
             {{#link-to 'show' item.show.id alt=item.show.cgTitle}}
                 <span class="glyphicon glyphicon-play play-icon-link" aria-hidden="true" title="Watch now"></span>
@@ -24,11 +22,10 @@
         </div>
 
         <div class="event-date">
-        {{#if media.isLg}}
              {{item.scheduledDateTimeString}}
-        {{else}}
+             {{!--
              {{item.scheduledTimeString}}
-        {{/if}}
+             --}}
         </div>
 
         <div class="schedule-title {{unless media.isLg 'is-mobile'}} u-truncate-text" title="{{item.show.cgTitle}}">

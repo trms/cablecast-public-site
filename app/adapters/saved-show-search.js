@@ -1,7 +1,6 @@
-import DS from 'ember-data';
+import ApplicationAdapter from 'public/adapters/application';
 
-export default DS.RESTAdapter.extend({
-  namespace: 'cablecastapi/v1',
+export default ApplicationAdapter.extend({
   pathForType: function(/*type*/) {
         return 'shows/search/advanced';
   }

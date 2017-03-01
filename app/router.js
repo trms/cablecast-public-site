@@ -7,10 +7,10 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('podcasts');
-  this.resource('schedule');
-  this.resource('show', {path: 'show/:id'});
-  this.resource('channel');
-  this.resource('watch-now', { path:'watch/:stream_id' });
+  this.route('schedule');
+  this.route('show', {path: 'show/:id'});
+  this.route('channel');
+  this.route('watch-now', { path:'watch/:stream_id' });
   this.route('vods');
   this.route('search');
 });
