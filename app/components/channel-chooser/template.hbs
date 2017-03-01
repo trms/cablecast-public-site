@@ -1,0 +1,25 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-3 hidden-xs hidden-sm"></div>
+		<div class="col-xs-12 col-md-6">
+			<div class="channel-chooser-content">
+			<h1>PUBLIC WEBSITES ON THE SERVER:</h1>
+				<ul>
+					{{#each chooserData.channels key="id" as |channel|}}
+					<li>
+						{{#link-to 'index' (query-params channel=channel.id)}}
+							<div class="channel-chooser-channel">
+								{{channel.publicSite.siteName}}
+								<div class="channel-chooser-select-button">
+								Select
+								</div>
+							</div>
+						{{/link-to}}
+					</li>
+					{{/each}}
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-3 hidden-xs hidden-sm"></div>
+	</div>
+</div>

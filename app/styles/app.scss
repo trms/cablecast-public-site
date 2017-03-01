@@ -394,3 +394,6 @@ body {
 
 // Define colors here. These may be overriden by customer
 @import 'colors.scss';
+
+// Import component styles. 
+@import "app/components/channel-chooser/style";
