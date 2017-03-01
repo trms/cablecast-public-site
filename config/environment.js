@@ -2,6 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
+    rootURL: '/',
     modulePrefix: 'public',
     environment: environment,
     locationType: 'hash',

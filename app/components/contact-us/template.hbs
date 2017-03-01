@@ -7,17 +7,17 @@
 {{/if}}
 <h3>Connect With Us</h3>
 {{#if config.twitterUrl}}
-	<a class="social-link" href="http://www.twitter.com/{{config.twitterUrl}}" alt="Open Twitter in a new window" target="_blank"><img src="images/twitter.png" /></a>
+	<a class="social-link" href="http://www.twitter.com/{{config.twitterUrl}}" alt="Open Twitter in a new window" target="_blank"><img src="{{rootURL}}images/twitter.png" /></a>
 {{/if}}
 {{#if config.facebookUrl}}
-	<a class="social-link" href="http://www.facebook.com/{{config.facebookUrl}}" alt="Open Facebook in a new window" target="=_blank"><img src="images/facebook.png" /></a>
+	<a class="social-link" href="http://www.facebook.com/{{config.facebookUrl}}" alt="Open Facebook in a new window" target="=_blank"><img src="{{rootURL}}images/facebook.png" /></a>
 {{/if}}
 {{#if config.blogUrl}}
-	<a class="social-link" href="{{config.blogUrl}}" alt="Open our blog in a new window" target="_blank"><img src="images/website.png" /></a>
+	<a class="social-link" href="{{config.blogUrl}}" alt="Open our blog in a new window" target="_blank"><img src="{{rootURL}}images/website.png" /></a>
 {{/if}}
 
 {{#if hasPodcasts}}
 	{{#link-to 'podcasts' class="social-link"}}
-		<img src="images/podcast.png" />
+		<img src="{{rootURL}}images/podcast.png" />
 	{{/link-to}}
 {{/if}}
