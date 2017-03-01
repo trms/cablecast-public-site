@@ -67,7 +67,7 @@ export default Ember.Component.extend({
     var message = {
       type: 'player-cue',
       value: offset
-    }
+    };
     this.sendMessage(message);
   },
 

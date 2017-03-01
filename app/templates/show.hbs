@@ -23,7 +23,7 @@
               Show Details
             </a>
           </li>
-          {{#if show.vods.firstObject.chapters}}
+          {{#if chapters}}
           <li class="hiddex-sx {{if (eq activeTab 'chapters') 'active'}}">
             <a href="#" {{action 'showChapters'}} class="btn btn-link">
               Chapters
@@ -39,7 +39,7 @@
         </div>
       {{else}}
         <div class="additional-info">
-          {{vod-chapters chapters=show.vods.firstObject.chapters seekto=seekto setSeekTo=(action 'setSeekTo')}}
+          {{vod-chapters chapters=chapters seekto=seekto setSeekTo=(action 'setSeekTo')}}
         </div>
       {{/if}}
       </div></div>
