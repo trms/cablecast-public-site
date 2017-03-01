@@ -13,6 +13,7 @@ export default Ember.Route.extend({
 		var self = this;
 		var channel = this.modelFor('application');
 		var galleryName = 'Recent Programs';
+    var defaultQuery = {pageSize: 50, location: channel.get('primaryLocation')};
 
 		return channel.get('publicSite').
 			then(function(site) {
@@ -26,12 +27,12 @@ export default Ember.Route.extend({
 				var galleryPrograms, carouselPrograms, logo;
 				logo = searches.logo;
 				if (!searches.carouselSavedSearch) {
-					carouselPrograms = self.store.find('show', {pageSize: 50});
+					carouselPrograms = self.store.find('show', defaultQuery);
 				} else {
 					carouselPrograms = self.store.findByIds('show', searches.carouselSavedSearch.get('results').slice(0, 50));
 				}
 				if (!searches.gallerySavedSearch) {
-					galleryPrograms = self.store.find('show', {pageSize: 50});
+					galleryPrograms = self.store.find('show', defaultQuery);
 				} else {
 					galleryName = searches.gallerySavedSearch.get('name');
 					galleryPrograms = self.store.findByIds('show', searches.gallerySavedSearch.get('results').slice(0, 50));
@@ -52,8 +53,8 @@ export default Ember.Route.extend({
 					logo: null,
 					channel: channel,
 					galleryName: 'Recent Programs',
-					carouselPrograms: self.store.find('show', {pageSize: 50}).then(filterShows),
-					galleryPrograms: self.store.find('show', {pageSize: 50}).then(filterShows)
+					carouselPrograms: self.store.find('show', defaultQuery).then(filterShows),
+					galleryPrograms: self.store.find('show', defaultQuery).then(filterShows)
 				});
 			});
 	},
