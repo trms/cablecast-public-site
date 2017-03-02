@@ -3,8 +3,8 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   queryParams: ['channel'],
 
-  projects: Ember.computed('model.primaryLocation.id', function() {
-    return this.store.query('project', {location: this.get('model.primaryLocation.id')});
+  projects: Ember.computed('model.channel.primaryLocation.id', function() {
+    return this.model.projects;
   }),
 
   hasPodcasts: Ember.computed('projects.[]', function() {
