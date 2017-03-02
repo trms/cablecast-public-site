@@ -1,6 +1,19 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+	headData: Ember.inject.service(),
+
+	setHeadData(show) {
+		let headData = this.get('headData');
+		let data = {
+			card:'summary_large_image',
+			title:show.get('title'),
+			description:show.get('comments'),
+			image:show.get('thumbnail'),
+			url:null
+		};
+		headData.set('socialMedia', data);
+	},
 
 	model: function(params) {
 		var start = new Date();
@@ -16,7 +29,7 @@ export default Ember.Route.extend({
 	    		page_size: 5
 		    })
 		}).
-    then(function(data) {
+		then(function(data) {
       return {
         show: self.store.peekRecord('show', params.id),
         runs: data.runs
