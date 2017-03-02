@@ -3,7 +3,7 @@ init:
 clone_depth: 10
 environment:
   matrix:
-    - nodejs_version: "4.2"
+    - nodejs_version: "6"
 install:
   # Get the latest stable version of Node 0.STABLE.latest
   - ps: Install-Product node $env:nodejs_version
@@ -16,6 +16,7 @@ install:
   - bower install
 build_script:
   - node node_modules\ember-cli\bin\ember build --environment=production
+  - cd dist && npm install fastboot-express-middleware
 version: 1.0.{build}
 #cache node_modules and bower_componets between builds to speed up tests
 cache:
