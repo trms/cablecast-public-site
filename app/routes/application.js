@@ -2,6 +2,7 @@ import Ember from 'ember';
 import ENV from 'public/config/environment';
 
 export default Ember.Route.extend({
+  fastboot: Ember.inject.service(),
   headData: Ember.inject.service(),
 
   queryParams: {
@@ -10,16 +11,21 @@ export default Ember.Route.extend({
     }
   },
 
-  getAUrl(publicSite) {
-    let pattern = /^https?:\/\/.*/i;
-    let url = pattern.exec(publicSite.get('facebookUrl')) || pattern.exec(publicSite.get('twitter')) || pattern.exec(publicSite.get('blogUrl'));
-    return url && url[0] || null;
-  },
-
   setHeadData(channel) {
+    let fastboot = this.get('fastboot');
     let headData = this.get('headData');
+    let url = 'foo';
     headData.set('channelID', channel.get('id'));
     headData.set('rootURL', ENV.rootURL);
+
+    if (fastboot.get('isFastBoot')) {
+      let protocol = fastboot.get('request.protocol');
+      let host = fastboot.get('request.host');
+      let path = fastboot.get('request.path');
+      url = `${protocol}://${host}${path}`;
+    } else {
+      url = document.location.href;
+    }
 
     let publicSite = channel.get('publicSite');
     let data = {
@@ -27,8 +33,8 @@ export default Ember.Route.extend({
       title: publicSite.get('siteName'),
       description: publicSite.get('aboutPageDescription'),
       image: publicSite.get('logo.url'),
-      url: this.getAUrl(publicSite)
     };
+    headData.set('url', url);
     headData.set('socialMedia', data);
   },
 

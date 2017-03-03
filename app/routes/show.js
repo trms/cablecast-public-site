@@ -4,13 +4,16 @@ export default Ember.Route.extend({
 	headData: Ember.inject.service(),
 
 	setHeadData(show) {
+    let thumbnail = show.get('showThumbnails').findBy('quality', 'Large');
+    if (!thumbnail) {
+      thumbnail = show.get('showThumbnails.firstObject');
+    }
 		let headData = this.get('headData');
 		let data = {
 			card:'summary_large_image',
 			title:show.get('cgTitle'),
 			description: show.get('comments') || show.get('cgTitle'),
-			image:show.get('showThumbnails.firstObject.url'),
-			url:null
+			image: (thumbnail ? thumbnail.get('url') : null)
 		};
 		headData.set('socialMedia', data);
 	},
