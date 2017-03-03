@@ -7,9 +7,9 @@ export default Ember.Route.extend({
 		let headData = this.get('headData');
 		let data = {
 			card:'summary_large_image',
-			title:show.get('title'),
-			description:show.get('comments'),
-			image:show.get('thumbnail'),
+			title:show.get('cgTitle'),
+			description: show.get('comments') || show.get('cgTitle'),
+			image:show.get('showThumbnails.firstObject.url'),
 			url:null
 		};
 		headData.set('socialMedia', data);
@@ -36,6 +36,10 @@ export default Ember.Route.extend({
       };
     });
 	},
+
+  afterModel(model) {
+    this.setHeadData(model.show);
+  },
 
   setupController: function(controller, model) {
     var params = this.paramsFor(this.get('routeName'));
