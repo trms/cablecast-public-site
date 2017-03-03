@@ -10,8 +10,9 @@ export default Ember.Route.extend({
     }
 		let headData = this.get('headData');
 		let data = {
-			card:'summary_large_image',
-			title:show.get('cgTitle'),
+			type: 'video.episode',
+			card: 'summary_large_image',
+			title: show.get('cgTitle'),
 			description: show.get('comments') || show.get('cgTitle'),
 			image: (thumbnail ? thumbnail.get('url') : null)
 		};

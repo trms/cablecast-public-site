@@ -29,6 +29,7 @@ export default Ember.Route.extend({
 
     let publicSite = channel.get('publicSite');
     let data = {
+      type: 'website',
       card: 'summary',
       title: publicSite.get('siteName'),
       description: publicSite.get('aboutPageDescription'),
