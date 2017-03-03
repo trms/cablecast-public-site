@@ -42,7 +42,7 @@ export default Ember.Route.extend({
 			});
 	},
 
-  setupController(controller, model) {
+  setupController(controller) {
     this._super(...arguments);
     let appParams = this.paramsFor('application');
     controller.set('channel', this.get('store').peekRecord('channel', appParams.channel));
