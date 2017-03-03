@@ -37,7 +37,9 @@ module.exports = function(defaults) {
   app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2', {
       destDir: 'fonts'
   });
-
+  if (!process.env.EMBER_CLI_FASTBOOT) {
+    app.import('bower_components/bootstrap/dist/js/bootstrap.js');
+  }
   app.import('bower_components/moment/moment.js');
 
   return app.toTree();
