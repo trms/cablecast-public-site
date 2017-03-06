@@ -111,10 +111,6 @@ body {
     height: 44px;
 }
 
-.schedule-social-wrapper {
-  padding-top: 1em;
-}
-
 .event-date {
     display: inline;
     line-height: 1em;
@@ -398,6 +394,10 @@ body {
   padding: 5px;
   margin-bottom: 10px;
   cursor: pointer;
+}
+
+.social-wrapper {
+  padding-top: 1em;
 }
 
 // Define colors here. These may be overriden by customer
