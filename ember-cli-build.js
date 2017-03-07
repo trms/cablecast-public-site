@@ -1,4 +1,5 @@
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+var Funnel = require('broccoli-funnel');
 
 module.exports = function(defaults) {
 
@@ -8,6 +9,12 @@ module.exports = function(defaults) {
   			'public/svg'
   		]
   	}
+  });
+
+  var scssFiles = new Funnel('app/styles', {
+  	srcDir: '/',
+  	include: ['colors.scss', 'color-definitions.scss'],
+  	destDir: '/scss-files'
   });
 
   app.import("bower_components/font-awesome/css/font-awesome.css");
@@ -42,5 +49,5 @@ module.exports = function(defaults) {
   }
   app.import('bower_components/moment/moment.js');
 
-  return app.toTree();
+  return app.toTree(scssFiles);
 };
