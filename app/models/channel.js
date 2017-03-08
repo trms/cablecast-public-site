@@ -9,8 +9,6 @@ export default DS.Model.extend({
 	primaryLocation: DS.attr(),
 	publicSite: DS.belongsTo('public-site', {async: true}),
 
-	vods: DS.hasMany('vod', {async: true}),
-	shows: DS.hasMany('show', {async: true}),
 	liveStreams: DS.hasMany('live-stream', {async: true}),
 
 	onAirRun: null,
