@@ -40,31 +40,21 @@ export default Ember.Route.extend({
   },
 
   model: function(params) {
-    // TODO enable sideloading of publicsite
     return Ember.RSVP.hash({
-      channels: this.get('store').query('channel', {include: 'publicsite,webfile'}),
-      publicSites: this.get('store').findAll('public-site')
+      channels: this.get('store').query('channel', {include: 'publicsite,webfile,thumbnail'}),
+      projects: this.get('store').findAll('project')
     })
     .then((result) => {
-      let channel = result.channels.findBy('id', params.channel + '');
+      let channels = result.channels;
+      let channel = channels.findBy('id', params.channel + '');
       if (!channel) {
-        channel = result.channels.get('firstObject');
+        channel = channels.get('firstObject');
       }
-      let logoId = channel.get('publicSite.logo.id');
-      return Ember.RSVP.hash({
-        channel:channel,
-        logo:this.get('store').findRecord('web-file', logoId)
-      });
-    })
-    .then((results) => {
-      let channel = results.channel;
       this.setHeadData(channel);
-
-      return Ember.RSVP.hash({
-        logo: channel.get('publicSite.logo'),
+      return {
         channel: channel,
-        projects: this.store.query('project', {location: channel.primaryLocation.id})
-      });
+        projects: result.projects
+      };
     });
   },
 
