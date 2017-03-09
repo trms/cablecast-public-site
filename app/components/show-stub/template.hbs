@@ -1,3 +1,4 @@
+<div itemscope itemtype="http://schema.org/TVClip">
 {{#if show.showThumbnails}}
 		{{#link-to 'show' show.id class="thumbnail-responsive"}}
 			{{show-thumbnail show=show quality='Large' class="img-responsive"}}
@@ -5,14 +6,14 @@
 {{else}}
 	<div class="thumbnail-responsive"></div>
 {{/if}}
-<h3 class="show-stub-title-header u-break-text">
+<h3 class="show-stub-title-header u-break-text" itemprop="headline">
 	{{link-to show.cgTitle 'show' show.id class="show-stub-title-link"}}
 </h3>
 
 <div class="show-stub-property">
 	Date:
 
-	<span class="show-stub-property-value">
+	<span class="show-stub-property-value" itemprop="datePublished">
 		{{show.eventDateString}}
 	</span>
 
@@ -32,7 +33,7 @@
 	<div class="show-stub-property">
 		Producer:
 
-		<span class="show-stub-property-value">
+		<span class="show-stub-property-value" itemtype="producer">
 			{{show.producer.name}}
 		</span>
 	</div>
@@ -52,8 +53,9 @@
 	<div class="show-stub-property">
 		Category:
 
-		<span class="show-stub-property-value">
+		<span class="show-stub-property-value" itemtype="genre">
 			{{show.category.name}}
 		</span>
 	</div>
 {{/if}}
+</div>
