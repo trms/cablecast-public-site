@@ -1,6 +1,6 @@
 <h3 class="show-details-header">Show details</h3>
-<p>Show ID: <strong>{{show.id}}</strong></p>
-<p>Event date: <strong>{{show.eventDateString}}</strong></p>
+<p>Show ID: <strong itemprop="clipnumber">{{show.id}}</strong></p>
+<p>Event date: <strong itemprop="dateCreated">{{show.eventDateString}}</strong></p>
 {{#if firstRun}}
   <p>
     {{#if firstRunIsFuture}}Premiers On:{{else}}Premiered On:{{/if}}
@@ -8,11 +8,11 @@
   </p>
 {{/if}}
 {{#if producer.name}}
-	<p>Producer: <strong>{{show.producer.name}}</strong></p>
+	<p>Producer: <strong itemprop="producer">{{show.producer.name}}</strong></p>
 {{/if}}
 
 {{#if project.name}}
-	<p>Project: <strong>{{show.project.name}}</strong></p>
+	<p>Project: <strong itemprop="publication">{{show.project.name}}</strong></p>
 {{/if}}
 
 {{#each reels as |reel|}}
@@ -21,7 +21,7 @@
 
 <h3>Upcoming air times</h3>
 {{#each runs as |run|}}
-	<div class="show-future-runs-container">
+	<div class="show-future-runs-container" itemprop="temporalCoverage">
 		{{moment-calendar run.runDateTime}}
 	</div>
 {{else}}

@@ -1,7 +1,9 @@
-{{nav-menu channel=model.channel publicSites=publicSites on-search='navSearch' changeChannel=(action 'changeChannel')}}
-<div class="container-wrapper">
-	<div class="container">
-		{{outlet}}
+<div itemscope itemtype="http://schema.org/WebSite">
+	{{nav-menu channel=model.channel publicSites=publicSites on-search='navSearch' changeChannel=(action 'changeChannel')}}
+	<div class="container-wrapper">
+		<div class="container">
+			{{outlet}}
+		</div>
 	</div>
+	{{channel-footer config=model.channel.publicSite hasPodcasts=hasPodcasts}}
 </div>
-{{channel-footer config=model.channel.publicSite hasPodcasts=hasPodcasts}}
