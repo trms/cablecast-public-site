@@ -10,7 +10,7 @@ export default Ember.Route.extend({
 		}
 	},
 	model: function(params) {
-		var channel = this.modelFor('application');
+		var channel = this.modelFor('application').channel;
 		return this.store.query('show', {
 			offset: params.page - 1,
 			search: params.query,
