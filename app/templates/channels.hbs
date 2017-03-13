@@ -1,0 +1,11 @@
+
+<div class="gallery-wrapper">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1 class="channel-page-header">Available Channels</h1>
+    </div>
+    {{#each publicChannels as |channel|}}
+      {{channel-stub channel=channel}}
+    {{/each}}
+  </div>
+</div>
