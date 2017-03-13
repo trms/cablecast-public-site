@@ -1,0 +1,17 @@
+<div>
+
+    {{#link-to 'index' (query-params channel=channel.id) class="channel-stub-link"}}
+      <h3 class="channel-stub-title">
+        {{channel.publicSite.siteName}}
+      </h3>
+      {{#if channel.publicSite.logo}}
+        <div class="thumbnail">
+          <img src="{{channel.publicSite.logo.url}}" class="img img-responsive">
+        </div>
+      {{/if}}
+    {{/link-to}}
+
+
+  <p>{{channel.publicSite.aboutPageDescription}}</p>
+
+</div>

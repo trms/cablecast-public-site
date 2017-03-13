@@ -42,6 +42,7 @@
     "ember-resolver": "^2.1.1",
     "ember-responsive": "2.0.2",
     "ember-social-share": "0.2.9",
+    "ember-truth-helpers": "1.3.0",
     "loader.js": "4.0.10"
   },
   "dependencies": {
