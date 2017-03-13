@@ -34,6 +34,9 @@ body {
 .header-controls-search-wrapper {
     padding-right: 20px;
 }
+.btn-change-channel{
+  margin-right:2em;
+}
 
 // ----------------------------------------------------------------------------
 // Home Page
@@ -212,6 +215,20 @@ body {
 }
 
 // Hotfix end.
+
+.flex-gallery{
+
+}
+
+.flex-stub{
+
+}
+.channel-page-header{
+  text-align: center;
+}
+.channel-stub-header{
+  text-align: center;
+}
 
 .show-page-header {
 	padding-left: 20px;
@@ -402,3 +419,4 @@ body {
 
 // Define colors here. These may be overriden by customer
 @import 'colors.scss';
+
