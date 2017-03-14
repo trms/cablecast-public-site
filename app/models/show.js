@@ -34,7 +34,6 @@ export default DS.Model.extend({
 
 	hasVod: function(){
 		// This doens't work. Not sure why yet.
-		console.log(this.get('vods'));
 		return this.get('vods');
 	}.property('vods'),
 
@@ -43,7 +42,7 @@ export default DS.Model.extend({
 
     	var _start = moment(today).startOf('day').format();
 
-    	return this.store.find('schedule-item', {
+    	return this.store.query('schedule-item', {
 	    	show: this.id,
     		start: _start,
     		page_size: 5

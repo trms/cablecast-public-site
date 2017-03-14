@@ -11,7 +11,7 @@ export default Ember.Route.extend({
 	galleryName: 'Latest videos',
 	model: function() {
 		var self = this;
-		var channel = this.modelFor('application');
+		var channel = this.modelFor('application').channel;
 		var galleryName = 'Recent Programs';
     var defaultQuery = {pageSize: 50, location: channel.get('primaryLocation')};
 
@@ -27,15 +27,21 @@ export default Ember.Route.extend({
 				var galleryPrograms, carouselPrograms, logo;
 				logo = searches.logo;
 				if (!searches.carouselSavedSearch) {
-					carouselPrograms = self.store.find('show', defaultQuery);
+					carouselPrograms = self.store.query('show', defaultQuery);
 				} else {
-					carouselPrograms = self.store.findByIds('show', searches.carouselSavedSearch.get('results').slice(0, 50));
+					carouselPrograms = self.store.query('show', {
+            ids: searches.carouselSavedSearch.get('results').slice(0, 50),
+            include: 'thumbnail,vod,category,project,producer,reel'
+          });
 				}
 				if (!searches.gallerySavedSearch) {
-					galleryPrograms = self.store.find('show', defaultQuery);
+					galleryPrograms = self.store.query('show', defaultQuery);
 				} else {
 					galleryName = searches.gallerySavedSearch.get('name');
-					galleryPrograms = self.store.findByIds('show', searches.gallerySavedSearch.get('results').slice(0, 50));
+					galleryPrograms = self.store.query('show', {
+            ids: searches.gallerySavedSearch.get('results').slice(0, 50),
+            include: 'thumbnail,vod,category,project,producer,reel'
+          });
 				}
 
 				return Ember.RSVP.hash({
@@ -44,7 +50,10 @@ export default Ember.Route.extend({
 					schedule: channel.get('schedule'),
 					galleryName: galleryName,
 					carouselPrograms: carouselPrograms.then(filterShows),
-					galleryPrograms: galleryPrograms.then(filterShows)
+					galleryPrograms: galleryPrograms.then(filterShows),
+          categories: self.get('store').findAll('category'),
+          projects: self.get('store').findAll('project'),
+          producers: self.get('store').findAll('producer')
 				});
 			}).
 			catch(function() {
@@ -53,8 +62,8 @@ export default Ember.Route.extend({
 					logo: null,
 					channel: channel,
 					galleryName: 'Recent Programs',
-					carouselPrograms: self.store.find('show', defaultQuery).then(filterShows),
-					galleryPrograms: self.store.find('show', defaultQuery).then(filterShows)
+					carouselPrograms: self.store.query('show', defaultQuery).then(filterShows),
+					galleryPrograms: self.store.query('show', defaultQuery).then(filterShows)
 				});
 			});
 	},

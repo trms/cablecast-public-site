@@ -9,8 +9,6 @@ export default DS.Model.extend({
 	primaryLocation: DS.attr(),
 	publicSite: DS.belongsTo('public-site', {async: true}),
 
-	vods: DS.hasMany('vod', {async: true}),
-	shows: DS.hasMany('show', {async: true}),
 	liveStreams: DS.hasMany('live-stream', {async: true}),
 
 	onAirRun: null,
@@ -18,7 +16,7 @@ export default DS.Model.extend({
 	defaultPageSizeForScheduledRuns: 6,
 
 	newVods: function(){
-		return this.store.find('vod', {
+		return this.store.query('vod', {
 			sort_order: 'descending',
 			sort: 'eventDate',
 			page_size: '10'
@@ -32,7 +30,7 @@ export default DS.Model.extend({
 			var _start = moment().startOf('day').toISOString();//moment().startOf('hour').toISOString();
 			var _end = moment(today).add(24, 'hours').toISOString();
 
-			var promise = this.store.find('schedule-item', {
+			var promise = this.store.query('schedule-item', {
 				start: _start,
 				end: _end,
 				channel: this.get('id'),

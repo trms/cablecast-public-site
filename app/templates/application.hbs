@@ -1,7 +1,7 @@
-{{nav-menu channel=model on-search='navSearch'}}
+{{nav-menu channel=model.channel publicSites=publicSites on-search='navSearch' changeChannel=(action 'changeChannel')}}
 <div class="container-wrapper">
 	<div class="container">
 		{{outlet}}
 	</div>
 </div>
-{{channel-footer config=model.publicSite hasPodcasts=hasPodcasts}}
+{{channel-footer config=model.channel.publicSite hasPodcasts=hasPodcasts}}

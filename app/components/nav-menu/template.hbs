@@ -7,28 +7,32 @@
 						{{#if channel.publicSite.logo.url}}
 							<img src="{{channel.publicSite.logo.url}}" class="header-logo-img">
 						{{else}}
-							<img src="images/temp-peg-logo.png" class="header-logo-img">
+							<img src="{{rootURL}}images/temp-peg-logo.png" class="header-logo-img">
 						{{/if}}
 					{{/link-to}}
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-8 pull-right">
 				<div class="row">
-					<div class="col-xs-12 col-sm-8 header-controls pull-right">
-						{{#if channel.liveStreams}}
-							{{link-to 'Watch' 'watch-now' channel.liveStreams.firstObject.id class="btn btn-watch pull-right"}}
-						{{/if}}
-						<form {{action 'search' on='submit'}}>
-							<div class="input-group header-controls-search-wrapper">
-								{{input value=tempQuery class="form-control" placeholder="Search"}}
-								<span class="input-group-btn">
-									<button class="btn btn-search" type='submit' {{action 'search' tempQuery }} >Search</button>
-								</span>
-							</div>
-						</form>
-					</div>
+          <div class="col-xs-12 header-controls pull-right">
+            {{#if channel.liveStreams}}
+              {{link-to 'Watch' 'watch-now' channel.liveStreams.firstObject.id class="btn btn-watch pull-right"}}
+            {{/if}}
+            {{#if (gt publicSites.length 1)}}
+              {{link-to 'Change Channel' 'channels' class="btn btn-change-channel pull-right"}}
+            {{/if}}
+            <form {{action 'search' on='submit'}}>
+              <div class="input-group header-controls-search-wrapper">
+                {{input value=tempQuery class="form-control" placeholder="Search"}}
+                <span class="input-group-btn">
+                  <button class="btn btn-search" type='submit' {{action 'search' tempQuery }} >Search</button>
+                </span>
+              </div>
+            </form>
+          </div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+

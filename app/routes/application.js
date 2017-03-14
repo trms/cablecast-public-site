@@ -1,59 +1,67 @@
 import Ember from 'ember';
 import ENV from 'public/config/environment';
 
-function loadColorCss(channelId) {
-  if (ENV.environment !== 'development'){
-    return new Ember.RSVP.Promise(function(resolve) {
-      var link    = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href    = '/Cablecast/public-site/colors-' + channelId + '.css?t=' + Date.now();
-      link.onload = function() { resolve(); };
-      link.onerror = function() { resolve(); };
-      document.getElementsByTagName('head')[0].appendChild(link);
-    });
-  } else {
-    return Ember.RSVP.resolve();
-  }
-}
-
-function loadCustomCss(channelId) {
-  if (ENV.environment !== 'development'){
-    return new Ember.RSVP.Promise(function(resolve) {
-      var link    = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href    = '/Cablecast/public-site/custom-' + channelId + '.css?t=' + Date.now();
-      link.onload = function() { resolve(); };
-      link.onerror = function() { resolve(); };
-      document.getElementsByTagName('head')[0].appendChild(link);
-    });
-  } else {
-    return Ember.RSVP.resolve();
-  }
-}
-
-
-
 export default Ember.Route.extend({
+  fastboot: Ember.inject.service(),
+  headData: Ember.inject.service(),
+
   queryParams: {
     channel: {
       refreshModel: true
     }
   },
 
-  model: function(params){
-    var self = this;
-    return this.store.find('channel')
-    .then(function(channels) {
-      var channel = channels.findBy('id', params.channel + '');
+  setHeadData(channel) {
+    let fastboot = this.get('fastboot');
+    let headData = this.get('headData');
+    let url = 'foo';
+    headData.set('channelID', channel.get('id'));
+    headData.set('rootURL', ENV.rootURL);
+
+    if (fastboot.get('isFastBoot')) {
+      let protocol = fastboot.get('request.protocol');
+      let host = fastboot.get('request.host');
+      let path = fastboot.get('request.path');
+      url = `${protocol}://${host}${path}`;
+    } else {
+      url = document.location.href;
+    }
+
+    let publicSite = channel.get('publicSite');
+    let data = {
+      type: 'website',
+      card: 'summary',
+      title: publicSite.get('siteName'),
+      description: publicSite.get('aboutPageDescription'),
+      image: publicSite.get('logo.url'),
+    };
+    headData.set('url', url);
+    headData.set('socialMedia', data);
+  },
+
+  model: function(params) {
+    return Ember.RSVP.hash({
+      publicSites: this.get('store').findAll('publicSite'),
+      channels: this.get('store').query('channel', {include: 'publicsite,webfile,thumbnail'}),
+      projects: this.get('store').findAll('project')
+    })
+    .then((result) => {
+      let channels = result.channels;
+      let channel = channels.findBy('id', params.channel + '');
       if (!channel) {
-        self.transitionTo({queryParams: {channel: channels.get('firstObject.id')}});
-      } else {
-        var channelId = channel.get('id');
-        return Ember.RSVP.all([loadColorCss(channelId), loadCustomCss(channelId)]).
-          then(function() {
-            return channel;
-          });
+        channel = channels.get('firstObject');
       }
+      this.setHeadData(channel);
+      return {
+        channel: channel,
+        projects: result.projects
+      };
     });
+  },
+
+  setupController(controller, model) {
+    this._super(...arguments);
+    controller.set('channel', model.channel.id);
   }
+
 });

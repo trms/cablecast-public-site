@@ -213,6 +213,20 @@ body {
 
 // Hotfix end.
 
+.flex-gallery{
+
+}
+
+.flex-stub{
+
+}
+.channel-page-header{
+  text-align: center;
+}
+.channel-stub-header{
+  text-align: center;
+}
+
 .show-page-header {
 	padding-left: 20px;
 }
@@ -336,6 +350,10 @@ body {
 	input {
 		text-align: center;
 	}
+
+	.multi-wide {
+		display: inline;
+	}
 }
 
 .watch-now-header {
@@ -392,5 +410,10 @@ body {
   cursor: pointer;
 }
 
+.social-wrapper {
+  padding-top: 1em;
+}
+
 // Define colors here. These may be overriden by customer
 @import 'colors.scss';
+

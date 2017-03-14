@@ -1,0 +1,26 @@
+{{!--
+  Add content you wish automatically added to the documents head
+  here. The 'model' available in this template can be populated by
+  setting values on the 'head-data' service.
+--}}
+
+<link rel="stylesheet" href="{{model.rootURL}}colors-{{model.channelID}}.css">
+<link rel="stylesheet" href="{{model.rootURL}}custom-{{model.channelID}}.css">
+
+<meta name="twitter:card" content={{model.socialMedia.card}}>
+<meta name="twitter:title" content="{{model.socialMedia.title}}">
+<meta name="twitter:description" content="{{model.socialMedia.description}}">
+{{#if model.socialMedia.image}}
+  <meta name="twitter:image" content="{{model.socialMedia.image}}">
+{{/if}}
+
+<meta property="og:type" content={{model.socialMedia.type}} />
+<meta property="og:title" content={{model.socialMedia.title}} />
+{{#if model.socialMedia.description}}
+  <meta property="og:description" content={{model.socialMedia.description}} />
+{{/if}}
+{{#if model.socialMedia.image}}
+  <meta property="og:image" content={{model.socialMedia.image}} />
+{{/if}}
+
+<meta property="og:url" content={{model.url}} />
