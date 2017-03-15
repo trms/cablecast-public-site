@@ -16,6 +16,11 @@ export default DS.Model.extend({
 	eventDate: DS.attr('string'),
 
 	showThumbnails: DS.hasMany('thumbnail', {async: true}),
+  firstRuns: DS.hasMany('first-run',{async: true}),
+  absoluteFirstRun: Ember.computed('firstRuns.@each.runDateTime', function() {
+    var sorted =  this.get('firstRuns').sortBy('runDateTime');
+    return sorted.get('firstObject');
+  }),
 	thumbnail: Ember.computed('showThumbnails.@each.quality', {
 		get: function() {
 			var thumbnail = this.get('showThumbnails').findBy('quality', 'Large');
