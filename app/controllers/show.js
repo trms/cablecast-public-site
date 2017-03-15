@@ -2,9 +2,12 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   activeTab: 'details',
+  application: Ember.inject.controller(),
 
   show: Ember.computed.alias('model.show'),
   runs: Ember.computed.alias('model.runs'),
+
+  currentChannelId: Ember.computed.alias('application.channel'),
 
   queryParams: ['seekto'],
   seekto: null,
