@@ -13,6 +13,6 @@ export default Ember.Component.extend({
 		},
 		watch: function(stream_id){
 			this.sendAction('on-watch', stream_id);
-		}
+		},
 	}
 });

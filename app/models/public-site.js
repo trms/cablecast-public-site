@@ -16,5 +16,6 @@ export default DS.Model.extend({
   facebookUrl: DS.attr('string'),
   blogUrl: DS.attr('string'),
   contactEmail: DS.attr('string'),
-  contactPhone: DS.attr('string')
+  contactPhone: DS.attr('string'),
+  enabled: DS.attr(),
 });

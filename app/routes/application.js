@@ -41,6 +41,7 @@ export default Ember.Route.extend({
 
   model: function(params) {
     return Ember.RSVP.hash({
+      publicSites: this.get('store').findAll('publicSite'),
       channels: this.get('store').query('channel', {include: 'publicsite,webfile,thumbnail'}),
       projects: this.get('store').findAll('project')
     })
