@@ -150,7 +150,9 @@ h1,h2,h3,h4,h5,h6 {
 .gallery-title-header {
   color: set-button-text-color($banner);
 }
-
+.gallery-show-all-link{
+  color: set-button-text-color($banner);
+}
 .gallery-wrapper {
     background-color: $background;
     color: set-button-text-color($background);

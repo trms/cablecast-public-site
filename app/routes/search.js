@@ -28,5 +28,10 @@ export default Ember.Route.extend(SetPageTitle, {
 		controller.set('model', model);
 		controller.set('tempQuery', this.paramsFor(this.routeName).query);
 		window.scrollTo(0,0);
-	}
+	},
+
+  deactivate(){
+    this._super(...arguments);
+    this.controller.set('page',1);
+  },
 });

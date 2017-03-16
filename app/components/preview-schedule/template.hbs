@@ -3,7 +3,7 @@
 
 <div class="schedule">
 
-		{{#if preview.channel.onAirRun.show.cgTitle}}
+		{{#if channel.onAirRun.show.cgTitle}}
 		<div class="schedule-row clearfix">
 			<div class="plaque">
 				{{#link-to 'watch-now' preview.channel.liveStreams.firstObject.id alt=preview.channel.onAirRun.show.cgTitle class='live-stream-name'}}
@@ -13,14 +13,14 @@
 				{{/link-to}}
 			</div>
 			<div class="schedule-container u-truncate-text">
-				{{#link-to 'watch-now' preview.channel.liveStreams.firstObject.id alt=preview.channel.onAirRun.show.cgTitle class='live-stream-name'}}
-					{{preview.channel.onAirRun.show.cgTitle}}
+				{{#link-to 'watch-now' channel.liveStreams.firstObject.id alt=channel.onAirRun.show.cgTitle class='live-stream-name'}}
+					{{channel.onAirRun.show.cgTitle}}
 				{{/link-to}}
 			</div>
 		</div>
 		{{/if}}
 
-	{{#each preview.channel.futureRuns as |run|}}
+	{{#each channel.futureRuns as |run|}}
 		<div class="schedule-row clearfix">
 			<div class="plaque">
 				{{#link-to 'show' run.show.id}}

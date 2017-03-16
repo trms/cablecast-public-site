@@ -2,36 +2,27 @@
   <div class="show-player clearfix">
   	   <div class="col-sm-6 col-lg-8 u-no-padding">
     	<div class="embed-responsive embed-responsive-16by9">
-      	{{#if model.carouselPrograms}}
-					{{show-carousel shows=model.carouselPrograms}}
+      	{{#if carouselShows.length}}
+					{{show-carousel shows=carouselShows}}
 				{{/if}}
       </div>
     </div>
       <div class="col-sm-6 col-lg-4 u-no-padding">
       <div class="additional-info u-truncate-text">
-        {{preview-schedule preview=model}}
+        {{preview-schedule channel=channel}}
       </div>
     </div>
   </div>
 </div>
 
-{{#if model.galleryPrograms}}
-	<div class="gallery-title-wrapper">
-		<div class="row">
-			<div class="col-md-12">
-				<h1 class="gallery-title-header">
-					{{model.channel.publicSite.galleryTitle}}
-				</h1>
-			</div>
-		</div>
-	</div>
+{{#if siteGalleries.length}}
+  {{#each siteGalleries as |gallery|}}
+    {{ shows-gallery gallery=gallery}}
+  {{/each}}
+{{else}}
+  {{shows-gallery gallery=(hash displayName="Recent Shows" displayLimit=12) shows=model.defaultShows}}
 {{/if}}
 
-{{#if model.galleryPrograms}}
-	<div class="gallery-wrapper">
-		{{shows-gallery shows=model.galleryPrograms}}
-	</div>
-{{/if}}
 <div class="social-wrapper">
   {{#fb-share-button}}Share{{/fb-share-button}}
   {{#twitter-share-button}}Tweet{{/twitter-share-button}}
