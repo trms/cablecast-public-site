@@ -1,8 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  fastboot: Ember.inject.service(),
-
 	queryParams: {
 		query: {
 			refreshModel: true
@@ -24,8 +22,8 @@ export default Ember.Route.extend({
 		controller.set('model', model);
 		controller.set('tempQuery', this.paramsFor(this.routeName).query);
 		if(this.get('fastboot.isFastBoot') === false){
-      window.scrollTo(0,0);
-    }
+          window.scrollTo(0,0);
+        }
 	},
 
   deactivate(){
