@@ -187,19 +187,26 @@ body {
 
 .gallery-title-wrapper {
     text-align: center;
-    font-size:24px;
     text-transform: capitalize;
 }
 
 .gallery-title-header{
-    margin-top: 10px;
-    margin-bottom: 10px;
+  cursor:pointer;
+  &:hover{
+    text-decoration:underline;
+  }
 }
 
 .gallery-wrapper {
 	padding-top: 20px;
 }
-
+.loading-spinner{
+  text-align: center;
+}
+.gallery-show-all-link{
+  display: inline-block;
+  margin-top:35px;
+}
 
 /* This is a hotfix */
 // It's necessary to undo the Bootstrap container gutter because the ember view div gets in the way.
