@@ -6,9 +6,11 @@
 		{{#if preview.channel.onAirRun.show.cgTitle}}
 		<div class="schedule-row clearfix">
 			<div class="plaque">
-				<div class="plaque-content now">
-					Now
-				</div>
+				{{#link-to 'watch-now' preview.channel.liveStreams.firstObject.id alt=preview.channel.onAirRun.show.cgTitle class='live-stream-name'}}
+					<div class="plaque-content now">
+						Now
+					</div>
+				{{/link-to}}
 			</div>
 			<div class="schedule-container u-truncate-text">
 				{{#link-to 'watch-now' preview.channel.liveStreams.firstObject.id alt=preview.channel.onAirRun.show.cgTitle class='live-stream-name'}}
@@ -21,9 +23,11 @@
 	{{#each preview.channel.futureRuns as |run|}}
 		<div class="schedule-row clearfix">
 			<div class="plaque">
-				<div class="plaque-content not-now">
-					{{moment-format run.runDateTime 'h:mm a'}}
-				</div>
+				{{#link-to 'show' run.show.id}}
+					<div class="plaque-content not-now">
+						{{moment-format run.runDateTime 'h:mm a'}}
+					</div>
+				{{/link-to}}
 			</div>
 			<div class="schedule-container u-truncate-text">
 				{{#link-to 'show' run.show.id}}
