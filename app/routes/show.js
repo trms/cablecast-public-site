@@ -25,13 +25,14 @@ export default Ember.Route.extend({
 		return Ember.RSVP.hash({
 			shows: this.store.query('show', {
         ids: [params.id],
-        include: 'vod,scheduleitem,thumbnail,chapter'
+        include: 'vod,scheduleitem,thumbnail,chapter,firstrun'
       }),
 			runs: this.store.query('schedule-item', {
-		    	show: params.id,
-	    		start: start.toISOString(),
-	    		page_size: 5
-		    })
+        show: params.id,
+        start: start.toISOString(),
+        page_size: 5
+      }),
+      channels: this.store.findAll('channel'),
 		}).
 		then(function(data) {
       return {
