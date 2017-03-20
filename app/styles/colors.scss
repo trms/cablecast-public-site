@@ -125,6 +125,14 @@ h1,h2,h3,h4,h5,h6 {
     border-color: $public-button-schedule-outline;
 }
 
+.plaque > a {
+  color: white;
+  text-decoration: none;
+  :hover {
+    color: black;
+  }
+}
+
 .plaque-content {
     background: $public-badge;
     border: 1px solid $public-badge-outline;
@@ -134,7 +142,6 @@ h1,h2,h3,h4,h5,h6 {
     background: $public-action-badge;
     border: 1px solid $public-action-badge-outline;
 }
-
 
 .gallery-title-wrapper {
     background-color: $banner;
