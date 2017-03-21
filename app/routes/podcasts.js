@@ -1,11 +1,9 @@
 import Ember from 'ember';
+import SetPageTitle from 'public/mixins/set-page-title';
 
-export default Ember.Route.extend({
-  headData: Ember.inject.service(),
-
+export default Ember.Route.extend(SetPageTitle, {
   afterModel() {
-    let headData = this.get('headData');
-    headData.set('title', 'Podcasts');
+    this.setTitle('Podcasts');
   },
 
   model: function() {
