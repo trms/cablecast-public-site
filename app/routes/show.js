@@ -1,8 +1,7 @@
 import Ember from 'ember';
+import SetPageTitle from 'public/mixins/set-page-title';
 
-export default Ember.Route.extend({
-	headData: Ember.inject.service(),
-
+export default Ember.Route.extend(SetPageTitle, {
 	setHeadData(show) {
     let thumbnail = show.get('showThumbnails').findBy('quality', 'Large');
     if (!thumbnail) {
@@ -17,6 +16,7 @@ export default Ember.Route.extend({
 			image: (thumbnail ? thumbnail.get('url') : null)
 		};
 		headData.set('socialMedia', data);
+		this.setTitle(show.get('cgTitle'));
 	},
 
 	model: function(params) {

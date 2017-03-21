@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import SetPageTitle from 'public/mixins/set-page-title'
 
 function filterShows(shows) {
 	return shows.filter(function(show) {
@@ -6,9 +7,16 @@ function filterShows(shows) {
 	}).slice(0, 16);
 }
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(SetPageTitle, {
 	recentPrograms: null,
 	galleryName: 'Latest videos',
+	headData: Ember.inject.service(),
+
+	afterModel: function() {
+		var channel = this.modelFor('application').channel;
+		this.setTitle(channel.get('name'));
+	},
+
 	model: function() {
 		var self = this;
 		var channel = this.modelFor('application').channel;

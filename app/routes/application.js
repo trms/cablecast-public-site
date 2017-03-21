@@ -33,7 +33,7 @@ export default Ember.Route.extend({
       card: 'summary',
       title: publicSite.get('siteName'),
       description: publicSite.get('aboutPageDescription'),
-      image: publicSite.get('logo.url'),
+      image: publicSite.get('logo.url')
     };
     headData.set('url', url);
     headData.set('socialMedia', data);

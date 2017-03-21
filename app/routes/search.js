@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import SetPageTitle from 'public/mixins/set-page-title';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(SetPageTitle, {
 	queryParams: {
 		query: {
 			refreshModel: true
@@ -9,6 +10,11 @@ export default Ember.Route.extend({
 			refreshModel: true
 		}
 	},
+
+	afterModel() {
+		this.setTitle('Search Results');
+	},
+
 	model: function(params) {
 		var channel = this.modelFor('application').channel;
 		return this.store.query('show', {

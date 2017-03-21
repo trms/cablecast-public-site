@@ -1,12 +1,18 @@
 /* globals moment */
 import Ember from 'ember';
+import SetPageTitle from 'public/mixins/set-page-title';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(SetPageTitle, {
 	queryParams: {
 		currentDay: {
 			refreshModel: true
 		}
 	},
+
+  afterModel() {
+		this.setTitle('Schedule');
+  },
+
 	model: function(params){
 		var appParams = this.paramsFor('application');
   		var _start = moment(params.currentDay).startOf('day').format();
