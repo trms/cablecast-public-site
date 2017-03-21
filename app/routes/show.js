@@ -17,6 +17,7 @@ export default Ember.Route.extend({
 			image: (thumbnail ? thumbnail.get('url') : null)
 		};
 		headData.set('socialMedia', data);
+		headData.set('title', show.get('cgTitle'));
 	},
 
 	model: function(params) {

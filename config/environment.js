@@ -3,7 +3,7 @@
 module.exports = function(environment) {
   var ENV = {
     'ember-cli-head': {
-      suppressBrowserRender: true
+      suppressBrowserRender: false
     },
     fastboot: {
       hostWhitelist: [/.+/]
