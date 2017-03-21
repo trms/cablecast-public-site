@@ -1,15 +1,17 @@
 <div class="schedule-row clearfix">
 
     <div class='plaque'>
+      {{#link-to 'show' item.show.id}}
         {{#if (is-time-in-between item.start item.end)}}
             <div class='plaque-content now'>
                 Now
             </div>
         {{else}}
             <div class='plaque-content not-now'>
-                {{moment-format item.runDateTime 'hh:mm a'}}
+              {{moment-format item.runDateTime 'hh:mm a'}}
             </div>
         {{/if}}
+      {{/link-to}}
     </div>
 
     <div class="schedule-container">
