@@ -1,3 +1,4 @@
+
 <div class="gallery-title-wrapper">
   <div class="row">
     <div class="col-xs-8 col-xs-offset-2">
@@ -22,12 +23,12 @@
 
 <div class="gallery-wrapper">
 {{#unless collapsed}}
-  <div class="row" itemscope itemtype="http://schema.org/VideoGallery">
+  <div class="show-stub-container" itemscope itemtype="http://schema.org/VideoGallery">
     {{#if showsTask.isRunning}}
       {{loading-spinner}}
     {{else}}
       {{#each filteredShows as |show|}}
-        {{show-stub show=show classNames="col-xs-12 col-sm-6 col-md-3"}}
+        {{show-stub show=show}}
       {{/each}}
     {{/if}}
   </div>

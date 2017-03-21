@@ -24,12 +24,12 @@
           class="text-center"
         }}
       {{/if}}
-      <div class="search-results-wrapper clearfix">
+      <div class="show-stub-container">
       {{#if loading}}
         {{loading-spinner}}
       {{else}}
         {{#each shows as |result|}}
-          {{show-stub classNames="col-xs-12 col-sm-6 col-md-3" show=result}}
+          {{show-stub show=result}}
         {{else}}
           <h3>Your search returned no results.</h3>
         {{/each}}

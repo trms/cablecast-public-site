@@ -1,17 +1,21 @@
 <div itemscope itemtype="http://schema.org/TVClip">
 {{#if show.showThumbnails}}
-		{{#link-to 'show' show.id class="thumbnail-responsive"}}
-			{{show-thumbnail show=show quality='Large' class="img-responsive"}}
-		{{/link-to}}
+  {{#link-to 'show' show.id class="thumbnail-responsive"}}
+    {{show-thumbnail show=show quality='Large' class="img-responsive"}}
+  {{/link-to}}
 {{else}}
-	<div class="thumbnail-responsive"></div>
+	<div class="thumbnail-responsive">
+    <img src="{{rootURL}}/images/placeholder.jpg" alt="" class="img-responsive">
+  </div>
 {{/if}}
 <h3 class="show-stub-title-header u-break-text" itemprop="headline">
 	{{link-to show.cgTitle 'show' show.id class="show-stub-title-link"}}
 </h3>
 
 <div class="show-stub-property">
+  <span class="show-stub-property-title">
 	Date:
+  </span>
 
 	<span class="show-stub-property-value" itemprop="datePublished">
 		{{show.eventDateString}}
@@ -20,7 +24,9 @@
 </div>
 
 <div class="show-stub-property">
-	Length:
+  <div class="show-stub-property-title">
+    Length:
+  </div>
 
 	<span class="show-stub-property-value">
 		{{#each show.reels as |reel|}}
@@ -31,7 +37,9 @@
 </div>
 {{#if show.producer.name}}
 	<div class="show-stub-property">
-		Producer:
+    <div class="show-stub-property-title">
+      Producer:
+    </div>
 
 		<span class="show-stub-property-value" itemtype="producer">
 			{{show.producer.name}}
@@ -41,7 +49,9 @@
 
 {{#if show.project.name}}
 	<div class="show-stub-property">
-		Project:
+    <div class="show-stub-property-title">
+      Project:
+    </div>
 
 		<span class="show-stub-property-value">
 			{{show.project.name}}
@@ -51,7 +61,9 @@
 
 {{#if show.category.name}}
 	<div class="show-stub-property">
-		Category:
+    <div class="show-stub-property-title">
+      Category:
+    </div>
 
 		<span class="show-stub-property-value" itemtype="genre">
 			{{show.category.name}}

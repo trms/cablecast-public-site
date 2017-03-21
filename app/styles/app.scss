@@ -1,3 +1,13 @@
+
+$md: 991px;
+$sm: 767px;
+$xs: 575px;
+@mixin media-query($device) {
+    @media screen and (max-width: $device) {
+        @content;
+    }
+}
+
 // ----------------------------------------------------------------------------
 // Native Elements
 // ----------------------------------------------------------------------------
@@ -201,6 +211,7 @@ body {
 	padding-top: 20px;
 }
 .loading-spinner{
+  flex:0 0 100%;
   text-align: center;
 }
 .gallery-show-all-link{
@@ -247,16 +258,36 @@ body {
     padding-right: 10px;
 
 }
-
-.show-stub-property {
-    width: 100%;
-    font-size: 14px;
+.show-stub-container{
+  display:flex;
+  flex-wrap:wrap;
 }
-
+.show-stub{
+  width:25%;
+  padding:1em;
+  flex:0 0 25%;
+  @include media-query($md){
+    width:33%;
+    flex: 0 0 33%;
+  }
+  @include media-query($sm){
+    width:50%;
+    flex: 0 0 50%;
+  }
+  @include media-query($xs){
+    width:100%;
+    flex: 0 0 100%;
+  }
+}
+.show-stub-property {
+  display:flex;
+  font-size: 14px;
+}
+.show-stub-property-title{
+  flex:1;
+}
 .show-stub-property-value {
-	display: inline-block;
-	float: right;
-	width: 180px;
+	flex:3;
 	text-align: right;
 	white-space: nowrap;
 	overflow: hidden;
@@ -325,21 +356,6 @@ body {
 	}
 }
 
-@media only screen and (max-device-width: 480px) {
-    .show-stub {
-        min-height: 350px;
-    }
-
-    .show-details {
-        padding: 5px;
-    }
-}
-
-@media (min-width: 992px) {
-    .show-stub {
-        min-height: 350px;
-    }
-}
 
 .schedule-background {
 	background-color: white;
