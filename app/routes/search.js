@@ -1,8 +1,7 @@
 import Ember from 'ember';
+import SetPageTitle from 'public/mixins/set-page-title';
 
-export default Ember.Route.extend({
-	headData: Ember.inject.service(),
-
+export default Ember.Route.extend(SetPageTitle, {
 	queryParams: {
 		query: {
 			refreshModel: true
@@ -13,8 +12,7 @@ export default Ember.Route.extend({
 	},
 
 	afterModel() {
-		let headData = this.get('headData');
-		headData.set('title', 'Search Results');
+		this.setTitle('Search Results');
 	},
 
 	model: function(params) {

@@ -1,9 +1,8 @@
 /* globals moment */
 import Ember from 'ember';
+import SetPageTitle from 'public/mixins/set-page-title';
 
-export default Ember.Route.extend({
-	headData: Ember.inject.service(),
-
+export default Ember.Route.extend(SetPageTitle, {
 	queryParams: {
 		currentDay: {
 			refreshModel: true
@@ -11,8 +10,7 @@ export default Ember.Route.extend({
 	},
 
   afterModel() {
-    let headData = this.get('headData');
-    headData.set('title', 'Schedule');
+		this.setTitle('Schedule');
   },
 
 	model: function(params){
