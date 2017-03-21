@@ -9,6 +9,14 @@ function filterShows(shows) {
 export default Ember.Route.extend({
 	recentPrograms: null,
 	galleryName: 'Latest videos',
+	headData: Ember.inject.service(),
+
+	activate: function() {
+		var channel = this.modelFor('application').channel;
+		let headData = this.get('headData');
+		headData.set('title', channel.get('name'));
+	},
+
 	model: function() {
 		var self = this;
 		var channel = this.modelFor('application').channel;

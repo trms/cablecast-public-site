@@ -2,11 +2,19 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+	headData: Ember.inject.service(),
+
 	queryParams: {
 		currentDay: {
 			refreshModel: true
 		}
 	},
+
+  afterModel() {
+    let headData = this.get('headData');
+    headData.set('title', 'Schedule');
+  },
+
 	model: function(params){
 		var appParams = this.paramsFor('application');
   		var _start = moment(params.currentDay).startOf('day').format();
