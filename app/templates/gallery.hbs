@@ -1,9 +1,10 @@
 <div class="search-page">
-  {{paginated-show-list
-    title='Search Results'
+	{{paginated-show-list
+    title=model.gallery.displayName
     loading=model.isPending
     meta=meta
-    shows=model
+    shows=model.shows
     goToPage=(action 'goToPage')
   }}
 </div>
+
