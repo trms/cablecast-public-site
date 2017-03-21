@@ -1,21 +1,21 @@
 <div id="carousel" class="carousel slide" data-ride="carousel" data-interval="7000">
 	<!-- Indicators -->
 	<ol class="carousel-indicators">
-		{{#each shows as |item|}}
-		    <li data-target="#carousel" data-slide-to="{{item.id}}" class="{{if (eq firstId item.id) 'active'}}"></li>
-	    {{/each}}
+		{{#each shows as |item key|}}
+      <li data-target="#carousel" data-slide-to="{{key}}" class="{{if (eq key 0) 'active'}}"></li>
+    {{/each}}
 	</ol>
 
 	<!-- Wrapper for slides -->
 	<div class="carousel-inner" role="listbox">
 
-	    {{#each shows as |item|}}
-	    	<div class="item {{if (eq firstId item.id) 'active'}}">
+	    {{#each shows as |item key|}}
+	    	<div class="item {{if (eq key 0) 'active'}}">
 
 				{{#link-to 'show' item.id}}
-				<div class="embed-responsive embed-responsive-16by9">
-					{{show-thumbnail show=item quality='Large' class="embed-responsive-item"}}
-				</div>
+          <div class="embed-responsive embed-responsive-16by9">
+            {{show-thumbnail show=item quality='Large' class="embed-responsive-item"}}
+          </div>
 				{{/link-to}}
 
 				<div class="carousel-caption">
