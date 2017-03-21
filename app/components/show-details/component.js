@@ -15,4 +15,4 @@ export default Ember.Component.extend({
     return now.isBefore(runDateTime);
   }),
 
-})
+});
