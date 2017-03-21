@@ -11,7 +11,7 @@ export default Ember.Component.extend({
 	thumbnailPath: Ember.computed('show.showThumbnails.@each.quality', 'quality', {
 		get: function() {
 			var thumbnail = this.get('show.showThumbnails').findBy('quality', this.get('quality'));
-			
+
 			// If we can't find the specifiec quality default to first thumbnail
 			if (!thumbnail) {
 			  thumbnail = this.get('show.showThumbnails.firstObject');
