@@ -4,8 +4,6 @@ export default DS.Model.extend({
   siteName: DS.attr('string'),
   logo: DS.belongsTo('web-file', {async: true}),
   carouselSavedSearch: DS.belongsTo('saved-show-search', {async: true}),
-  galleryTitle: DS.attr('string'),
-  gallerySavedSearch: DS.belongsTo('saved-show-search', {async: true}),
   aboutPageDescription: DS.attr('string'),
   aboutPageShortDescription: DS.attr('string'),
   customColor1: DS.attr('string'),
@@ -18,4 +16,5 @@ export default DS.Model.extend({
   contactEmail: DS.attr('string'),
   contactPhone: DS.attr('string'),
   includeInIndex: DS.attr(),
+  siteGalleries: DS.hasMany('site-gallery'),
 });

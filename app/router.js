@@ -14,6 +14,7 @@ Router.map(function() {
   this.route('watch-now', { path:'watch/:stream_id' });
   this.route('vods');
   this.route('search');
+  this.route('gallery',{path: 'gallery/:id'});
 });
 
 export default Router;
