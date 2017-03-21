@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import SetPageTitle from 'public/mixins/set-page-title';
+import ResetScroll from 'public/mixins/reset-scroll';
 
-export default Ember.Route.extend(SetPageTitle, {
+export default Ember.Route.extend(SetPageTitle, ResetScroll, {
 	queryParams: {
 		query: {
 			refreshModel: true
@@ -27,7 +28,6 @@ export default Ember.Route.extend(SetPageTitle, {
 	setupController: function(controller, model){
 		controller.set('model', model);
 		controller.set('tempQuery', this.paramsFor(this.routeName).query);
-		window.scrollTo(0,0);
 	},
 
   deactivate(){

@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import ResetScroll from 'public/mixins/reset-scroll';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(ResetScroll, {
   queryParams: {
 		page: {
 			refreshModel: true
@@ -25,7 +26,6 @@ export default Ember.Route.extend({
   setupController(controller, model){
 		this._super(...arguments);
     controller.set('model',model);
-		window.scrollTo(0,0);
 	},
   deactivate(){
     this._super(...arguments);
