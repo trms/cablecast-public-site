@@ -25,7 +25,7 @@ export default Ember.Route.extend(SetPageTitle, {
 		return Ember.RSVP.hash({
 			shows: this.store.query('show', {
         ids: [params.id],
-        include: 'vod,scheduleitem,thumbnail,chapter,firstrun'
+        include: 'vod,vodtransaction,scheduleitem,thumbnail,chapter,firstrun'
       }),
 			runs: this.store.query('schedule-item', {
         show: params.id,
