@@ -31,7 +31,6 @@ export default Ember.Component.extend({
 
   filteredShows: Ember.computed('shows.[]',function(){
     let shows = this.get('shows') || [];
-    console.log(shows);
     let limit = this.get('gallery.displayLimit');
     return shows.filterBy('showThumbnails.length').splice(0,limit);
   }),

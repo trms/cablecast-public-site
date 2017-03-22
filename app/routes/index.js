@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import SetPageTitle from 'public/mixins/set-page-title';
+import GetFutureRuns from 'public/mixins/channel-future-runs-promise';
 
 function filterShows(shows) {
 	return shows.filter(function(show) {
@@ -7,7 +8,7 @@ function filterShows(shows) {
 	});
 }
 
-export default Ember.Route.extend(SetPageTitle, {
+export default Ember.Route.extend(SetPageTitle,GetFutureRuns, {
 
 	model() {
 		let channel = this.modelFor('application').channel;
@@ -23,6 +24,7 @@ export default Ember.Route.extend(SetPageTitle, {
 
     return Ember.RSVP.hash({
       carouselShows,
+      futureRuns:this.getFutureRuns(channel),
       defaultShows: this.store.query('show',{page_size: 24, location: channel.get('primaryLocation')}).then(filterShows),
       categories: this.store.findAll('category'),
       projects: this.store.findAll('project'),
