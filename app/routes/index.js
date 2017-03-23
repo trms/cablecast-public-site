@@ -32,8 +32,9 @@ export default Ember.Route.extend(SetPageTitle,GetFutureRuns, {
     });
   },
 
-  afterModel() {
-    var channel = this.modelFor('application').channel;
-    this.setTitle(channel.get('name'));
-  }
+	afterModel() {
+		var channel = this.modelFor('application').channel;
+		let name = channel.get('publicSite.siteName') || channel.get('name');
+		this.setTitle(name);
+	}
 });
