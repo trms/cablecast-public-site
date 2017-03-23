@@ -4,6 +4,22 @@
             <div class="col-md-8">
                 <h1 class="footer-header">{{config.aboutPageShortDescription}}</h1>
                 <p>{{{config.aboutPageDescription}}}</p>
+                {{#if (and (gt publicChannels.length 1) showOtherChannels)}}
+                  <h2 class="public-site-links-title">
+                    {{#if (gt publicChannels.length 2)}}
+                      Browse our other channels
+                    {{else}}
+                      Browse our other channel
+                    {{/if}}
+                  </h2>
+                  <div class="channel-stub-container">
+                    {{#each publicChannels as |otherChannel|}}
+                      {{#if (not-eq channel otherChannel)}}
+                        {{channel-stub channel=otherChannel}}
+                      {{/if}}
+                    {{/each}}
+                  </div>
+                {{/if}}
             </div>
             <div class="col-md-4">
                 <h1 class="footer-header">Contact Us</h1>
