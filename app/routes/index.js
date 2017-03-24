@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import SetPageTitle from 'public/mixins/set-page-title';
 import GetFutureRuns from 'public/mixins/channel-future-runs-promise';
+import ResetScroll from 'public/mixins/reset-scroll';
 
 function filterShows(shows) {
 	return shows.filter(function(show) {
@@ -8,7 +9,7 @@ function filterShows(shows) {
 	});
 }
 
-export default Ember.Route.extend(SetPageTitle,GetFutureRuns, {
+export default Ember.Route.extend(SetPageTitle, GetFutureRuns, ResetScroll, {
 
 	model() {
 		let channel = this.modelFor('application').channel;

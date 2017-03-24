@@ -113,17 +113,14 @@ h1,h2,h3,h4,h5,h6 {
     border-color: $public-button-search-outline;
 }
 
-.btn-change-channel {
-    color: #fff;
-    background-color: $public-button-schedule;
-    border-color: $public-button-schedule-outline;
-}
+
 
 .btn-schedule, .btn-schedule:hover, .btn-schedule:active, .btn-schedule:focus {
     color: #fff;
     background-color: $public-button-schedule;
     border-color: $public-button-schedule-outline;
 }
+
 
 .plaque > a {
   color: white;
