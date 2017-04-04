@@ -3,7 +3,7 @@
 <p>Event date: <strong itemprop="dateCreated">{{show.eventDateString}}</strong></p>
 {{#if firstRun}}
   <p>
-    {{#if firstRunIsFuture}}Premiers On:{{else}}Premiered On:{{/if}}
+    {{#if firstRunIsFuture}}Premiers:{{else}}Premiered:{{/if}}
     <strong>{{moment-format firstRun.runDateTime 'M/D/Y [at] h:mm a'}}</strong>
   </p>
 {{/if}}
