@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import ENV from 'public/config/environment';
+import ResetScroll from 'public/mixins/reset-scroll';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(ResetScroll,{
   fastboot: Ember.inject.service(),
   headData: Ember.inject.service(),
 
