@@ -7,4 +7,7 @@ export default Ember.Component.extend({
     return this.get('channel.publicSite.siteName') || this.get('channel.name');
   }),
 
+  logo: Ember.computed('channel.publicSite.{logo,squareLogo}',function(){
+    return this.get('channel.publicSite.squareLogo.url') || this.get('channel.publicSite.logo.url');
+  }),
 });

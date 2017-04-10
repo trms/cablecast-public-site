@@ -3,6 +3,7 @@ import DS from 'ember-data';
 export default DS.Model.extend({
   siteName: DS.attr('string'),
   logo: DS.belongsTo('web-file', {async: true}),
+  squareLogo: DS.belongsTo('web-file', {async: true}),
   carouselSavedSearch: DS.belongsTo('saved-show-search', {async: true}),
   aboutPageDescription: DS.attr('string'),
   aboutPageShortDescription: DS.attr('string'),
