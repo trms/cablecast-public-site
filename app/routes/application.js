@@ -17,7 +17,7 @@ export default Ember.Route.extend(ResetScroll,{
     let headData = this.get('headData');
     let url = 'foo';
     headData.set('channelID', channel.get('id'));
-    headData.set('rootURL', ENV.rootURL);
+    headData.set('rootURL', encodeURI(ENV.rootURL));
 
     if (fastboot.get('isFastBoot')) {
       let protocol = fastboot.get('request.protocol');
@@ -34,9 +34,9 @@ export default Ember.Route.extend(ResetScroll,{
       card: 'summary',
       title: publicSite.get('siteName'),
       description: publicSite.get('aboutPageDescription'),
-      image: publicSite.get('logo.url')
+      image: encodeURI(publicSite.get('logo.url'))
     };
-    headData.set('url', url);
+    headData.set('url', encodeURI(url));
     headData.set('socialMedia', data);
   },
 
@@ -63,5 +63,4 @@ export default Ember.Route.extend(ResetScroll,{
     this._super(...arguments);
     controller.set('channel', model.channel.id);
   }
-
 });
