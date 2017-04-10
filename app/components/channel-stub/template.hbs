@@ -5,8 +5,8 @@
     {{siteName}}
   </p>
   <div class="channel-stub-logo">
-    {{#if channel.publicSite.logo.url}}
-      <img src="{{channel.publicSite.logo.url}}" class="img img-responsive">
+    {{#if logo}}
+      <img src={{logo}} class="img img-responsive">
     {{else}}
       <img src="{{rootURL}}images/temp-peg-logo.png" class="img img-responsive">
     {{/if}}
