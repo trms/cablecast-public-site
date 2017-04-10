@@ -23,8 +23,8 @@ export default Ember.Component.extend({
     let shows = store.query('show',{
                   ids: this.get('gallery.savedShowSearch.results').slice(0,limit),
                   include: 'thumbnail,vod,category,project,producer,reel',
+                  page_size: limit
                 });
-
     yield shows;
     this.set('shows',shows);
   }),
@@ -32,6 +32,7 @@ export default Ember.Component.extend({
   filteredShows: Ember.computed('shows.[]',function(){
     let shows = this.get('shows') || [];
     let limit = this.get('gallery.displayLimit');
+
     return shows.filterBy('showThumbnails.length').splice(0,limit);
   }),
   actions:{
