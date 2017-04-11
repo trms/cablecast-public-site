@@ -13,7 +13,7 @@ export default Ember.Route.extend(SetPageTitle, {
 			card: 'summary_large_image',
 			title: show.get('cgTitle'),
 			description: show.get('comments') || show.get('cgTitle'),
-			image: (thumbnail ? thumbnail.get('url') : null)
+			image: (thumbnail ? encodeURI(thumbnail.get('url')) : null)
 		};
 		headData.set('socialMedia', data);
 		this.setTitle(show.get('cgTitle'));
