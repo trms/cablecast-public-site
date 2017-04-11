@@ -34,7 +34,7 @@ export default Ember.Route.extend(ResetScroll,{
       card: 'summary',
       title: publicSite.get('siteName'),
       description: publicSite.get('aboutPageDescription'),
-      image: encodeURI(publicSite.get('logo.url'))
+      image: encodeURI(publicSite.get('squareLogo.url'))
     };
     headData.set('url', encodeURI(url));
     headData.set('socialMedia', data);
