@@ -1,24 +1,20 @@
-<div itemscope itemtype="http://schema.org/WebSite">
+{{nav-menu
+  channel=model.channel
+  on-search='navSearch'
+}}
 
-  {{nav-menu
-    channel=model.channel
-    on-search='navSearch'
-  }}
-
-  <div class="container-wrapper">
-		<div class="container">
-			{{outlet}}
-		</div>
+<div class="container-wrapper">
+	<div class="container">
+		{{outlet}}
 	</div>
-
-	{{channel-footer
-    config=model.channel.publicSite
-    hasPodcasts=hasPodcasts
-    channel=model.channel
-    publicChannels=publicChannels
-    showOtherChannels=showOtherChannels
-  }}
-
 </div>
+
+{{channel-footer
+  config=model.channel.publicSite
+  hasPodcasts=hasPodcasts
+  channel=model.channel
+  publicChannels=publicChannels
+  showOtherChannels=showOtherChannels
+}}
 
 {{update-channel-styles channel-id=model.channel.id}}

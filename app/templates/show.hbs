@@ -1,13 +1,13 @@
-<div class="show-page" itemscope itemtype="http://schema.org/TVClip">
+<div class="show-page">
   <div class="row">
     <div class="col-xs-12">
-      <h2 class="show-page-header" itemprop="headline">{{show.cgTitle}}</h2>
+      <h2 class="show-page-header">{{show.cgTitle}}</h2>
     </div>
   </div>
   <div class="show-player clearfix">
   	   <div class="col-sm-6 col-lg-8 u-no-padding">
   	{{#if show.vods.firstObject.isReady}}
-			<div class="embed-responsive embed-responsive-16by9" itemprop="video">
+			<div class="embed-responsive embed-responsive-16by9">
         {{{show.vods.firstObject.embedCode}}}
 			</div>
 		{{else}}
