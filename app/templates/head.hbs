@@ -26,3 +26,9 @@
 {{/if}}
 
 <meta property="og:url" content={{model.url}} />
+
+{{#if model.jsonLD}}
+  <script type="application/ld+json">
+    {{model.jsonLD}}
+  </script>
+{{/if}}
