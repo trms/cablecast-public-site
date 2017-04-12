@@ -17,6 +17,30 @@ export default Ember.Route.extend(SetPageTitle, {
 		};
 		headData.set('socialMedia', data);
 		this.setTitle(show.get('cgTitle'));
+
+		this.appendJsonLD(data, show);
+	},
+
+	appendJsonLD(data, show) {
+		let jsonLD = {
+			"@context": "http://schema.org",
+			"@type": "TVClip"
+		};
+		if (data.image) {
+			jsonLD.thumbnailUrl = data.image;
+		}
+		let eventDate = show.get('eventDateString');
+		if (eventDate) {
+			jsonLD.datePublished = {
+				"@type": "Date",
+				"@value": show.get('eventDateString')
+			};
+		}
+		if (data.title) {
+			jsonLD.headline = data.title;
+		}
+		let headData = this.get('headData');
+		headData.set('jsonLD', JSON.stringify(jsonLD));
 	},
 
 	model: function(params) {
@@ -25,26 +49,27 @@ export default Ember.Route.extend(SetPageTitle, {
 		return Ember.RSVP.hash({
 			shows: this.store.query('show', {
         ids: [params.id],
-        include: 'vod,vodtransaction,scheduleitem,thumbnail,chapter,firstrun'
+        include: 'vod,vodtransaction,scheduleitem,thumbnail,chapter,firstrun,producer'
       }),
 			runs: this.store.query('schedule-item', {
         show: params.id,
         start: start.toISOString(),
         page_size: 5
       }),
-      channels: this.store.findAll('channel'),
-		}).
-		then(function(data) {
-      return {
-        show: self.store.peekRecord('show', params.id),
-        runs: data.runs
-      };
-    });
+      channels: this.store.findAll('channel')
+		})
+		.then(({shows, runs})=>{
+			let show = self.store.peekRecord('show', params.id);
+			return Ember.RSVP.hash({
+				show: show,
+				runs: runs
+    	});
+		});
 	},
 
-  afterModel(model) {
-    this.setHeadData(model.show);
-  },
+	afterModel: function(model) {
+		this.setHeadData(model.show);
+	},
 
   setupController: function(controller, model) {
     var params = this.paramsFor(this.get('routeName'));

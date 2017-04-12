@@ -12,11 +12,11 @@ export default Ember.Route.extend(ResetScroll,{
     }
   },
 
-  setHeadData(channel) {
+  getCanonicalUrl() {
     let fastboot = this.get('fastboot');
     let headData = this.get('headData');
     let url = 'foo';
-    headData.set('channelID', channel.get('id'));
+    headData.set('channelID', this.get('model.channel.id'));
     headData.set('rootURL', encodeURI(ENV.rootURL));
 
     if (fastboot.get('isFastBoot')) {
@@ -27,17 +27,49 @@ export default Ember.Route.extend(ResetScroll,{
     } else {
       url = document.location.href;
     }
+    return url;
+  },
 
+  appendJsonLD(publicSite) {
+    let pageUrl = this.getCanonicalUrl();
+    let jsonLD = {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      url: encodeURI(pageUrl)
+    };
+    let logo = publicSite.get('squareLogo') || publicSite.get('logo');
+    if (logo) {
+      jsonLD.thumbnailUrl = encodeURI(logo.get('url'));
+    }
+    let about = publicSite.get('aboutPageShortDescription') || publicSite.get('aboutPageDescription');
+    if (about) {
+      jsonLD.about = about;
+    }
+    let headline = publicSite.get('siteName');
+    if (headline) {
+      jsonLD.headline = headline;
+    }
+    let headData = this.get('headData');
+		headData.set('jsonLD', JSON.stringify(jsonLD));
+  },
+
+  setHeadData(channel) {
     let publicSite = channel.get('publicSite');
+    let logo = publicSite.get('squareLogo') || publicSite.get('logo');
     let data = {
       type: 'website',
       card: 'summary',
       title: publicSite.get('siteName'),
       description: publicSite.get('aboutPageDescription'),
-      image: encodeURI(publicSite.get('squareLogo.url'))
+      image: logo && encodeURI(logo.get('url')) || null
     };
-    headData.set('url', encodeURI(url));
+    let headData = this.get('headData');
     headData.set('socialMedia', data);
+
+    this.appendJsonLD(publicSite);
+
+    let url = this.getCanonicalUrl();
+    headData.set('url', encodeURI(url));
   },
 
   model: function(params) {
