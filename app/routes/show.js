@@ -31,10 +31,7 @@ export default Ember.Route.extend(SetPageTitle, {
 		}
 		let eventDate = show.get('eventDateString');
 		if (eventDate) {
-			jsonLD.datePublished = {
-				"@type": "Date",
-				"@value": show.get('eventDateString')
-			};
+			jsonLD.datePublished = eventDate;
 		}
 		if (data.title) {
 			jsonLD.headline = data.title;

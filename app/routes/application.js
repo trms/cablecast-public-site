@@ -37,7 +37,7 @@ export default Ember.Route.extend(ResetScroll,{
       "@type": "WebSite",
       url: encodeURI(pageUrl)
     };
-    let logo = publicSite.get('squareLogo') || publicSite.get('logo');
+    let logo = publicSite.get('squareLogo.content') || publicSite.get('logo.content');
     if (logo) {
       jsonLD.thumbnailUrl = encodeURI(logo.get('url'));
     }
@@ -55,7 +55,7 @@ export default Ember.Route.extend(ResetScroll,{
 
   setHeadData(channel) {
     let publicSite = channel.get('publicSite');
-    let logo = publicSite.get('squareLogo') || publicSite.get('logo');
+    let logo = publicSite.get('squareLogo.content') || publicSite.get('logo.content');
     let data = {
       type: 'website',
       card: 'summary',
@@ -83,12 +83,15 @@ export default Ember.Route.extend(ResetScroll,{
       if (!channel) {
         channel = channels.get('firstObject');
       }
-      this.setHeadData(channel);
       return {
         channel: channel,
         projects: result.projects
       };
     });
+  },
+
+  afterModel(model) {
+    this.setHeadData(model.channel);
   },
 
   setupController(controller, model) {
