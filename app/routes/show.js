@@ -3,22 +3,33 @@ import SetPageTitle from 'public/mixins/set-page-title';
 
 export default Ember.Route.extend(SetPageTitle, {
 	setHeadData(show) {
-    let thumbnail = show.get('showThumbnails').findBy('quality', 'Large');
-    if (!thumbnail) {
-      thumbnail = show.get('showThumbnails.firstObject');
-    }
-		let headData = this.get('headData');
-		let data = {
+    let data = {
 			type: 'video.episode',
 			card: 'summary_large_image',
 			title: show.get('cgTitle'),
-			description: show.get('comments') || show.get('cgTitle'),
-			image: (thumbnail ? encodeURI(thumbnail.get('url')) : null)
+			description: show.get('comments') || show.get('cgTitle')
 		};
+		let thumbnailUrl = this.findAThumbnailUrl(show);
+		if (thumbnailUrl) {
+			data.image = thumbnailUrl;
+		}
+		let headData = this.get('headData');
 		headData.set('socialMedia', data);
-		this.setTitle(show.get('cgTitle'));
 
 		this.appendJsonLD(data, show);
+
+		this.setTitle(show.get('cgTitle'));
+	},
+
+	findAThumbnailUrl(show) {
+		let thumbnail = show.get('showThumbnails').findBy('quality', 'Large');
+		if (!thumbnail) {
+			thumbnail = show.get('showThumbnails.firstObject');
+		}
+		if (thumbnail) {
+			return encodeURI(thumbnail.get('url'));
+		}
+		return this.get('headData.socialMedia.image');
 	},
 
 	appendJsonLD(data, show) {
