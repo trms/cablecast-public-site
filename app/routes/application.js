@@ -55,14 +55,16 @@ export default Ember.Route.extend(ResetScroll,{
 
   setHeadData(channel) {
     let publicSite = channel.get('publicSite');
-    let logo = publicSite.get('squareLogo.content') || publicSite.get('logo.content');
     let data = {
       type: 'website',
       card: 'summary',
       title: publicSite.get('siteName'),
-      description: publicSite.get('aboutPageDescription'),
-      image: logo && encodeURI(logo.get('url')) || null
+      description: publicSite.get('aboutPageDescription')
     };
+    let logo = publicSite.get('squareLogo.content') || publicSite.get('logo.content');
+    if (logo) {
+      data.image = encodeURI(logo.get('url'));
+    }
     let headData = this.get('headData');
     headData.set('socialMedia', data);
 
