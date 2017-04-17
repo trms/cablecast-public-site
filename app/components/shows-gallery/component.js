@@ -15,16 +15,20 @@ export default Ember.Component.extend({
 
   showsTask: task(function * (){
     let search = this.get('gallery.savedShowSearch');
-    if(!search){
+    let limit = this.get('gallery.displayLimit') * 3;
+    let showIds = search.get('results').slice(0,limit);
+
+    if(showIds.length === 0){
       return;
     }
-    let limit = this.get('gallery.displayLimit') * 3;
-    let store = this.get('store');
-    let shows = store.query('show',{
-                  ids: this.get('gallery.savedShowSearch.results').slice(0,limit),
-                  include: 'thumbnail,vod,category,project,producer,reel',
-                  page_size: limit
-                });
+
+    let shows = this.get('store')
+      .query('show',{
+        ids: showIds,
+        include: 'thumbnail,vod,category,project,producer,reel',
+        page_size: limit
+      });
+
     yield shows;
     this.set('shows',shows);
   }),
@@ -32,7 +36,6 @@ export default Ember.Component.extend({
   filteredShows: Ember.computed('shows.[]',function(){
     let shows = this.get('shows') || [];
     let limit = this.get('gallery.displayLimit');
-
     return shows.filterBy('showThumbnails.length').splice(0,limit);
   }),
   actions:{

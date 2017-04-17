@@ -218,6 +218,11 @@ body {
   display: inline-block;
   margin-top:35px;
 }
+.gallery-no-shows-warning{
+  text-align:center;
+  flex:1;
+  margin:0 0 .5em 0;
+}
 
 /* This is a hotfix */
 // It's necessary to undo the Bootstrap container gutter because the ember view div gets in the way.

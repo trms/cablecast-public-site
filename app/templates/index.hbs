@@ -17,7 +17,9 @@
 
 {{#if siteGalleries.length}}
   {{#each siteGalleries as |gallery|}}
-    {{ shows-gallery gallery=gallery}}
+    {{#if (gt gallery.savedShowSearch.results.length 0)}}
+      {{ shows-gallery gallery=gallery}}
+    {{/if}}
   {{/each}}
 {{else}}
   {{shows-gallery gallery=(hash displayName="Recent Shows" displayLimit=12) shows=model.defaultShows}}
