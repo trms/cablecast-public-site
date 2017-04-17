@@ -1,10 +1,18 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  queryParams: ['channel'],
+  queryParams: ['channel','showOtherChannels'],
+  showOtherChannels:true,
+  projects: Ember.computed('model.channel.primaryLocation.id', function() {
+    return this.model.projects;
+  }),
 
-  projects: Ember.computed('model.primaryLocation.id', function() {
-    return this.store.query('project', {location: this.get('model.primaryLocation.id')});
+  allChannels: Ember.computed(function(){
+    return this.store.peekAll('channel');
+  }),
+
+  publicChannels: Ember.computed('allChannels.[]',function(){
+    return this.get('allChannels').filterBy('publicSite.includeInIndex',true).sortBy('publicSite.siteName');
   }),
 
   hasPodcasts: Ember.computed('projects.[]', function() {
@@ -18,6 +26,6 @@ export default Ember.Controller.extend({
   actions: {
 		navSearch: function(query) {
 			this.transitionToRoute('search', {queryParams: {query: query}});
-		}
+		},
 	}
 });

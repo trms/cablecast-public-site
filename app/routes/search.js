@@ -1,6 +1,8 @@
 import Ember from 'ember';
+import SetPageTitle from 'public/mixins/set-page-title';
+import ResetScroll from 'public/mixins/reset-scroll';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(SetPageTitle, ResetScroll, {
 	queryParams: {
 		query: {
 			refreshModel: true
@@ -9,9 +11,14 @@ export default Ember.Route.extend({
 			refreshModel: true
 		}
 	},
+
+	afterModel() {
+		this.setTitle('Search Results');
+	},
+
 	model: function(params) {
-		var channel = this.modelFor('application');
-		return this.store.find('show', {
+		var channel = this.modelFor('application').channel;
+		return this.store.query('show', {
 			offset: params.page - 1,
 			search: params.query,
 			location: channel.get('primaryLocation')
@@ -21,6 +28,10 @@ export default Ember.Route.extend({
 	setupController: function(controller, model){
 		controller.set('model', model);
 		controller.set('tempQuery', this.paramsFor(this.routeName).query);
-		window.scrollTo(0,0);
-	}
+	},
+
+  deactivate(){
+    this._super(...arguments);
+    this.controller.set('page',1);
+  },
 });

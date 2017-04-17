@@ -15,7 +15,6 @@ export default Ember.Component.extend({
 	},
 
 	processMessage: function(event) {
-    console.log('EVENT: ', event);
     if (event.data.message === 'ready' && this.get('seekto')) {
       this.seekTo(this.get('seekto'));
     }
@@ -67,7 +66,7 @@ export default Ember.Component.extend({
     var message = {
       type: 'player-cue',
       value: offset
-    }
+    };
     this.sendMessage(message);
   },
 

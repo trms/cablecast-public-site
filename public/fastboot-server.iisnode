@@ -1,0 +1,10 @@
+const express = require('express');
+const fastbootMiddleware = require('fastboot-express-middleware');
+
+let app = express();
+
+app.get('/*', fastbootMiddleware('./'));
+
+app.listen(process.env.PORT, function () {
+  console.log('FastBoot app listening on port: ' + process.env.PORT);
+});

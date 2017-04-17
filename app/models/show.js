@@ -16,6 +16,11 @@ export default DS.Model.extend({
 	eventDate: DS.attr('string'),
 
 	showThumbnails: DS.hasMany('thumbnail', {async: true}),
+  firstRuns: DS.hasMany('first-run',{async: true}),
+  absoluteFirstRun: Ember.computed('firstRuns.@each.runDateTime', function() {
+    var sorted =  this.get('firstRuns').sortBy('runDateTime');
+    return sorted.get('firstObject');
+  }),
 	thumbnail: Ember.computed('showThumbnails.@each.quality', {
 		get: function() {
 			var thumbnail = this.get('showThumbnails').findBy('quality', 'Large');
@@ -34,7 +39,6 @@ export default DS.Model.extend({
 
 	hasVod: function(){
 		// This doens't work. Not sure why yet.
-		console.log(this.get('vods'));
 		return this.get('vods');
 	}.property('vods'),
 
@@ -43,7 +47,7 @@ export default DS.Model.extend({
 
     	var _start = moment(today).startOf('day').format();
 
-    	return this.store.find('schedule-item', {
+    	return this.store.query('schedule-item', {
 	    	show: this.id,
     		start: _start,
     		page_size: 5

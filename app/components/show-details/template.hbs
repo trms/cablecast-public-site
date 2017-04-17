@@ -1,7 +1,12 @@
 <h3 class="show-details-header">Show details</h3>
 <p>Show ID: <strong>{{show.id}}</strong></p>
 <p>Event date: <strong>{{show.eventDateString}}</strong></p>
-
+{{#if firstRun}}
+  <p>
+    {{#if firstRunIsFuture}}Premiers:{{else}}Premiered:{{/if}}
+    <strong>{{moment-format firstRun.runDateTime 'M/D/Y [at] h:mm a'}}</strong>
+  </p>
+{{/if}}
 {{#if producer.name}}
 	<p>Producer: <strong>{{show.producer.name}}</strong></p>
 {{/if}}

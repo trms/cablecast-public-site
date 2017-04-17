@@ -93,7 +93,7 @@ h1,h2,h3,h4,h5,h6 {
     color: set-button-text-color($background);
 }
 
-.footer-wrapper, .footer-header {
+.footer-wrapper, .footer-header,.public-site-links-title {
     color: $public-text-dark;
 }
 
@@ -114,10 +114,20 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 
+
 .btn-schedule, .btn-schedule:hover, .btn-schedule:active, .btn-schedule:focus {
     color: #fff;
     background-color: $public-button-schedule;
     border-color: $public-button-schedule-outline;
+}
+
+
+.plaque > a {
+  color: white;
+  text-decoration: none;
+  :hover {
+    color: black;
+  }
 }
 
 .plaque-content {
@@ -130,7 +140,6 @@ h1,h2,h3,h4,h5,h6 {
     border: 1px solid $public-action-badge-outline;
 }
 
-
 .gallery-title-wrapper {
     background-color: $banner;
 }
@@ -138,7 +147,9 @@ h1,h2,h3,h4,h5,h6 {
 .gallery-title-header {
   color: set-button-text-color($banner);
 }
-
+.gallery-show-all-link{
+  color: set-button-text-color($banner);
+}
 .gallery-wrapper {
     background-color: $background;
     color: set-button-text-color($background);

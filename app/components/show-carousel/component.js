@@ -1,18 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-	shows: null,
+  fastboot: Ember.inject.service(),
 
-	firstId: Ember.computed.alias('shows.firstObject.id'),
+  didInsertElement(){
+    this.$('#carousel').carousel('cycle');
+  }
 
-	actions: {
-		previousSlide: function(){},
-		nextSlide: function(){}
-	},
-	previousSlide: function() {
-        this.$().carousel('prev');
-    },
-    nextSlide: function() {
-        this.$().carousel('next');
-    },
 });
