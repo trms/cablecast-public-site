@@ -30,3 +30,8 @@ artifacts:
 notifications:
   - provider: Webhook
     url: https://trms-build-kicker.herokuapp.com/appveyor?failed={{failed}}&branch=master&projectName=cablecast
+
+  - provider: Slack
+    auth_token:
+      secure: RCjrjaDtlVlWvthh0FrzeNGqWLRwibK+rrVW4nnhrJjo2g9OxUCt6cq2fjy3Haq2VJUJdFfC452ndFWPUz1zAA==
+    channel: '#builds'
