@@ -14,11 +14,7 @@ export default Ember.Route.extend(ResetScroll,{
 
   getCanonicalUrl() {
     let fastboot = this.get('fastboot');
-    let headData = this.get('headData');
-    let url = 'foo';
-    headData.set('channelID', this.get('model.channel.id'));
-    headData.set('rootURL', encodeURI(ENV.rootURL));
-
+    let url = '';
     if (fastboot.get('isFastBoot')) {
       let protocol = fastboot.get('request.protocol');
       let host = fastboot.get('request.host');
@@ -67,6 +63,8 @@ export default Ember.Route.extend(ResetScroll,{
     }
     let headData = this.get('headData');
     headData.set('socialMedia', data);
+    headData.set('channelID', channel.get('id'));
+    headData.set('rootURL', encodeURI(ENV.rootURL));
 
     this.appendJsonLD(publicSite);
 

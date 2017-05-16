@@ -15,6 +15,7 @@ export default Ember.Component.extend({
 
   showsTask: task(function * (){
     let search = this.get('gallery.savedShowSearch');
+    if (!search) { return; }
     let limit = this.get('gallery.displayLimit') * 3;
     let showIds = search.get('results').slice(0,limit);
 
