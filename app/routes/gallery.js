@@ -9,12 +9,14 @@ export default Ember.Route.extend(ResetScroll, {
 	},
   model(params){
     let gallery = this.store.findRecord('site-gallery',params.id);
-    let shows = gallery.then((gallery)=>{
-    return this.store.query('show',{
-                              offset: params.page - 1,
-                              ids: gallery.get('savedShowSearch.results'),
-                              include: 'thumbnail,vod,category,project,producer,reel',
-                            });
+    let shows = gallery.then((gallery) => {
+      let pageSize = 50;
+      let ids = gallery.get('savedShowSearch.results').slice(params.page - 1 * pageSize, pageSize);
+      return this.store.query('show',{
+                                offset: params.page - 1,
+                                ids: ids,
+                                include: 'thumbnail,vod,category,project,producer,reel',
+                              });
     });
 
     return Ember.RSVP.hash({
