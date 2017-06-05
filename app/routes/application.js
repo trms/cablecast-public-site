@@ -76,7 +76,8 @@ export default Ember.Route.extend(ResetScroll,{
   model: function(params) {
     return Ember.RSVP.hash({
       channels: this.get('store').query('channel', {include: 'publicsite,webfile,thumbnail,sitegallery,savedshowsearch'}),
-      projects: this.get('store').findAll('project')
+      projects: this.get('store').findAll('project'),
+      options: this.get('store').findAll('option')
     })
     .then((result) => {
       let channels = result.channels;
