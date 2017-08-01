@@ -205,6 +205,9 @@ body {
   &:hover{
     text-decoration:underline;
   }
+  @include media-query($xs){
+    font-size:1.8em;
+  }
 }
 
 .gallery-wrapper {
@@ -217,6 +220,9 @@ body {
 .gallery-show-all-link{
   display: inline-block;
   margin-top:35px;
+  @include media-query($xs){
+    margin-top:0;
+  }
 }
 .gallery-no-shows-warning{
   text-align:center;
