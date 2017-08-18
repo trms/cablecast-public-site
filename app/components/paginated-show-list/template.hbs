@@ -18,9 +18,9 @@
       {{#if showPaginationControl}}
 				{{pagination-control
           on-page-select=(action 'goToPage')
-          pageSize=meta.pageSize
-          offset=meta.offset
-          count=meta.count
+          pageSize=pageSize
+          currentPage=page
+          count=total
           class="text-center"
         }}
       {{/if}}
@@ -38,9 +38,9 @@
       {{#if showPaginationControl}}
 				{{pagination-control
           on-page-select=(action 'goToPage')
-          pageSize=meta.pageSize
-          offset=meta.offset
-          count=meta.count
+          pageSize=pageSize
+          currentPage=page
+          count=total
           class="text-center"
         }}
       {{/if}}
