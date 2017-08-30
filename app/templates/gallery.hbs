@@ -2,7 +2,9 @@
 	{{paginated-show-list
     title=model.gallery.displayName
     loading=model.isPending
-    meta=meta
+    page=page
+    pageSize=50
+    total=model.gallery.savedShowSearch.results.length
     shows=model.shows
     goToPage=(action 'goToPage')
   }}

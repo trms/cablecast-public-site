@@ -42,7 +42,7 @@ export default Ember.Component.extend({
 
     return result;
 
-  }.property('offset', 'pageSize', 'count'),
+  }.property('currentPage', 'pageSize', 'count'),
 
   hideControl: function() {
     return this.get('count') <= this.get('pageSize');
@@ -51,10 +51,6 @@ export default Ember.Component.extend({
   pageCount: function() {
     return Math.ceil(this.get('count') / this.get('pageSize'));
   }.property('pageSize', 'count'),
-
-  currentPage: function() {
-    return this.get('offset') + 1;
-  }.property('offset'),
 
   hideFirst: function() {
     var pages = this.get('pages');

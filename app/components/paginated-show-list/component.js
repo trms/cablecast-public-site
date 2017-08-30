@@ -2,19 +2,21 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   classNames: ['paginated-show-list'],
-
-  firstResult: Ember.computed('page', 'meta.offset', 'meta.pageSize', function() {
-    return 1 + (this.get('meta.offset') * this.get('meta.pageSize'));
+  offset: Ember.computed('page', 'pageSize', function() {
+    return (this.get('page') - 1) * this.get('pageSize');
+  }),
+  firstResult: Ember.computed('offset', 'pageSize', function() {
+    return 1 + this.get('offset')
   }),
 
-  lastResult: Ember.computed('page', 'meta.offset', 'meta.pageSize', function() {
-    var total = this.get('meta.count');
-    var last = (this.get('meta.offset') * this.get('meta.pageSize')) + this.get('meta.pageSize');
+  lastResult: Ember.computed('offset', 'pageSize', 'total', function() {
+    var total = this.get('total');
+    var last = (this.get('offset') * this.get('pageSize')) + this.get('pageSize');
     return Math.min(last, total);
   }),
 
-  showPaginationControl: Ember.computed('meta.count', 'meta.pageSize',function(){
-    return this.get('meta.count') > this.get('meta.pageSize');
+  showPaginationControl: Ember.computed('total', 'pageSize', function(){
+    return this.get('total') > this.get('pageSize');
   }),
 
   actions:{
