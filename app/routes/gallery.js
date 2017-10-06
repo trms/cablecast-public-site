@@ -11,10 +11,10 @@ export default Ember.Route.extend(ResetScroll, {
     let gallery = this.store.findRecord('site-gallery',params.id);
     let shows = gallery.then((gallery) => {
       let pageSize = 50;
-      let offset = (params.page - 1) * pageSize;
-      let ids = gallery.get('savedShowSearch.results').slice(offset, pageSize);
+      let start = (params.page - 1) * pageSize;
+      let end = start + pageSize;
+      let ids = gallery.get('savedShowSearch.results').slice(start, end);
       return this.store.query('show',{
-                                offset: params.page - 1,
                                 ids: ids,
                                 include: 'thumbnail,vod,category,project,producer,reel',
                               });
