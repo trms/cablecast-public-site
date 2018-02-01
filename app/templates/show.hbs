@@ -41,8 +41,6 @@
         <div class="additional-info">
           {{#if show.vods.firstObject.chaptersPublished}}
             {{vod-chapters chapters=show.vods.firstObject.chapters seekto=seekto setSeekTo=(action 'setSeekTo')}}
-          {{else}}
-            <h5>There are no chapters currently published for this show.</h5>
           {{/if}}
         </div>
       {{/if}}
