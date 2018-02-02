@@ -8,13 +8,15 @@ export default DS.Model.extend({
 	category: DS.belongsTo('category', {async: true}),
 	project: DS.belongsTo('project', {async: true}),
 	reels: DS.hasMany('reel', {async: true}),
+  customFields: DS.attr(),
 
 	cgTitle: DS.attr('string'),
 	cgExempt: DS.attr('boolean'),
 	comments: DS.attr('string'),
 	title: DS.attr('string'),
 	eventDate: DS.attr('string'),
-
+  totalRunTime: DS.attr('number'),
+  runCount: DS.attr('number'),
 	showThumbnails: DS.hasMany('thumbnail', {async: true}),
   firstRuns: DS.hasMany('first-run',{async: true}),
   absoluteFirstRun: Ember.computed('firstRuns.@each.runDateTime', function() {

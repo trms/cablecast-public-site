@@ -3,6 +3,7 @@ import ENV from 'public/config/environment';
 import ResetScroll from 'public/mixins/reset-scroll';
 
 export default Ember.Route.extend(ResetScroll,{
+  site: Ember.inject.service(),
   fastboot: Ember.inject.service(),
   headData: Ember.inject.service(),
 
@@ -92,6 +93,7 @@ export default Ember.Route.extend(ResetScroll,{
   },
 
   afterModel(model) {
+    this.set('site.publicSite', model.channel.get('publicSite'));
     this.setHeadData(model.channel);
   },
 

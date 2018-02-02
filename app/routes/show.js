@@ -76,8 +76,21 @@ export default Ember.Route.extend(SetPageTitle, {
 	},
 
 	afterModel: function(model) {
+    return this.loadCustomFieldRecords(model.show);
 		this.setHeadData(model.show);
 	},
+
+  loadCustomFieldRecords(show) {
+    let records = [];
+    show.get('customFields').forEach((field) => {
+      if (field.type === 'file') {
+        records.push(this.get('store').findRecord('web-file', field.value));
+      } else if (field.type === 'producer') {
+        records.push(this.get('store').findRecord('producer', field.value));
+      }
+    });
+    return Ember.RSVP.all(records);
+  },
 
   setupController: function(controller, model) {
     var params = this.paramsFor(this.get('routeName'));
