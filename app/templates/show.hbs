@@ -39,7 +39,9 @@
         </div>
       {{else}}
         <div class="additional-info">
-          {{vod-chapters chapters=show.vods.firstObject.chapters seekto=seekto setSeekTo=(action 'setSeekTo')}}
+          {{#if show.vods.firstObject.chaptersPublished}}
+            {{vod-chapters chapters=show.vods.firstObject.chapters seekto=seekto setSeekTo=(action 'setSeekTo')}}
+          {{/if}}
         </div>
       {{/if}}
       </div></div>

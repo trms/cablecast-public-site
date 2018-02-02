@@ -7,7 +7,7 @@ export default Ember.Component.extend({
       let now = new Date();
       let start = item.get('start');
       let end = item.get('end');
-      return start <= now && end > now
+      return start <= now && end > now;
     });
   }),
-})
+});

@@ -6,7 +6,7 @@ export default Ember.Component.extend({
     return (this.get('page') - 1) * this.get('pageSize');
   }),
   firstResult: Ember.computed('offset', 'pageSize', function() {
-    return 1 + this.get('offset')
+    return 1 + this.get('offset');
   }),
 
   lastResult: Ember.computed('offset', 'pageSize', 'total', function() {

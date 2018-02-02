@@ -1,8 +1,8 @@
-/* globals moment */
-import DS from 'ember-data';
-import Ember from 'ember';
 
-var ArrayProxy = Ember.ArrayProxy.extend(Ember.PromiseProxyMixin);
+import DS from 'ember-data';
+// import Ember from 'ember';
+
+// var ArrayProxy = Ember.ArrayProxy.extend(Ember.PromiseProxyMixin);
 
 export default DS.Model.extend({
 	name: DS.attr('string'),
