@@ -269,7 +269,57 @@ body {
 }
 
 .show-page-header {
-	padding-left: 20px;
+  @media (min-width: $xs){
+    display: inline-block;
+  	width: 80%;
+  }
+}
+
+.show-page-show-details-header,
+.show-page-airtimes-header,
+.show-page-chapters-header {
+  text-transform: uppercase;
+}
+
+.show-page-video-col {
+  @media (min-width: $xs) {
+    height: calc(100vh - 300px);
+  }
+}
+
+.show-page-social-links {
+  text-align: center;
+  margin-top: 10px;
+  @media (min-width: $xs) {
+    display: inline-block;
+    width: 20%;
+    float: right;
+    margin-top: 20px;
+    text-align: right;
+  }
+}
+
+.show-page-pdf-btn {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.show-page-section-btns-wrapper {
+  margin: 10px 0 20px 0;
+}
+
+.show-page-section-btn {
+  text-transform: uppercase;
+  width: 100%;
+  margin: 2px 0;
+  @media (min-width: $xs) {
+    border-radius: 0;
+    box-sizing: border-box;
+
+    width: calc(50% - 5px);
+  }
+
+
 }
 
 .nav-tabs-padding {
@@ -444,21 +494,54 @@ body {
 }
 
 .vod-chapters {
-  max-height: 350px;
-  overflow: auto;
+  @media (min-width: $xs) {
+    max-height: 350px;
+    overflow: auto;
+  }
+}
+.show-page-video-col .vod-chapters {
+  @media (min-width: $xs) {
+    max-height: calc(100vh - 620px);
+  }
+}
+
+.show-page-last-row {
+  padding-bottom: 20px;
+}
+
+.vod-chapters .vod-chapters-chapter:nth-of-type(even) {
+  background-color: #eee;
 }
 
 .vod-chapters-chapter {
   box-sizing: border-box;
-  border-bottom: 2px solid #ccc;
   padding: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   cursor: pointer;
+}
+
+.vod-chapters-seperator {
+  margin: 5px 0;
 }
 
 .social-wrapper {
   padding-top: 1em;
 }
+
+.pdfViewer .page {
+  border-image: none;
+}
+
+.pdf-wrapper,
+.pdfViewerContainer {
+  width: 100%;
+  overflow: scroll;
+  max-height: calc(100vh - 300px);
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+}
+
+
 
 // Define colors here. These may be overriden by customer
 @import 'colors.scss';

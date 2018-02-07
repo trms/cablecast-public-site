@@ -1,8 +1,11 @@
-{{#each chapters as |chapter|}}
+{{#each chapters as |chapter index|}}
   <div {{action 'cueTo' chapter}}
        data-chapter={{chapter.id}}
        class="vod-chapters-chapter {{if (eq chapter activeChapter) 'active'}}">
   	<h4>{{chapter.title}} <small>{{total-run-time chapter.offset}}</small></h4>
     <p>{{chapter.body}}</p>
   </div>
+  {{#unless (eq chapter chapters.lastObject)}}
+    <hr class="vod-chapters-seperator">
+  {{/unless}}
 {{/each}}
