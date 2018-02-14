@@ -29,14 +29,10 @@
         </div>
       </div>
 
-      <div class="col-sm-12">
-
-      </div>
-
       {{!Chapters / details Tabs}}
       <div class="col-sm-12">
         <div class="show-page-section-btns-wrapper clearfix">
-          {{#if show.vods.firstObject.chapters}}
+          {{#if vodChapters}}
               <button type="button" class="btn show-page-section-btn pull-left {{if (eq activeTab 'details') 'btn-primary' 'btn-default'}}" {{action 'showDetails'}}>Show Details</button>
               <button type="button" class="btn show-page-section-btn pull-right {{if (eq activeTab 'chapters') 'btn-primary' 'btn-default'}}" {{action 'showChapters'}}>Chapters</button>
               <a href={{embededPdf.url}} class="btn show-page-section-btn btn-default visible-xs-inline-block">Open {{embededPdf.fieldDisplay.label}} {{fa-icon 'external-link'}} </a>
@@ -45,6 +41,7 @@
           {{/if}}
         </div>
       </div>
+
       <div class="col-sm-12">
       {{! Show Details / Chapters}}
       {{#if (eq activeTab 'details')}}
@@ -58,9 +55,7 @@
           	There are currently no upcoming air times.
           {{/each}}
       {{else}}
-        {{#if show.vods.firstObject.chaptersPublished}}
-          {{vod-chapters chapters=show.vods.firstObject.chapters seekto=seekto setSeekTo=(action 'setSeekTo')}}
-        {{/if}}
+        {{vod-chapters chapters=vodChapters seekto=seekto setSeekTo=(action 'setSeekTo')}}
       {{/if}}
       </div>
     </div>

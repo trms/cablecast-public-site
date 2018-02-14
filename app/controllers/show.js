@@ -10,6 +10,14 @@ export default Ember.Controller.extend({
 
   currentChannelId: Ember.computed.alias('application.channel'),
 
+  vodChapters: Ember.computed('model.show.vods.firstObject.chapters.@each.deleted', 'model.show.vods.firstObject.chaptersPublished', function() {
+    if (!this.get('model.show.vods.firstObject.chaptersPublished')) {
+      return [];
+    }
+    let chapters =  this.get('model.show.vods.firstObject.chapters') || [];
+    return chapters.rejectBy('deleted').sortBy('offset');
+  }),
+
   queryParams: ['seekto'],
   seekto: null,
 
