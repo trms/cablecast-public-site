@@ -1,9 +1,8 @@
+/* globals PDFJS */
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  pdfJs: Ember.inject.service('pdf-js'),
   didInsertElement() {
-    let pdfjs = this.get('pdfJs');
     let url = this.get('url');
     let [container] = this.element.getElementsByClassName('pdf-wrapper');
     let pdfLinkService = new PDFJS.PDFLinkService();

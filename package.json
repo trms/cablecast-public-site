@@ -41,7 +41,6 @@
     "ember-export-application-global": "^1.0.5",
     "ember-font-awesome": "3.0.4",
     "ember-load-initializers": "^0.6.3",
-    "ember-pdf-js": "0.2.0",
     "ember-resolver": "^2.1.1",
     "ember-responsive": "2.0.2",
     "ember-social-share": "0.2.9",
