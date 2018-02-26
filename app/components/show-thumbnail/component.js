@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  classNames: ['show-thumbnail'],
 	tagName: 'img',
 	quality: 'Small',
 	attributeBindings: ['src'],
