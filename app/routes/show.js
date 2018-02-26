@@ -83,9 +83,9 @@ export default Ember.Route.extend(SetPageTitle, {
   loadCustomFieldRecords(show) {
     let records = [];
     show.get('customFields').forEach((field) => {
-      if (field.type === 'file') {
+      if (field.type === 'file' && field.value) {
         records.push(this.get('store').findRecord('web-file', field.value));
-      } else if (field.type === 'producer') {
+      } else if (field.type === 'producer' && field.value) {
         records.push(this.get('store').findRecord('producer', field.value));
       }
     });

@@ -28,7 +28,7 @@ export default Ember.Controller.extend({
       let fileField = this.get('model.show.customFields').find((field) => {
         return field.type === 'file' && fd.get('showField') === field.showField;
       });
-      if (fileField) {
+      if (fileField && fileField.value) {
         let file = this.get('store').peekRecord('web-file', fileField.value);
         if (/.+\.pdf$/.test(file.get('name'))) {
           return {
