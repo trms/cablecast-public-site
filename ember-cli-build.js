@@ -4,6 +4,9 @@ var Funnel = require('broccoli-funnel');
 module.exports = function(defaults) {
 
   var app = new EmberApp(defaults, {
+    fingerprint: {
+      exclude: ['pdf.worker.js']
+    },
   	svg: {
   		paths: [
   			'public/svg'
