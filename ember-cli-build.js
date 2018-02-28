@@ -62,7 +62,6 @@ module.exports = function(defaults) {
   if (!process.env.EMBER_CLI_FASTBOOT) {
     app.import('bower_components/bootstrap/dist/js/bootstrap.js');
     app.import('bower_components/pdfjs-dist/build/pdf.js');
-    app.import('bower_components/pdfjs-dist/build/pdf.worker.js');
     app.import('bower_components/pdfjs-dist/web/pdf_viewer.css');
     app.import('bower_components/pdfjs-dist/web/pdf_viewer.js');
   }
