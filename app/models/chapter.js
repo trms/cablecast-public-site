@@ -7,6 +7,7 @@ export default DS.Model.extend({
 	body: attr('string', {defaultValue: ''}),
 	link: attr('string', {defaultValue: ''}),
 	offset: attr('number', {defaultValue: 0}),
+	quickAdded: attr('boolean', {defaultValue: false}),
 	deleted: attr('boolean', {defaultValue: false}),
 
 });
