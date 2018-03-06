@@ -15,7 +15,7 @@ export default Ember.Controller.extend({
       return [];
     }
     let chapters =  this.get('model.show.vods.firstObject.chapters') || [];
-    return chapters.rejectBy('deleted').sortBy('offset');
+    return chapters.rejectBy('deleted').rejectBy('quickAdded').sortBy('offset');
   }),
 
   queryParams: ['seekto'],

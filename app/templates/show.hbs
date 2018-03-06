@@ -98,7 +98,7 @@
   <div class="col-sm-6">
     {{#if (and show.vods.firstObject.chapters show.vods.firstObject.chaptersPublished)}}
       <h3 class="show-details-chapters-header">Chapters</h3>
-      {{vod-chapters chapters=show.vods.firstObject.chapters seekto=seekto setSeekTo=(action 'setSeekTo')}}
+      {{vod-chapters chapters=vodChapters seekto=seekto setSeekTo=(action 'setSeekTo')}}
       <hr />
     {{/if}}
     <h3 class="show-page-airtimes-header">Upcoming air times</h3>
