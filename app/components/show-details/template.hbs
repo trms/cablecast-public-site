@@ -1,7 +1,7 @@
 {{#each orderedFields as |fd|}}
   {{#with (show-field show fd) as |value|}}
   {{#unless (eq fd.widget 'pdf')}}
-    <div>
+    <div class="show-field-display u-truncate-text">
       <label>{{fd.label}}</label>
       {{#if (eq fd.widget 'link')}}
         <a href={{value}} target=_blank>{{value}}</a>

@@ -498,6 +498,7 @@ body {
 }
 
 .vod-chapters {
+  min-height: 300px;
   @media (min-width: $xs) {
     max-height: 350px;
     overflow: auto;
@@ -540,6 +541,7 @@ body {
 .pdfViewerContainer {
   width: 100%;
   overflow: scroll;
+  min-height: 650px;
   max-height: calc(100vh - 300px);
   margin-bottom: 10px;
   border: 1px solid #ccc;
