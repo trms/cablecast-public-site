@@ -96,7 +96,7 @@ export default Ember.Route.extend(SetPageTitle, {
     let params = this.paramsFor(this.get('routeName'));
     let chapters = model.show.get('vods.firstObject.chapters') || [];
     chapters = chapters.rejectBy('deleted');
-    if (chapters.length && params.seekto) {
+    if (chapters.length) {
       controller.set('activeTab', 'chapters');
     }
     controller.set('model', model);
