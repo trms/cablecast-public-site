@@ -76,8 +76,8 @@ export default Ember.Route.extend(SetPageTitle, {
 	},
 
 	afterModel: function(model) {
+    this.setHeadData(model.show);
     return this.loadCustomFieldRecords(model.show);
-		this.setHeadData(model.show);
 	},
 
   loadCustomFieldRecords(show) {
