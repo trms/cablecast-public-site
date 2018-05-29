@@ -4,7 +4,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   didInsertElement() {
     let url = this.get('url');
-    let [container] = this.element.getElementsByClassName('pdf-wrapper');
+    let container = this.element.getElementsByClassName('pdf-wrapper')[0];
     let pdfLinkService = new PDFJS.PDFLinkService();
 
     let pdfViewer = new PDFJS.PDFViewer({
