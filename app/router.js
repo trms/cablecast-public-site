@@ -2,8 +2,22 @@ import Ember from 'ember';
 import config from './config/environment';
 
 var Router = Ember.Router.extend({
+  headData: Ember.inject.service(),
   location: config.locationType,
-  rootURL: config.rootURL
+  rootURL: config.rootURL,
+  metrics: Ember.inject.service(),
+  didTransition() {
+    this._super(...arguments);
+    this._trackPage();
+  },
+
+  _trackPage() {
+    Ember.run.scheduleOnce('afterRender', this, () => {
+      let page = this.get('url');
+      let title = document.title;
+      Ember.get(this, 'metrics').trackPage({ page, title });
+    });
+  }
 });
 
 Router.map(function() {

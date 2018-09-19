@@ -6,6 +6,7 @@ export default Ember.Route.extend(ResetScroll,{
   site: Ember.inject.service(),
   fastboot: Ember.inject.service(),
   headData: Ember.inject.service(),
+  metrics: Ember.inject.service(),
 
   queryParams: {
     channel: {
@@ -93,8 +94,27 @@ export default Ember.Route.extend(ResetScroll,{
   },
 
   afterModel(model) {
-    this.set('site.publicSite', model.channel.get('publicSite'));
+    let publicSite = model.channel.get('publicSite');
+    this.set('site.publicSite', publicSite);
     this.setHeadData(model.channel);
+    this._setupMetrics(publicSite);
+  },
+
+  _setupMetrics(site) {
+    if (Ember.get(site, 'googleAnalyticsId')) {
+      let metrics = Ember.get(this, 'metrics');
+      let id = Ember.get(site, 'googleAnalyticsId');
+
+      metrics.activateAdapters([
+        {
+          name: 'GoogleAnalytics',
+          environments: ['all'],
+          config: {
+            id
+          }
+        }
+      ]);
+    }
   },
 
   setupController(controller, model) {
