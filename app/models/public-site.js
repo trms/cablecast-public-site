@@ -18,5 +18,6 @@ export default DS.Model.extend({
   contactPhone: DS.attr('string'),
   includeInIndex: DS.attr(),
   siteGalleries: DS.hasMany('site-gallery'),
-  fieldDisplays: DS.hasMany('field-display')
+  fieldDisplays: DS.hasMany('field-display'),
+  googleAnalyticsId: DS.attr('string')
 });
