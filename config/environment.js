@@ -5,6 +5,9 @@ module.exports = function(environment) {
     'ember-cli-head': {
       suppressBrowserRender: true
     },
+    'ember-metrics': {
+      includeAdapters: ['google-analytics']
+    },
     fastboot: {
       hostWhitelist: [/.+/]
     },
