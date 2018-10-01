@@ -13,6 +13,12 @@ h1,h2,h3,h4,h5,h6 {
 	color: set-button-text-color($background);
 }
 
+.show-page {
+  h1, h2, h3, h4, h5, h6 {
+    color: #000;
+  }
+}
+
 .schedule-header {
   color: $public-text-dark;
 }
