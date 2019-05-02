@@ -17,12 +17,12 @@ export default Ember.Route.extend(ResetScroll,{
   getCanonicalUrl() {
     let url = '';
     let fastboot = this.get('fastboot');
-    
+
     if (fastboot.get('isFastBoot')) {
       let protocol = fastboot.get('request.protocol');
       let host = fastboot.get('request.host');
       let path = fastboot.get('request.path');
-      url = `${protocol}://${host}${path}`;
+      url = `${protocol}//${host}${path}`;
     } else {
       url = document.location.href;
     }
