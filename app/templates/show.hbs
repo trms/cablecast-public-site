@@ -73,9 +73,11 @@
         {{{show.vods.firstObject.embedCode}}}
       </div>
     {{else}}
+      {{#if show.showThumbnails}}
       <div class="embed-responsive embed-responsive-16by9">
         {{show-thumbnail show=show quality='Large' class="img-responsive"}}
       </div>
+      {{/if}}
     {{/if}}
   </div>
 </div>

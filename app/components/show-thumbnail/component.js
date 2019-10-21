@@ -18,11 +18,6 @@ export default Ember.Component.extend({
 			  thumbnail = this.get('show.showThumbnails.firstObject');
 			}
 
-			// If we still don't have a thumbnail return a placeholder image
-			if (!thumbnail) {
-				return 'http://placehold.it/720x480';
-			}
-
 			// If we have a thumbnail return the url.
 			return thumbnail.get('url');
 		}
