@@ -7,7 +7,7 @@ export default DS.RESTAdapter.extend({
 	namespace: 'cablecastapi/v1',
   host: Ember.computed('fastboot.isFastBoot', function() {
     if (ENV.environment === 'production' && this.get('fastboot.isFastBoot')) {
-      return 'http://localhost';
+      return 'http://localhost:55001';
     }
     if (ENV.environment === 'development' && this.get('fastboot.isFastBoot')) {
       return 'http://localhost:4200';
