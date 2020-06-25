@@ -114,9 +114,12 @@ body {
 }
 
 .schedule-title.is-mobile {
-		margin-left: 0px;
+    margin-bottom: 5px;
+    margin-left: 0px;
     display: block;
     line-height: 1.5em;
+    float: left;
+    width: 60%;
 }
 
 .schedule-container.is-mobile {
@@ -126,7 +129,9 @@ body {
 
 .event-date {
     display: inline;
-    line-height: 1em;
+    line-height: 1.5em;
+    float: left;
+    min-width: 210px;
 }
 
 .play-icon {
@@ -140,7 +145,7 @@ body {
 
 .schedule-container {
     float: left;
-    height: 30px;
+    min-height: 30px;
     width: calc(95% - 75px);
     margin-left: 5px;
     border-bottom: 1px solid #CCCCCC;
