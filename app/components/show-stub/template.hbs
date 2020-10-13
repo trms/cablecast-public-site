@@ -3,9 +3,7 @@
     {{show-thumbnail show=show quality='Large' class="img-responsive"}}
   {{/link-to}}
 {{else}}
-	<div class="thumbnail-responsive">
-    <img src="{{rootURL}}/images/placeholder.jpg" alt="" class="img-responsive">
-  </div>
+	<div class="thumbnail-responsive"></div>
 {{/if}}
 <h3 class="show-stub-title-header u-break-text">
 	{{link-to show.cgTitle 'show' show.id class="show-stub-title-link"}}
