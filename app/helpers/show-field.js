@@ -46,7 +46,7 @@ export default Ember.Helper.extend({
       case 'runCount':
         return show.get('runCount');
       case 'firstRun':
-        return show.get('absoluteFirstRun');
+        return show.get('absoluteFirstRun.runDateTime');
       case 'custom':
         return this.lookupCustom(show, fieldDisplay);
       default:
