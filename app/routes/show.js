@@ -52,6 +52,7 @@ export default Ember.Route.extend(SetPageTitle, {
   },
 
   model: function (params) {
+    var appParams = this.paramsFor('application');
     var start = new Date();
     var self = this;
     return Ember.RSVP.hash({
@@ -63,6 +64,7 @@ export default Ember.Route.extend(SetPageTitle, {
         show: params.id,
         start: start.toISOString(),
         page_size: 5,
+        channel: appParams.channel
       }),
       channels: this.store.findAll('channel')
     })
