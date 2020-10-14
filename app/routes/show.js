@@ -51,8 +51,9 @@ export default Ember.Route.extend(SetPageTitle, {
 		headData.set('jsonLD', JSON.stringify(jsonLD));
 	},
 
-	model: function(params) {
-		var start = new Date();
+  model: function (params) {
+    var appParams = this.paramsFor('application');
+    var start = new Date();
     var self = this;
 		return Ember.RSVP.hash({
 			shows: this.store.query('show', {
@@ -62,7 +63,8 @@ export default Ember.Route.extend(SetPageTitle, {
 			runs: this.store.query('schedule-item', {
         show: params.id,
         start: start.toISOString(),
-        page_size: 5
+        page_size: 5,
+        channel: appParams.channel
       }),
       channels: this.store.findAll('channel')
 		})
