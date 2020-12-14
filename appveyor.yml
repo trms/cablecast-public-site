@@ -16,7 +16,7 @@ install:
   - bower install
 build_script:
   - node node_modules\ember-cli\bin\ember build --environment=production
-  - cd dist && npm install express && npm install fastboot-express-middleware@3.0.0
+  - cd dist && npm install express && npm install fastboot-express-middleware@2.0.0
 version: 1.0.{build}
 #cache node_modules and bower_componets between builds to speed up tests
 cache:
