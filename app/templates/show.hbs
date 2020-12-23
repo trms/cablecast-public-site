@@ -14,7 +14,7 @@
     <div class="row show-page show-page-video-col">
       {{! VOD or Image}}
       <div class="col-sm-12">
-        {{#if show.vods.firstObject.isReady}}
+        {{#if (or show.vods.firstObject.isWatchable show.vods.firstObject.isReady)}}
     			<div class="embed-responsive embed-responsive-16by9">
             {{{show.vods.firstObject.embedCode}}}
     			</div>
@@ -68,7 +68,7 @@
 {{else}}
 <div class="row show-page">
   <div class="col-sm-12">
-    {{#if show.vods.firstObject.isReady}}
+    {{#if (or show.vods.firstObject.isWatchable show.vods.firstObject.isReady)}}
       <div class="embed-responsive embed-responsive-16by9">
         {{{show.vods.firstObject.embedCode}}}
       </div>
