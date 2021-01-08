@@ -13,5 +13,6 @@ export default DS.Model.extend({
   	return this.get('lastTransaction.transactionType') === 5;
   }),
   embedCode: DS.attr('string'),
-  url: DS.attr('string')
+  url: DS.attr('string'),
+  isWatchable: DS.attr('boolean')
 });
