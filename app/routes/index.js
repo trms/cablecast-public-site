@@ -1,15 +1,17 @@
-import Ember from 'ember';
+import { hash } from 'rsvp';
+import Route from '@ember/routing/route';
+import { get } from '@ember/object';
 import SetPageTitle from 'public/mixins/set-page-title';
 import GetFutureRuns from 'public/mixins/channel-future-runs-promise';
 import ResetScroll from 'public/mixins/reset-scroll';
 
 function filterShows(shows) {
 	return shows.filter(function(show) {
-		return Ember.get(show, 'showThumbnails.length') > 0 && Ember.get(show, 'cgExempt') === false;
+		return get(show, 'showThumbnails.length') > 0 && get(show, 'cgExempt') === false;
 	});
 }
 
-export default Ember.Route.extend(SetPageTitle, GetFutureRuns, ResetScroll, {
+export default Route.extend(SetPageTitle, GetFutureRuns, ResetScroll, {
 
 	model() {
 		let channel = this.modelFor('application').channel;
@@ -23,7 +25,7 @@ export default Ember.Route.extend(SetPageTitle, GetFutureRuns, ResetScroll, {
       }
     });
 
-    return Ember.RSVP.hash({
+    return hash({
       carouselShows,
       futureRuns:this.getFutureRuns(channel),
       defaultShows: this.store.query('show',{page_size: 24, location: channel.get('primaryLocation')}).then(filterShows),

@@ -1,6 +1,6 @@
 /* globals moment */
+import { computed } from '@ember/object';
 import DS from 'ember-data';
-import Ember from 'ember';
 
 export default DS.Model.extend({
 	vods: DS.hasMany('vod', {async: true}),
@@ -19,11 +19,11 @@ export default DS.Model.extend({
   runCount: DS.attr('number'),
 	showThumbnails: DS.hasMany('thumbnail', {async: true}),
   firstRuns: DS.hasMany('first-run',{async: true}),
-  absoluteFirstRun: Ember.computed('firstRuns.@each.runDateTime', function() {
+  absoluteFirstRun: computed('firstRuns.@each.runDateTime', function() {
     var sorted =  this.get('firstRuns').sortBy('runDateTime');
     return sorted.get('firstObject');
   }),
-	thumbnail: Ember.computed('showThumbnails.@each.quality', {
+	thumbnail: computed('showThumbnails.@each.quality', {
 		get: function() {
 			var thumbnail = this.get('showThumbnails').findBy('quality', 'Large');
 			// If we still don't have a thumbnail return a placeholder image

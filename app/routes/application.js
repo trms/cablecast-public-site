@@ -1,12 +1,15 @@
-import Ember from 'ember';
+import { get } from '@ember/object';
+import { hash } from 'rsvp';
+import { inject as service } from '@ember/service';
+import Route from '@ember/routing/route';
 import ENV from 'public/config/environment';
 import ResetScroll from 'public/mixins/reset-scroll';
 
-export default Ember.Route.extend(ResetScroll,{
-  site: Ember.inject.service(),
-  fastboot: Ember.inject.service(),
-  headData: Ember.inject.service(),
-  metrics: Ember.inject.service(),
+export default Route.extend(ResetScroll,{
+  site: service(),
+  fastboot: service(),
+  headData: service(),
+  metrics: service(),
 
   queryParams: {
     channel: {
@@ -76,7 +79,7 @@ export default Ember.Route.extend(ResetScroll,{
   },
 
   model: function(params) {
-    return Ember.RSVP.hash({
+    return hash({
       channels: this.get('store').query('channel', {include: 'publicsite,webfile,thumbnail,sitegallery,savedshowsearch'}),
       projects: this.get('store').findAll('project')
     })
@@ -101,9 +104,9 @@ export default Ember.Route.extend(ResetScroll,{
   },
 
   _setupMetrics(site) {
-    if (Ember.get(site, 'googleAnalyticsId')) {
-      let metrics = Ember.get(this, 'metrics');
-      let id = Ember.get(site, 'googleAnalyticsId');
+    if (get(site, 'googleAnalyticsId')) {
+      let metrics = get(this, 'metrics');
+      let id = get(site, 'googleAnalyticsId');
 
       metrics.activateAdapters([
         {

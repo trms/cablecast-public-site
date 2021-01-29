@@ -1,6 +1,8 @@
 /* globals moment */
+import { alias } from '@ember/object/computed';
+
+import { computed } from '@ember/object';
 import DS from 'ember-data';
-import Ember from 'ember';
 
 var attr = DS.attr;
 
@@ -12,23 +14,23 @@ export default DS.Model.extend({
 	channel: DS.belongsTo('channel', {async: true}),
 	show: DS.belongsTo('show', {async: true}),
 
-	scheduledTimeString: Ember.computed('runDateTime', {
+	scheduledTimeString: computed('runDateTime', {
 		get: function() {
 			return moment(this.get('runDateTime')).format('h:mm:ss a');
 		}
 	}),
 
-	scheduledDateTimeString: Ember.computed('runDateTime', {
+	scheduledDateTimeString: computed('runDateTime', {
 		get: function() {
 			//return moment(this.get('runDateTime')).format('llll');
 			return moment(this.get('runDateTime')).calendar();
 		}
 	}),
 
-	start: Ember.computed.alias('runDateTime'),
+	start: alias('runDateTime'),
 
 	// TODO: Replace this with a TRT helper
-	end: Ember.computed('show', 'runDateTime', {
+	end: computed('show', 'runDateTime', {
 		get: function() {
 			var reels = this.get('show.reels');
 			if (!reels) { return this.get('runDateTime'); }

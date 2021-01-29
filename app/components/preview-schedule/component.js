@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
 
-  onAirRun: Ember.computed('futureRuns.[]',function(){
+  onAirRun: computed('futureRuns.[]',function(){
     return this.get('futureRuns').find((item)=>{
       let now = new Date();
       let start = item.get('start');

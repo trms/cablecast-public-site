@@ -1,5 +1,5 @@
+import { computed } from '@ember/object';
 import DS from 'ember-data';
-import Ember from 'ember';
 
 export default DS.Model.extend({
   fileName: DS.attr('string'),
@@ -9,7 +9,7 @@ export default DS.Model.extend({
   vodConfiguration: DS.belongsTo('vod-configuration', {async: true}),
   vodTransactions: DS.hasMany('vod-transaction', {async: true}),
   lastTransaction: DS.belongsTo('vod-transaction', {async: true}),
-  isReady: Ember.computed('lastTransaction.transactionType', function() {
+  isReady: computed('lastTransaction.transactionType', function() {
   	return this.get('lastTransaction.transactionType') === 5;
   }),
   embedCode: DS.attr('string'),

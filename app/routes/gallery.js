@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { hash } from 'rsvp';
+import Route from '@ember/routing/route';
 import ResetScroll from 'public/mixins/reset-scroll';
 
-export default Ember.Route.extend(ResetScroll, {
+export default Route.extend(ResetScroll, {
   queryParams: {
 		page: {
 			refreshModel: true
@@ -20,7 +21,7 @@ export default Ember.Route.extend(ResetScroll, {
                               });
     });
 
-    return Ember.RSVP.hash({
+    return hash({
       gallery,
       shows,
     });

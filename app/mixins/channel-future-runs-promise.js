@@ -1,7 +1,7 @@
 /* globals moment */
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
 
-export default Ember.Mixin.create({
+export default Mixin.create({
 
   getFutureRuns(channel){
     return this.store.query('schedule-item', {

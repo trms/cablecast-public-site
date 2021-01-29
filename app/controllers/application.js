@@ -1,21 +1,22 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   queryParams: ['channel','showOtherChannels'],
   showOtherChannels:true,
-  projects: Ember.computed('model.channel.primaryLocation.id', function() {
+  projects: computed('model.channel.primaryLocation.id', function() {
     return this.model.projects;
   }),
 
-  allChannels: Ember.computed(function(){
+  allChannels: computed(function(){
     return this.store.peekAll('channel');
   }),
 
-  publicChannels: Ember.computed('allChannels.[]',function(){
+  publicChannels: computed('allChannels.[]',function(){
     return this.get('allChannels').filterBy('publicSite.includeInIndex',true).sortBy('publicSite.siteName');
   }),
 
-  hasPodcasts: Ember.computed('projects.[]', function() {
+  hasPodcasts: computed('projects.[]', function() {
     return this.get('projects').filter(function(project) {
       // Test that a project has a name and is marked for podcasting.
       return project.get('name') &&

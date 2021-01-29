@@ -1,18 +1,21 @@
 /* globals moment */
-import Ember from 'ember';
+import { computed } from '@ember/object';
 
-export default Ember.Component.extend({
-  site: Ember.inject.service(),
-  orderedFields: Ember.computed('site.publicSite.fieldDisplays.@each.order', function() {
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
+
+export default Component.extend({
+  site: service(),
+  orderedFields: computed('site.publicSite.fieldDisplays.@each.order', function() {
     return this.get('site.publicSite.fieldDisplays').sortBy('order');
   }),
-  firstRun: Ember.computed('show','currentChannelId',function(){
+  firstRun: computed('show','currentChannelId',function(){
     let currentChannelId = this.get('currentChannelId');
     let firstRun = this.get('show.firstRuns').filterBy('channel.id',currentChannelId).get('firstObject');
     return firstRun;
   }),
 
-  firstRunIsFuture: Ember.computed('firstRun.runDateTime',function(){
+  firstRunIsFuture: computed('firstRun.runDateTime',function(){
     let runDateTime = this.get('firstRun.runDateTime');
     let now = moment();
     return now.isBefore(runDateTime);

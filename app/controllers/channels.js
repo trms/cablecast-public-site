@@ -1,12 +1,13 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
 
-  allChannels: Ember.computed(function(){
+  allChannels: computed(function(){
     return this.store.peekAll('channel');
   }),
 
-  publicChannels: Ember.computed('allChannels.[]',function(){
+  publicChannels: computed('allChannels.[]',function(){
     return this.get('allChannels').filterBy('publicSite.includeInIndex',true);
   }),
 });

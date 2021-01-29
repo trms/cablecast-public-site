@@ -1,10 +1,11 @@
-import Ember from 'ember';
+import { alias } from '@ember/object/computed';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
     queryParams: ['page'],
     page: 1,
 
-    meta: Ember.computed.alias('model.shows.meta'),
+    meta: alias('model.shows.meta'),
 
 
 

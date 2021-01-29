@@ -1,9 +1,11 @@
-import Ember from 'ember';
+import { debounce } from '@ember/runloop';
+import $ from 'jquery';
+import Component from '@ember/component';
 import PDFJS  from 'pdfjs-dist';
 
 
 
-export default Ember.Component.extend({
+export default Component.extend({
   didInsertElement() {
     debugger;
     let url = this.get('url');
@@ -34,17 +36,17 @@ export default Ember.Component.extend({
       pdfHistory.initialize(pdf.fingerprint);
     });
     this.set('pdfViewer', pdfViewer);
-    Ember.$(window).on('resize.' + this.get('elementId'), this._handleResizeEvent.bind(this));
+    $(window).on('resize.' + this.get('elementId'), this._handleResizeEvent.bind(this));
   },
 
   willDestroyElement: function() {
         this._super();
-    Ember.$(window).off('resize.' + this.get('elementId'));
+    $(window).off('resize.' + this.get('elementId'));
 
   },
 
   _handleResizeEvent() {
-    Ember.run.debounce(this, this.rescalePdf, 150);
+    debounce(this, this.rescalePdf, 150);
   },
 
   rescalePdf() {

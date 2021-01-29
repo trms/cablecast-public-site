@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Mixin from '@ember/object/mixin';
 
-export default Ember.Mixin.create({
-  fastboot: Ember.inject.service(),
-  headData: Ember.inject.service(),
+export default Mixin.create({
+  fastboot: service(),
+  headData: service(),
 
   setTitle(title) {
     if (this.get('fastboot.isFastBoot')) {

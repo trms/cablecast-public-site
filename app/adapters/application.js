@@ -1,11 +1,12 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 import DS from 'ember-data';
 import ENV from 'public/config/environment';
 
 export default DS.RESTAdapter.extend({
-  fastboot: Ember.inject.service(),
+  fastboot: service(),
 	namespace: 'cablecastapi/v1',
-  host: Ember.computed('fastboot.isFastBoot', function() {
+  host: computed('fastboot.isFastBoot', function() {
     if (ENV.environment === 'production' && this.get('fastboot.isFastBoot')) {
       return 'http://localhost:55001';
     }

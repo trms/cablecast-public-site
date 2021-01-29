@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
-	isOnAir: Ember.computed('item.start', 'item.end', {
+export default Component.extend({
+	isOnAir: computed('item.start', 'item.end', {
 		get: function() {
 			var now = new Date();
 			var start = this.get('item.start');

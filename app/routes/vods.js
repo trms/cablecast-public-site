@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 import SetPageTitle from 'public/mixins/set-page-title';
 
-export default Ember.Route.extend(SetPageTitle, {
+export default Route.extend(SetPageTitle, {
 
 	afterModel() {
 		this.setTitle('Vods');

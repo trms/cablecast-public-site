@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { hash, all } from 'rsvp';
+import Route from '@ember/routing/route';
 import SetPageTitle from 'public/mixins/set-page-title';
 
-export default Ember.Route.extend(SetPageTitle, {
+export default Route.extend(SetPageTitle, {
   setHeadData(show) {
     let data = {
       type: 'video.episode',
@@ -55,7 +56,7 @@ export default Ember.Route.extend(SetPageTitle, {
     var appParams = this.paramsFor('application');
     var start = new Date();
     var self = this;
-    return Ember.RSVP.hash({
+    return hash({
       shows: this.store.query('show', {
         ids: [params.id],
         include: 'vod,vodtransaction,scheduleitem,thumbnail,chapter,firstrun,producer'
@@ -70,7 +71,7 @@ export default Ember.Route.extend(SetPageTitle, {
     })
       .then(({ shows, runs }) => {
         let show = self.store.peekRecord('show', params.id);
-        return Ember.RSVP.hash({
+        return hash({
           show: show,
           runs: runs
         });
@@ -91,7 +92,7 @@ export default Ember.Route.extend(SetPageTitle, {
         records.push(this.get('store').findRecord('producer', field.value));
       }
     });
-    return Ember.RSVP.all(records);
+    return all(records);
   },
 
   setupController: function (controller, model) {

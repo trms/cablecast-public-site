@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import { helper as buildHelper } from '@ember/component/helper';
 import toTimecode from 'public/utils/timecode';
 
-export default Ember.Helper.helper(function(input) {
+export default buildHelper(function(input) {
 	return toTimecode(input);
 });

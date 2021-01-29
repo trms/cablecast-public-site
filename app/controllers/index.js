@@ -1,19 +1,21 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
+import Controller, { inject as controller } from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
 
-  application: Ember.inject.controller(),
+  application: controller(),
 
-  channel: Ember.computed.alias('application.model.channel'),
+  channel: alias('application.model.channel'),
 
-  carouselShows: Ember.computed('model.carouselShows.[]', 'model.defaultShows.[]',function(){
+  carouselShows: computed('model.carouselShows.[]', 'model.defaultShows.[]',function(){
 
     if(this.get('model.carouselShows.length')){
       return this.get('model.carouselShows');
     }
     return this.get('model.defaultShows');
   }),
-  siteGalleries: Ember.computed('channel.publicSite.siteGalleries.@each.position',function(){
+  siteGalleries: computed('channel.publicSite.siteGalleries.@each.position',function(){
     return this.get('channel.publicSite.siteGalleries').sortBy('position');
   }),
 });

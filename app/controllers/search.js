@@ -1,18 +1,20 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
     queryParams: ['query', 'page'],
     page: 1,
     query: null,
     tempQuery: null,
 
-    meta: Ember.computed.alias('model.meta'),
+    meta: alias('model.meta'),
 
-    firstResult: Ember.computed('page', 'meta.offset', 'meta.pageSize', function() {
+    firstResult: computed('page', 'meta.offset', 'meta.pageSize', function() {
       return 1 + (this.get('meta.offset') * this.get('meta.pageSize'));
     }),
 
-    lastResult: Ember.computed('page', 'meta.offset', 'meta.pageSize', function() {
+    lastResult: computed('page', 'meta.offset', 'meta.pageSize', function() {
       var total = this.get('meta.count');
       var last = (this.get('meta.offset') * this.get('meta.pageSize')) + this.get('meta.pageSize');
       return Math.min(last, total);

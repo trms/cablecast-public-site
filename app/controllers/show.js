@@ -1,16 +1,19 @@
-import Ember from 'ember';
+import { computed, get } from '@ember/object';
+import { alias } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller, { inject as controller } from '@ember/controller';
 
-export default Ember.Controller.extend({
-  site: Ember.inject.service(),
+export default Controller.extend({
+  site: service(),
   activeTab: 'details',
-  application: Ember.inject.controller(),
+  application: controller(),
 
-  show: Ember.computed.alias('model.show'),
-  runs: Ember.computed.alias('model.runs'),
+  show: alias('model.show'),
+  runs: alias('model.runs'),
 
-  currentChannelId: Ember.computed.alias('application.channel'),
+  currentChannelId: alias('application.channel'),
 
-  vodChapters: Ember.computed('model.show.vods.firstObject.chapters.@each.deleted', 'model.show.vods.firstObject.chaptersPublished', function() {
+  vodChapters: computed('model.show.vods.firstObject.chapters.@each.deleted', 'model.show.vods.firstObject.chaptersPublished', function() {
     if (!this.get('model.show.vods.firstObject.chaptersPublished')) {
       return [];
     }
@@ -22,7 +25,7 @@ export default Ember.Controller.extend({
   seekto: null,
 
   //TODO - fix this code later
-  embededPdf: Ember.computed('model.show.customFields', 'site.publicSite.fieldDisplays.[]', function() {
+  embededPdf: computed('model.show.customFields', 'site.publicSite.fieldDisplays.[]', function() {
     let pdfDisplays = this.get('site.publicSite.fieldDisplays').sortBy('order').filterBy('widget', 'pdf');
     for (let i = 0; i < pdfDisplays.length; i++) {
       let fd = pdfDisplays[i];
@@ -33,7 +36,7 @@ export default Ember.Controller.extend({
         let file = this.get('store').peekRecord('web-file', fileField.value);
         if (/.+\.pdf$/.test(file.get('name'))) {
           return {
-            url: Ember.get(file || {}, 'url'),
+            url: get(file || {}, 'url'),
             fieldDisplay: pdfDisplays[i]
           };
         }

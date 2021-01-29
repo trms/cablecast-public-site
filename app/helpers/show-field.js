@@ -1,21 +1,23 @@
-import Ember from 'ember';
+import { get } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Helper from '@ember/component/helper';
 import toTimecode from 'public/utils/timecode';
 
-export default Ember.Helper.extend({
-  store: Ember.inject.service(),
+export default Helper.extend({
+  store: service(),
   lookupCustom(show, fieldDisplay) {
     let value = show.get('customFields').find((field) => {
-      return Ember.get(field, 'showField') === fieldDisplay.get('showField');
+      return get(field, 'showField') === fieldDisplay.get('showField');
     });
 
     if (value) {
       switch(value.type) {
         case 'file':
           let file =  this.get('store').peekRecord('web-file', value.value);
-          return Ember.get(file || {}, 'url');
+          return get(file || {}, 'url');
         case 'producer':
           let producer = this.get('store').findRecord('producer', value.value);
-          return Ember.get(producer || {}, 'name');
+          return get(producer || {}, 'name');
         default:
           return value.value;
       }

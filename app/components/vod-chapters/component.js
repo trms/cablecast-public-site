@@ -1,10 +1,12 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import { bind } from '@ember/runloop';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   classNames: ['vod-chapters'],
 
 	didInsertElement: function() {
-    	this._messageHandler = Ember.run.bind(this, 'processMessage');
+    	this._messageHandler = bind(this, 'processMessage');
     	window.addEventListener('message', this._messageHandler, false);
   	},
 
@@ -49,14 +51,14 @@ export default Ember.Component.extend({
 
   changeActiveChapter: function(chapter) {
     this.set('activeChapter', chapter);
-    var element = Ember.$(this.$().find(`[data-chapter="${chapter.get('id')}"]`)[0]);
+    var element = $(this.$().find(`[data-chapter="${chapter.get('id')}"]`)[0]);
     this.$().animate({
       scrollTop: element.offset().top - this.$().offset().top + this.$().scrollTop()
     });
   },
 
 	sendMessage: function(message){
-		var player = Ember.$('iframe')[0];
+		var player = $('iframe')[0];
 		if (player) {
 			player.contentWindow.postMessage(message, '*');
 		}

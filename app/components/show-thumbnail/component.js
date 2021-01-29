@@ -1,15 +1,17 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   classNames: ['show-thumbnail'],
 	tagName: 'img',
 	quality: 'Small',
 	attributeBindings: ['src'],
-	src: Ember.computed.alias('thumbnailPath'),
+	src: alias('thumbnailPath'),
 
 	show: null,
 
-	thumbnailPath: Ember.computed('show.showThumbnails.@each.quality', 'quality', {
+	thumbnailPath: computed('show.showThumbnails.@each.quality', 'quality', {
 		get: function() {
 			var thumbnail = this.get('show.showThumbnails').findBy('quality', this.get('quality'));
 			
