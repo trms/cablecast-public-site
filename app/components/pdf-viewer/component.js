@@ -1,8 +1,11 @@
-/* globals PDFJS */
 import Ember from 'ember';
+import PDFJS  from 'pdfjs-dist';
+
+
 
 export default Ember.Component.extend({
   didInsertElement() {
+    debugger;
     let url = this.get('url');
     let container = this.element.getElementsByClassName('pdf-wrapper')[0];
     let pdfLinkService = new PDFJS.PDFLinkService();
@@ -45,7 +48,6 @@ export default Ember.Component.extend({
   },
 
   rescalePdf() {
-    console.log('rescaling pdf...');
     this.get('pdfViewer').currentScaleValue = 'auto';
   }
 });
