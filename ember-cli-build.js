@@ -1,4 +1,3 @@
-/* eslint-env node */
 'use strict';
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const Funnel = require('broccoli-funnel');
