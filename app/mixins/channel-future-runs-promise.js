@@ -1,3 +1,4 @@
+/* globals moment */
 import Ember from 'ember';
 
 export default Ember.Mixin.create({
@@ -17,7 +18,6 @@ export default Ember.Mixin.create({
         .filterBy('cgExempt',false)
         .filter((item)=>{
           let now = new Date();
-          let start = item.get('start');
           let end = item.get('end');
           return end > now;
         })

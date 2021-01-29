@@ -21,6 +21,7 @@ export default Ember.Controller.extend({
   queryParams: ['seekto'],
   seekto: null,
 
+  //TODO - fix this code later
   embededPdf: Ember.computed('model.show.customFields', 'site.publicSite.fieldDisplays.[]', function() {
     let pdfDisplays = this.get('site.publicSite.fieldDisplays').sortBy('order').filterBy('widget', 'pdf');
     for (let i = 0; i < pdfDisplays.length; i++) {

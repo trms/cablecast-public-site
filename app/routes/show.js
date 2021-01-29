@@ -95,7 +95,6 @@ export default Ember.Route.extend(SetPageTitle, {
   },
 
   setupController: function (controller, model) {
-    let params = this.paramsFor(this.get('routeName'));
     let chapters = model.show.get('vods.firstObject.chapters') || [];
     chapters = chapters.rejectBy('deleted');
     if (chapters.length) {

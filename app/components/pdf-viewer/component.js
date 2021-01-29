@@ -17,17 +17,17 @@ export default Ember.Component.extend({
     let pdfHistory = new PDFJS.PDFHistory({
       linkService: pdfLinkService
     });
-    pdfLinkService.setHistory(pdfHistory)
+    pdfLinkService.setHistory(pdfHistory);
     let pdfFindController = new PDFJS.PDFFindController({
       pdfViewer
     });
-    pdfViewer.setFindController(pdfFindController)
+    pdfViewer.setFindController(pdfFindController);
     PDFJS.getDocument(url).then(function (pdf) {
       pdfViewer.setDocument(pdf).then(function() {
         pdfViewer.currentScaleValue = 'auto';
       });
 
-      pdfLinkService.setDocument(pdf)
+      pdfLinkService.setDocument(pdf);
       pdfHistory.initialize(pdf.fingerprint);
     });
     this.set('pdfViewer', pdfViewer);
