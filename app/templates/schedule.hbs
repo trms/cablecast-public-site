@@ -5,22 +5,24 @@
     </div>
     <div class="col-xs-12 col-lg-4">
       <div class="schedule-date-picker">
-			  <a href="{{rootURL}}schedule?channel={{channel.id}}&currentDay={{prevDateString}}" class="picker glyphicon glyphicon-triangle-left" aria-hidden="true" {{action 'prevDay'}}></a>
+        <a href="{{rootURL}}schedule?channel={{channel.id}}&currentDay={{prevDateString}}"
+          class="picker glyphicon glyphicon-triangle-left" aria-hidden="true" {{action 'prevDay' }}></a>
         {{#if fastboot.isFastBoot}}
         <form action="{{rootURL}}schedule" method="GET" class="multi-wide">
-          <input type='hidden' value={{channel.id}} name='channel'/>
-          <input value={{moment-format currentDay 'YYYY-MM-DD'}} name='currentDay'/>
-          <input type="submit" style="display:none"/>
+          <input type='hidden' value={{channel.id}} name='channel' />
+          <input value={{moment-format currentDay 'YYYY-MM-DD' }} name='currentDay' />
+          <input type="submit" style="display:none" />
         </form>
         {{else}}
-          {{date-picker date=currentDay valueFormat='YYYY-MM-DD'}}
+        {{date-picker date=currentDay valueFormat='YYYY-MM-DD'}}
         {{/if}}
-				<a href="{{rootURL}}schedule?channel={{channel.id}}&currentDay={{nextDateString}}"  class="picker glyphicon glyphicon-triangle-right" aria-hidden="true" {{action 'nextDay'}}></a>
+        <a href="{{rootURL}}schedule?channel={{channel.id}}&currentDay={{nextDateString}}"
+          class="picker glyphicon glyphicon-triangle-right" aria-hidden="true" {{action 'nextDay' }}></a>
       </div>
     </div>
   </div>
   <div class="schedule-wrapper clearfix">
-		<div class="col-xs-12">
+    <div class="col-xs-12">
       {{shows-schedule schedule=model class="shows-schedule is-desktop"}}
     </div>
   </div>
