@@ -1,7 +1,7 @@
 import { get } from '@ember/object';
 import { inject as service } from '@ember/service';
 import Helper from '@ember/component/helper';
-import toTimecode from 'public/utils/timecode';
+import toTimecode from 'cablecast-public-site/utils/timecode';
 
 export default Helper.extend({
   store: service(),

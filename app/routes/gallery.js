@@ -1,6 +1,6 @@
 import { hash } from 'rsvp';
 import Route from '@ember/routing/route';
-import ResetScroll from 'public/mixins/reset-scroll';
+import ResetScroll from 'cablecast-public-site/mixins/reset-scroll';
 
 export default Route.extend(ResetScroll, {
   queryParams: {

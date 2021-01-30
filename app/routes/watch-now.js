@@ -1,8 +1,8 @@
 import { hash } from 'rsvp';
 import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
-import SetPageTitle from 'public/mixins/set-page-title';
-import GetFutureRuns from 'public/mixins/channel-future-runs-promise';
+import SetPageTitle from 'cablecast-public-site/mixins/set-page-title';
+import GetFutureRuns from 'cablecast-public-site/mixins/channel-future-runs-promise';
 
 export default Route.extend(SetPageTitle, GetFutureRuns,{
   headData: service(),

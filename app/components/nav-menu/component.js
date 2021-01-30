@@ -1,6 +1,6 @@
 import { computed } from '@ember/object';
 import Component from '@ember/component';
-import ENV from 'public/config/environment';
+import ENV from 'cablecast-public-site/config/environment';
 
 export default Component.extend({
 	tagName: 'nav',

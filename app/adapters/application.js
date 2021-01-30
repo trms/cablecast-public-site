@@ -1,7 +1,7 @@
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import DS from 'ember-data';
-import ENV from 'public/config/environment';
+import ENV from 'cablecast-public-site/config/environment';
 
 export default DS.RESTAdapter.extend({
   fastboot: service(),

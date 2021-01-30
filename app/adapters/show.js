@@ -1,4 +1,4 @@
-import ApplicationAdapter from 'public/adapters/application';
+import ApplicationAdapter from 'cablecast-public-site/adapters/application';
 
 export default ApplicationAdapter.extend({
   coalesceFindRequests: true,

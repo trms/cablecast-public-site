@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
-import ENV from 'public/config/environment';
+import ENV from 'cablecast-public-site/config/environment';
 
 export default Component.extend({
   fastboot: service(),

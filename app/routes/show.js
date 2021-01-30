@@ -1,6 +1,6 @@
 import { hash, all } from 'rsvp';
 import Route from '@ember/routing/route';
-import SetPageTitle from 'public/mixins/set-page-title';
+import SetPageTitle from 'cablecast-public-site/mixins/set-page-title';
 
 export default Route.extend(SetPageTitle, {
   setHeadData(show) {

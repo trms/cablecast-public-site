@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
-import SetPageTitle from 'public/mixins/set-page-title';
-import ResetScroll from 'public/mixins/reset-scroll';
+import SetPageTitle from 'cablecast-public-site/mixins/set-page-title';
+import ResetScroll from 'cablecast-public-site/mixins/reset-scroll';
 
 export default Route.extend(SetPageTitle, ResetScroll, {
 	queryParams: {

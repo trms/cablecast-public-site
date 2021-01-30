@@ -13,7 +13,7 @@ module.exports = function(environment) {
     },
     environment,
     rootURL: '/',
-    modulePrefix: 'public',
+    modulePrefix: 'cablecast-public-site',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
