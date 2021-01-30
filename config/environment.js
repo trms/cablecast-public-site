@@ -11,9 +11,9 @@ module.exports = function(environment) {
     fastboot: {
       hostWhitelist: [/.+/]
     },
+    environment,
     rootURL: '/',
     modulePrefix: 'public',
-    environment: environment,
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
