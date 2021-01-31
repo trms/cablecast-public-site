@@ -24,7 +24,40 @@ module.exports = function(defaults) {
   	destDir: '/scss-files'
   });
 
+  let PDFJS = new Funnel('node_modules/pdfjs-dist/build',{
+      srcDir: '/',
+      include: ['pdf.js','pdf.worker.js'],
+      destDir: '/assets'
+  });
 
-  return app.toTree([scssFiles]);
+  let PDFJSExtras = new Funnel('node_modules/pdfjs-dist/web',{
+      srcDir: '/',
+      include: ['compatibility.js'],
+      destDir: '/assets'
+  });
+
+  let PDFJSCmaps = new Funnel('node_modules/pdfjs-dist/cmaps',{
+      srcDir: '/',
+      include: ['**/*.bcmap'],
+      destDir: '/assets/web/cmaps'
+  });
+
+  app.import('node_modules/pdfjs-dist/build/pdf.js', {
+    using: [
+      {
+        transformation: 'fastbootShim'
+      }
+    ]
+  });
+  app.import('node_modules/pdfjs-dist/web/pdf_viewer.css');
+  app.import('node_modules/pdfjs-dist/web/pdf_viewer.js', {
+    using: [
+      {
+        transformation: 'fastbootShim'
+      }
+    ]
+  });
+
+  return app.toTree([scssFiles, PDFJS, PDFJSExtras, PDFJSCmaps]);
 
 }

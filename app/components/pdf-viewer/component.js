@@ -1,7 +1,7 @@
+/* globals PDFJS */
 import { debounce } from '@ember/runloop';
 import $ from 'jquery';
 import Component from '@ember/component';
-import PDFJS  from 'pdfjs-dist';
 
 
 

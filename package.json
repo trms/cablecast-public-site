@@ -62,7 +62,7 @@
   "dependencies": {
     "broccoli-funnel": "^1.0.6",
     "moment": "^2.9.0",
-    "pdfjs-dist": "^2.6.347"
+    "pdfjs-dist": "1.7.331"
   },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"
