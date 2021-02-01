@@ -1,5 +1,5 @@
-/* globals moment */
 import { computed } from '@ember/object';
+import moment from 'moment';
 
 import { inject as service } from '@ember/service';
 import Controller from '@ember/controller';
@@ -28,6 +28,10 @@ export default Controller.extend({
   }),
 
 	actions: {
+		changeDate(date) {
+			let current = moment(date);
+			this.set('currentDay', current.format('YYYY-MM-DD'));
+		},
 		prevDay: function() {
 			var current = moment(this.get('currentDay'));
 			current.add(-1, 'days');

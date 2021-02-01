@@ -1,6 +1,6 @@
-/* globals moment */
 import Route from '@ember/routing/route';
 import SetPageTitle from 'cablecast-public-site/mixins/set-page-title';
+import moment from 'moment';
 
 export default Route.extend(SetPageTitle, {
 	queryParams: {

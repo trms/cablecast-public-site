@@ -1,6 +1,6 @@
-/* globals moment */
 import { computed } from '@ember/object';
 import DS from 'ember-data';
+import moment from 'moment';
 
 export default DS.Model.extend({
 	vods: DS.hasMany('vod', {async: true}),

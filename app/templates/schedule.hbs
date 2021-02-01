@@ -14,7 +14,7 @@
           <input type="submit" style="display:none" />
         </form>
         {{else}}
-        {{date-picker date=currentDay valueFormat='YYYY-MM-DD'}}
+          <PikadayInput @onSelection={{action 'changeDate'}} @value={{currentDay}} @format='YYYY-MM-DD'/>
         {{/if}}
         <a href="{{rootURL}}schedule?channel={{channel.id}}&currentDay={{nextDateString}}"
           class="picker glyphicon glyphicon-triangle-right" aria-hidden="true" {{action 'nextDay' }}></a>

@@ -1,5 +1,5 @@
-/* globals moment */
 import { computed } from '@ember/object';
+import moment from 'moment';
 
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';

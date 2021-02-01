@@ -1,5 +1,5 @@
-/* globals moment */
 import { alias } from '@ember/object/computed';
+import moment from 'moment';
 
 import { computed } from '@ember/object';
 import DS from 'ember-data';
