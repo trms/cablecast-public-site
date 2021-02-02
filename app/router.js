@@ -2,23 +2,30 @@ import { get } from '@ember/object';
 import { scheduleOnce } from '@ember/runloop';
 import { inject as service } from '@ember/service';
 import EmberRouter from '@ember/routing/router';
-import config from './config/environment';
+import config from './config/environment';  
+
 
 const Router = EmberRouter.extend({
+  fastboot: service(),
   headData: service(),
   location: config.locationType,
   rootURL: config.rootURL,
   metrics: service(),
-  didTransition() {
+
+  init() {
     this._super(...arguments);
-    this._trackPage();
+    this.on('routeDidChange', () => {
+      this._trackPage();
+    });
   },
 
   _trackPage() {
     scheduleOnce('afterRender', this, () => {
-      let page = this.get('url');
-      let title = document.title;
-      get(this, 'metrics').trackPage({ page, title });
+      if (this.get('fastboot.isFastboot')) {
+        let page = this.get('url');
+        let title = document.title;
+        get(this, 'metrics').trackPage({ page, title });
+      }
     });
   }
 });
