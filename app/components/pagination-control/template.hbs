@@ -3,31 +3,31 @@
     <ul class="pagination pagination">
       {{#unless hideFirst}}
       <li>
-        <a href="#" aria-label="First" {{action 'gotoPage' 1}}>
+        <a href="#" aria-label="First" {{action "gotoPage" 1}}>
           {{#if displayFirstLastAsNumber}}
-              1
-            {{else}}
-              First
-            {{/if}}
+          1
+          {{else}}
+          First
+          {{/if}}
         </a>
       </li>
       {{/unless}}
 
       {{#if showPrevNextButtons}}
       <li>
-        <a href="#" aria-label="Previous" {{action 'prev'}}>
+        <a href="#" aria-label="Previous" {{action "prev" }}>
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
       {{/if}}
 
-      {{#each pages  as  |page|}}
-        <li class={{if page.active 'active'}}><a href="#" {{action 'gotoPage' page.number}}>{{page.number}}</a></li>
+      {{#each pages as |page|}}
+      <li class={{if page.active "active" }}><a href="#" {{action "gotoPage" page.number}}>{{page.number}}</a></li>
       {{/each}}
 
       {{#if showPrevNextButtons}}
       <li>
-        <a href="#" aria-label="Next" {{action 'next'}}>
+        <a href="#" aria-label="Next" {{action "next" }}>
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>
@@ -35,12 +35,12 @@
 
       {{#unless hideLast}}
       <li>
-        <a href="#" aria-label="First" {{action 'gotoPage' pageCount}}>
+        <a href="#" aria-label="First" {{action "gotoPage" pageCount}}>
           <span aria-hidden="true">
             {{#if displayFirstLastAsNumber}}
-              {{pageCount}}
+            {{pageCount}}
             {{else}}
-              Last
+            Last
             {{/if}}
           </span>
         </a>
@@ -48,4 +48,4 @@
       {{/unless}}
     </ul>
   </nav>
-{{/unless}}
+  {{/unless}}
