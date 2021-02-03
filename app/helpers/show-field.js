@@ -12,12 +12,12 @@ export default Helper.extend({
 
     if (value) {
       switch(value.type) {
-        case 'file':
+        case 'file': {
           let file =  this.get('store').peekRecord('web-file', value.value);
-          return get(file || {}, 'url');
-        case 'producer':
+          return get(file || {}, 'url');}
+        case 'producer': {
           let producer = this.get('store').findRecord('producer', value.value);
-          return get(producer || {}, 'name');
+          return get(producer || {}, 'name');}
         default:
           return value.value;
       }

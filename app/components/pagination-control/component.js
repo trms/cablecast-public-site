@@ -1,4 +1,5 @@
 import Component from '@ember/component';
+import { computed } from '@ember/object';
 
 export default Component.extend({
   total: 0,
@@ -9,13 +10,13 @@ export default Component.extend({
   showFirstLastButtons: true,
   displayFirstLastAsNumber: false,
 
-  pages: function() {
+  pages: computed(function () {
     var result = [],
-        pageCount = this.get('pageCount'),
-        currentPage = this.get('currentPage'),
-        maxPageButtons = this.get('maxPageButtons'),
-        length = (pageCount >= maxPageButtons) ? maxPageButtons : pageCount,
-        startPos = 1;
+      pageCount = this.get('pageCount'),
+      currentPage = this.get('currentPage'),
+      maxPageButtons = this.get('maxPageButtons'),
+      length = (pageCount >= maxPageButtons) ? maxPageButtons : pageCount,
+      startPos = 1;
 
     var offset = Math.floor(maxPageButtons / 2);
 
@@ -34,63 +35,63 @@ export default Component.extend({
     // Go through all of the pages and make an entry into the array
     for (var i = 0; i < length; i++) {
       var pageNum = i + startPos,
-          isActive = (pageNum === currentPage),
-          page = {number: pageNum, active:isActive};
+        isActive = (pageNum === currentPage),
+        page = { number: pageNum, active: isActive };
 
       result.push(page);
     }
 
     return result;
 
-  }.property('currentPage', 'pageSize', 'count'),
+  }).property('currentPage', 'pageSize', 'count'),
 
-  hideControl: function() {
+  hideControl: computed(function () {
     return this.get('count') <= this.get('pageSize');
-  }.property('count', 'pageSize'),
+  }).property('count', 'pageSize'),
 
-  pageCount: function() {
+  pageCount: computed(function () {
     return Math.ceil(this.get('count') / this.get('pageSize'));
-  }.property('pageSize', 'count'),
+  }).property('pageSize', 'count'),
 
-  hideFirst: function() {
+  hideFirst: computed(function () {
     var pages = this.get('pages');
     var displayFirstLastAsNumber = this.get('displayFirstLastAsNumber');
     var showFirstLastButtons = this.get('showFirstLastButtons');
     return showFirstLastButtons === false || (displayFirstLastAsNumber && pages.findBy('number', 1));
-  }.property('pages', 'displayFirstLastAsNumber', 'showFirstLastButtons'),
+  }).property('pages', 'displayFirstLastAsNumber', 'showFirstLastButtons'),
 
-  hideLast: function() {
+  hideLast: computed(function () {
     var pages = this.get('pages');
     var displayFirstLastAsNumber = this.get('displayFirstLastAsNumber');
     var pageCount = this.get('pageCount');
     var showFirstLastButtons = this.get('showFirstLastButtons');
-    return showFirstLastButtons === false|| (displayFirstLastAsNumber && pages.findBy('number', pageCount));
-  }.property('pages', 'pageCount', 'displayFirstLastAsNumber', 'showFirstLastButtons'),
+    return showFirstLastButtons === false || (displayFirstLastAsNumber && pages.findBy('number', pageCount));
+  }).property('pages', 'pageCount', 'displayFirstLastAsNumber', 'showFirstLastButtons'),
 
-  disablePrev: function () {
+  disablePrev: computed(function () {
     return this.get('currentPage') === 1;
-  }.property('currentPage'),
+  }).property('currentPage'),
 
-  disableNext: function () {
+  disableNext: computed(function () {
     return this.get('currentPage') === this.get('pageCount');
-  }.property('currentPage', 'pageCount'),
+  }).property('currentPage', 'pageCount'),
 
   actions: {
-    prev: function() {
+    prev: function () {
       var newPage = this.get('currentPage') - 1;
       if (newPage >= 1) {
         this.sendAction('on-page-select', this.get('currentPage') - 1);
       }
     },
 
-    next: function() {
+    next: function () {
       var newPage = this.get('currentPage') + 1;
       if (newPage <= this.get('pageCount')) {
         this.sendAction('on-page-select', this.get('currentPage') + 1);
       }
     },
 
-    gotoPage: function(page) {
+    gotoPage: function (page) {
       this.sendAction('on-page-select', page);
     }
   }

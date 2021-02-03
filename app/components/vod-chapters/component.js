@@ -5,18 +5,18 @@ import Component from '@ember/component';
 export default Component.extend({
   classNames: ['vod-chapters'],
 
-	didInsertElement: function() {
-    	this._messageHandler = bind(this, 'processMessage');
-    	window.addEventListener('message', this._messageHandler, false);
-  	},
+  didInsertElement: function () {
+    this._messageHandler = bind(this, 'processMessage');
+    window.addEventListener('message', this._messageHandler, false);
+  },
 
-	willDestroyElement: function() {
-		if (this._messageHandler) {
-			window.removeEventListener('message', this._messageHandler);
-		}
-	},
+  willDestroyElement: function () {
+    if (this._messageHandler) {
+      window.removeEventListener('message', this._messageHandler);
+    }
+  },
 
-	processMessage: function(event) {
+  processMessage: function (event) {
     if (event.data.message === 'ready' && this.get('seekto')) {
       this.seekTo(this.get('seekto'));
     }
@@ -47,9 +47,9 @@ export default Component.extend({
         this.changeActiveChapter(activeChapter);
       }
     }
-	},
+  },
 
-  changeActiveChapter: function(chapter) {
+  changeActiveChapter: function (chapter) {
     this.set('activeChapter', chapter);
     var element = $(this.$().find(`[data-chapter="${chapter.get('id')}"]`)[0]);
     this.$().animate({
@@ -57,14 +57,14 @@ export default Component.extend({
     });
   },
 
-	sendMessage: function(message){
-		var player = $('iframe')[0];
-		if (player) {
-			player.contentWindow.postMessage(message, '*');
-		}
-	},
+  sendMessage: function (message) {
+    var player = $('iframe')[0];
+    if (player) {
+      player.contentWindow.postMessage(message, '*');
+    }
+  },
 
-  seekTo: function(offset) {
+  seekTo: function (offset) {
     var message = {
       type: 'player-cue',
       value: offset
@@ -72,13 +72,13 @@ export default Component.extend({
     this.sendMessage(message);
   },
 
-	actions: {
-		cueTo: function(chapter){
+  actions: {
+    cueTo: function (chapter) {
       var setSeekTo = this.get('setSeekTo');
       if (setSeekTo) {
         setSeekTo(chapter.get('offset'));
       }
-			this.seekTo(chapter.get('offset'));
-		}
-	}
+      this.seekTo(chapter.get('offset'));
+    }
+  }
 });

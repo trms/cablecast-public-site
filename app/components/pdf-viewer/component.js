@@ -7,7 +7,6 @@ import Component from '@ember/component';
 
 export default Component.extend({
   didInsertElement() {
-    debugger;
     let url = this.get('url');
     let container = this.element.getElementsByClassName('pdf-wrapper')[0];
     let pdfLinkService = new PDFJS.PDFLinkService();
@@ -28,7 +27,7 @@ export default Component.extend({
     });
     pdfViewer.setFindController(pdfFindController);
     PDFJS.getDocument(url).then(function (pdf) {
-      pdfViewer.setDocument(pdf).then(function() {
+      pdfViewer.setDocument(pdf).then(function () {
         pdfViewer.currentScaleValue = 'auto';
       });
 
@@ -39,8 +38,8 @@ export default Component.extend({
     $(window).on('resize.' + this.get('elementId'), this._handleResizeEvent.bind(this));
   },
 
-  willDestroyElement: function() {
-        this._super();
+  willDestroyElement: function () {
+    this._super();
     $(window).off('resize.' + this.get('elementId'));
 
   },
