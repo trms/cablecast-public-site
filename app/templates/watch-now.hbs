@@ -1,16 +1,19 @@
 <div class="watch-now-page">
   <div class="row">
     <div class="col-xs-12">
-      <h2 class="watch-now-header">You're watching {{model.liveStream.channel.name}}</h2>
+      <h2 class="watch-now-header">
+        You're watching
+        {{model.liveStream.channel.name}}
+      </h2>
     </div>
   </div>
   <div class="show-player clearfix">
-  	   <div class="col-sm-6 col-lg-8 u-no-padding">
-    	<div class="embed-responsive embed-responsive-16by9">
-      	{{{model.liveStream.embedCode}}}
+    <div class="col-sm-6 col-lg-8 u-no-padding">
+      <div class="embed-responsive embed-responsive-16by9">
+        {{{model.liveStream.embedCode}}}
       </div>
     </div>
-      <div class="col-sm-6 col-lg-4 u-no-padding">
+    <div class="col-sm-6 col-lg-4 u-no-padding">
       <div class="additional-info u-truncate-text">
         {{preview-schedule channel=model.channel futureRuns=model.futureRuns}}
       </div>

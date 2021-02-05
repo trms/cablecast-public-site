@@ -8,7 +8,7 @@ export default Controller.extend({
 
   channel: alias('application.model.channel'),
 
-  carouselShows: computed('model.carouselShows.[]', 'model.defaultShows.[]',function(){
+  carouselShows: computed('model.{carouselShows.[],defaultShows.[]}',function(){
 
     if(this.get('model.carouselShows.length')){
       return this.get('model.carouselShows');

@@ -69,7 +69,7 @@ export default Route.extend(SetPageTitle, {
       }),
       channels: this.store.findAll('channel')
     })
-      .then(({ shows, runs }) => {
+      .then(({ runs }) => {
         let show = self.store.peekRecord('show', params.id);
         return hash({
           show: show,

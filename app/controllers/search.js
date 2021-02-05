@@ -10,11 +10,11 @@ export default Controller.extend({
 
     meta: alias('model.meta'),
 
-    firstResult: computed('page', 'meta.offset', 'meta.pageSize', function() {
+    firstResult: computed('page', 'meta.{offset,pageSize}', function() {
       return 1 + (this.get('meta.offset') * this.get('meta.pageSize'));
     }),
 
-    lastResult: computed('page', 'meta.offset', 'meta.pageSize', function() {
+    lastResult: computed('page', 'meta.{offset,pageSize}', function() {
       var total = this.get('meta.count');
       var last = (this.get('meta.offset') * this.get('meta.pageSize')) + this.get('meta.pageSize');
       return Math.min(last, total);

@@ -22,7 +22,7 @@ export default Component.extend({
 
   actions:{
     goToPage(page){
-      this.attrs.goToPage(page);
+      this._goToPage(page);
     }
   }
 });

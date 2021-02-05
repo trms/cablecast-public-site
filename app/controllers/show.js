@@ -13,7 +13,7 @@ export default Controller.extend({
 
   currentChannelId: alias('application.channel'),
 
-  vodChapters: computed('model.show.vods.firstObject.chapters.@each.deleted', 'model.show.vods.firstObject.chaptersPublished', function() {
+  vodChapters: computed('model.show.vods.firstObject.{chapters.@each.deleted,chaptersPublished}', function() {
     if (!this.get('model.show.vods.firstObject.chaptersPublished')) {
       return [];
     }
