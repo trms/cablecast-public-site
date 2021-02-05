@@ -19,6 +19,7 @@
             (or show.vods.firstObject.isWatchable show.vods.firstObject.isReady)
           }}
             <div class="embed-responsive embed-responsive-16by9">
+              {{! template-lint-disable no-triple-curlies }}
               {{{show.vods.firstObject.embedCode}}}
             </div>
           {{else}}
@@ -112,6 +113,7 @@
       {{#if (or show.vods.firstObject.isWatchable show.vods.firstObject.isReady)
       }}
         <div class="embed-responsive embed-responsive-16by9">
+          {{! template-lint-disable no-triple-curlies }}
           {{{show.vods.firstObject.embedCode}}}
         </div>
       {{else if show.showThumbnails}}
@@ -159,7 +161,7 @@
           seekto=seekto
           setSeekTo=(action "setSeekTo")
         }}
-        <hr />
+        <hr>
       {{/if}}
       <h3 class="show-page-airtimes-header">
         Upcoming air times
