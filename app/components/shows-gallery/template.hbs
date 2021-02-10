@@ -1,37 +1,39 @@
 <div class="gallery-title-wrapper">
   <div class="row">
     <div class="col-sm-8 col-sm-offset-2">
-      <h1 class="gallery-title-header" {{action 'collapseGallery'}}>
+      {{!-- template-lint-disable no-invalid-interactive --}}
+      <h1 class="gallery-title-header" {{action "collapseGallery"}}>
         {{gallery.displayName}}
         {{#if collapsed}}
-          {{fa-icon 'chevron-up'}}
+          {{fa-icon "chevron-up"}}
         {{else}}
-          {{fa-icon 'chevron-down'}}
+          {{fa-icon "chevron-down"}}
         {{/if}}
       </h1>
     </div>
     <div class="col-sm-2">
       {{#if gallery.id}}
-        {{#link-to 'gallery' gallery.id class='gallery-show-all-link'}}
+        {{#link-to "gallery" gallery.id class="gallery-show-all-link"}}
           Show All...
         {{/link-to}}
       {{/if}}
     </div>
   </div>
 </div>
-
 <div class="gallery-wrapper">
-{{#unless collapsed}}
-  <div class="show-stub-container">
-    {{#if showsTask.isRunning}}
-      {{loading-spinner}}
-    {{else}}
-      {{#each filteredShows as |show|}}
-        {{show-stub show=show}}
+  {{#unless collapsed}}
+    <div class="show-stub-container">
+      {{#if showsTask.isRunning}}
+        {{loading-spinner}}
       {{else}}
-        <h2 class="gallery-no-shows-warning">No Shows Available</h2>
-      {{/each}}
-    {{/if}}
-  </div>
-{{/unless}}
+        {{#each filteredShows as |show|}}
+          {{show-stub show=show}}
+        {{else}}
+          <h2 class="gallery-no-shows-warning">
+            No Shows Available
+          </h2>
+        {{/each}}
+      {{/if}}
+    </div>
+  {{/unless}}
 </div>

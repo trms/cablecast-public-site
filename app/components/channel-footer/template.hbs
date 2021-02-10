@@ -6,6 +6,7 @@
           {{config.aboutPageShortDescription}}
         </h1>
         <p>
+          {{!-- template-lint-disable no-triple-curlies --}}
           {{{config.aboutPageDescription}}}
         </p>
         {{#if (and (gt publicChannels.length 1) showOtherChannels)}}

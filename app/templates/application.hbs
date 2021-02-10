@@ -1,15 +1,10 @@
-{{nav-menu
-  channel=model.channel
-  on-search='navSearch'
-}}
-
+{{nav-menu channel=model.channel on-search="navSearch"}}
 <div class="container-wrapper">
-	<div class="container">
-		{{outlet}}
-    <hr />
-	</div>
+  <div class="container">
+    {{outlet}}
+    <hr>
+  </div>
 </div>
-
 {{channel-footer
   config=model.channel.publicSite
   hasPodcasts=hasPodcasts
@@ -17,5 +12,4 @@
   publicChannels=publicChannels
   showOtherChannels=showOtherChannels
 }}
-
 {{update-channel-styles channel-id=model.channel.id}}

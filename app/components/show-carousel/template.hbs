@@ -1,38 +1,63 @@
-<div id="carousel" class="carousel slide" data-ride="carousel" data-interval="7000">
-	<!-- Indicators -->
-	<ol class="carousel-indicators">
-		{{#each shows as |item key|}}
-      <li data-target="#carousel" data-slide-to="{{key}}" class="{{if (eq key 0) 'active'}}"></li>
+{{!-- template-lint-disable no-html-comments --}}
+<div
+  id="carousel"
+  class="carousel slide"
+  data-ride="carousel"
+  data-interval="7000"
+>
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    {{#each shows as |item key|}}
+      <li
+        data-target="#carousel"
+        data-slide-to={{key}}
+        class={{if (eq key 0) "active"}}
+      ></li>
     {{/each}}
-	</ol>
-
-	<!-- Wrapper for slides -->
-	<div class="carousel-inner" role="listbox">
-
-	    {{#each shows as |item key|}}
-	    	<div class="item {{if (eq key 0) 'active'}}">
-
-				{{#link-to 'show' item.id}}
+  </ol>
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    {{#each shows as |item key|}}
+      <div class="item {{if (eq key 0) "active"}}">
+        {{#link-to "show" item.id}}
           <div class="embed-responsive embed-responsive-16by9">
-            {{show-thumbnail show=item quality='Large' class="embed-responsive-item"}}
+            {{show-thumbnail
+              show=item
+              quality="Large"
+              class="embed-responsive-item"
+            }}
           </div>
-				{{/link-to}}
-
-				<div class="carousel-caption">
-					<h3 class="carousel-caption-header">{{link-to item.cgTitle 'show' item.id class="carousel-caption-link"}}</h3>
-				</div>
-			</div>
-	    {{/each}}
-
-	</div>
-
-	<!-- Controls -->
-	<a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
-		<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-		<span class="sr-only">Previous</span>
-	</a>
-	<a class="right carousel-control" href="#carousel" role="button" data-slide="next">
-		<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-		<span class="sr-only">Next</span>
-	</a>
+        {{/link-to}}
+        <div class="carousel-caption">
+          <h3 class="carousel-caption-header">
+            {{link-to item.cgTitle "show" item.id class="carousel-caption-link"
+            }}
+          </h3>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+  <!-- Controls -->
+  <a
+    class="left carousel-control"
+    href="#carousel"
+    role="button"
+    data-slide="prev"
+  >
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">
+      Previous
+    </span>
+  </a>
+  <a
+    class="right carousel-control"
+    href="#carousel"
+    role="button"
+    data-slide="next"
+  >
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">
+      Next
+    </span>
+  </a>
 </div>

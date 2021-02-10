@@ -1,34 +1,35 @@
-
-<h3 class="schedule-preview-header">Schedule</h3>
-
+<h3 class="schedule-preview-header">
+  Schedule
+</h3>
 <div class="schedule">
-
-	{{#each futureRuns as |run|}}
-		<div class="schedule-row clearfix">
-
+  {{#each futureRuns as |run|}}
+    <div class="schedule-row clearfix">
       <div class="plaque">
         {{#if (eq run onAirRun)}}
-          {{#link-to 'watch-now' channel.liveStreams.firstObject.id alt=onAirRun.show.cgTitle class='live-stream-name'}}
+          {{#link-to
+            "watch-now"
+            channel.liveStreams.firstObject.id
+            alt=onAirRun.show.cgTitle
+            class="live-stream-name"
+          }}
             <div class="plaque-content now">
               Now
             </div>
           {{/link-to}}
         {{else}}
-          {{#link-to 'show' run.show.id}}
+          {{#link-to "show" run.show.id}}
             <div class="plaque-content not-now">
-              {{moment-format run.runDateTime 'h:mm a'}}
+              {{moment-format run.runDateTime "h:mm a"}}
             </div>
           {{/link-to}}
         {{/if}}
-			</div>
-
-			<div class="schedule-container u-truncate-text">
-				{{#link-to 'show' run.show.id}}
-					{{run.show.cgTitle}}
-				{{/link-to}}
-			</div>
-		</div>
-	{{/each}}
-
+      </div>
+      <div class="schedule-container u-truncate-text">
+        {{#link-to "show" run.show.id}}
+          {{run.show.cgTitle}}
+        {{/link-to}}
+      </div>
+    </div>
+  {{/each}}
 </div>
-{{link-to 'See the entire schedule' 'schedule' class="btn btn-schedule"}}
+{{link-to "See the entire schedule" "schedule" class="btn btn-schedule"}}
