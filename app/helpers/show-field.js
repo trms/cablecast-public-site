@@ -13,6 +13,8 @@ export default Helper.extend({
     if (value) {
       switch(value.type) {
         case 'file': {
+          if (value.value == null) { return; }
+
           let file =  this.get('store').peekRecord('web-file', value.value);
           return get(file || {}, 'url');}
         case 'producer': {
