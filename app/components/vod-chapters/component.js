@@ -50,6 +50,9 @@ export default Component.extend({
   },
 
   changeActiveChapter: function (chapter) {
+    if (chapter == null) {
+      return;
+    }
     this.set('activeChapter', chapter);
     var element = $(this.$().find(`[data-chapter="${chapter.get('id')}"]`)[0]);
     this.$().animate({
