@@ -10,10 +10,10 @@ export default Component.extend({
   }),
 	actions: {
 		search: function(query) {
-			this.sendAction('on-search', query);
+			this.onSearch(query);
 		},
 		watch: function(stream_id){
-			this.sendAction('on-watch', stream_id);
+			this.onSearch(stream_id);
 		},
 	}
 });

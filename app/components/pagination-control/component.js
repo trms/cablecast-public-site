@@ -80,19 +80,19 @@ export default Component.extend({
     prev: function () {
       var newPage = this.get('currentPage') - 1;
       if (newPage >= 1) {
-        this.sendAction('on-page-select', this.get('currentPage') - 1);
+        this.onPageSelect(this.get('currentPage') - 1);
       }
     },
 
     next: function () {
       var newPage = this.get('currentPage') + 1;
       if (newPage <= this.get('pageCount')) {
-        this.sendAction('on-page-select', this.get('currentPage') + 1);
+        this.onPageSelect(this.get('currentPage') + 1);
       }
     },
 
     gotoPage: function (page) {
-      this.sendAction('on-page-select', page);
+      this.onPageSelect(page);
     }
   }
 });
