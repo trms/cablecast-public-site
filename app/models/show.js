@@ -35,14 +35,9 @@ export default DS.Model.extend({
 		}
 	}),
 
-	eventDateString: computed(function () {
+	eventDateString: computed('eventDate', function () {
 		return moment(this.get('eventDate')).format('l');
-	}).property('eventDate'),
-
-	hasVod: computed(function () {
-		// This doens't work. Not sure why yet.
-		return this.get('vods');
-	}).property('vods'),
+	}),
 
 	schedule: computed(function () {
 		var today = moment();
@@ -54,5 +49,5 @@ export default DS.Model.extend({
 			start: _start,
 			page_size: 5
 		});
-	}).property()
+	})
 });

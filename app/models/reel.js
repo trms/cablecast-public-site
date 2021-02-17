@@ -3,7 +3,7 @@ import DS from 'ember-data';
 
 export default DS.Model.extend({
   length: DS.attr('number'),
-  trt: computed(function () {
+  trt: computed('length', function () {
 
     var seconds = this.get('length');
 
@@ -17,5 +17,5 @@ export default DS.Model.extend({
     if (seconds < 10) { seconds = "0" + seconds; }
     var time = hours + ':' + minutes + ':' + seconds;
     return time;
-  }).property('length')
+  })
 });

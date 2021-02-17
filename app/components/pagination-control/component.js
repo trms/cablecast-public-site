@@ -10,7 +10,7 @@ export default Component.extend({
   showFirstLastButtons: true,
   displayFirstLastAsNumber: false,
 
-  pages: computed(function () {
+  pages: computed('currentPage', 'pageSize', 'count', function () {
     var result = [],
       pageCount = this.get('pageCount'),
       currentPage = this.get('currentPage'),
@@ -43,38 +43,38 @@ export default Component.extend({
 
     return result;
 
-  }).property('currentPage', 'pageSize', 'count'),
+  }),
 
-  hideControl: computed(function () {
+  hideControl: computed('count', 'pageSize', function () {
     return this.get('count') <= this.get('pageSize');
-  }).property('count', 'pageSize'),
+  }),
 
-  pageCount: computed(function () {
+  pageCount: computed('pageSize', 'count', function () {
     return Math.ceil(this.get('count') / this.get('pageSize'));
-  }).property('pageSize', 'count'),
+  }),
 
-  hideFirst: computed(function () {
+  hideFirst: computed('pages', 'displayFirstLastAsNumber', 'showFirstLastButtons', function () {
     var pages = this.get('pages');
     var displayFirstLastAsNumber = this.get('displayFirstLastAsNumber');
     var showFirstLastButtons = this.get('showFirstLastButtons');
     return showFirstLastButtons === false || (displayFirstLastAsNumber && pages.findBy('number', 1));
-  }).property('pages', 'displayFirstLastAsNumber', 'showFirstLastButtons'),
+  }),
 
-  hideLast: computed(function () {
+  hideLast: computed('pages', 'pageCount', 'displayFirstLastAsNumber', 'showFirstLastButtons', function () {
     var pages = this.get('pages');
     var displayFirstLastAsNumber = this.get('displayFirstLastAsNumber');
     var pageCount = this.get('pageCount');
     var showFirstLastButtons = this.get('showFirstLastButtons');
     return showFirstLastButtons === false || (displayFirstLastAsNumber && pages.findBy('number', pageCount));
-  }).property('pages', 'pageCount', 'displayFirstLastAsNumber', 'showFirstLastButtons'),
+  }),
 
-  disablePrev: computed(function () {
+  disablePrev: computed('currentPage', function () {
     return this.get('currentPage') === 1;
-  }).property('currentPage'),
+  }),
 
-  disableNext: computed(function () {
+  disableNext: computed('currentPage', 'pageCount', function () {
     return this.get('currentPage') === this.get('pageCount');
-  }).property('currentPage', 'pageCount'),
+  }),
 
   actions: {
     prev: function () {
