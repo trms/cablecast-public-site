@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import jQuery from 'jquery';
 import { bind } from '@ember/runloop';
 import Component from '@ember/component';
 
@@ -54,14 +54,15 @@ export default Component.extend({
       return;
     }
     this.set('activeChapter', chapter);
-    var element = $(this.$().find(`[data-chapter="${chapter.get('id')}"]`)[0]);
-    this.$().animate({
-      scrollTop: element.offset().top - this.$().offset().top + this.$().scrollTop()
+    var element = this.element.querySelector(`[data-chapter="${chapter.get('id')}"]`);
+    var componentElement = jQuery(this.element);
+    componentElement.animate({
+      scrollTop: jQuery(element).offset().top - componentElement.offset().top + componentElement.scrollTop()
     });
   },
 
   sendMessage: function (message) {
-    var player = $('iframe')[0];
+    var player = jQuery('iframe')[0];
     if (player) {
       player.contentWindow.postMessage(message, '*');
     }
