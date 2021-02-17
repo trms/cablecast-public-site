@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import jQuery from 'jquery';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import ENV from 'cablecast-public-site/config/environment';
@@ -9,8 +9,8 @@ export default Component.extend({
     let rootURL = ENV.rootURL;
     let channelID = this.get('channel-id');
     if (this.get('fastboot.isFastBoot') === false) {
-      let custom = $('[data-channel-custom]')[0];
-      let colors = $('[data-channel-colors]')[0];
+      let custom = jQuery('[data-channel-custom]')[0];
+      let colors = jQuery('[data-channel-colors]')[0];
       if (custom) {
         custom.href = `${rootURL}custom-${channelID}.css`;
       }
