@@ -14,16 +14,16 @@ export default Controller.extend({
   }),
 
 	currentDate: computed('currentDay', function() {
-		return moment(this.get('currentDay'), 'YYYY-MM-DD').toDate();
+		return moment(this.currentDay, 'YYYY-MM-DD').toDate();
 	}),
 
   prevDateString: computed('currentDay', function() {
-    var current = moment(this.get('currentDay'));
+    var current = moment(this.currentDay);
     return current.add(-1, 'days').format('YYYY-MM-DD');
   }),
 
   nextDateString: computed('currentDay', function() {
-    var current = moment(this.get('currentDay'));
+    var current = moment(this.currentDay);
     return current.add(1, 'days').format('YYYY-MM-DD');
   }),
 
@@ -33,12 +33,12 @@ export default Controller.extend({
 			this.set('currentDay', current.format('YYYY-MM-DD'));
 		},
 		prevDay: function() {
-			var current = moment(this.get('currentDay'));
+			var current = moment(this.currentDay);
 			current.add(-1, 'days');
 			this.set('currentDay', current.format('YYYY-MM-DD'));
 		},
 		nextDay: function() {
-			var current = moment(this.get('currentDay'));
+			var current = moment(this.currentDay);
 			current.add(1, 'days');
 			this.set('currentDay', current.format('YYYY-MM-DD'));
 		}

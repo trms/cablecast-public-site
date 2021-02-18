@@ -12,9 +12,9 @@ export default Component.extend({
 
   pages: computed('currentPage', 'pageSize', 'count', function () {
     var result = [],
-      pageCount = this.get('pageCount'),
-      currentPage = this.get('currentPage'),
-      maxPageButtons = this.get('maxPageButtons'),
+      pageCount = this.pageCount,
+      currentPage = this.currentPage,
+      maxPageButtons = this.maxPageButtons,
       length = (pageCount >= maxPageButtons) ? maxPageButtons : pageCount,
       startPos = 1;
 
@@ -46,48 +46,48 @@ export default Component.extend({
   }),
 
   hideControl: computed('count', 'pageSize', function () {
-    return this.get('count') <= this.get('pageSize');
+    return this.count <= this.pageSize;
   }),
 
   pageCount: computed('pageSize', 'count', function () {
-    return Math.ceil(this.get('count') / this.get('pageSize'));
+    return Math.ceil(this.count / this.pageSize);
   }),
 
   hideFirst: computed('pages', 'displayFirstLastAsNumber', 'showFirstLastButtons', function () {
-    var pages = this.get('pages');
-    var displayFirstLastAsNumber = this.get('displayFirstLastAsNumber');
-    var showFirstLastButtons = this.get('showFirstLastButtons');
+    var pages = this.pages;
+    var displayFirstLastAsNumber = this.displayFirstLastAsNumber;
+    var showFirstLastButtons = this.showFirstLastButtons;
     return showFirstLastButtons === false || (displayFirstLastAsNumber && pages.findBy('number', 1));
   }),
 
   hideLast: computed('pages', 'pageCount', 'displayFirstLastAsNumber', 'showFirstLastButtons', function () {
-    var pages = this.get('pages');
-    var displayFirstLastAsNumber = this.get('displayFirstLastAsNumber');
-    var pageCount = this.get('pageCount');
-    var showFirstLastButtons = this.get('showFirstLastButtons');
+    var pages = this.pages;
+    var displayFirstLastAsNumber = this.displayFirstLastAsNumber;
+    var pageCount = this.pageCount;
+    var showFirstLastButtons = this.showFirstLastButtons;
     return showFirstLastButtons === false || (displayFirstLastAsNumber && pages.findBy('number', pageCount));
   }),
 
   disablePrev: computed('currentPage', function () {
-    return this.get('currentPage') === 1;
+    return this.currentPage === 1;
   }),
 
   disableNext: computed('currentPage', 'pageCount', function () {
-    return this.get('currentPage') === this.get('pageCount');
+    return this.currentPage === this.pageCount;
   }),
 
   actions: {
     prev: function () {
-      var newPage = this.get('currentPage') - 1;
+      var newPage = this.currentPage - 1;
       if (newPage >= 1) {
-        this.onPageSelect(this.get('currentPage') - 1);
+        this.onPageSelect(this.currentPage - 1);
       }
     },
 
     next: function () {
-      var newPage = this.get('currentPage') + 1;
-      if (newPage <= this.get('pageCount')) {
-        this.onPageSelect(this.get('currentPage') + 1);
+      var newPage = this.currentPage + 1;
+      if (newPage <= this.pageCount) {
+        this.onPageSelect(this.currentPage + 1);
       }
     },
 

@@ -4,20 +4,20 @@ import Component from '@ember/component';
 export default Component.extend({
   classNames: ['paginated-show-list'],
   offset: computed('page', 'pageSize', function() {
-    return (this.get('page') - 1) * this.get('pageSize');
+    return (this.page - 1) * this.pageSize;
   }),
   firstResult: computed('offset', 'pageSize', function() {
-    return 1 + this.get('offset');
+    return 1 + this.offset;
   }),
 
   lastResult: computed('offset', 'pageSize', 'total', function() {
-    var total = this.get('total');
-    var last = (this.get('offset') * this.get('pageSize')) + this.get('pageSize');
+    var total = this.total;
+    var last = (this.offset * this.pageSize) + this.pageSize;
     return Math.min(last, total);
   }),
 
   showPaginationControl: computed('total', 'pageSize', function(){
-    return this.get('total') > this.get('pageSize');
+    return this.total > this.pageSize;
   }),
 
   actions:{

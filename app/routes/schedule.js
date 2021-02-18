@@ -37,6 +37,6 @@ export default Route.extend(SetPageTitle, {
 	setupController(controller) {
 		this._super(...arguments);
 		let appParams = this.paramsFor('application');
-		controller.set('channel', this.get('store').peekRecord('channel', appParams.channel));
+		controller.set('channel', this.store.peekRecord('channel', appParams.channel));
 	}
 });

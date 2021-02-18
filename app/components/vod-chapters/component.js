@@ -17,12 +17,12 @@ export default Component.extend({
   },
 
   processMessage: function (event) {
-    if (event.data.message === 'ready' && this.get('seekto')) {
-      this.seekTo(this.get('seekto'));
+    if (event.data.message === 'ready' && this.seekto) {
+      this.seekTo(this.seekto);
     }
 
     if (event.data.message === 'timeupdate') {
-      var chapters = this.get('chapters').toArray();
+      var chapters = this.chapters.toArray();
       var activeChapter = null;
       var time = event.data.value;
       for (var i = 0; i < chapters.length; i++) {
@@ -43,7 +43,7 @@ export default Component.extend({
           }
         }
       }
-      if (this.get('activeChapter') !== activeChapter) {
+      if (this.activeChapter !== activeChapter) {
         this.changeActiveChapter(activeChapter);
       }
     }
@@ -78,7 +78,7 @@ export default Component.extend({
 
   actions: {
     cueTo: function (chapter) {
-      var setSeekTo = this.get('setSeekTo');
+      var setSeekTo = this.setSeekTo;
       if (setSeekTo) {
         setSeekTo(chapter.get('offset'));
       }

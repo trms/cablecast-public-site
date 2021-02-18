@@ -13,11 +13,11 @@ export default Controller.extend({
   }),
 
   publicChannels: computed('allChannels.[]',function(){
-    return this.get('allChannels').filterBy('publicSite.includeInIndex',true).sortBy('publicSite.siteName');
+    return this.allChannels.filterBy('publicSite.includeInIndex',true).sortBy('publicSite.siteName');
   }),
 
   hasPodcasts: computed('projects.[]', function() {
-    return this.get('projects').filter(function(project) {
+    return this.projects.filter(function(project) {
       // Test that a project has a name and is marked for podcasting.
       return project.get('name') &&
              project.get('podcast');

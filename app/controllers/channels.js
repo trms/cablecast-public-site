@@ -8,6 +8,6 @@ export default Controller.extend({
   }),
 
   publicChannels: computed('allChannels.[]',function(){
-    return this.get('allChannels').filterBy('publicSite.includeInIndex',true);
+    return this.allChannels.filterBy('publicSite.includeInIndex',true);
   }),
 });

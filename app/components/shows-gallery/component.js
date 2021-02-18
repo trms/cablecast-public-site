@@ -10,7 +10,7 @@ export default Component.extend({
 
   init(){
     this._super(...arguments);
-    this.get('showsTask').perform();
+    this.showsTask.perform();
   },
 
   collapsed:false,
@@ -27,7 +27,7 @@ export default Component.extend({
       return;
     }
 
-    let shows = this.get('store')
+    let shows = this.store
       .query('show',{
         ids: showIds,
         include: 'thumbnail,vod,category,project,producer,reel',
@@ -39,7 +39,7 @@ export default Component.extend({
   }),
 
   filteredShows: computed('shows.[]',function(){
-    let shows = this.get('shows') || [];
+    let shows = this.shows || [];
     let limit = this.get('gallery.displayLimit');
     return shows.filterBy('showThumbnails.length').splice(0,limit);
   }),

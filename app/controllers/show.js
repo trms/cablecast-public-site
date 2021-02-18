@@ -33,7 +33,7 @@ export default Controller.extend({
         return field.type === 'file' && fd.get('showField') === field.showField;
       });
       if (fileField && fileField.value) {
-        let file = this.get('store').peekRecord('web-file', fileField.value);
+        let file = this.store.peekRecord('web-file', fileField.value);
         if (/.+\.pdf$/.test(file.get('name'))) {
           return {
             url: get(file || {}, 'url'),

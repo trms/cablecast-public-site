@@ -14,7 +14,7 @@ export default Route.extend(SetPageTitle, {
     if (thumbnailUrl) {
       data.image = thumbnailUrl;
     }
-    let headData = this.get('headData');
+    let headData = this.headData;
     headData.set('socialMedia', data);
 
     this.appendJsonLD(data, show);
@@ -48,7 +48,7 @@ export default Route.extend(SetPageTitle, {
     if (data.title) {
       jsonLD.headline = data.title;
     }
-    let headData = this.get('headData');
+    let headData = this.headData;
     headData.set('jsonLD', JSON.stringify(jsonLD));
   },
 
@@ -87,9 +87,9 @@ export default Route.extend(SetPageTitle, {
     let records = [];
     show.get('customFields').forEach((field) => {
       if (field.type === 'file' && field.value) {
-        records.push(this.get('store').findRecord('web-file', field.value));
+        records.push(this.store.findRecord('web-file', field.value));
       } else if (field.type === 'producer' && field.value) {
-        records.push(this.get('store').findRecord('producer', field.value));
+        records.push(this.store.findRecord('producer', field.value));
       }
     });
     return all(records);

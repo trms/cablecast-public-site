@@ -4,7 +4,7 @@ import Component from '@ember/component';
 export default Component.extend({
 
   onAirRun: computed('futureRuns.[]',function(){
-    return this.get('futureRuns').find((item)=>{
+    return this.futureRuns.find((item)=>{
       let now = new Date();
       let start = item.get('start');
       let end = item.get('end');

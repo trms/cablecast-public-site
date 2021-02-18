@@ -7,7 +7,7 @@ export default Component.extend({
   fastboot: service(),
   didReceiveAttrs() {
     let rootURL = ENV.rootURL;
-    let channelID = this.get('channel-id');
+    let channelID = this['channel-id'];
     if (this.get('fastboot.isFastBoot') === false) {
       let custom = jQuery('[data-channel-custom]')[0];
       let colors = jQuery('[data-channel-colors]')[0];

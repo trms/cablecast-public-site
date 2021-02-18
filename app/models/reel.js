@@ -5,7 +5,7 @@ export default DS.Model.extend({
   length: DS.attr('number'),
   trt: computed('length', function () {
 
-    var seconds = this.get('length');
+    var seconds = this.length;
 
     var sec_num = parseInt(seconds, 10); // don't forget the second param
     var hours = Math.floor(sec_num / 3600);

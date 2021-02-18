@@ -20,12 +20,12 @@ export default DS.Model.extend({
 	showThumbnails: DS.hasMany('thumbnail', { async: true }),
 	firstRuns: DS.hasMany('first-run', { async: true }),
 	absoluteFirstRun: computed('firstRuns.@each.runDateTime', function () {
-		var sorted = this.get('firstRuns').sortBy('runDateTime');
+		var sorted = this.firstRuns.sortBy('runDateTime');
 		return sorted.get('firstObject');
 	}),
 	thumbnail: computed('showThumbnails.@each.quality', {
 		get: function () {
-			var thumbnail = this.get('showThumbnails').findBy('quality', 'Large');
+			var thumbnail = this.showThumbnails.findBy('quality', 'Large');
 			// If we still don't have a thumbnail return a placeholder image
 			if (!thumbnail) {
 				return 'http://placehold.it/720x480';
@@ -36,7 +36,7 @@ export default DS.Model.extend({
 	}),
 
 	eventDateString: computed('eventDate', function () {
-		return moment(this.get('eventDate')).format('l');
+		return moment(this.eventDate).format('l');
 	}),
 
 	schedule: computed(function () {

@@ -7,7 +7,7 @@ export default Mixin.create({
 
   setTitle(title) {
     if (this.get('fastboot.isFastBoot')) {
-      this.get('headData').set('title', title);
+      this.headData.set('title', title);
     }
     else {
       document.title = title;

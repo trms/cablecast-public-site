@@ -19,7 +19,7 @@ export default Route.extend(ResetScroll,{
 
   getCanonicalUrl() {
     let url = '';
-    let fastboot = this.get('fastboot');
+    let fastboot = this.fastboot;
 
     if (fastboot.get('isFastBoot')) {
       let protocol = fastboot.get('request.protocol');
@@ -51,7 +51,7 @@ export default Route.extend(ResetScroll,{
     if (headline) {
       jsonLD.headline = headline;
     }
-    let headData = this.get('headData');
+    let headData = this.headData;
 		headData.set('jsonLD', JSON.stringify(jsonLD));
   },
 
@@ -67,7 +67,7 @@ export default Route.extend(ResetScroll,{
     if (logo) {
       data.image = encodeURI(logo.get('url'));
     }
-    let headData = this.get('headData');
+    let headData = this.headData;
     headData.set('socialMedia', data);
 
     this.appendJsonLD(publicSite);
@@ -80,8 +80,8 @@ export default Route.extend(ResetScroll,{
 
   model: function(params) {
     return hash({
-      channels: this.get('store').query('channel', {include: 'publicsite,webfile,thumbnail,sitegallery,savedshowsearch'}),
-      projects: this.get('store').findAll('project')
+      channels: this.store.query('channel', {include: 'publicsite,webfile,thumbnail,sitegallery,savedshowsearch'}),
+      projects: this.store.findAll('project')
     })
     .then((result) => {
       let channels = result.channels;
@@ -105,7 +105,7 @@ export default Route.extend(ResetScroll,{
 
   _setupMetrics(site) {
     if (get(site, 'googleAnalyticsId')) {
-      let metrics = get(this, 'metrics');
+      let metrics = this.metrics;
       let id = get(site, 'googleAnalyticsId');
 
       metrics.activateAdapters([

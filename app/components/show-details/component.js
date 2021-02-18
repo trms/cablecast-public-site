@@ -10,7 +10,7 @@ export default Component.extend({
     return this.get('site.publicSite.fieldDisplays').sortBy('order');
   }),
   firstRun: computed('show','currentChannelId',function(){
-    let currentChannelId = this.get('currentChannelId');
+    let currentChannelId = this.currentChannelId;
     let firstRun = this.get('show.firstRuns').filterBy('channel.id',currentChannelId).get('firstObject');
     return firstRun;
   }),

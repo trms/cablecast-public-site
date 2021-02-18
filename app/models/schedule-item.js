@@ -16,14 +16,14 @@ export default DS.Model.extend({
 
 	scheduledTimeString: computed('runDateTime', {
 		get: function() {
-			return moment(this.get('runDateTime')).format('h:mm:ss a');
+			return moment(this.runDateTime).format('h:mm:ss a');
 		}
 	}),
 
 	scheduledDateTimeString: computed('runDateTime', {
 		get: function() {
 			//return moment(this.get('runDateTime')).format('llll');
-			return moment(this.get('runDateTime')).calendar();
+			return moment(this.runDateTime).calendar();
 		}
 	}),
 
@@ -33,10 +33,10 @@ export default DS.Model.extend({
 	end: computed('show', 'runDateTime', {
 		get: function() {
 			var reels = this.get('show.reels');
-			if (!reels) { return this.get('runDateTime'); }
+			if (!reels) { return this.runDateTime; }
 
 			var length = reels.getEach('length')[0];
-			var end = moment(this.get('runDateTime')).unix() + length;
+			var end = moment(this.runDateTime).unix() + length;
 
 			return moment.unix(end).toDate();
 		}

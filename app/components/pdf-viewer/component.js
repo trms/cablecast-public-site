@@ -7,7 +7,7 @@ import Component from '@ember/component';
 
 export default Component.extend({
   didInsertElement() {
-    let url = this.get('url');
+    let url = this.url;
     let container = this.element.getElementsByClassName('pdf-wrapper')[0];
     let pdfLinkService = new PDFJS.PDFLinkService();
 
@@ -35,12 +35,12 @@ export default Component.extend({
       pdfHistory.initialize(pdf.fingerprint);
     });
     this.set('pdfViewer', pdfViewer);
-    $(window).on('resize.' + this.get('elementId'), this._handleResizeEvent.bind(this));
+    $(window).on('resize.' + this.elementId, this._handleResizeEvent.bind(this));
   },
 
   willDestroyElement: function () {
     this._super();
-    $(window).off('resize.' + this.get('elementId'));
+    $(window).off('resize.' + this.elementId);
 
   },
 
@@ -49,6 +49,6 @@ export default Component.extend({
   },
 
   rescalePdf() {
-    this.get('pdfViewer').currentScaleValue = 'auto';
+    this.pdfViewer.currentScaleValue = 'auto';
   }
 });

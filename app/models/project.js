@@ -9,6 +9,6 @@ export default DS.Model.extend({
   podcastDescription: DS.attr('string'),
   podcastUrl: DS.attr('string'),
   itunesUrl: computed('podcastUrl', function() {
-    return this.get('podcastUrl').replace(/https?/, 'iptc');
+    return this.podcastUrl.replace(/https?/, 'iptc');
   })
 });

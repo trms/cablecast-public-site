@@ -15,10 +15,10 @@ export default Helper.extend({
         case 'file': {
           if (value.value == null) { return; }
 
-          let file =  this.get('store').peekRecord('web-file', value.value);
+          let file =  this.store.peekRecord('web-file', value.value);
           return get(file || {}, 'url');}
         case 'producer': {
-          let producer = this.get('store').findRecord('producer', value.value);
+          let producer = this.store.findRecord('producer', value.value);
           return get(producer || {}, 'name');}
         default:
           return value.value;
