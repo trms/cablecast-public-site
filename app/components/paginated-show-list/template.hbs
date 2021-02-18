@@ -27,20 +27,20 @@
   <div class="show-player clearfix">
     <div class="col-lg-12 u-no-padding">
       {{#if showPaginationControl}}
-        {{pagination-control
-          onPageSelect=(action "goToPage")
-          pageSize=pageSize
-          currentPage=page
-          count=total
-          class="text-center"
-        }}
+        <PaginationControl
+          @onPageSelect={{action "goToPage"}}
+          @pageSize={{pageSize}}
+          @currentPage={{page}}
+          @count={{total}}
+          @class="text-center"
+        />
       {{/if}}
       <div class="show-stub-container">
         {{#if loading}}
-          {{loading-spinner}}
+          <LoadingSpinner />
         {{else}}
           {{#each shows as |result|}}
-            {{show-stub show=result}}
+            <ShowStub @show={{result}} />
           {{else}}
             <h3>
               Your search returned no results.
@@ -49,13 +49,13 @@
         {{/if}}
       </div>
       {{#if showPaginationControl}}
-        {{pagination-control
-          onPageSelect=(action "goToPage")
-          pageSize=pageSize
-          currentPage=page
-          count=total
-          class="text-center"
-        }}
+        <PaginationControl
+          @onPageSelect={{action "goToPage"}}
+          @pageSize={{pageSize}}
+          @currentPage={{page}}
+          @count={{total}}
+          @class="text-center"
+        />
       {{/if}}
     </div>
   </div>

@@ -5,8 +5,8 @@
         {{show.cgTitle}}
       </h2>
       <div class="show-page-social-links hidden-xs">
-        {{#fb-share-button}}Share{{/fb-share-button}}
-        {{#twitter-share-button}}Tweet{{/twitter-share-button}}
+        <FbShareButton>Share</FbShareButton>
+        <TwitterShareButton>Tweet</TwitterShareButton>
       </div>
     </div>
   </div>
@@ -24,17 +24,16 @@
             </div>
           {{else}}
             <div class="embed-responsive embed-responsive-16by9">
-              {{show-thumbnail show=show quality="large" class="img-responsive"
-              }}
+              <ShowThumbnail @show={{show}} @quality="large" @class="img-responsive" />
             </div>
           {{/if}}
           <div class="show-page-social-links visible-xs-block">
-            {{#fb-share-button adaptive=false}}
+            <FbShareButton @adaptive={{false}}>
               Share
-            {{/fb-share-button}}
-            {{#twitter-share-button adaptive=false}}
+            </FbShareButton>
+            <TwitterShareButton @adaptive={{false}}>
               Tweet
-            {{/twitter-share-button}}
+            </TwitterShareButton>
           </div>
         </div>
         {{!Chapters / details Tabs}}
@@ -75,13 +74,13 @@
         <div class="col-sm-12">
           {{! Show Details / Chapters}}
           {{#if (eq activeTab "details")}}
-            {{show-details
-              show=show
-              producer=producer
-              reels=reels
-              runs=runs
-              currentChannelId=currentChannelId
-            }}
+            <ShowDetails
+              @show={{show}}
+              @producer={{producer}}
+              @reels={{reels}}
+              @runs={{runs}}
+              @currentChannelId={{currentChannelId}}
+            />
             <h3 class="show-page-airtimes-header">
               Upcoming air times
             </h3>
@@ -93,17 +92,17 @@
               There are currently no upcoming air times.
             {{/each}}
           {{else}}
-            {{vod-chapters
-              chapters=vodChapters
-              seekto=seekto
-              setSeekTo=(action "setSeekTo")
-            }}
+            <VodChapters
+              @chapters={{vodChapters}}
+              @seekto={{seekto}}
+              @setSeekTo={{action "setSeekTo"}}
+            />
           {{/if}}
         </div>
       </div>
     </div>
     <div class="col-sm-7 col-sm-pull-5">
-      {{pdf-viewer url=embededPdf.url class="hidden-xs"}}
+      <PdfViewer @url={{embededPdf.url}} @class="hidden-xs" />
       {{!pdf-js pdf=documentUrl toolbarComponent=null}}
     </div>
   </div>
@@ -118,7 +117,7 @@
         </div>
       {{else if show.showThumbnails}}
         <div class="embed-responsive embed-responsive-16by9">
-          {{show-thumbnail show=show quality="Large" class="img-responsive"}}
+          <ShowThumbnail @show={{show}} @quality="Large" @class="img-responsive" />
         </div>
       {{/if}}
     </div>
@@ -129,8 +128,8 @@
         {{show.cgTitle}}
       </h2>
       <div class="show-page-social-links">
-        {{#fb-share-button}}Share{{/fb-share-button}}
-        {{#twitter-share-button}}Tweet{{/twitter-share-button}}
+        <FbShareButton>Share</FbShareButton>
+        <TwitterShareButton>Tweet</TwitterShareButton>
       </div>
     </div>
   </div>
@@ -139,13 +138,13 @@
       <h3 class="show-page-show-details-header">
         Show Details
       </h3>
-      {{show-details
-        show=show
-        producer=producer
-        reels=reels
-        runs=runs
-        currentChannelId=currentChannelId
-      }}
+      <ShowDetails
+        @show={{show}}
+        @producer={{producer}}
+        @reels={{reels}}
+        @runs={{runs}}
+        @currentChannelId={{currentChannelId}}
+      />
     </div>
     <div class="col-sm-6">
       {{#if
@@ -156,11 +155,11 @@
         <h3 class="show-details-chapters-header">
           Chapters
         </h3>
-        {{vod-chapters
-          chapters=vodChapters
-          seekto=seekto
-          setSeekTo=(action "setSeekTo")
-        }}
+        <VodChapters
+          @chapters={{vodChapters}}
+          @seekto={{seekto}}
+          @setSeekTo={{action "setSeekTo"}}
+        />
         <hr>
       {{/if}}
       <h3 class="show-page-airtimes-header">

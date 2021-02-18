@@ -1,12 +1,12 @@
 {{#if show.showThumbnails}}
-  {{#link-to "show" show.id class="thumbnail-responsive"}}
-    {{show-thumbnail show=show quality="Large" class="img-responsive"}}
-  {{/link-to}}
+  <LinkTo @route="show" @model={{show.id}} class="thumbnail-responsive">
+    <ShowThumbnail @show={{show}} @quality="Large" @class="img-responsive" />
+  </LinkTo>
 {{else}}
   <div class="thumbnail-responsive"></div>
 {{/if}}
 <h3 class="show-stub-title-header u-break-text">
-  {{link-to show.cgTitle "show" show.id class="show-stub-title-link"}}
+  <LinkTo @route="show" @model={{show.id}} class="show-stub-title-link">{{show.cgTitle}}</LinkTo>
 </h3>
 <div class="show-stub-property show-stub-eventdate">
   <span class="show-stub-property-title">

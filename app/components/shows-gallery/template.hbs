@@ -13,9 +13,9 @@
     </div>
     <div class="col-sm-2">
       {{#if gallery.id}}
-        {{#link-to "gallery" gallery.id class="gallery-show-all-link"}}
+        <LinkTo @route="gallery" @model={{gallery.id}} class="gallery-show-all-link">
           Show All...
-        {{/link-to}}
+        </LinkTo>
       {{/if}}
     </div>
   </div>
@@ -24,10 +24,10 @@
   {{#unless collapsed}}
     <div class="show-stub-container">
       {{#if showsTask.isRunning}}
-        {{loading-spinner}}
+        <LoadingSpinner />
       {{else}}
         {{#each filteredShows as |show|}}
-          {{show-stub show=show}}
+          <ShowStub @show={{show}} />
         {{else}}
           <h2 class="gallery-no-shows-warning">
             No Shows Available

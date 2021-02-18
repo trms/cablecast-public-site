@@ -6,30 +6,29 @@
     <div class="schedule-row clearfix">
       <div class="plaque">
         {{#if (eq run onAirRun)}}
-          {{#link-to
-            "watch-now"
-            channel.liveStreams.firstObject.id
-            alt=onAirRun.show.cgTitle
-            class="live-stream-name"
-          }}
+          <LinkTo
+            @route="watch-now"
+            @model={{channel.liveStreams.firstObject.id}}
+            @alt={{onAirRun.show.cgTitle}}
+            class="live-stream-name">
             <div class="plaque-content now">
               Now
             </div>
-          {{/link-to}}
+          </LinkTo>
         {{else}}
-          {{#link-to "show" run.show.id}}
+          <LinkTo @route="show" @model={{run.show.id}}>
             <div class="plaque-content not-now">
               {{moment-format run.runDateTime "h:mm a"}}
             </div>
-          {{/link-to}}
+          </LinkTo>
         {{/if}}
       </div>
       <div class="schedule-container u-truncate-text">
-        {{#link-to "show" run.show.id}}
+        <LinkTo @route="show" @model={{run.show.id}}>
           {{run.show.cgTitle}}
-        {{/link-to}}
+        </LinkTo>
       </div>
     </div>
   {{/each}}
 </div>
-{{link-to "See the entire schedule" "schedule" class="btn btn-schedule"}}
+<LinkTo @route="schedule" class="btn btn-schedule">See the entire schedule</LinkTo>

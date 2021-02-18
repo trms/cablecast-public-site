@@ -20,7 +20,7 @@
           <div class="channel-stub-container">
             {{#each publicChannels as |otherChannel|}}
               {{#if (not-eq channel otherChannel)}}
-                {{channel-stub channel=otherChannel}}
+                <ChannelStub @channel={{otherChannel}} />
               {{/if}}
             {{/each}}
           </div>
@@ -30,7 +30,7 @@
         <h1 class="footer-header">
           Contact Us
         </h1>
-        {{contact-us config=config hasPodcasts=hasPodcasts}}
+        <ContactUs @config={{config}} @hasPodcasts={{hasPodcasts}} />
       </div>
     </div>
   </div>

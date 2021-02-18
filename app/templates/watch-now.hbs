@@ -16,10 +16,10 @@
     </div>
     <div class="col-sm-6 col-lg-4 u-no-padding">
       <div class="additional-info u-truncate-text">
-        {{preview-schedule channel=model.channel futureRuns=model.futureRuns}}
+        <PreviewSchedule @channel={{model.channel}} @futureRuns={{model.futureRuns}} />
       </div>
     </div>
   </div>
-  {{#fb-share-button}}Share{{/fb-share-button}}
-  {{#twitter-share-button}}Tweet{{/twitter-share-button}}
+  <FbShareButton>Share</FbShareButton>
+  <TwitterShareButton>Tweet</TwitterShareButton>
 </div>

@@ -1,15 +1,9 @@
-{{nav-menu channel=model.channel onSearch=(action "navSearch")}}
+<NavMenu @channel={{model.channel}} @onSearch={{action "navSearch"}} />
 <div class="container-wrapper">
   <div class="container">
     {{outlet}}
     <hr>
   </div>
 </div>
-{{channel-footer
-  config=model.channel.publicSite
-  hasPodcasts=hasPodcasts
-  channel=model.channel
-  publicChannels=publicChannels
-  showOtherChannels=showOtherChannels
-}}
-{{update-channel-styles channel-id=model.channel.id}}
+<ChannelFooter @config={{model.channel.publicSite}} @hasPodcasts={{hasPodcasts}} @channel={{model.channel}} @publicChannels={{publicChannels}} @showOtherChannels={{showOtherChannels}} />
+<UpdateChannelStyles @channel-id={{model.channel.id}} />

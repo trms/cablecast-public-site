@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-xs-12 col-sm-4">
         <div class="header-logo-wrapper">
-          {{#link-to "index" class="main"}}
+          <LinkTo @route="index" class="main">
             {{#if channel.publicSite.logo.url}}
               <img
                 src={{channel.publicSite.logo.url}}
@@ -17,27 +17,27 @@
 				alt="Site Logo"
               >
             {{/if}}
-          {{/link-to}}
+          </LinkTo>
         </div>
       </div>
       <div class="col-xs-12 col-sm-8 pull-right">
         <div class="row">
           <div class="col-xs-12 header-controls pull-right">
             {{#if channel.liveStreams}}
-              {{link-to
-                "Watch"
-                "watch-now"
-                channel.liveStreams.firstObject.id
-                class="btn btn-watch pull-right"
-              }}
+              <LinkTo
+                @route="watch-now"
+                @model={{channel.liveStreams.firstObject.id}}
+                class="btn btn-watch pull-right">
+                Watch
+              </LinkTo>
             {{/if}}
             <form {{action "search" on="submit"}}>
               <div class="input-group header-controls-search-wrapper">
-                {{input
-                  value=tempQuery
+                <Input
+                  @value={{tempQuery}}
                   class="form-control"
                   placeholder="Search"
-                }}
+                />
                 <span class="input-group-btn">
                   <button
                     class="btn btn-search"

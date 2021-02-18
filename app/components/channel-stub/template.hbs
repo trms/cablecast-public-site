@@ -1,4 +1,4 @@
-{{#link-to "index" (query-params channel=channel.id) class="channel-stub-link"}}
+<LinkTo @route="index" @query={{hash channel=channel.id}} class="channel-stub-link">
   <p class="channel-stub-title">
     {{siteName}}
   </p>
@@ -13,4 +13,4 @@
     {{/if}}
   </div>
   {{!--<p>{{{channel.publicSite.aboutPageDescription}}}</p>--}}
-{{/link-to}}
+</LinkTo>

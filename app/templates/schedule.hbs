@@ -23,11 +23,11 @@
   </div>
   <div class="schedule-wrapper clearfix">
     <div class="col-xs-12">
-      {{shows-schedule schedule=model class="shows-schedule is-desktop"}}
+      <ShowsSchedule @schedule={{model}} @class="shows-schedule is-desktop" />
     </div>
   </div>
   <div class="social-wrapper">
-    {{#fb-share-button}}Share{{/fb-share-button}}
-    {{#twitter-share-button}}Tweet{{/twitter-share-button}}
+    <FbShareButton>Share</FbShareButton>
+    <TwitterShareButton>Tweet</TwitterShareButton>
   </div>
 </div>
