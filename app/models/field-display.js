@@ -1,10 +1,10 @@
-import DS from 'ember-data';
+import Model, { attr, belongsTo } from '@ember-data/model';
 
-export default DS.Model.extend({
-  label: DS.attr(),
-  field: DS.attr(),
-  publicSite: DS.belongsTo('public-site', {async: true}),
-  showField: DS.attr('number'),
-  widget: DS.attr(),
-  order: DS.attr('number')
+export default Model.extend({
+  label: attr(),
+  field: attr(),
+  publicSite: belongsTo('public-site', {async: true}),
+  showField: attr('number'),
+  widget: attr(),
+  order: attr('number')
 });

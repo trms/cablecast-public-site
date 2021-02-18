@@ -1,24 +1,24 @@
+import Model, { hasMany, belongsTo, attr } from '@ember-data/model';
 import { computed } from '@ember/object';
-import DS from 'ember-data';
 import moment from 'moment';
 
-export default DS.Model.extend({
-	vods: DS.hasMany('vod', { async: true }),
-	producer: DS.belongsTo('producer', { async: true }),
-	category: DS.belongsTo('category', { async: true }),
-	project: DS.belongsTo('project', { async: true }),
-	reels: DS.hasMany('reel', { async: true }),
-	customFields: DS.attr(),
+export default Model.extend({
+	vods: hasMany('vod', { async: true }),
+	producer: belongsTo('producer', { async: true }),
+	category: belongsTo('category', { async: true }),
+	project: belongsTo('project', { async: true }),
+	reels: hasMany('reel', { async: true }),
+	customFields: attr(),
 
-	cgTitle: DS.attr('string'),
-	cgExempt: DS.attr('boolean'),
-	comments: DS.attr('string'),
-	title: DS.attr('string'),
-	eventDate: DS.attr('string'),
-	totalRunTime: DS.attr('number'),
-	runCount: DS.attr('number'),
-	showThumbnails: DS.hasMany('thumbnail', { async: true }),
-	firstRuns: DS.hasMany('first-run', { async: true }),
+	cgTitle: attr('string'),
+	cgExempt: attr('boolean'),
+	comments: attr('string'),
+	title: attr('string'),
+	eventDate: attr('string'),
+	totalRunTime: attr('number'),
+	runCount: attr('number'),
+	showThumbnails: hasMany('thumbnail', { async: true }),
+	firstRuns: hasMany('first-run', { async: true }),
 	absoluteFirstRun: computed('firstRuns.@each.runDateTime', function () {
 		var sorted = this.firstRuns.sortBy('runDateTime');
 		return sorted.get('firstObject');

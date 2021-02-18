@@ -1,7 +1,7 @@
-import DS from 'ember-data';
+import Model, { attr } from '@ember-data/model';
 
-export default DS.Model.extend({
-	embedTemplate: DS.attr('string'),
-	vodServerBaseUrl: DS.attr('string'),
-	cablecastServerBaseUrl: DS.attr('string')
+export default Model.extend({
+	embedTemplate: attr('string'),
+	vodServerBaseUrl: attr('string'),
+	cablecastServerBaseUrl: attr('string')
 });

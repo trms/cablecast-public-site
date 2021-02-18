@@ -1,9 +1,9 @@
+import RESTAdapter from '@ember-data/adapter/rest';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
-import DS from 'ember-data';
 import ENV from 'cablecast-public-site/config/environment';
 
-export default DS.RESTAdapter.extend({
+export default RESTAdapter.extend({
   fastboot: service(),
 	namespace: 'cablecastapi/v1',
   host: computed('fastboot.isFastBoot', function() {

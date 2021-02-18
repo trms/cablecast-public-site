@@ -1,8 +1,8 @@
-import DS from 'ember-data';
+import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 
-export default DS.Model.extend({
-	name: DS.attr('string'),
-	primaryLocation: DS.attr(),
-	publicSite: DS.belongsTo('public-site', {async: false}),
-	liveStreams: DS.hasMany('live-stream', {async: true}),
+export default Model.extend({
+	name: attr('string'),
+	primaryLocation: attr(),
+	publicSite: belongsTo('public-site', {async: false}),
+	liveStreams: hasMany('live-stream', {async: true}),
 });

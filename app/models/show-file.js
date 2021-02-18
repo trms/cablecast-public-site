@@ -1,7 +1,6 @@
-import DS from 'ember-data';
-var attr = DS.attr;
+import Model, { attr, belongsTo } from '@ember-data/model';
 
-export default DS.Model.extend({
-	show: DS.belongsTo('show', {async: true}),
+export default Model.extend({
+	show: belongsTo('show', {async: true}),
 	files: attr('array')
 });

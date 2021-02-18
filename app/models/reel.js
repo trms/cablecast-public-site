@@ -1,8 +1,8 @@
+import Model, { attr } from '@ember-data/model';
 import { computed } from '@ember/object';
-import DS from 'ember-data';
 
-export default DS.Model.extend({
-  length: DS.attr('number'),
+export default Model.extend({
+  length: attr('number'),
   trt: computed('length', function () {
 
     var seconds = this.length;

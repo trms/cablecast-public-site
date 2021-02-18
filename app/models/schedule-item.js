@@ -1,18 +1,16 @@
+import Model, { attr, belongsTo } from '@ember-data/model';
 import { alias } from '@ember/object/computed';
 import moment from 'moment';
 
 import { computed } from '@ember/object';
-import DS from 'ember-data';
 
-var attr = DS.attr;
-
-export default DS.Model.extend({
+export default Model.extend({
 	cgExempt: attr('boolean'),
 	runDateTime: attr('date'),
 	idType: attr('number'),
 
-	channel: DS.belongsTo('channel', {async: true}),
-	show: DS.belongsTo('show', {async: true}),
+	channel: belongsTo('channel', {async: true}),
+	show: belongsTo('show', {async: true}),
 
 	scheduledTimeString: computed('runDateTime', {
 		get: function() {

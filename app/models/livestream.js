@@ -1,10 +1,10 @@
-import DS from 'ember-data';
+import Model, { attr, belongsTo } from '@ember-data/model';
 
-export default DS.Model.extend({
-	name: DS.attr('string'),
-	reflectBaseUrl: DS.attr('string'),
-	embedTemplate: DS.attr('string'),
+export default Model.extend({
+	name: attr('string'),
+	reflectBaseUrl: attr('string'),
+	embedTemplate: attr('string'),
 
-	show: DS.belongsTo('show', {async: true}),
-	channel: DS.belongsTo('channel', {async: true}),
+	show: belongsTo('show', {async: true}),
+	channel: belongsTo('channel', {async: true}),
 });

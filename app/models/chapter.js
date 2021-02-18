@@ -1,8 +1,7 @@
-import DS from 'ember-data';
-var attr = DS.attr;
+import Model, { attr, belongsTo } from '@ember-data/model';
 
-export default DS.Model.extend({
-	vod: DS.belongsTo('vod', {async: true}),
+export default Model.extend({
+	vod: belongsTo('vod', {async: true}),
 	title: attr('string', {defaultValue: 'New Chapter'}),
 	body: attr('string', {defaultValue: ''}),
 	link: attr('string', {defaultValue: ''}),

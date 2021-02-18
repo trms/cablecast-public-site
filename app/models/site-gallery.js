@@ -1,9 +1,9 @@
-import DS from 'ember-data';
+import Model, { attr, belongsTo } from '@ember-data/model';
 
-export default DS.Model.extend({
-  displayName: DS.attr(),
-  displayLimit: DS.attr(),
-  position: DS.attr('number'),
-  publicSite: DS.belongsTo('public-site'),
-  savedShowSearch: DS.belongsTo('saved-show-search',{async:false}),
+export default Model.extend({
+  displayName: attr(),
+  displayLimit: attr(),
+  position: attr('number'),
+  publicSite: belongsTo('public-site'),
+  savedShowSearch: belongsTo('saved-show-search',{async:false}),
 });

@@ -1,6 +1,6 @@
-import DS from 'ember-data';
+import Model, { attr } from '@ember-data/model';
 
-export default DS.Model.extend({
-	transactionType: DS.attr('number'),
-	percentComplete: DS.attr('number')
+export default Model.extend({
+	transactionType: attr('number'),
+	percentComplete: attr('number')
 });

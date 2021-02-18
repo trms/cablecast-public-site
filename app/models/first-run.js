@@ -1,8 +1,8 @@
-import DS from 'ember-data';
+import Model, { belongsTo, attr } from '@ember-data/model';
 
-export default DS.Model.extend({
-  channel: DS.belongsTo('channel', {async: true}),
-	show: DS.belongsTo('show', {async: true}),
-	scheduleItem: DS.belongsTo('schedule-item', {async: true}),
-  runDateTime: DS.attr('date')
+export default Model.extend({
+  channel: belongsTo('channel', {async: true}),
+	show: belongsTo('show', {async: true}),
+	scheduleItem: belongsTo('schedule-item', {async: true}),
+  runDateTime: attr('date')
 });
