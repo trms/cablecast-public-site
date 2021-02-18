@@ -4,9 +4,9 @@ import Component from '@ember/component';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
-  store: service(),
+  tagName: '',
 
-  classNames: ['shows-gallery'],
+  store: service(),
 
   init(){
     this._super(...arguments);

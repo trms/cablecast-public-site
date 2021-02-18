@@ -4,6 +4,7 @@ import Component from '@ember/component';
 import ENV from 'cablecast-public-site/config/environment';
 
 export default Component.extend({
+  tagName: '',
   fastboot: service(),
   didReceiveAttrs() {
     let rootURL = ENV.rootURL;

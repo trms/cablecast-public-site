@@ -2,7 +2,7 @@ import { computed } from '@ember/object';
 import Component from '@ember/component';
 
 export default Component.extend({
-  classNames: ['channel-stub'],
+  tagName: '',
 
   siteName: computed('channel.{publicSite.siteName,name}',function(){
     return this.get('channel.publicSite.siteName') || this.get('channel.name');

@@ -2,7 +2,7 @@ import { computed } from '@ember/object';
 import Component from '@ember/component';
 
 export default Component.extend({
-  classNames: ['paginated-show-list'],
+  tagName: '',
   offset: computed('page', 'pageSize', function() {
     return (this.page - 1) * this.pageSize;
   }),

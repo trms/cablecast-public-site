@@ -1,57 +1,59 @@
-<div id="header">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-4">
-        <div class="header-logo-wrapper">
-          <LinkTo @route="index" class="main">
-            {{#if channel.publicSite.logo.url}}
-              <img
-                src={{channel.publicSite.logo.url}}
-                class="header-logo-img"
-				alt="Site Logo"
-              >
-            {{else}}
-              <img
-                src="{{rootURL}}images/temp-peg-logo.png"
-                class="header-logo-img"
-				alt="Site Logo"
-              >
-            {{/if}}
-          </LinkTo>
+<nav class="main-nav-menu" ...attributes>
+  <div id="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-4">
+          <div class="header-logo-wrapper">
+            <LinkTo @route="index" class="main">
+              {{#if channel.publicSite.logo.url}}
+                <img
+                  src={{channel.publicSite.logo.url}}
+                  class="header-logo-img"
+  				alt="Site Logo"
+                >
+              {{else}}
+                <img
+                  src="{{rootURL}}images/temp-peg-logo.png"
+                  class="header-logo-img"
+  				alt="Site Logo"
+                >
+              {{/if}}
+            </LinkTo>
+          </div>
         </div>
-      </div>
-      <div class="col-xs-12 col-sm-8 pull-right">
-        <div class="row">
-          <div class="col-xs-12 header-controls pull-right">
-            {{#if channel.liveStreams}}
-              <LinkTo
-                @route="watch-now"
-                @model={{channel.liveStreams.firstObject.id}}
-                class="btn btn-watch pull-right">
-                Watch
-              </LinkTo>
-            {{/if}}
-            <form {{action "search" on="submit"}}>
-              <div class="input-group header-controls-search-wrapper">
-                <Input
-                  @value={{tempQuery}}
-                  class="form-control"
-                  placeholder="Search"
-                />
-                <span class="input-group-btn">
-                  <button
-                    class="btn btn-search"
-                    type="submit"
-                    {{action "search" tempQuery}}
-                  >
-                    Search
-                  </button>
-                </span>
-              </div>
-            </form>
+        <div class="col-xs-12 col-sm-8 pull-right">
+          <div class="row">
+            <div class="col-xs-12 header-controls pull-right">
+              {{#if channel.liveStreams}}
+                <LinkTo
+                  @route="watch-now"
+                  @model={{channel.liveStreams.firstObject.id}}
+                  class="btn btn-watch pull-right">
+                  Watch
+                </LinkTo>
+              {{/if}}
+              <form {{action "search" on="submit"}}>
+                <div class="input-group header-controls-search-wrapper">
+                  <Input
+                    @value={{tempQuery}}
+                    class="form-control"
+                    placeholder="Search"
+                  />
+                  <span class="input-group-btn">
+                    <button
+                      class="btn btn-search"
+                      type="submit"
+                      {{action "search" tempQuery}}
+                    >
+                      Search
+                    </button>
+                  </span>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</nav>

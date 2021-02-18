@@ -3,10 +3,8 @@ import { alias } from '@ember/object/computed';
 import Component from '@ember/component';
 
 export default Component.extend({
-	classNames: ['show-thumbnail'],
-	tagName: 'img',
+	tagName: '',
 	quality: 'Small',
-	attributeBindings: ['src'],
 	src: alias('thumbnailPath'),
 
 	show: null,

@@ -1,55 +1,57 @@
-{{#unless hideControl}}
-  <nav>
-    <ul class="pagination pagination">
-      {{#unless hideFirst}}
-        <li>
-          <a href="#" aria-label="First" {{action "gotoPage" 1}}>
-            {{#if displayFirstLastAsNumber}}
-              1
-            {{else}}
-              First
-            {{/if}}
-          </a>
-        </li>
-      {{/unless}}
-      {{#if showPrevNextButtons}}
-        <li>
-          <a href="#" aria-label="Previous" {{action "prev"}}>
-            <span aria-hidden="true">
-              «
-            </span>
-          </a>
-        </li>
-      {{/if}}
-      {{#each pages as |page|}}
-        <li class={{if page.active "active"}}>
-          <a href="#" {{action "gotoPage" page.number}}>
-            {{page.number}}
-          </a>
-        </li>
-      {{/each}}
-      {{#if showPrevNextButtons}}
-        <li>
-          <a href="#" aria-label="Next" {{action "next"}}>
-            <span aria-hidden="true">
-              »
-            </span>
-          </a>
-        </li>
-      {{/if}}
-      {{#unless hideLast}}
-        <li>
-          <a href="#" aria-label="First" {{action "gotoPage" pageCount}}>
-            <span aria-hidden="true">
+<div ...attributes>
+  {{#unless hideControl}}
+    <nav>
+      <ul class="pagination pagination">
+        {{#unless hideFirst}}
+          <li>
+            <a href="#" aria-label="First" {{action "gotoPage" 1}}>
               {{#if displayFirstLastAsNumber}}
-                {{pageCount}}
+                1
               {{else}}
-                Last
+                First
               {{/if}}
-            </span>
-          </a>
-        </li>
-      {{/unless}}
-    </ul>
-  </nav>
-{{/unless}}
+            </a>
+          </li>
+        {{/unless}}
+        {{#if showPrevNextButtons}}
+          <li>
+            <a href="#" aria-label="Previous" {{action "prev"}}>
+              <span aria-hidden="true">
+                «
+              </span>
+            </a>
+          </li>
+        {{/if}}
+        {{#each pages as |page|}}
+          <li class={{if page.active "active"}}>
+            <a href="#" {{action "gotoPage" page.number}}>
+              {{page.number}}
+            </a>
+          </li>
+        {{/each}}
+        {{#if showPrevNextButtons}}
+          <li>
+            <a href="#" aria-label="Next" {{action "next"}}>
+              <span aria-hidden="true">
+                »
+              </span>
+            </a>
+          </li>
+        {{/if}}
+        {{#unless hideLast}}
+          <li>
+            <a href="#" aria-label="First" {{action "gotoPage" pageCount}}>
+              <span aria-hidden="true">
+                {{#if displayFirstLastAsNumber}}
+                  {{pageCount}}
+                {{else}}
+                  Last
+                {{/if}}
+              </span>
+            </a>
+          </li>
+        {{/unless}}
+      </ul>
+    </nav>
+  {{/unless}}
+</div>

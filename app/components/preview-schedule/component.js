@@ -2,6 +2,7 @@ import { computed } from '@ember/object';
 import Component from '@ember/component';
 
 export default Component.extend({
+  tagName: '',
 
   onAirRun: computed('futureRuns.[]',function(){
     return this.futureRuns.find((item)=>{
@@ -10,5 +11,5 @@ export default Component.extend({
       let end = item.get('end');
       return start <= now && end > now;
     });
-  }),
+  })
 });
