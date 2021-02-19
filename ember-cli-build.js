@@ -1,10 +1,10 @@
 'use strict';
+
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const Funnel = require('broccoli-funnel');
 
-module.exports = function(defaults) {
-
-  var app = new EmberApp(defaults, {
+module.exports = function (defaults) {
+  let app = new EmberApp(defaults, {
     'ember-cli-babel': {
       includePolyfill: true,
     },
