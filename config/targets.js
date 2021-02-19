@@ -13,6 +13,8 @@ if (isCI || isProduction) {
   browsers.push('ie 11');
 }
 
-module.exports = {
-  browsers,
-};
+// Per https://github.com/emberjs/ember.js/issues/19353 Can be reverted to blueprint in `ember-source` >= 3.26 or when backported
+module.exports = [
+  ...browsers,
+  'maintained node versions'
+];
