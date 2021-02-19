@@ -1,3 +1,4 @@
+import classic from 'ember-classic-decorator';
 /* globals PDFJS */
 import { debounce } from '@ember/runloop';
 import $ from 'jquery';
@@ -5,7 +6,8 @@ import Component from '@ember/component';
 
 
 
-export default Component.extend({
+@classic
+export default class PdfViewer extends Component {
   didInsertElement() {
     let url = this.url;
     let container = this.element.getElementsByClassName('pdf-wrapper')[0];
@@ -36,19 +38,19 @@ export default Component.extend({
     });
     this.set('pdfViewer', pdfViewer);
     $(window).on('resize.' + this.elementId, this._handleResizeEvent.bind(this));
-  },
+  }
 
-  willDestroyElement: function () {
-    this._super();
+  willDestroyElement() {
+    super.willDestroyElement();
     $(window).off('resize.' + this.elementId);
 
-  },
+  }
 
   _handleResizeEvent() {
     debounce(this, this.rescalePdf, 150);
-  },
+  }
 
   rescalePdf() {
     this.pdfViewer.currentScaleValue = 'auto';
   }
-});
+}

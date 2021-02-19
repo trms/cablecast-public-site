@@ -1,11 +1,16 @@
-import jQuery from 'jquery';
+import classic from 'ember-classic-decorator';
+import { tagName } from '@ember-decorators/component';
 import { inject as service } from '@ember/service';
+import jQuery from 'jquery';
 import Component from '@ember/component';
 import ENV from 'cablecast-public-site/config/environment';
 
-export default Component.extend({
-  tagName: '',
-  fastboot: service(),
+@classic
+@tagName('')
+export default class UpdateChannelStyles extends Component {
+  @service
+  fastboot;
+
   didReceiveAttrs() {
     let rootURL = ENV.rootURL;
     let channelID = this['channel-id'];
@@ -20,4 +25,4 @@ export default Component.extend({
       }
     }
   }
-});
+}

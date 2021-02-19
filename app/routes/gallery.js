@@ -1,14 +1,17 @@
+import classic from 'ember-classic-decorator';
 import { hash } from 'rsvp';
 import Route from '@ember/routing/route';
 import ResetScroll from 'cablecast-public-site/mixins/reset-scroll';
 
-export default Route.extend(ResetScroll, {
-  queryParams: {
+@classic
+export default class GalleryRoute extends Route.extend(ResetScroll) {
+  queryParams = {
 		page: {
 			refreshModel: true
 		}
-	},
-  model(params){
+	};
+
+  model(params) {
     let gallery = this.store.findRecord('site-gallery',params.id);
     let shows = gallery.then((gallery) => {
       let pageSize = 50;
@@ -25,14 +28,15 @@ export default Route.extend(ResetScroll, {
       gallery,
       shows,
     });
-  },
+  }
 
-  setupController(controller, model){
-		this._super(...arguments);
+  setupController(controller, model) {
+		super.setupController(...arguments);
     controller.set('model',model);
-	},
-  deactivate(){
-    this._super(...arguments);
+	}
+
+  deactivate() {
+    super.deactivate(...arguments);
     this.controller.set('page',1);
-  },
-});
+  }
+}

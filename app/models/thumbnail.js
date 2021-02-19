@@ -1,6 +1,11 @@
+import classic from 'ember-classic-decorator';
 import Model, { attr } from '@ember-data/model';
 
-export default Model.extend({
-  quality: attr('string'),
-  url: attr('string')
-});
+@classic
+export default class Thumbnail extends Model {
+  @attr('string')
+  quality;
+
+  @attr('string')
+  url;
+}

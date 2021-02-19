@@ -1,19 +1,21 @@
+import classic from 'ember-classic-decorator';
 import Route from '@ember/routing/route';
 import SetPageTitle from 'cablecast-public-site/mixins/set-page-title';
 import moment from 'moment';
 
-export default Route.extend(SetPageTitle, {
-	queryParams: {
+@classic
+export default class ScheduleRoute extends Route.extend(SetPageTitle) {
+    queryParams = {
 		currentDay: {
 			refreshModel: true
 		}
-	},
+	};
 
-	afterModel() {
+    afterModel() {
 		this.setTitle('Schedule');
-	},
+	}
 
-	model: function (params) {
+    model(params) {
 		var appParams = this.paramsFor('application');
 		var _start = moment(params.currentDay).startOf('day').format();
 		var _end = moment(params.currentDay).add(1, 'days').format();
@@ -32,11 +34,11 @@ export default Route.extend(SetPageTitle, {
 						run.get('cgExempt') === false;
 				});
 			});
-	},
+	}
 
-	setupController(controller) {
-		this._super(...arguments);
+    setupController(controller) {
+		super.setupController(...arguments);
 		let appParams = this.paramsFor('application');
 		controller.set('channel', this.store.peekRecord('channel', appParams.channel));
 	}
-});
+}

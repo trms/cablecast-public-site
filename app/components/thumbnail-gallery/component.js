@@ -1,6 +1,9 @@
+import classic from 'ember-classic-decorator';
+import { tagName } from '@ember-decorators/component';
 import Component from '@ember/component';
 
-export default Component.extend({
-    tagName: '',
-    items: null
-});
+@classic
+@tagName('')
+export default class ThumbnailGallery extends Component {
+    items = null;
+}

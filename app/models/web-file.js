@@ -1,6 +1,11 @@
+import classic from 'ember-classic-decorator';
 import Model, { attr } from '@ember-data/model';
 
-export default Model.extend({
-  url: attr('string'),
-  name: attr('string')
-});
+@classic
+export default class WebFile extends Model {
+  @attr('string')
+  url;
+
+  @attr('string')
+  name;
+}

@@ -1,10 +1,14 @@
-import { get } from '@ember/object';
+import classic from 'ember-classic-decorator';
 import { inject as service } from '@ember/service';
+import { get } from '@ember/object';
 import Helper from '@ember/component/helper';
 import toTimecode from 'cablecast-public-site/utils/timecode';
 
-export default Helper.extend({
-  store: service(),
+@classic
+export default class ShowField extends Helper {
+  @service
+  store;
+
   lookupCustom(show, fieldDisplay) {
     let value = show.get('customFields').find((field) => {
       return get(field, 'showField') === fieldDisplay.get('showField');
@@ -24,7 +28,8 @@ export default Helper.extend({
           return value.value;
       }
     }
-  },
+  }
+
   compute([show, fieldDisplay]) {
     switch(fieldDisplay.get('field')) {
       case 'localId':
@@ -57,4 +62,4 @@ export default Helper.extend({
         return `Unhandled Field ${fieldDisplay.get('field')}`;
     }
   }
-});
+}

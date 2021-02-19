@@ -1,8 +1,10 @@
+import classic from 'ember-classic-decorator';
 import { hash, all } from 'rsvp';
 import Route from '@ember/routing/route';
 import SetPageTitle from 'cablecast-public-site/mixins/set-page-title';
 
-export default Route.extend(SetPageTitle, {
+@classic
+export default class ShowRoute extends Route.extend(SetPageTitle) {
   setHeadData(show) {
     let data = {
       type: 'video.episode',
@@ -20,7 +22,7 @@ export default Route.extend(SetPageTitle, {
     this.appendJsonLD(data, show);
 
     this.setTitle(show.get('cgTitle'));
-  },
+  }
 
   findAThumbnailUrl(show) {
     let thumbnail = show.get('showThumbnails').findBy('quality', 'Large');
@@ -31,7 +33,7 @@ export default Route.extend(SetPageTitle, {
       return encodeURI(thumbnail.get('url'));
     }
     return this.get('headData.socialMedia.image');
-  },
+  }
 
   appendJsonLD(data, show) {
     let jsonLD = {
@@ -50,9 +52,9 @@ export default Route.extend(SetPageTitle, {
     }
     let headData = this.headData;
     headData.set('jsonLD', JSON.stringify(jsonLD));
-  },
+  }
 
-  model: function (params) {
+  model(params) {
     var appParams = this.paramsFor('application');
     var start = new Date();
     var self = this;
@@ -76,12 +78,12 @@ export default Route.extend(SetPageTitle, {
           runs: runs
         });
       });
-  },
+  }
 
-  afterModel: function (model) {
+  afterModel(model) {
     this.setHeadData(model.show);
     return this.loadCustomFieldRecords(model.show);
-  },
+  }
 
   loadCustomFieldRecords(show) {
     let records = [];
@@ -93,20 +95,19 @@ export default Route.extend(SetPageTitle, {
       }
     });
     return all(records);
-  },
+  }
 
-  setupController: function (controller, model) {
+  setupController(controller, model) {
     let chapters = model.show.get('vods.firstObject.chapters') || [];
     chapters = chapters.rejectBy('deleted');
     if (chapters.length) {
       controller.set('activeTab', 'chapters');
     }
     controller.set('model', model);
-  },
+  }
 
-  resetController: function (controller) {
+  resetController(controller) {
     controller.set('activeTab', 'details');
     controller.set('seekto', null);
   }
-
-});
+}

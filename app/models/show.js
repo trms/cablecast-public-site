@@ -1,45 +1,79 @@
-import Model, { hasMany, belongsTo, attr } from '@ember-data/model';
+import classic from 'ember-classic-decorator';
 import { computed } from '@ember/object';
+import Model, { hasMany, belongsTo, attr } from '@ember-data/model';
 import moment from 'moment';
 
-export default Model.extend({
-	vods: hasMany('vod', { async: true }),
-	producer: belongsTo('producer', { async: true }),
-	category: belongsTo('category', { async: true }),
-	project: belongsTo('project', { async: true }),
-	reels: hasMany('reel', { async: true }),
-	customFields: attr(),
+@classic
+export default class Show extends Model {
+    @hasMany('vod', { async: true })
+    vods;
 
-	cgTitle: attr('string'),
-	cgExempt: attr('boolean'),
-	comments: attr('string'),
-	title: attr('string'),
-	eventDate: attr('string'),
-	totalRunTime: attr('number'),
-	runCount: attr('number'),
-	showThumbnails: hasMany('thumbnail', { async: true }),
-	firstRuns: hasMany('first-run', { async: true }),
-	absoluteFirstRun: computed('firstRuns.@each.runDateTime', function () {
+    @belongsTo('producer', { async: true })
+    producer;
+
+    @belongsTo('category', { async: true })
+    category;
+
+    @belongsTo('project', { async: true })
+    project;
+
+    @hasMany('reel', { async: true })
+    reels;
+
+    @attr()
+    customFields;
+
+    @attr('string')
+    cgTitle;
+
+    @attr('boolean')
+    cgExempt;
+
+    @attr('string')
+    comments;
+
+    @attr('string')
+    title;
+
+    @attr('string')
+    eventDate;
+
+    @attr('number')
+    totalRunTime;
+
+    @attr('number')
+    runCount;
+
+    @hasMany('thumbnail', { async: true })
+    showThumbnails;
+
+    @hasMany('first-run', { async: true })
+    firstRuns;
+
+    @computed('firstRuns.@each.runDateTime')
+    get absoluteFirstRun() {
 		var sorted = this.firstRuns.sortBy('runDateTime');
 		return sorted.get('firstObject');
-	}),
-	thumbnail: computed('showThumbnails.@each.quality', {
-		get: function () {
-			var thumbnail = this.showThumbnails.findBy('quality', 'Large');
-			// If we still don't have a thumbnail return a placeholder image
-			if (!thumbnail) {
-				return 'http://placehold.it/720x480';
-			}
+	}
 
-			return thumbnail.get('url');
-		}
-	}),
+    @computed('showThumbnails.@each.quality')
+    get thumbnail() {
+        var thumbnail = this.showThumbnails.findBy('quality', 'Large');
+        // If we still don't have a thumbnail return a placeholder image
+        if (!thumbnail) {
+            return 'http://placehold.it/720x480';
+        }
 
-	eventDateString: computed('eventDate', function () {
+        return thumbnail.get('url');
+    }
+
+    @computed('eventDate')
+    get eventDateString() {
 		return moment(this.eventDate).format('l');
-	}),
+	}
 
-	schedule: computed(function () {
+    @computed
+    get schedule() {
 		var today = moment();
 
 		var _start = moment(today).startOf('day').format();
@@ -49,5 +83,5 @@ export default Model.extend({
 			start: _start,
 			page_size: 5
 		});
-	})
-});
+	}
+}

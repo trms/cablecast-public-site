@@ -1,32 +1,38 @@
-import { computed } from '@ember/object';
+import classic from 'ember-classic-decorator';
+import { action, computed } from '@ember/object';
 import Controller from '@ember/controller';
 
-export default Controller.extend({
-  queryParams: ['channel','showOtherChannels'],
-  showOtherChannels:true,
-  projects: computed('model.channel.primaryLocation.id', function() {
+@classic
+export default class ApplicationController extends Controller {
+  queryParams = ['channel','showOtherChannels'];
+  showOtherChannels = true;
+
+  @computed('model.channel.primaryLocation.id')
+  get projects() {
     return this.model.projects;
-  }),
+  }
 
-  allChannels: computed(function(){
+  @computed
+  get allChannels() {
     return this.store.peekAll('channel');
-  }),
+  }
 
-  publicChannels: computed('allChannels.[]',function(){
+  @computed('allChannels.[]')
+  get publicChannels() {
     return this.allChannels.filterBy('publicSite.includeInIndex',true).sortBy('publicSite.siteName');
-  }),
+  }
 
-  hasPodcasts: computed('projects.[]', function() {
+  @computed('projects.[]')
+  get hasPodcasts() {
     return this.projects.filter(function(project) {
       // Test that a project has a name and is marked for podcasting.
       return project.get('name') &&
              project.get('podcast');
     }).length > 0;
-  }),
+  }
 
-  actions: {
-		navSearch: function(query) {
-			this.transitionToRoute('search', {queryParams: {query: query}});
-		},
-	}
-});
+  @action
+  navSearch(query) {
+      this.transitionToRoute('search', {queryParams: {query: query}});
+  }
+}

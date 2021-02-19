@@ -1,9 +1,20 @@
+import classic from 'ember-classic-decorator';
 import Model, { attr, belongsTo } from '@ember-data/model';
 
-export default Model.extend({
-  displayName: attr(),
-  displayLimit: attr(),
-  position: attr('number'),
-  publicSite: belongsTo('public-site'),
-  savedShowSearch: belongsTo('saved-show-search',{async:false}),
-});
+@classic
+export default class SiteGallery extends Model {
+  @attr()
+  displayName;
+
+  @attr()
+  displayLimit;
+
+  @attr('number')
+  position;
+
+  @belongsTo('public-site')
+  publicSite;
+
+  @belongsTo('saved-show-search', {async:false})
+  savedShowSearch;
+}

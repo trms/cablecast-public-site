@@ -1,7 +1,14 @@
+import classic from 'ember-classic-decorator';
 import Model, { attr } from '@ember-data/model';
 
-export default Model.extend({
-  query: attr(),
-  name: attr('string'),
-  results: attr('array'),
-});
+@classic
+export default class SavedShowSearch extends Model {
+  @attr()
+  query;
+
+  @attr('string')
+  name;
+
+  @attr('array')
+  results;
+}

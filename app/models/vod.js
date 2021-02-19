@@ -1,18 +1,41 @@
-import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
+import classic from 'ember-classic-decorator';
 import { computed } from '@ember/object';
+import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 
-export default Model.extend({
-  fileName: attr('string'),
-  show: belongsTo('show', { async: true }),
-  chapters: hasMany('chapter', { async: true }),
-  chaptersPublished: attr('boolean'),
-  vodConfiguration: belongsTo('vod-configuration', { async: true }),
-  vodTransactions: hasMany('vod-transaction', { async: true }),
-  lastTransaction: belongsTo('vod-transaction', { async: true }),
-  isReady: computed('lastTransaction.transactionType', function () {
+@classic
+export default class Vod extends Model {
+  @attr('string')
+  fileName;
+
+  @belongsTo('show', { async: true })
+  show;
+
+  @hasMany('chapter', { async: true })
+  chapters;
+
+  @attr('boolean')
+  chaptersPublished;
+
+  @belongsTo('vod-configuration', { async: true })
+  vodConfiguration;
+
+  @hasMany('vod-transaction', { async: true })
+  vodTransactions;
+
+  @belongsTo('vod-transaction', { async: true })
+  lastTransaction;
+
+  @computed('lastTransaction.transactionType')
+  get isReady() {
     return this.get('lastTransaction.transactionType') === 5;
-  }),
-  embedCode: attr('string'),
-  url: attr('string'),
-  isWatchable: attr('boolean')
-});
+  }
+
+  @attr('string')
+  embedCode;
+
+  @attr('string')
+  url;
+
+  @attr('boolean')
+  isWatchable;
+}

@@ -1,9 +1,14 @@
-import Model, { attr } from '@ember-data/model';
+import classic from 'ember-classic-decorator';
 import { computed } from '@ember/object';
+import Model, { attr } from '@ember-data/model';
 
-export default Model.extend({
-  length: attr('number'),
-  trt: computed('length', function () {
+@classic
+export default class Reel extends Model {
+  @attr('number')
+  length;
+
+  @computed('length')
+  get trt() {
 
     var seconds = this.length;
 
@@ -17,5 +22,5 @@ export default Model.extend({
     if (seconds < 10) { seconds = "0" + seconds; }
     var time = hours + ':' + minutes + ':' + seconds;
     return time;
-  })
-});
+  }
+}

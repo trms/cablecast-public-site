@@ -1,7 +1,9 @@
+import classic from 'ember-classic-decorator';
 import ApplicationAdapter from 'cablecast-public-site/adapters/application';
 
-export default ApplicationAdapter.extend({
-  pathForType: function(/*type*/) {
+@classic
+export default class SavedShowSearch extends ApplicationAdapter {
+  pathForType() /*type*/{
         return 'shows/search/advanced';
   }
-});
+}

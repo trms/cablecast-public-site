@@ -1,5 +1,5 @@
+import classic from 'ember-classic-decorator';
 import Model from '@ember-data/model';
 
-export default Model.extend({
-  
-});
+@classic
+export default class Medium extends Model {}

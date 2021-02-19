@@ -1,42 +1,49 @@
-import Model, { attr, belongsTo } from '@ember-data/model';
+import classic from 'ember-classic-decorator';
+import { computed } from '@ember/object';
 import { alias } from '@ember/object/computed';
+import Model, { attr, belongsTo } from '@ember-data/model';
 import moment from 'moment';
 
-import { computed } from '@ember/object';
+@classic
+export default class ScheduleItem extends Model {
+    @attr('boolean')
+    cgExempt;
 
-export default Model.extend({
-	cgExempt: attr('boolean'),
-	runDateTime: attr('date'),
-	idType: attr('number'),
+    @attr('date')
+    runDateTime;
 
-	channel: belongsTo('channel', {async: true}),
-	show: belongsTo('show', {async: true}),
+    @attr('number')
+    idType;
 
-	scheduledTimeString: computed('runDateTime', {
-		get: function() {
-			return moment(this.runDateTime).format('h:mm:ss a');
-		}
-	}),
+    @belongsTo('channel', {async: true})
+    channel;
 
-	scheduledDateTimeString: computed('runDateTime', {
-		get: function() {
-			//return moment(this.get('runDateTime')).format('llll');
-			return moment(this.runDateTime).calendar();
-		}
-	}),
+    @belongsTo('show', {async: true})
+    show;
 
-	start: alias('runDateTime'),
+    @computed('runDateTime')
+    get scheduledTimeString() {
+        return moment(this.runDateTime).format('h:mm:ss a');
+    }
 
-	// TODO: Replace this with a TRT helper
-	end: computed('show', 'runDateTime', {
-		get: function() {
-			var reels = this.get('show.reels');
-			if (!reels) { return this.runDateTime; }
+    @computed('runDateTime')
+    get scheduledDateTimeString() {
+        //return moment(this.get('runDateTime')).format('llll');
+        return moment(this.runDateTime).calendar();
+    }
 
-			var length = reels.getEach('length')[0];
-			var end = moment(this.runDateTime).unix() + length;
+    @alias('runDateTime')
+    start;
 
-			return moment.unix(end).toDate();
-		}
-	})
-});
+    // TODO: Replace this with a TRT helper
+    @computed('show', 'runDateTime')
+    get end() {
+        var reels = this.get('show.reels');
+        if (!reels) { return this.runDateTime; }
+
+        var length = reels.getEach('length')[0];
+        var end = moment(this.runDateTime).unix() + length;
+
+        return moment.unix(end).toDate();
+    }
+}

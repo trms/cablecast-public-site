@@ -1,3 +1,4 @@
+import classic from 'ember-classic-decorator';
 import { hash } from 'rsvp';
 import Route from '@ember/routing/route';
 import { get } from '@ember/object';
@@ -11,33 +12,33 @@ function filterShows(shows) {
 	});
 }
 
-export default Route.extend(SetPageTitle, GetFutureRuns, ResetScroll, {
+@classic
+export default class IndexRoute extends Route.extend(SetPageTitle, GetFutureRuns, ResetScroll) {
+  model() {
+      let channel = this.modelFor('application').channel;
 
-	model() {
-		let channel = this.modelFor('application').channel;
+  let carouselShows = channel.get('publicSite.carouselSavedSearch').then((search)=>{
+    if(search){
+      return this.store.query('show',{
+        ids: search.get('results').slice(0,20),
+        include: 'thumbnail,vod,category,project,producer,reel',
+      }).then(filterShows);
+    }
+  });
 
-    let carouselShows = channel.get('publicSite.carouselSavedSearch').then((search)=>{
-      if(search){
-        return this.store.query('show',{
-          ids: search.get('results').slice(0,20),
-          include: 'thumbnail,vod,category,project,producer,reel',
-        }).then(filterShows);
-      }
-    });
+  return hash({
+    carouselShows,
+    futureRuns:this.getFutureRuns(channel),
+    defaultShows: this.store.query('show',{page_size: 24, location: channel.get('primaryLocation')}).then(filterShows),
+    categories: this.store.findAll('category'),
+    projects: this.store.findAll('project'),
+    producers: this.store.findAll('producer')
+  });
+}
 
-    return hash({
-      carouselShows,
-      futureRuns:this.getFutureRuns(channel),
-      defaultShows: this.store.query('show',{page_size: 24, location: channel.get('primaryLocation')}).then(filterShows),
-      categories: this.store.findAll('category'),
-      projects: this.store.findAll('project'),
-      producers: this.store.findAll('producer')
-    });
-  },
-
-	afterModel() {
-		var channel = this.modelFor('application').channel;
-		let name = channel.get('publicSite.siteName') || channel.get('name');
-		this.setTitle(name);
-	}
-});
+  afterModel() {
+      var channel = this.modelFor('application').channel;
+      let name = channel.get('publicSite.siteName') || channel.get('name');
+      this.setTitle(name);
+  }
+}

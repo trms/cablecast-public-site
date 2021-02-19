@@ -1,6 +1,11 @@
+import classic from 'ember-classic-decorator';
 import Model, { attr, belongsTo } from '@ember-data/model';
 
-export default Model.extend({
-	show: belongsTo('show', {async: true}),
-	files: attr('array')
-});
+@classic
+export default class ShowFile extends Model {
+    @belongsTo('show', {async: true})
+    show;
+
+    @attr('array')
+    files;
+}

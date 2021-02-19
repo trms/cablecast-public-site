@@ -1,7 +1,14 @@
+import classic from 'ember-classic-decorator';
 import Model, { attr } from '@ember-data/model';
 
-export default Model.extend({
-	embedTemplate: attr('string'),
-	vodServerBaseUrl: attr('string'),
-	cablecastServerBaseUrl: attr('string')
-});
+@classic
+export default class VodConfiguration extends Model {
+    @attr('string')
+    embedTemplate;
+
+    @attr('string')
+    vodServerBaseUrl;
+
+    @attr('string')
+    cablecastServerBaseUrl;
+}

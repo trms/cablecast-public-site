@@ -1,21 +1,24 @@
-import { computed } from '@ember/object';
+import classic from 'ember-classic-decorator';
+import { tagName } from '@ember-decorators/component';
+import { action, computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { task } from 'ember-concurrency';
 
-export default Component.extend({
-  tagName: '',
+@classic
+@tagName('')
+export default class ShowsGallery extends Component {
+  @service
+  store;
 
-  store: service(),
-
-  init(){
-    this._super(...arguments);
+  init() {
+    super.init(...arguments);
     this.showsTask.perform();
-  },
+  }
 
-  collapsed:false,
+  collapsed = false;
 
-  showsTask: task(function * () {
+  @task(function * () {
     let search = this.get('gallery.savedShowSearch');
     if (!search) {
       return;
@@ -36,16 +39,18 @@ export default Component.extend({
 
     yield shows;
     this.set('shows',shows);
-  }),
+  })
+  showsTask;
 
-  filteredShows: computed('shows.[]',function(){
+  @computed('shows.[]')
+  get filteredShows() {
     let shows = this.shows || [];
     let limit = this.get('gallery.displayLimit');
     return shows.filterBy('showThumbnails.length').splice(0,limit);
-  }),
-  actions:{
-    collapseGallery(){
-      this.toggleProperty('collapsed');
-    }
   }
-});
+
+  @action
+  collapseGallery() {
+    this.toggleProperty('collapsed');
+  }
+}

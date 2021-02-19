@@ -1,21 +1,29 @@
-import { scheduleOnce } from '@ember/runloop';
+import classic from 'ember-classic-decorator';
 import { inject as service } from '@ember/service';
+import { scheduleOnce } from '@ember/runloop';
 import EmberRouter from '@ember/routing/router';
 import config from './config/environment';
 
-const Router = EmberRouter.extend({
-  fastboot: service(),
-  headData: service(),
-  location: config.locationType,
-  rootURL: config.rootURL,
-  metrics: service(),
+@classic
+class Router extends EmberRouter {
+  @service
+  fastboot;
+
+  @service
+  headData;
+
+  location = config.locationType;
+  rootURL = config.rootURL;
+
+  @service
+  metrics;
 
   init() {
-    this._super(...arguments);
+    super.init(...arguments);
     this.on('routeDidChange', () => {
       this._trackPage();
     });
-  },
+  }
 
   _trackPage() {
     scheduleOnce('afterRender', this, () => {
@@ -26,7 +34,7 @@ const Router = EmberRouter.extend({
       }
     });
   }
-});
+}
 
 Router.map(function() {
   this.route('podcasts');

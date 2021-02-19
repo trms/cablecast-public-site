@@ -1,21 +1,30 @@
+import classic from 'ember-classic-decorator';
+import { inject as service } from '@ember/service';
 import { get } from '@ember/object';
 import { hash } from 'rsvp';
-import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
 import ENV from 'cablecast-public-site/config/environment';
 import ResetScroll from 'cablecast-public-site/mixins/reset-scroll';
 
-export default Route.extend(ResetScroll,{
-  site: service(),
-  fastboot: service(),
-  headData: service(),
-  metrics: service(),
+@classic
+export default class ApplicationRoute extends Route.extend(ResetScroll) {
+  @service
+  site;
 
-  queryParams: {
+  @service
+  fastboot;
+
+  @service
+  headData;
+
+  @service
+  metrics;
+
+  queryParams = {
     channel: {
       refreshModel: true
     }
-  },
+  };
 
   getCanonicalUrl() {
     let url = '';
@@ -30,7 +39,7 @@ export default Route.extend(ResetScroll,{
       url = document.location.href;
     }
     return url;
-  },
+  }
 
   appendJsonLD(publicSite) {
     let pageUrl = this.getCanonicalUrl();
@@ -53,7 +62,7 @@ export default Route.extend(ResetScroll,{
     }
     let headData = this.headData;
 		headData.set('jsonLD', JSON.stringify(jsonLD));
-  },
+  }
 
   setHeadData(channel) {
     let publicSite = channel.get('publicSite');
@@ -76,9 +85,9 @@ export default Route.extend(ResetScroll,{
     headData.set('url', encodeURI(url));
     headData.set('channelID', channel.get('id'));
     headData.set('rootURL', encodeURI(ENV.rootURL));
-  },
+  }
 
-  model: function(params) {
+  model(params) {
     return hash({
       channels: this.store.query('channel', {include: 'publicsite,webfile,thumbnail,sitegallery,savedshowsearch'}),
       projects: this.store.findAll('project')
@@ -94,14 +103,14 @@ export default Route.extend(ResetScroll,{
         projects: result.projects
       };
     });
-  },
+  }
 
   afterModel(model) {
     let publicSite = model.channel.get('publicSite');
     this.set('site.publicSite', publicSite);
     this.setHeadData(model.channel);
     this._setupMetrics(publicSite);
-  },
+  }
 
   _setupMetrics(site) {
     if (get(site, 'googleAnalyticsId')) {
@@ -118,10 +127,10 @@ export default Route.extend(ResetScroll,{
         }
       ]);
     }
-  },
+  }
 
   setupController(controller, model) {
-    this._super(...arguments);
+    super.setupController(...arguments);
     controller.set('channel', model.channel.id);
   }
-});
+}
