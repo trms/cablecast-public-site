@@ -5,9 +5,11 @@ import { inject as service } from '@ember/service';
 import Controller from '@ember/controller';
 import ENV from 'cablecast-public-site/config/environment';
 
+const currentDay = moment().format('YYYY-MM-DD');
+
 export default Controller.extend({
 	queryParams: ['currentDay'],
-	currentDay: moment().format('YYYY-MM-DD'),
+	currentDay,
   fastboot: service(),
   rootURL: computed(function() {
     return ENV.rootURL;

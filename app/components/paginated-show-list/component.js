@@ -21,7 +21,7 @@ export default Component.extend({
   }),
 
   actions:{
-    goToPage(page){
+    _goToPage(page){
       this.goToPage(page);
     }
   }

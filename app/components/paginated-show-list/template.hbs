@@ -29,7 +29,7 @@
       <div class="col-lg-12 u-no-padding">
         {{#if this.showPaginationControl}}
           <PaginationControl
-            @onPageSelect={{action "goToPage"}}
+            @onPageSelect={{action "_goToPage"}}
             @pageSize={{@pageSize}}
             @currentPage={{@page}}
             @count={{@total}}
@@ -51,7 +51,7 @@
         </div>
         {{#if this.showPaginationControl}}
           <PaginationControl
-            @onPageSelect={{action "goToPage"}}
+            @onPageSelect={{action "_goToPage"}}
             @pageSize={{@pageSize}}
             @currentPage={{@page}}
             @count={{@total}}
