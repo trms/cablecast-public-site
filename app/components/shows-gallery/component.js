@@ -41,7 +41,7 @@ export default class ShowsGallery extends Component {
   })
   showsTask;
 
-  @computed('shows.[]')
+  @computed('gallery.displayLimit', 'shows.[]')
   get filteredShows() {
     let shows = this.shows || [];
     let limit = this.get('gallery.displayLimit');

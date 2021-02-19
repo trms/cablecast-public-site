@@ -14,7 +14,4 @@ if (isCI || isProduction) {
 }
 
 // Per https://github.com/emberjs/ember.js/issues/19353 Can be reverted to blueprint in `ember-source` >= 3.26 or when backported
-module.exports = [
-  ...browsers,
-  'maintained node versions'
-];
+module.exports = [...browsers, 'maintained node versions'];

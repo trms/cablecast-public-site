@@ -8,9 +8,7 @@ import ResetScroll from 'cablecast-public-site/mixins/reset-scroll';
 
 function filterShows(shows) {
   return shows.filter(function (show) {
-    return (
-      get(show, 'showThumbnails.length') > 0 && get(show, 'cgExempt') === false
-    );
+    return get(show, 'showThumbnails.length') > 0 && show.cgExempt === false;
   });
 }
 

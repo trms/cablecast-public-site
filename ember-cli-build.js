@@ -12,9 +12,7 @@ module.exports = function (defaults) {
       exclude: ['pdf.worker.js'],
     },
     svg: {
-      paths: [
-        'public/svg',
-      ],
+      paths: ['public/svg'],
     },
   });
 
@@ -59,5 +57,4 @@ module.exports = function (defaults) {
   });
 
   return app.toTree([scssFiles, PDFJS, PDFJSExtras, PDFJSCmaps]);
-
 };

@@ -9,11 +9,13 @@ import Component from '@ember/component';
 @classNames('vod-chapters')
 export default class VodChapters extends Component {
   didInsertElement() {
+    super.didInsertElement(...arguments);
     this._messageHandler = bind(this, 'processMessage');
     window.addEventListener('message', this._messageHandler, false);
   }
 
   willDestroyElement() {
+    super.willDestroyElement(...arguments);
     if (this._messageHandler) {
       window.removeEventListener('message', this._messageHandler);
     }

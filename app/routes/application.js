@@ -118,9 +118,9 @@ export default class ApplicationRoute extends Route.extend(ResetScroll) {
   }
 
   _setupMetrics(site) {
-    if (get(site, 'googleAnalyticsId')) {
+    if (site.googleAnalyticsId) {
       let metrics = this.metrics;
-      let id = get(site, 'googleAnalyticsId');
+      let id = site.googleAnalyticsId;
 
       metrics.activateAdapters([
         {

@@ -10,7 +10,7 @@
             {{fd.label}}
           </label>
           {{#if (eq fd.widget "link")}}
-            <a href={{value}} target="_blank" rel="noopener">
+            <a href={{value}} target="_blank" rel="noopener noreferrer">
               {{value}}
             </a>
           {{else if (eq fd.widget "date")}}

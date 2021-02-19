@@ -12,6 +12,7 @@ export default class UpdateChannelStyles extends Component {
   fastboot;
 
   didReceiveAttrs() {
+    super.didReceiveAttrs();
     let rootURL = ENV.rootURL;
     let channelID = this['channel-id'];
     if (this.get('fastboot.isFastBoot') === false) {

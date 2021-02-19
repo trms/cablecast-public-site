@@ -7,6 +7,7 @@ import Component from '@ember/component';
 @classic
 export default class PdfViewer extends Component {
   didInsertElement() {
+    super.didInsertElement(...arguments);
     let url = this.url;
     let container = this.element.getElementsByClassName('pdf-wrapper')[0];
     let pdfLinkService = new PDFJS.PDFLinkService();

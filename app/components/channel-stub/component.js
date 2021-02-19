@@ -11,7 +11,7 @@ export default class ChannelStub extends Component {
     return this.get('channel.publicSite.siteName') || this.get('channel.name');
   }
 
-  @computed('channel.publicSite.{logo,squareLogo}')
+  @computed('channel.publicSite.logo.url', 'channel.publicSite.squareLogo.url')
   get logo() {
     return (
       this.get('channel.publicSite.squareLogo.url') ||

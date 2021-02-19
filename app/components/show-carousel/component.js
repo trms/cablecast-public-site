@@ -11,6 +11,7 @@ export default class ShowCarousel extends Component {
   fastboot;
 
   didInsertElement() {
+    super.didInsertElement(...arguments);
     jQuery('#carousel').carousel('cycle');
   }
 }

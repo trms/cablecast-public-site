@@ -72,7 +72,7 @@ export default class Show extends Model {
     return moment(this.eventDate).format('l');
   }
 
-  @computed
+  @computed('id', 'store')
   get schedule() {
     var today = moment();
 

@@ -18,7 +18,7 @@ export default class SearchController extends Controller {
     return 1 + this.get('meta.offset') * this.get('meta.pageSize');
   }
 
-  @computed('page', 'meta.{offset,pageSize}')
+  @computed('meta.{count,offset,pageSize}', 'page')
   get lastResult() {
     var total = this.get('meta.count');
     var last =

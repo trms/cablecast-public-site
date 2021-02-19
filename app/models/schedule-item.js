@@ -36,7 +36,7 @@ export default class ScheduleItem extends Model {
   start;
 
   // TODO: Replace this with a TRT helper
-  @computed('show', 'runDateTime')
+  @computed('runDateTime', 'show.reels')
   get end() {
     var reels = this.get('show.reels');
     if (!reels) {

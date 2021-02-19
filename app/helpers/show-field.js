@@ -11,7 +11,7 @@ export default class ShowField extends Helper {
 
   lookupCustom(show, fieldDisplay) {
     let value = show.get('customFields').find((field) => {
-      return get(field, 'showField') === fieldDisplay.get('showField');
+      return field.showField === fieldDisplay.get('showField');
     });
 
     if (value) {
@@ -22,11 +22,11 @@ export default class ShowField extends Helper {
           }
 
           let file = this.store.peekRecord('web-file', value.value);
-          return get(file || {}, 'url');
+          return (file || {}).url;
         }
         case 'producer': {
           let producer = this.store.findRecord('producer', value.value);
-          return get(producer || {}, 'name');
+          return (producer || {}).name;
         }
         default:
           return value.value;

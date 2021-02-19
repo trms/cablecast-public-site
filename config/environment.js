@@ -3,13 +3,13 @@
 module.exports = function (environment) {
   let ENV = {
     'ember-cli-head': {
-      suppressBrowserRender: true
+      suppressBrowserRender: true,
     },
     'ember-metrics': {
-      includeAdapters: ['google-analytics']
+      includeAdapters: ['google-analytics'],
     },
     fastboot: {
-      hostWhitelist: [/.+/]
+      hostWhitelist: [/.+/],
     },
     environment,
     rootURL: '/',
@@ -53,7 +53,7 @@ module.exports = function (environment) {
   }
 
   if (environment === 'production') {
-    ENV.rootURL = '/CablecastPublicSite/'
+    ENV.rootURL = '/CablecastPublicSite/';
   }
 
   return ENV;

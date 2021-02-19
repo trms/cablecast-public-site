@@ -4,7 +4,7 @@ import Controller from '@ember/controller';
 
 @classic
 export default class ChannelsController extends Controller {
-  @computed
+  @computed('store')
   get allChannels() {
     return this.store.peekAll('channel');
   }

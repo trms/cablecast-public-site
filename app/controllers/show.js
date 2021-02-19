@@ -38,7 +38,11 @@ export default class ShowController extends Controller {
   seekto = null;
 
   //TODO - fix this code later
-  @computed('model.show.customFields', 'site.publicSite.fieldDisplays.[]')
+  @computed(
+    'model.show.customFields',
+    'site.publicSite.fieldDisplays.[]',
+    'store'
+  )
   get embededPdf() {
     let pdfDisplays = this.get('site.publicSite.fieldDisplays')
       .sortBy('order')
@@ -52,7 +56,7 @@ export default class ShowController extends Controller {
         let file = this.store.peekRecord('web-file', fileField.value);
         if (/.+\.pdf$/.test(file.get('name'))) {
           return {
-            url: get(file || {}, 'url'),
+            url: (file || {}).url,
             fieldDisplay: pdfDisplays[i],
           };
         }

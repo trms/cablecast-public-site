@@ -7,12 +7,12 @@ export default class ApplicationController extends Controller {
   queryParams = ['channel', 'showOtherChannels'];
   showOtherChannels = true;
 
-  @computed('model.channel.primaryLocation.id')
+  @computed('model.channel.primaryLocation.id', 'model.projects')
   get projects() {
     return this.model.projects;
   }
 
-  @computed
+  @computed('store')
   get allChannels() {
     return this.store.peekAll('channel');
   }

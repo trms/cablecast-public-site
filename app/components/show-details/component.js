@@ -17,7 +17,7 @@ export default class ShowDetails extends Component {
     return this.get('site.publicSite.fieldDisplays').sortBy('order');
   }
 
-  @computed('show', 'currentChannelId')
+  @computed('currentChannelId', 'show.firstRuns')
   get firstRun() {
     let currentChannelId = this.currentChannelId;
     let firstRun = this.get('show.firstRuns')

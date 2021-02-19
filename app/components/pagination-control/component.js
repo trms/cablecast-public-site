@@ -14,7 +14,7 @@ export default class PaginationControl extends Component {
   showFirstLastButtons = true;
   displayFirstLastAsNumber = false;
 
-  @computed('currentPage', 'pageSize', 'count')
+  @computed('count', 'currentPage', 'maxPageButtons', 'pageCount', 'pageSize')
   get pages() {
     var result = [],
       pageCount = this.pageCount,
