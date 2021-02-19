@@ -1,11 +1,11 @@
 <div ...attributes>
-  {{#unless hideControl}}
+  {{#unless this.hideControl}}
     <nav>
       <ul class="pagination pagination">
-        {{#unless hideFirst}}
+        {{#unless this.hideFirst}}
           <li>
             <a href="#" aria-label="First" {{action "gotoPage" 1}}>
-              {{#if displayFirstLastAsNumber}}
+              {{#if this.displayFirstLastAsNumber}}
                 1
               {{else}}
                 First
@@ -13,7 +13,7 @@
             </a>
           </li>
         {{/unless}}
-        {{#if showPrevNextButtons}}
+        {{#if this.showPrevNextButtons}}
           <li>
             <a href="#" aria-label="Previous" {{action "prev"}}>
               <span aria-hidden="true">
@@ -22,14 +22,14 @@
             </a>
           </li>
         {{/if}}
-        {{#each pages as |page|}}
+        {{#each this.pages as |page|}}
           <li class={{if page.active "active"}}>
             <a href="#" {{action "gotoPage" page.number}}>
               {{page.number}}
             </a>
           </li>
         {{/each}}
-        {{#if showPrevNextButtons}}
+        {{#if this.showPrevNextButtons}}
           <li>
             <a href="#" aria-label="Next" {{action "next"}}>
               <span aria-hidden="true">
@@ -38,12 +38,12 @@
             </a>
           </li>
         {{/if}}
-        {{#unless hideLast}}
+        {{#unless this.hideLast}}
           <li>
-            <a href="#" aria-label="First" {{action "gotoPage" pageCount}}>
+            <a href="#" aria-label="First" {{action "gotoPage" this.pageCount}}>
               <span aria-hidden="true">
-                {{#if displayFirstLastAsNumber}}
-                  {{pageCount}}
+                {{#if this.displayFirstLastAsNumber}}
+                  {{this.pageCount}}
                 {{else}}
                   Last
                 {{/if}}

@@ -4,8 +4,8 @@
       <div class="col-sm-8 col-sm-offset-2">
         {{!-- template-lint-disable no-invalid-interactive --}}
         <h1 class="gallery-title-header" {{action "collapseGallery"}}>
-          {{gallery.displayName}}
-          {{#if collapsed}}
+          {{@gallery.displayName}}
+          {{#if this.collapsed}}
             {{fa-icon "chevron-up"}}
           {{else}}
             {{fa-icon "chevron-down"}}
@@ -13,8 +13,8 @@
         </h1>
       </div>
       <div class="col-sm-2">
-        {{#if gallery.id}}
-          <LinkTo @route="gallery" @model={{gallery.id}} class="gallery-show-all-link">
+        {{#if @gallery.id}}
+          <LinkTo @route="gallery" @model={{@gallery.id}} class="gallery-show-all-link">
             Show All...
           </LinkTo>
         {{/if}}
@@ -22,12 +22,12 @@
     </div>
   </div>
   <div class="gallery-wrapper">
-    {{#unless collapsed}}
+    {{#unless this.collapsed}}
       <div class="show-stub-container">
-        {{#if showsTask.isRunning}}
+        {{#if this.showsTask.isRunning}}
           <LoadingSpinner />
         {{else}}
-          {{#each filteredShows as |show|}}
+          {{#each this.filteredShows as |show|}}
             <ShowStub @show={{show}} />
           {{else}}
             <h2 class="gallery-no-shows-warning">

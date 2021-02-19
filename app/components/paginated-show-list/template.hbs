@@ -3,22 +3,22 @@
     <div class="row">
       <div class="col-xs-12">
         <h1 class="search-results-header">
-          {{title}}
+          {{@title}}
           <br>
-          {{#if showPaginationControl}}
+          {{#if this.showPaginationControl}}
             <small>
               Displaying
-              {{firstResult}}
+              {{this.firstResult}}
               -
-              {{lastResult}}
+              {{this.lastResult}}
               of
-              {{meta.count}}
+              {{@meta.count}}
               shows.
             </small>
           {{else}}
             <small>
               Displaying
-              {{shows.length}}
+              {{@shows.length}}
               shows.
             </small>
           {{/if}}
@@ -27,20 +27,20 @@
     </div>
     <div class="show-player clearfix">
       <div class="col-lg-12 u-no-padding">
-        {{#if showPaginationControl}}
+        {{#if this.showPaginationControl}}
           <PaginationControl
             @onPageSelect={{action "goToPage"}}
-            @pageSize={{pageSize}}
-            @currentPage={{page}}
-            @count={{total}}
+            @pageSize={{@pageSize}}
+            @currentPage={{@page}}
+            @count={{@total}}
             class="text-center"
           />
         {{/if}}
         <div class="show-stub-container">
-          {{#if loading}}
+          {{#if @loading}}
             <LoadingSpinner />
           {{else}}
-            {{#each shows as |result|}}
+            {{#each @shows as |result|}}
               <ShowStub @show={{result}} />
             {{else}}
               <h3>
@@ -49,12 +49,12 @@
             {{/each}}
           {{/if}}
         </div>
-        {{#if showPaginationControl}}
+        {{#if this.showPaginationControl}}
           <PaginationControl
             @onPageSelect={{action "goToPage"}}
-            @pageSize={{pageSize}}
-            @currentPage={{page}}
-            @count={{total}}
+            @pageSize={{@pageSize}}
+            @currentPage={{@page}}
+            @count={{@total}}
             class="text-center"
           />
         {{/if}}

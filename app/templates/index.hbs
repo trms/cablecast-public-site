@@ -2,20 +2,20 @@
   <div class="show-player clearfix">
     <div class="col-sm-6 col-lg-8 u-no-padding">
       <div class="embed-responsive embed-responsive-16by9">
-        {{#if carouselShows.length}}
-          <ShowCarousel @shows={{carouselShows}} />
+        {{#if this.carouselShows.length}}
+          <ShowCarousel @shows={{this.carouselShows}} />
         {{/if}}
       </div>
     </div>
     <div class="col-sm-6 col-lg-4 u-no-padding">
       <div class="additional-info u-truncate-text">
-        <PreviewSchedule @channel={{channel}} @futureRuns={{model.futureRuns}} />
+        <PreviewSchedule @channel={{this.channel}} @futureRuns={{this.model.futureRuns}} />
       </div>
     </div>
   </div>
 </div>
-{{#if siteGalleries.length}}
-  {{#each siteGalleries as |gallery|}}
+{{#if this.siteGalleries.length}}
+  {{#each this.siteGalleries as |gallery|}}
     {{#if (gt gallery.savedShowSearch.results.length 0)}}
       <ShowsGallery @gallery={{gallery}} />
     {{/if}}
@@ -23,7 +23,7 @@
 {{else}}
   <ShowsGallery
     @gallery={{hash displayName="Recent Shows" displayLimit=12}}
-    @shows={{model.defaultShows}} />
+    @shows={{this.model.defaultShows}} />
 {{/if}}
 <div class="social-wrapper">
   <FbShareButton>Share</FbShareButton>

@@ -3,14 +3,14 @@
     Schedule
   </h3>
   <div class="schedule">
-    {{#each futureRuns as |run|}}
+    {{#each @futureRuns as |run|}}
       <div class="schedule-row clearfix">
         <div class="plaque">
-          {{#if (eq run onAirRun)}}
+          {{#if (eq run this.onAirRun)}}
             <LinkTo
               @route="watch-now"
-              @model={{channel.liveStreams.firstObject.id}}
-              @alt={{onAirRun.show.cgTitle}}
+              @model={{@channel.liveStreams.firstObject.id}}
+              @alt={{this.onAirRun.show.cgTitle}}
               class="live-stream-name">
               <div class="plaque-content now">
                 Now

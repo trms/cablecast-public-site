@@ -1,6 +1,6 @@
 <div ...attributes>
-  {{#each orderedFields as |fd|}}
-    {{#with (show-field show fd) as |value|}}
+  {{#each this.orderedFields as |fd|}}
+    {{#with (show-field @show fd) as |value|}}
       {{#unless (eq fd.widget "pdf")}}
         <div
           class="show-field-display

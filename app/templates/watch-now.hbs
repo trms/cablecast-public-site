@@ -3,7 +3,7 @@
     <div class="col-xs-12">
       <h2 class="watch-now-header">
         You're watching
-        {{model.liveStream.channel.name}}
+        {{this.model.liveStream.channel.name}}
       </h2>
     </div>
   </div>
@@ -11,12 +11,12 @@
     <div class="col-sm-6 col-lg-8 u-no-padding">
       <div class="embed-responsive embed-responsive-16by9">
         {{!-- template-lint-disable no-triple-curlies --}}
-        {{{model.liveStream.embedCode}}}
+        {{{this.model.liveStream.embedCode}}}
       </div>
     </div>
     <div class="col-sm-6 col-lg-4 u-no-padding">
       <div class="additional-info u-truncate-text">
-        <PreviewSchedule @channel={{model.channel}} @futureRuns={{model.futureRuns}} />
+        <PreviewSchedule @channel={{this.model.channel}} @futureRuns={{this.model.futureRuns}} />
       </div>
     </div>
   </div>
