@@ -19,7 +19,7 @@ export default class PaginatedShowList extends Component {
   @computed('offset', 'pageSize', 'total')
   get lastResult() {
     var total = this.total;
-    var last = (this.offset * this.pageSize) + this.pageSize;
+    var last = this.offset * this.pageSize + this.pageSize;
     return Math.min(last, total);
   }
 

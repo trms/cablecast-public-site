@@ -10,51 +10,51 @@ const currentDay = moment().format('YYYY-MM-DD');
 
 @classic
 export default class ScheduleController extends Controller {
-    queryParams = ['currentDay'];
-    currentDay = currentDay;
+  queryParams = ['currentDay'];
+  currentDay = currentDay;
 
-    @service
-    fastboot;
+  @service
+  fastboot;
 
-    @computed
-    get rootURL() {
-      return ENV.rootURL;
-    }
+  @computed
+  get rootURL() {
+    return ENV.rootURL;
+  }
 
-    @computed('currentDay')
-    get currentDate() {
-		return moment(this.currentDay, 'YYYY-MM-DD').toDate();
-	}
+  @computed('currentDay')
+  get currentDate() {
+    return moment(this.currentDay, 'YYYY-MM-DD').toDate();
+  }
 
-    @computed('currentDay')
-    get prevDateString() {
-      var current = moment(this.currentDay);
-      return current.add(-1, 'days').format('YYYY-MM-DD');
-    }
+  @computed('currentDay')
+  get prevDateString() {
+    var current = moment(this.currentDay);
+    return current.add(-1, 'days').format('YYYY-MM-DD');
+  }
 
-    @computed('currentDay')
-    get nextDateString() {
-      var current = moment(this.currentDay);
-      return current.add(1, 'days').format('YYYY-MM-DD');
-    }
+  @computed('currentDay')
+  get nextDateString() {
+    var current = moment(this.currentDay);
+    return current.add(1, 'days').format('YYYY-MM-DD');
+  }
 
-    @action
-    changeDate(date) {
-        let current = moment(date);
-        this.set('currentDay', current.format('YYYY-MM-DD'));
-    }
+  @action
+  changeDate(date) {
+    let current = moment(date);
+    this.set('currentDay', current.format('YYYY-MM-DD'));
+  }
 
-    @action
-    prevDay() {
-        var current = moment(this.currentDay);
-        current.add(-1, 'days');
-        this.set('currentDay', current.format('YYYY-MM-DD'));
-    }
+  @action
+  prevDay() {
+    var current = moment(this.currentDay);
+    current.add(-1, 'days');
+    this.set('currentDay', current.format('YYYY-MM-DD'));
+  }
 
-    @action
-    nextDay() {
-        var current = moment(this.currentDay);
-        current.add(1, 'days');
-        this.set('currentDay', current.format('YYYY-MM-DD'));
-    }
+  @action
+  nextDay() {
+    var current = moment(this.currentDay);
+    current.add(1, 'days');
+    this.set('currentDay', current.format('YYYY-MM-DD'));
+  }
 }

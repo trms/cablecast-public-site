@@ -11,6 +11,6 @@ export default class ChannelsController extends Controller {
 
   @computed('allChannels.[]')
   get publicChannels() {
-    return this.allChannels.filterBy('publicSite.includeInIndex',true);
+    return this.allChannels.filterBy('publicSite.includeInIndex', true);
   }
 }

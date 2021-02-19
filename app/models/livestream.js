@@ -3,18 +3,18 @@ import Model, { attr, belongsTo } from '@ember-data/model';
 
 @classic
 export default class Livestream extends Model {
-    @attr('string')
-    name;
+  @attr('string')
+  name;
 
-    @attr('string')
-    reflectBaseUrl;
+  @attr('string')
+  reflectBaseUrl;
 
-    @attr('string')
-    embedTemplate;
+  @attr('string')
+  embedTemplate;
 
-    @belongsTo('show', {async: true})
-    show;
+  @belongsTo('show', { async: true })
+  show;
 
-    @belongsTo('channel', {async: true})
-    channel;
+  @belongsTo('channel', { async: true })
+  channel;
 }

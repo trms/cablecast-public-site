@@ -7,18 +7,18 @@ import ENV from 'cablecast-public-site/config/environment';
 @classic
 @tagName('')
 export default class NavMenu extends Component {
-    @computed
-    get rootURL() {
-      return ENV.rootURL;
-    }
+  @computed
+  get rootURL() {
+    return ENV.rootURL;
+  }
 
-    @action
-    search(query) {
-        this.onSearch(query);
-    }
+  @action
+  search(query) {
+    this.onSearch(query);
+  }
 
-    @action
-    watch(stream_id) {
-        this.onSearch(stream_id);
-    }
+  @action
+  watch(stream_id) {
+    this.onSearch(stream_id);
+  }
 }

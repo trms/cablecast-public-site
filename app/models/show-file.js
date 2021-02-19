@@ -3,9 +3,9 @@ import Model, { attr, belongsTo } from '@ember-data/model';
 
 @classic
 export default class ShowFile extends Model {
-    @belongsTo('show', {async: true})
-    show;
+  @belongsTo('show', { async: true })
+  show;
 
-    @attr('array')
-    files;
+  @attr('array')
+  files;
 }

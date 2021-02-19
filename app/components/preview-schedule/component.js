@@ -8,7 +8,7 @@ import Component from '@ember/component';
 export default class PreviewSchedule extends Component {
   @computed('futureRuns.[]')
   get onAirRun() {
-    return this.futureRuns.find((item)=>{
+    return this.futureRuns.find((item) => {
       let now = new Date();
       let start = item.get('start');
       let end = item.get('end');

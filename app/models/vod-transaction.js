@@ -3,9 +3,9 @@ import Model, { attr } from '@ember-data/model';
 
 @classic
 export default class VodTransaction extends Model {
-    @attr('number')
-    transactionType;
+  @attr('number')
+  transactionType;
 
-    @attr('number')
-    percentComplete;
+  @attr('number')
+  percentComplete;
 }

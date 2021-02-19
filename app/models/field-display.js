@@ -9,7 +9,7 @@ export default class FieldDisplay extends Model {
   @attr()
   field;
 
-  @belongsTo('public-site', {async: true})
+  @belongsTo('public-site', { async: true })
   publicSite;
 
   @attr('number')

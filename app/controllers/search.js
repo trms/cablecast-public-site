@@ -15,13 +15,15 @@ export default class SearchController extends Controller {
 
   @computed('page', 'meta.{offset,pageSize}')
   get firstResult() {
-    return 1 + (this.get('meta.offset') * this.get('meta.pageSize'));
+    return 1 + this.get('meta.offset') * this.get('meta.pageSize');
   }
 
   @computed('page', 'meta.{offset,pageSize}')
   get lastResult() {
     var total = this.get('meta.count');
-    var last = (this.get('meta.offset') * this.get('meta.pageSize')) + this.get('meta.pageSize');
+    var last =
+      this.get('meta.offset') * this.get('meta.pageSize') +
+      this.get('meta.pageSize');
     return Math.min(last, total);
   }
 

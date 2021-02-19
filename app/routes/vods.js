@@ -4,11 +4,11 @@ import SetPageTitle from 'cablecast-public-site/mixins/set-page-title';
 
 @classic
 export default class VodsRoute extends Route.extend(SetPageTitle) {
-    afterModel() {
-		this.setTitle('Vods');
-	}
+  afterModel() {
+    this.setTitle('Vods');
+  }
 
-    model() {
+  model() {
     return this.store.findAll('vod');
   }
 }

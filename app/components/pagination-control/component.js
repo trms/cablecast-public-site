@@ -20,7 +20,7 @@ export default class PaginationControl extends Component {
       pageCount = this.pageCount,
       currentPage = this.currentPage,
       maxPageButtons = this.maxPageButtons,
-      length = (pageCount >= maxPageButtons) ? maxPageButtons : pageCount,
+      length = pageCount >= maxPageButtons ? maxPageButtons : pageCount,
       startPos = 1;
 
     var offset = Math.floor(maxPageButtons / 2);
@@ -40,14 +40,13 @@ export default class PaginationControl extends Component {
     // Go through all of the pages and make an entry into the array
     for (var i = 0; i < length; i++) {
       var pageNum = i + startPos,
-        isActive = (pageNum === currentPage),
+        isActive = pageNum === currentPage,
         page = { number: pageNum, active: isActive };
 
       result.push(page);
     }
 
     return result;
-
   }
 
   @computed('count', 'pageSize')
@@ -65,16 +64,27 @@ export default class PaginationControl extends Component {
     var pages = this.pages;
     var displayFirstLastAsNumber = this.displayFirstLastAsNumber;
     var showFirstLastButtons = this.showFirstLastButtons;
-    return showFirstLastButtons === false || (displayFirstLastAsNumber && pages.findBy('number', 1));
+    return (
+      showFirstLastButtons === false ||
+      (displayFirstLastAsNumber && pages.findBy('number', 1))
+    );
   }
 
-  @computed('pages', 'pageCount', 'displayFirstLastAsNumber', 'showFirstLastButtons')
+  @computed(
+    'pages',
+    'pageCount',
+    'displayFirstLastAsNumber',
+    'showFirstLastButtons'
+  )
   get hideLast() {
     var pages = this.pages;
     var displayFirstLastAsNumber = this.displayFirstLastAsNumber;
     var pageCount = this.pageCount;
     var showFirstLastButtons = this.showFirstLastButtons;
-    return showFirstLastButtons === false || (displayFirstLastAsNumber && pages.findBy('number', pageCount));
+    return (
+      showFirstLastButtons === false ||
+      (displayFirstLastAsNumber && pages.findBy('number', pageCount))
+    );
   }
 
   @computed('currentPage')

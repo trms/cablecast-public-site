@@ -13,6 +13,9 @@ export default class ChannelStub extends Component {
 
   @computed('channel.publicSite.{logo,squareLogo}')
   get logo() {
-    return this.get('channel.publicSite.squareLogo.url') || this.get('channel.publicSite.logo.url');
+    return (
+      this.get('channel.publicSite.squareLogo.url') ||
+      this.get('channel.publicSite.logo.url')
+    );
   }
 }

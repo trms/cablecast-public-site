@@ -5,5 +5,5 @@ import Component from '@ember/component';
 @classic
 @tagName('')
 export default class ThumbnailGallery extends Component {
-    items = null;
+  items = null;
 }

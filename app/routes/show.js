@@ -10,7 +10,7 @@ export default class ShowRoute extends Route.extend(SetPageTitle) {
       type: 'video.episode',
       card: 'summary_large_image',
       title: show.get('cgTitle'),
-      description: show.get('comments') || show.get('cgTitle')
+      description: show.get('comments') || show.get('cgTitle'),
     };
     let thumbnailUrl = this.findAThumbnailUrl(show);
     if (thumbnailUrl) {
@@ -37,8 +37,8 @@ export default class ShowRoute extends Route.extend(SetPageTitle) {
 
   appendJsonLD(data, show) {
     let jsonLD = {
-      "@context": "http://schema.org",
-      "@type": "TVClip"
+      '@context': 'http://schema.org',
+      '@type': 'TVClip',
     };
     if (data.image) {
       jsonLD.thumbnailUrl = data.image;
@@ -61,23 +61,23 @@ export default class ShowRoute extends Route.extend(SetPageTitle) {
     return hash({
       shows: this.store.query('show', {
         ids: [params.id],
-        include: 'vod,vodtransaction,scheduleitem,thumbnail,chapter,firstrun,producer'
+        include:
+          'vod,vodtransaction,scheduleitem,thumbnail,chapter,firstrun,producer',
       }),
       runs: this.store.query('schedule-item', {
         show: params.id,
         start: start.toISOString(),
         page_size: 5,
-        channel: appParams.channel
+        channel: appParams.channel,
       }),
-      channels: this.store.findAll('channel')
-    })
-      .then(({ runs }) => {
-        let show = self.store.peekRecord('show', params.id);
-        return hash({
-          show: show,
-          runs: runs
-        });
+      channels: this.store.findAll('channel'),
+    }).then(({ runs }) => {
+      let show = self.store.peekRecord('show', params.id);
+      return hash({
+        show: show,
+        runs: runs,
       });
+    });
   }
 
   afterModel(model) {

@@ -7,7 +7,7 @@ export default class Project extends Model {
   @attr('string')
   name;
 
-  @belongsTo('producer', {async: true})
+  @belongsTo('producer', { async: true })
   producer;
 
   @attr('boolean')

@@ -15,15 +15,19 @@ export default class ShowField extends Helper {
     });
 
     if (value) {
-      switch(value.type) {
+      switch (value.type) {
         case 'file': {
-          if (value.value == null) { return; }
+          if (value.value == null) {
+            return;
+          }
 
-          let file =  this.store.peekRecord('web-file', value.value);
-          return get(file || {}, 'url');}
+          let file = this.store.peekRecord('web-file', value.value);
+          return get(file || {}, 'url');
+        }
         case 'producer': {
           let producer = this.store.findRecord('producer', value.value);
-          return get(producer || {}, 'name');}
+          return get(producer || {}, 'name');
+        }
         default:
           return value.value;
       }
@@ -31,7 +35,7 @@ export default class ShowField extends Helper {
   }
 
   compute([show, fieldDisplay]) {
-    switch(fieldDisplay.get('field')) {
+    switch (fieldDisplay.get('field')) {
       case 'localId':
         return show.get('localId');
       case 'showId':

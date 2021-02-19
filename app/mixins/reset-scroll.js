@@ -7,7 +7,7 @@ export default Mixin.create({
   setupController() {
     this._super(...arguments);
     if (this.get('fastboot.isFastBoot') === false) {
-      window.scrollTo(0,0);
+      window.scrollTo(0, 0);
     }
-  }
+  },
 });

@@ -22,8 +22,8 @@ export default class ApplicationRoute extends Route.extend(ResetScroll) {
 
   queryParams = {
     channel: {
-      refreshModel: true
-    }
+      refreshModel: true,
+    },
   };
 
   getCanonicalUrl() {
@@ -44,15 +44,18 @@ export default class ApplicationRoute extends Route.extend(ResetScroll) {
   appendJsonLD(publicSite) {
     let pageUrl = this.getCanonicalUrl();
     let jsonLD = {
-      "@context": "http://schema.org",
-      "@type": "WebSite",
-      url: encodeURI(pageUrl)
+      '@context': 'http://schema.org',
+      '@type': 'WebSite',
+      url: encodeURI(pageUrl),
     };
-    let logo = publicSite.get('squareLogo.content') || publicSite.get('logo.content');
+    let logo =
+      publicSite.get('squareLogo.content') || publicSite.get('logo.content');
     if (logo) {
       jsonLD.thumbnailUrl = encodeURI(logo.get('url'));
     }
-    let about = publicSite.get('aboutPageShortDescription') || publicSite.get('aboutPageDescription');
+    let about =
+      publicSite.get('aboutPageShortDescription') ||
+      publicSite.get('aboutPageDescription');
     if (about) {
       jsonLD.about = about;
     }
@@ -61,7 +64,7 @@ export default class ApplicationRoute extends Route.extend(ResetScroll) {
       jsonLD.headline = headline;
     }
     let headData = this.headData;
-		headData.set('jsonLD', JSON.stringify(jsonLD));
+    headData.set('jsonLD', JSON.stringify(jsonLD));
   }
 
   setHeadData(channel) {
@@ -70,9 +73,10 @@ export default class ApplicationRoute extends Route.extend(ResetScroll) {
       type: 'website',
       card: 'summary',
       title: publicSite.get('siteName'),
-      description: publicSite.get('aboutPageDescription')
+      description: publicSite.get('aboutPageDescription'),
     };
-    let logo = publicSite.get('squareLogo.content') || publicSite.get('logo.content');
+    let logo =
+      publicSite.get('squareLogo.content') || publicSite.get('logo.content');
     if (logo) {
       data.image = encodeURI(logo.get('url'));
     }
@@ -89,10 +93,11 @@ export default class ApplicationRoute extends Route.extend(ResetScroll) {
 
   model(params) {
     return hash({
-      channels: this.store.query('channel', {include: 'publicsite,webfile,thumbnail,sitegallery,savedshowsearch'}),
-      projects: this.store.findAll('project')
-    })
-    .then((result) => {
+      channels: this.store.query('channel', {
+        include: 'publicsite,webfile,thumbnail,sitegallery,savedshowsearch',
+      }),
+      projects: this.store.findAll('project'),
+    }).then((result) => {
       let channels = result.channels;
       let channel = channels.findBy('id', params.channel + '');
       if (!channel) {
@@ -100,7 +105,7 @@ export default class ApplicationRoute extends Route.extend(ResetScroll) {
       }
       return {
         channel: channel,
-        projects: result.projects
+        projects: result.projects,
       };
     });
   }
@@ -122,9 +127,9 @@ export default class ApplicationRoute extends Route.extend(ResetScroll) {
           name: 'GoogleAnalytics',
           environments: ['all'],
           config: {
-            id
-          }
-        }
+            id,
+          },
+        },
       ]);
     }
   }

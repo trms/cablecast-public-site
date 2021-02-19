@@ -15,6 +15,6 @@ export default class SiteGallery extends Model {
   @belongsTo('public-site')
   publicSite;
 
-  @belongsTo('saved-show-search', {async:false})
+  @belongsTo('saved-show-search', { async: false })
   savedShowSearch;
 }

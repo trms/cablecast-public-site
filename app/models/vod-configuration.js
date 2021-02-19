@@ -3,12 +3,12 @@ import Model, { attr } from '@ember-data/model';
 
 @classic
 export default class VodConfiguration extends Model {
-    @attr('string')
-    embedTemplate;
+  @attr('string')
+  embedTemplate;
 
-    @attr('string')
-    vodServerBaseUrl;
+  @attr('string')
+  vodServerBaseUrl;
 
-    @attr('string')
-    cablecastServerBaseUrl;
+  @attr('string')
+  cablecastServerBaseUrl;
 }

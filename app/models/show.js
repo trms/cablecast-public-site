@@ -5,83 +5,83 @@ import moment from 'moment';
 
 @classic
 export default class Show extends Model {
-    @hasMany('vod', { async: true })
-    vods;
+  @hasMany('vod', { async: true })
+  vods;
 
-    @belongsTo('producer', { async: true })
-    producer;
+  @belongsTo('producer', { async: true })
+  producer;
 
-    @belongsTo('category', { async: true })
-    category;
+  @belongsTo('category', { async: true })
+  category;
 
-    @belongsTo('project', { async: true })
-    project;
+  @belongsTo('project', { async: true })
+  project;
 
-    @hasMany('reel', { async: true })
-    reels;
+  @hasMany('reel', { async: true })
+  reels;
 
-    @attr()
-    customFields;
+  @attr()
+  customFields;
 
-    @attr('string')
-    cgTitle;
+  @attr('string')
+  cgTitle;
 
-    @attr('boolean')
-    cgExempt;
+  @attr('boolean')
+  cgExempt;
 
-    @attr('string')
-    comments;
+  @attr('string')
+  comments;
 
-    @attr('string')
-    title;
+  @attr('string')
+  title;
 
-    @attr('string')
-    eventDate;
+  @attr('string')
+  eventDate;
 
-    @attr('number')
-    totalRunTime;
+  @attr('number')
+  totalRunTime;
 
-    @attr('number')
-    runCount;
+  @attr('number')
+  runCount;
 
-    @hasMany('thumbnail', { async: true })
-    showThumbnails;
+  @hasMany('thumbnail', { async: true })
+  showThumbnails;
 
-    @hasMany('first-run', { async: true })
-    firstRuns;
+  @hasMany('first-run', { async: true })
+  firstRuns;
 
-    @computed('firstRuns.@each.runDateTime')
-    get absoluteFirstRun() {
-		var sorted = this.firstRuns.sortBy('runDateTime');
-		return sorted.get('firstObject');
-	}
+  @computed('firstRuns.@each.runDateTime')
+  get absoluteFirstRun() {
+    var sorted = this.firstRuns.sortBy('runDateTime');
+    return sorted.get('firstObject');
+  }
 
-    @computed('showThumbnails.@each.quality')
-    get thumbnail() {
-        var thumbnail = this.showThumbnails.findBy('quality', 'Large');
-        // If we still don't have a thumbnail return a placeholder image
-        if (!thumbnail) {
-            return 'http://placehold.it/720x480';
-        }
-
-        return thumbnail.get('url');
+  @computed('showThumbnails.@each.quality')
+  get thumbnail() {
+    var thumbnail = this.showThumbnails.findBy('quality', 'Large');
+    // If we still don't have a thumbnail return a placeholder image
+    if (!thumbnail) {
+      return 'http://placehold.it/720x480';
     }
 
-    @computed('eventDate')
-    get eventDateString() {
-		return moment(this.eventDate).format('l');
-	}
+    return thumbnail.get('url');
+  }
 
-    @computed
-    get schedule() {
-		var today = moment();
+  @computed('eventDate')
+  get eventDateString() {
+    return moment(this.eventDate).format('l');
+  }
 
-		var _start = moment(today).startOf('day').format();
+  @computed
+  get schedule() {
+    var today = moment();
 
-		return this.store.query('schedule-item', {
-			show: this.id,
-			start: _start,
-			page_size: 5
-		});
-	}
+    var _start = moment(today).startOf('day').format();
+
+    return this.store.query('schedule-item', {
+      show: this.id,
+      start: _start,
+      page_size: 5,
+    });
+  }
 }

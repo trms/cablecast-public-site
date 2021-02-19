@@ -18,27 +18,26 @@ export default class ShowsGallery extends Component {
 
   collapsed = false;
 
-  @task(function * () {
+  @task(function* () {
     let search = this.get('gallery.savedShowSearch');
     if (!search) {
       return;
     }
     let limit = this.get('gallery.displayLimit') * 3;
-    let showIds = search.get('results').slice(0,limit);
+    let showIds = search.get('results').slice(0, limit);
 
-    if(showIds.length === 0){
+    if (showIds.length === 0) {
       return;
     }
 
-    let shows = this.store
-      .query('show',{
-        ids: showIds,
-        include: 'thumbnail,vod,category,project,producer,reel',
-        page_size: limit
-      });
+    let shows = this.store.query('show', {
+      ids: showIds,
+      include: 'thumbnail,vod,category,project,producer,reel',
+      page_size: limit,
+    });
 
     yield shows;
-    this.set('shows',shows);
+    this.set('shows', shows);
   })
   showsTask;
 
@@ -46,7 +45,7 @@ export default class ShowsGallery extends Component {
   get filteredShows() {
     let shows = this.shows || [];
     let limit = this.get('gallery.displayLimit');
-    return shows.filterBy('showThumbnails.length').splice(0,limit);
+    return shows.filterBy('showThumbnails.length').splice(0, limit);
   }
 
   @action

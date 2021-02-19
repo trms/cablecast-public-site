@@ -36,14 +36,14 @@ class Router extends EmberRouter {
   }
 }
 
-Router.map(function() {
+Router.map(function () {
   this.route('podcasts');
   this.route('schedule');
-  this.route('show', {path: 'show/:id'});
-  this.route('watch-now', { path:'watch/:stream_id' });
+  this.route('show', { path: 'show/:id' });
+  this.route('watch-now', { path: 'watch/:stream_id' });
   this.route('vods');
   this.route('search');
-  this.route('gallery',{path: 'gallery/:id'});
+  this.route('gallery', { path: 'gallery/:id' });
 });
 
 export default Router;

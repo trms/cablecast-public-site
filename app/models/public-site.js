@@ -6,13 +6,13 @@ export default class PublicSite extends Model {
   @attr('string')
   siteName;
 
-  @belongsTo('web-file', {async: true})
+  @belongsTo('web-file', { async: true })
   logo;
 
-  @belongsTo('web-file', {async: true})
+  @belongsTo('web-file', { async: true })
   squareLogo;
 
-  @belongsTo('saved-show-search', {async: true})
+  @belongsTo('saved-show-search', { async: true })
   carouselSavedSearch;
 
   @attr('string')

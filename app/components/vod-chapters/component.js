@@ -57,10 +57,15 @@ export default class VodChapters extends Component {
       return;
     }
     this.set('activeChapter', chapter);
-    var element = this.element.querySelector(`[data-chapter="${chapter.get('id')}"]`);
+    var element = this.element.querySelector(
+      `[data-chapter="${chapter.get('id')}"]`
+    );
     var componentElement = jQuery(this.element);
     componentElement.animate({
-      scrollTop: jQuery(element).offset().top - componentElement.offset().top + componentElement.scrollTop()
+      scrollTop:
+        jQuery(element).offset().top -
+        componentElement.offset().top +
+        componentElement.scrollTop(),
     });
   }
 
@@ -74,7 +79,7 @@ export default class VodChapters extends Component {
   seekTo(offset) {
     var message = {
       type: 'player-cue',
-      value: offset
+      value: offset,
     };
     this.sendMessage(message);
   }

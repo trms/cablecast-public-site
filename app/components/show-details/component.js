@@ -20,7 +20,9 @@ export default class ShowDetails extends Component {
   @computed('show', 'currentChannelId')
   get firstRun() {
     let currentChannelId = this.currentChannelId;
-    let firstRun = this.get('show.firstRuns').filterBy('channel.id',currentChannelId).get('firstObject');
+    let firstRun = this.get('show.firstRuns')
+      .filterBy('channel.id', currentChannelId)
+      .get('firstObject');
     return firstRun;
   }
 

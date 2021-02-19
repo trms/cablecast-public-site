@@ -7,23 +7,26 @@ import Component from '@ember/component';
 @classic
 @tagName('')
 export default class ShowThumbnail extends Component {
-    quality = 'Small';
+  quality = 'Small';
 
-    @alias('thumbnailPath')
-    src;
+  @alias('thumbnailPath')
+  src;
 
-    show = null;
+  show = null;
 
-    @computed('show.showThumbnails.@each.quality', 'quality')
-    get thumbnailPath() {
-        var thumbnail = this.get('show.showThumbnails').findBy('quality', this.quality);
+  @computed('show.showThumbnails.@each.quality', 'quality')
+  get thumbnailPath() {
+    var thumbnail = this.get('show.showThumbnails').findBy(
+      'quality',
+      this.quality
+    );
 
-        // If we can't find the specifiec quality default to first thumbnail
-        if (!thumbnail) {
-            thumbnail = this.get('show.showThumbnails.firstObject');
-        }
-
-        // If we have a thumbnail return the url.
-        return thumbnail.get('url');
+    // If we can't find the specifiec quality default to first thumbnail
+    if (!thumbnail) {
+      thumbnail = this.get('show.showThumbnails.firstObject');
     }
+
+    // If we have a thumbnail return the url.
+    return thumbnail.get('url');
+  }
 }

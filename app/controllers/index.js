@@ -13,8 +13,7 @@ export default class IndexController extends Controller {
 
   @computed('model.{carouselShows.[],defaultShows.[]}')
   get carouselShows() {
-
-    if(this.get('model.carouselShows.length')){
+    if (this.get('model.carouselShows.length')) {
       return this.get('model.carouselShows');
     }
     return this.get('model.defaultShows');
