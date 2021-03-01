@@ -1,6 +1,5 @@
 import classic from 'ember-classic-decorator';
 import { inject as service } from '@ember/service';
-import { get } from '@ember/object';
 import { hash } from 'rsvp';
 import Route from '@ember/routing/route';
 import ENV from 'cablecast-public-site/config/environment';
@@ -125,10 +124,14 @@ export default class ApplicationRoute extends Route.extend(ResetScroll) {
       metrics.activateAdapters([
         {
           name: 'GoogleAnalytics',
-          environments: ['all'],
+          environments: ['production'],
           config: {
             id,
           },
+        },
+        {
+          name: 'ConsoleAdapter',
+          environments: ['development'],
         },
       ]);
     }

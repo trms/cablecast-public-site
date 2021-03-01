@@ -6,7 +6,7 @@ module.exports = function (environment) {
       suppressBrowserRender: true,
     },
     'ember-metrics': {
-      includeAdapters: ['google-analytics'],
+      includeAdapters: ['google-analytics', 'console-adapter'],
     },
     fastboot: {
       hostWhitelist: [/.+/],
