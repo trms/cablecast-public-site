@@ -1,8 +1,10 @@
-import Mixin from '@ember/object/mixin';
+import Service, { inject as service } from '@ember/service';
 import moment from 'moment';
 
-export default Mixin.create({
-  getFutureRuns(channel) {
+export default class FutureRunsService extends Service {
+  @service store;
+
+  fetch(channel) {
     return this.store
       .query('schedule-item', {
         start: moment().startOf('day').toISOString(),
@@ -23,5 +25,5 @@ export default Mixin.create({
           })
           .slice(0, 7);
       });
-  },
-});
+  }
+}

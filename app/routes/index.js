@@ -2,8 +2,8 @@ import classic from 'ember-classic-decorator';
 import { hash } from 'rsvp';
 import Route from '@ember/routing/route';
 import { get } from '@ember/object';
+import { inject as service } from '@ember/service';
 import SetPageTitle from 'cablecast-public-site/mixins/set-page-title';
-import GetFutureRuns from 'cablecast-public-site/mixins/channel-future-runs-promise';
 import ResetScroll from 'cablecast-public-site/mixins/reset-scroll';
 
 function filterShows(shows) {
@@ -15,9 +15,10 @@ function filterShows(shows) {
 @classic
 export default class IndexRoute extends Route.extend(
   SetPageTitle,
-  GetFutureRuns,
   ResetScroll
 ) {
+  @service futureRuns;
+
   model() {
     let channel = this.modelFor('application').channel;
 
@@ -36,7 +37,7 @@ export default class IndexRoute extends Route.extend(
 
     return hash({
       carouselShows,
-      futureRuns: this.getFutureRuns(channel),
+      futureRuns: this.futureRuns.fetch(channel),
       defaultShows: this.store
         .query('show', {
           page_size: 24,
