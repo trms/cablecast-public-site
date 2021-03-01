@@ -1,10 +1,8 @@
-import classic from 'ember-classic-decorator';
 import { inject as service } from '@ember/service';
 import { hash } from 'rsvp';
 import Route from '@ember/routing/route';
 import ENV from 'cablecast-public-site/config/environment';
 
-@classic
 export default class ApplicationRoute extends Route {
   @service
   site;
@@ -27,7 +25,6 @@ export default class ApplicationRoute extends Route {
     },
   };
 
-  // eslint-disable-next-line ember/classic-decorator-hooks
   constructor() {
     super(...arguments);
     let router = this.router;
