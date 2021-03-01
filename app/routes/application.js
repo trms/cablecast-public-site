@@ -19,11 +19,28 @@ export default class ApplicationRoute extends Route.extend(ResetScroll) {
   @service
   metrics;
 
+  @service
+  router;
+
   queryParams = {
     channel: {
       refreshModel: true,
     },
   };
+
+  // eslint-disable-next-line ember/classic-decorator-hooks
+  constructor() {
+    super(...arguments);
+    let router = this.router;
+    router.on('routeDidChange', () => {
+      if (!this.fastboot.isFastBoot) {
+        let page = router.currentURL;
+        let title = document.title;
+
+        this.metrics.trackPage({ page, title });
+      }
+    });
+  }
 
   getCanonicalUrl() {
     let url = '';

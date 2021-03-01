@@ -1,39 +1,9 @@
-import classic from 'ember-classic-decorator';
-import { inject as service } from '@ember/service';
-import { scheduleOnce } from '@ember/runloop';
 import EmberRouter from '@ember/routing/router';
 import config from 'cablecast-public-site/config/environment';
 
-@classic
 class Router extends EmberRouter {
-  @service
-  fastboot;
-
-  @service
-  headData;
-
   location = config.locationType;
   rootURL = config.rootURL;
-
-  @service
-  metrics;
-
-  init() {
-    super.init(...arguments);
-    this.on('routeDidChange', () => {
-      this._trackPage();
-    });
-  }
-
-  _trackPage() {
-    scheduleOnce('afterRender', this, () => {
-      if (!this.get('fastboot.isFastBoot')) {
-        let page = this.url;
-        let title = document.title;
-        this.metrics.trackPage({ page, title });
-      }
-    });
-  }
 }
 
 Router.map(function () {
