@@ -8,6 +8,9 @@ module.exports = function (environment) {
     'ember-metrics': {
       includeAdapters: ['google-analytics', 'console-adapter'],
     },
+    routerScroll: {
+      scrollWhenIdle: true,
+    },
     fastboot: {
       hostWhitelist: [/.+/],
     },

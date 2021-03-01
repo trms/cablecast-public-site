@@ -1,10 +1,9 @@
 import classic from 'ember-classic-decorator';
 import { hash } from 'rsvp';
 import Route from '@ember/routing/route';
-import ResetScroll from 'cablecast-public-site/mixins/reset-scroll';
 
 @classic
-export default class GalleryRoute extends Route.extend(ResetScroll) {
+export default class GalleryRoute extends Route {
   queryParams = {
     page: {
       refreshModel: true,

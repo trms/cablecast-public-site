@@ -61,6 +61,7 @@
     "ember-qunit": "^5.1.1",
     "ember-resolver": "^8.0.2",
     "ember-responsive": "^4.0.1",
+    "ember-router-scroll": "^4.0.2",
     "ember-sass-bootstrap": "^0.2.0",
     "ember-social-share": "^0.3.5",
     "ember-source": "~3.24.0",

@@ -4,7 +4,6 @@ import Route from '@ember/routing/route';
 import { get } from '@ember/object';
 import { inject as service } from '@ember/service';
 import SetPageTitle from 'cablecast-public-site/mixins/set-page-title';
-import ResetScroll from 'cablecast-public-site/mixins/reset-scroll';
 
 function filterShows(shows) {
   return shows.filter(function (show) {
@@ -13,10 +12,7 @@ function filterShows(shows) {
 }
 
 @classic
-export default class IndexRoute extends Route.extend(
-  SetPageTitle,
-  ResetScroll
-) {
+export default class IndexRoute extends Route.extend(SetPageTitle) {
   @service futureRuns;
 
   model() {

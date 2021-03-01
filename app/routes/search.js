@@ -1,13 +1,9 @@
 import classic from 'ember-classic-decorator';
 import Route from '@ember/routing/route';
 import SetPageTitle from 'cablecast-public-site/mixins/set-page-title';
-import ResetScroll from 'cablecast-public-site/mixins/reset-scroll';
 
 @classic
-export default class SearchRoute extends Route.extend(
-  SetPageTitle,
-  ResetScroll
-) {
+export default class SearchRoute extends Route.extend(SetPageTitle) {
   queryParams = {
     query: {
       refreshModel: true,

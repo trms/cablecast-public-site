@@ -3,10 +3,9 @@ import { inject as service } from '@ember/service';
 import { hash } from 'rsvp';
 import Route from '@ember/routing/route';
 import ENV from 'cablecast-public-site/config/environment';
-import ResetScroll from 'cablecast-public-site/mixins/reset-scroll';
 
 @classic
-export default class ApplicationRoute extends Route.extend(ResetScroll) {
+export default class ApplicationRoute extends Route {
   @service
   site;
 
