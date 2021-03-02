@@ -2,19 +2,14 @@ import classic from 'ember-classic-decorator';
 import { inject as service } from '@ember/service';
 import { hash } from 'rsvp';
 import Route from '@ember/routing/route';
-import SetPageTitle from 'cablecast-public-site/mixins/set-page-title';
 
 @classic
-export default class WatchNowRoute extends Route.extend(SetPageTitle) {
+export default class WatchNowRoute extends Route {
   @service
   headData;
 
   @service
   futureRuns;
-
-  afterModel(model) {
-    this.setTitle(model.liveStream.get('name'));
-  }
 
   model(params) {
     let { channel } = this.modelFor('application');

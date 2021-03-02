@@ -1,15 +1,16 @@
 import classic from 'ember-classic-decorator';
 import { hash, all } from 'rsvp';
+import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
-import SetPageTitle from 'cablecast-public-site/mixins/set-page-title';
 
 @classic
-export default class ShowRoute extends Route.extend(SetPageTitle) {
+export default class ShowRoute extends Route {
+  @service headData;
+
   setHeadData(show) {
     let data = {
       type: 'video.episode',
       card: 'summary_large_image',
-      title: show.get('cgTitle'),
       description: show.get('comments') || show.get('cgTitle'),
     };
     let thumbnailUrl = this.findAThumbnailUrl(show);
@@ -20,8 +21,6 @@ export default class ShowRoute extends Route.extend(SetPageTitle) {
     headData.set('socialMedia', data);
 
     this.appendJsonLD(data, show);
-
-    this.setTitle(show.get('cgTitle'));
   }
 
   findAThumbnailUrl(show) {

@@ -1,19 +1,14 @@
 import classic from 'ember-classic-decorator';
 import Route from '@ember/routing/route';
-import SetPageTitle from 'cablecast-public-site/mixins/set-page-title';
 import moment from 'moment';
 
 @classic
-export default class ScheduleRoute extends Route.extend(SetPageTitle) {
+export default class ScheduleRoute extends Route {
   queryParams = {
     currentDay: {
       refreshModel: true,
     },
   };
-
-  afterModel() {
-    this.setTitle('Schedule');
-  }
 
   model(params) {
     var appParams = this.paramsFor('application');

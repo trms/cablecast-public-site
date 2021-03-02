@@ -1,6 +1,7 @@
 import { module, test } from 'qunit';
 import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from '../helpers';
+import { getPageTitle } from 'ember-page-title/test-support';
 
 module('Acceptance | application', function (hooks) {
   setupApplicationTest(hooks);
@@ -22,7 +23,7 @@ module('Acceptance | application', function (hooks) {
     assert.equal(currentURL(), '/');
 
     assert.equal(
-      document.title,
+      getPageTitle(),
       'Default Channel Name',
       'Defaults to first channel and uses channel name as title'
     );

@@ -1,6 +1,7 @@
 import { module, test } from 'qunit';
 import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from '../helpers';
+import { getPageTitle } from 'ember-page-title/test-support';
 
 module('Acceptance | watch', function (hooks) {
   setupApplicationTest(hooks);
@@ -20,7 +21,7 @@ module('Acceptance | watch', function (hooks) {
 
     assert.equal(currentURL(), `/watch/${stream.id}?channel=${channel.id}`);
     assert.equal(
-      document.title,
+      getPageTitle(),
       'Puppies, good or bad?',
       'Watch stream sets the title to the name property of the live stream'
     );

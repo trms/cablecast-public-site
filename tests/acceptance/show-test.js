@@ -1,6 +1,7 @@
 import { module, test } from 'qunit';
 import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from '../helpers';
+import { getPageTitle } from 'ember-page-title/test-support';
 
 module('Acceptance | show', function (hooks) {
   setupApplicationTest(hooks);
@@ -21,7 +22,7 @@ module('Acceptance | show', function (hooks) {
     assert.equal(currentURL(), `/show/${show.id}?channel=${channel.id}`);
 
     assert.equal(
-      document.title,
+      getPageTitle(),
       'Cooking with cats, Episode 3',
       'Uses show cgTitle property as title'
     );

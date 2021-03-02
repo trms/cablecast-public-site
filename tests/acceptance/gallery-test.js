@@ -1,6 +1,7 @@
 import { module, test } from 'qunit';
 import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from '../helpers';
+import { getPageTitle } from 'ember-page-title/test-support';
 
 module('Acceptance | gallery', function (hooks) {
   setupApplicationTest(hooks);
@@ -18,7 +19,7 @@ module('Acceptance | gallery', function (hooks) {
 
     assert.equal(currentURL(), `/gallery/${gallery.id}?channel=${channel.id}`);
     assert.equal(
-      document.title,
+      getPageTitle(),
       'Default Channel Name',
       'Page title is channel title on gallery'
     );

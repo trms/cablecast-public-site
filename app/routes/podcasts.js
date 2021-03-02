@@ -1,13 +1,8 @@
 import classic from 'ember-classic-decorator';
 import Route from '@ember/routing/route';
-import SetPageTitle from 'cablecast-public-site/mixins/set-page-title';
 
 @classic
-export default class PodcastsRoute extends Route.extend(SetPageTitle) {
-  afterModel() {
-    this.setTitle('Podcasts');
-  }
-
+export default class PodcastsRoute extends Route {
   model() {
     return this.store.findAll('project').then(function (projects) {
       var sorted = projects.sortBy('podcastName');

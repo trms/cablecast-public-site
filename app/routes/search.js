@@ -1,9 +1,8 @@
 import classic from 'ember-classic-decorator';
 import Route from '@ember/routing/route';
-import SetPageTitle from 'cablecast-public-site/mixins/set-page-title';
 
 @classic
-export default class SearchRoute extends Route.extend(SetPageTitle) {
+export default class SearchRoute extends Route {
   queryParams = {
     query: {
       refreshModel: true,
@@ -12,10 +11,6 @@ export default class SearchRoute extends Route.extend(SetPageTitle) {
       refreshModel: true,
     },
   };
-
-  afterModel() {
-    this.setTitle('Search Results');
-  }
 
   model(params) {
     var channel = this.modelFor('application').channel;

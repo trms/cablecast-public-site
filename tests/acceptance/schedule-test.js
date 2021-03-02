@@ -1,6 +1,7 @@
 import { module, test } from 'qunit';
 import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from '../helpers';
+import { getPageTitle } from 'ember-page-title/test-support';
 
 module('Acceptance | schedule', function (hooks) {
   setupApplicationTest(hooks);
@@ -15,6 +16,6 @@ module('Acceptance | schedule', function (hooks) {
     await visit(`/schedule?channel=${channel.id}`);
 
     assert.equal(currentURL(), `/schedule?channel=${channel.id}`);
-    assert.equal(document.title, 'Schedule');
+    assert.equal(getPageTitle(), 'Schedule');
   });
 });

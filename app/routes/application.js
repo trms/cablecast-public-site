@@ -118,6 +118,7 @@ export default class ApplicationRoute extends Route {
       return {
         channel: channel,
         projects: result.projects,
+        pageTitle: channel.get('publicSite.siteName') || channel.get('name'),
       };
     });
   }

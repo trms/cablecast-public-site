@@ -3,7 +3,6 @@ import { hash } from 'rsvp';
 import Route from '@ember/routing/route';
 import { get } from '@ember/object';
 import { inject as service } from '@ember/service';
-import SetPageTitle from 'cablecast-public-site/mixins/set-page-title';
 
 function filterShows(shows) {
   return shows.filter(function (show) {
@@ -12,7 +11,7 @@ function filterShows(shows) {
 }
 
 @classic
-export default class IndexRoute extends Route.extend(SetPageTitle) {
+export default class IndexRoute extends Route {
   @service futureRuns;
 
   model() {
@@ -44,11 +43,5 @@ export default class IndexRoute extends Route.extend(SetPageTitle) {
       projects: this.store.findAll('project'),
       producers: this.store.findAll('producer'),
     });
-  }
-
-  afterModel() {
-    var channel = this.modelFor('application').channel;
-    let name = channel.get('publicSite.siteName') || channel.get('name');
-    this.setTitle(name);
   }
 }

@@ -11,6 +11,9 @@ module.exports = function (environment) {
     routerScroll: {
       scrollWhenIdle: true,
     },
+    pageTitle: {
+      replace: true,
+    },
     fastboot: {
       hostWhitelist: [/.+/],
     },
