@@ -21,6 +21,10 @@ module('Acceptance | application', function (hooks) {
 
     assert.equal(currentURL(), '/');
 
-    assert.equal(document.title, 'Default Channel Name');
+    assert.equal(
+      document.title,
+      'Default Channel Name',
+      'Defaults to first channel and uses channel name as title'
+    );
   });
 });

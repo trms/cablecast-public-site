@@ -6,7 +6,6 @@ module('Acceptance | show', function (hooks) {
   setupApplicationTest(hooks);
 
   test('visiting a show sets page title', async function (assert) {
-    this.server.logging = true;
     let publicSite = this.server.create('public-site');
     let channel = this.server.create('channel', {
       name: 'Default Channel Name',
@@ -21,6 +20,10 @@ module('Acceptance | show', function (hooks) {
 
     assert.equal(currentURL(), `/show/${show.id}?channel=${channel.id}`);
 
-    assert.equal(document.title, 'Cooking with cats, Episode 3');
+    assert.equal(
+      document.title,
+      'Cooking with cats, Episode 3',
+      'Uses show cgTitle property as title'
+    );
   });
 });

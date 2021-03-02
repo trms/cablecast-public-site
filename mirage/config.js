@@ -43,4 +43,5 @@ export default function () {
   this.get('/producers');
   this.get('/scheduleItems');
   this.get('/shows');
+  this.get('/liveStreams/:id');
 }
