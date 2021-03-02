@@ -33,8 +33,10 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Running Tests
 
-* `ember test`
-* `ember test --server`
+Mirage does not work with fastboot, tests must be run with fastboot off. 
+
+* `FASTBOOT_DISABLED=true ember test`
+* `FASTBOOT_DISABLED=true ember test --server`
 
 ### Linting
 
