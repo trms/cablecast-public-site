@@ -33,7 +33,8 @@ export default function () {
       let channelJSON = this.serialize(channels);
       let publicSiteIds = channels.models.map((c) => c.publicSite.id);
       let siteJSON = this.serialize(schema.publicSites.find(publicSiteIds));
-      return Object.assign({}, channelJSON, siteJSON);
+      let savedShowSearchJSON = this.serialize(schema.savedShowSearches.all());
+      return Object.assign({}, channelJSON, siteJSON, savedShowSearchJSON);
     }
     return channels;
   });
@@ -44,4 +45,5 @@ export default function () {
   this.get('/scheduleItems');
   this.get('/shows');
   this.get('/liveStreams/:id');
+  this.get('/siteGalleries/:id');
 }
