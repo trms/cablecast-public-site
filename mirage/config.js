@@ -46,4 +46,5 @@ export default function () {
   this.get('/shows');
   this.get('/liveStreams/:id');
   this.get('/siteGalleries/:id');
+  this.get('/vods');
 }
