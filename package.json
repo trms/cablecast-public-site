@@ -20,7 +20,7 @@
     "lint:js:fix": "eslint . --fix",
     "start": "ember serve",
     "test": "npm-run-all lint test:*",
-    "test:ember": "ember test"
+    "test:ember": "FASTBOOT_DISABLED=true && ember test"
   },
   "devDependencies": {
     "@ember/jquery": "^1.1.0",
