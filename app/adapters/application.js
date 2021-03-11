@@ -11,6 +11,7 @@ export default class Application extends RESTAdapter {
 
   namespace = 'cablecastapi/v1';
 
+  /* eslint-disable getter-return */
   @computed('fastboot.isFastBoot')
   get host() {
     if (ENV.environment === 'production' && this.get('fastboot.isFastBoot')) {
@@ -22,4 +23,5 @@ export default class Application extends RESTAdapter {
       return 'http://localhost:4200';
     }
   }
+  /* eslint-enable getter-return */
 }

@@ -1,6 +1,5 @@
 import classic from 'ember-classic-decorator';
 import { inject as service } from '@ember/service';
-import { get } from '@ember/object';
 import Helper from '@ember/component/helper';
 import toTimecode from 'cablecast-public-site/utils/timecode';
 

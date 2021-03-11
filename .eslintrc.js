@@ -19,7 +19,15 @@ module.exports = {
   env: {
     browser: true,
   },
-  rules: {},
+  rules: {
+    'ember/no-classic-components': 'off',
+    'ember/no-get': 'off',
+    'ember/use-brace-expansion': 'off',
+    'ember/no-controller-access-in-routes': 'off',
+    'ember/no-jquery': 'off',
+    'ember/no-component-lifecycle-hooks': 'off',
+    'ember/require-tagless-components': 'off',
+  },
   overrides: [
     // node files
     {

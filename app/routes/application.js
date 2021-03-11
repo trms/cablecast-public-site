@@ -125,7 +125,7 @@ export default class ApplicationRoute extends Route {
 
   afterModel(model) {
     let publicSite = model.channel.get('publicSite');
-    this.set('site.publicSite', publicSite);
+    this.site.publicSite = publicSite;
     this.setHeadData(model.channel);
     this._setupMetrics(publicSite);
   }

@@ -1,7 +1,7 @@
 import classic from 'ember-classic-decorator';
 import { inject as service } from '@ember/service';
 import { alias } from '@ember/object/computed';
-import { get, action, computed } from '@ember/object';
+import { action, computed } from '@ember/object';
 import Controller, { inject as controller } from '@ember/controller';
 
 @classic
@@ -38,6 +38,7 @@ export default class ShowController extends Controller {
   seekto = null;
 
   //TODO - fix this code later
+  /* eslint-disable getter-return */
   @computed(
     'model.show.customFields',
     'site.publicSite.fieldDisplays.[]',
@@ -63,6 +64,7 @@ export default class ShowController extends Controller {
       }
     }
   }
+  /* eslint-enable getter-return */
 
   @action
   showChapters() {
