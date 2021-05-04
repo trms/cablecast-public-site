@@ -1,14 +1,29 @@
+import classic from 'ember-classic-decorator';
 import { computed } from '@ember/object';
-import DS from 'ember-data';
+import Model, { attr, belongsTo } from '@ember-data/model';
 
-export default DS.Model.extend({
-  name: DS.attr('string'),
-  producer: DS.belongsTo('producer', {async: true}),
-  podcast: DS.attr('boolean'),
-  podcastName: DS.attr('string'),
-  podcastDescription: DS.attr('string'),
-  podcastUrl: DS.attr('string'),
-  itunesUrl: computed('podcastUrl', function() {
-    return this.get('podcastUrl').replace(/https?/, 'iptc');
-  })
-});
+@classic
+export default class Project extends Model {
+  @attr('string')
+  name;
+
+  @belongsTo('producer', { async: true })
+  producer;
+
+  @attr('boolean')
+  podcast;
+
+  @attr('string')
+  podcastName;
+
+  @attr('string')
+  podcastDescription;
+
+  @attr('string')
+  podcastUrl;
+
+  @computed('podcastUrl')
+  get itunesUrl() {
+    return this.podcastUrl.replace(/https?/, 'iptc');
+  }
+}

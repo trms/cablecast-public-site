@@ -1,35 +1,36 @@
-<h3 class="schedule-preview-header">
-  Schedule
-</h3>
-<div class="schedule">
-  {{#each futureRuns as |run|}}
-    <div class="schedule-row clearfix">
-      <div class="plaque">
-        {{#if (eq run onAirRun)}}
-          {{#link-to
-            "watch-now"
-            channel.liveStreams.firstObject.id
-            alt=onAirRun.show.cgTitle
-            class="live-stream-name"
-          }}
-            <div class="plaque-content now">
-              Now
-            </div>
-          {{/link-to}}
-        {{else}}
-          {{#link-to "show" run.show.id}}
-            <div class="plaque-content not-now">
-              {{moment-format run.runDateTime "h:mm a"}}
-            </div>
-          {{/link-to}}
-        {{/if}}
+<div ...attributes>
+  <h3 class="schedule-preview-header">
+    Schedule
+  </h3>
+  <div class="schedule">
+    {{#each @futureRuns as |run|}}
+      <div class="schedule-row clearfix">
+        <div class="plaque">
+          {{#if (eq run this.onAirRun)}}
+            <LinkTo
+              @route="watch-now"
+              @model={{@channel.liveStreams.firstObject.id}}
+              @alt={{this.onAirRun.show.cgTitle}}
+              class="live-stream-name">
+              <div class="plaque-content now">
+                Now
+              </div>
+            </LinkTo>
+          {{else}}
+            <LinkTo @route="show" @model={{run.show.id}}>
+              <div class="plaque-content not-now">
+                {{moment-format run.runDateTime "h:mm a"}}
+              </div>
+            </LinkTo>
+          {{/if}}
+        </div>
+        <div class="schedule-container u-truncate-text">
+          <LinkTo @route="show" @model={{run.show.id}}>
+            {{run.show.cgTitle}}
+          </LinkTo>
+        </div>
       </div>
-      <div class="schedule-container u-truncate-text">
-        {{#link-to "show" run.show.id}}
-          {{run.show.cgTitle}}
-        {{/link-to}}
-      </div>
-    </div>
-  {{/each}}
+    {{/each}}
+  </div>
+  <LinkTo @route="schedule" class="btn btn-schedule">See the entire schedule</LinkTo>
 </div>
-{{link-to "See the entire schedule" "schedule" class="btn btn-schedule"}}

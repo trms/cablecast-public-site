@@ -1,47 +1,49 @@
-<div class="schedule-row clearfix">
-  <div class="plaque">
-    {{#link-to "show" item.show.id}}
-      {{#if (is-time-in-between item.start item.end)}}
-        <div class="plaque-content now">
-          Now
-        </div>
-      {{else}}
-        <div class="plaque-content not-now">
-          {{moment-format item.runDateTime "hh:mm a"}}
-        </div>
-      {{/if}}
-    {{/link-to}}
-  </div>
-  <div class="schedule-container">
-    <div class="play-icon is-desktop">
-      {{#if
-        (or
-          item.show.vods.firstObject.isWatchable
-          item.show.vods.firstObject.isReady
-        )
-      }}
-        {{#link-to "show" item.show.id alt=item.show.cgTitle}}
-          <span
-            class="glyphicon glyphicon-play play-icon-link"
-            aria-hidden="true"
-            title="Watch now"
-          ></span>
-        {{/link-to}}
-      {{/if}}
+<div ...attributes>
+  <div class="schedule-row clearfix">
+    <div class="plaque">
+      <LinkTo @route="show" @model={{@item.show.id}}>
+        {{#if (is-time-in-between @item.start @item.end)}}
+          <div class="plaque-content now">
+            Now
+          </div>
+        {{else}}
+          <div class="plaque-content not-now">
+            {{moment-format @item.runDateTime "hh:mm a"}}
+          </div>
+        {{/if}}
+      </LinkTo>
     </div>
-    <div class="event-date">
-      {{item.scheduledDateTimeString}}
-      {{!--
-             {{item.scheduledTimeString}}
-             --}}
-    </div>
-    <div
-      class="schedule-title {{unless media.isLg "is-mobile"}} u-truncate-text"
-      title="{{item.show.cgTitle}}"
-    >
-      {{#link-to "show" item.show.id alt=item.show.cgTitle class="show-link"}}
-        {{item.show.cgTitle}}
-      {{/link-to}}
+    <div class="schedule-container">
+      <div class="play-icon is-desktop">
+        {{#if
+          (or
+            @item.show.vods.firstObject.isWatchable
+            @item.show.vods.firstObject.isReady
+          )
+        }}
+          <LinkTo @route="show" @model={{@item.show.id}} @alt={{@item.show.cgTitle}}>
+            <span
+              class="glyphicon glyphicon-play play-icon-link"
+              aria-hidden="true"
+              title="Watch now"
+            ></span>
+          </LinkTo>
+        {{/if}}
+      </div>
+      <div class="event-date">
+        {{@item.scheduledDateTimeString}}
+        {{!--
+               {{item.scheduledTimeString}}
+               --}}
+      </div>
+      <div
+        class="schedule-title {{unless this.media.isLg "is-mobile"}} u-truncate-text"
+        title="{{@item.show.cgTitle}}"
+      >
+        <LinkTo @route="show" @model={{@item.show.id}} @alt={{@item.show.cgTitle}} class="show-link">
+          {{@item.show.cgTitle}}
+        </LinkTo>
+      </div>
     </div>
   </div>
 </div>

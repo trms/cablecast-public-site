@@ -1,13 +1,9 @@
+import classic from 'ember-classic-decorator';
 import Route from '@ember/routing/route';
-import SetPageTitle from 'cablecast-public-site/mixins/set-page-title';
 
-export default Route.extend(SetPageTitle, {
-
-	afterModel() {
-		this.setTitle('Vods');
-	},
-
-	model: function() {
+@classic
+export default class VodsRoute extends Route {
+  model() {
     return this.store.findAll('vod');
   }
-});
+}

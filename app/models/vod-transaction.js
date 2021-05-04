@@ -1,6 +1,11 @@
-import DS from 'ember-data';
+import classic from 'ember-classic-decorator';
+import Model, { attr } from '@ember-data/model';
 
-export default DS.Model.extend({
-	transactionType: DS.attr('number'),
-	percentComplete: DS.attr('number')
-});
+@classic
+export default class VodTransaction extends Model {
+  @attr('number')
+  transactionType;
+
+  @attr('number')
+  percentComplete;
+}

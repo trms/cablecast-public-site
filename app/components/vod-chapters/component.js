@@ -1,28 +1,33 @@
-import $ from 'jquery';
+import classic from 'ember-classic-decorator';
+import { action } from '@ember/object';
+import { classNames } from '@ember-decorators/component';
+import jQuery from 'jquery';
 import { bind } from '@ember/runloop';
 import Component from '@ember/component';
 
-export default Component.extend({
-  classNames: ['vod-chapters'],
-
-  didInsertElement: function () {
+@classic
+@classNames('vod-chapters')
+export default class VodChapters extends Component {
+  didInsertElement() {
+    super.didInsertElement(...arguments);
     this._messageHandler = bind(this, 'processMessage');
     window.addEventListener('message', this._messageHandler, false);
-  },
+  }
 
-  willDestroyElement: function () {
+  willDestroyElement() {
+    super.willDestroyElement(...arguments);
     if (this._messageHandler) {
       window.removeEventListener('message', this._messageHandler);
     }
-  },
+  }
 
-  processMessage: function (event) {
-    if (event.data.message === 'ready' && this.get('seekto')) {
-      this.seekTo(this.get('seekto'));
+  processMessage(event) {
+    if (event.data.message === 'ready' && this.seekto) {
+      this.seekTo(this.seekto);
     }
 
     if (event.data.message === 'timeupdate') {
-      var chapters = this.get('chapters').toArray();
+      var chapters = this.chapters.toArray();
       var activeChapter = null;
       var time = event.data.value;
       for (var i = 0; i < chapters.length; i++) {
@@ -43,42 +48,50 @@ export default Component.extend({
           }
         }
       }
-      if (this.get('activeChapter') !== activeChapter) {
+      if (this.activeChapter !== activeChapter) {
         this.changeActiveChapter(activeChapter);
       }
     }
-  },
+  }
 
-  changeActiveChapter: function (chapter) {
+  changeActiveChapter(chapter) {
+    if (chapter == null) {
+      return;
+    }
     this.set('activeChapter', chapter);
-    var element = $(this.$().find(`[data-chapter="${chapter.get('id')}"]`)[0]);
-    this.$().animate({
-      scrollTop: element.offset().top - this.$().offset().top + this.$().scrollTop()
+    var element = this.element.querySelector(
+      `[data-chapter="${chapter.get('id')}"]`
+    );
+    var componentElement = jQuery(this.element);
+    componentElement.animate({
+      scrollTop:
+        jQuery(element).offset().top -
+        componentElement.offset().top +
+        componentElement.scrollTop(),
     });
-  },
+  }
 
-  sendMessage: function (message) {
-    var player = $('iframe')[0];
+  sendMessage(message) {
+    var player = jQuery('iframe')[0];
     if (player) {
       player.contentWindow.postMessage(message, '*');
     }
-  },
+  }
 
-  seekTo: function (offset) {
+  seekTo(offset) {
     var message = {
       type: 'player-cue',
-      value: offset
+      value: offset,
     };
     this.sendMessage(message);
-  },
-
-  actions: {
-    cueTo: function (chapter) {
-      var setSeekTo = this.get('setSeekTo');
-      if (setSeekTo) {
-        setSeekTo(chapter.get('offset'));
-      }
-      this.seekTo(chapter.get('offset'));
-    }
   }
-});
+
+  @action
+  cueTo(chapter) {
+    var setSeekTo = this.setSeekTo;
+    if (setSeekTo) {
+      setSeekTo(chapter.get('offset'));
+    }
+    this.seekTo(chapter.get('offset'));
+  }
+}

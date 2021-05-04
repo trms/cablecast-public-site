@@ -1,9 +1,9 @@
 {{!-- template-lint-disable no-unused-block-params --}}
-{{#each chapters as |chapter index|}}
+{{#each @chapters as |chapter index|}}
   {{!-- template-lint-disable no-invalid-interactive --}}
   <div
     data-chapter={{chapter.id}}
-    class="vod-chapters-chapter {{if (eq chapter activeChapter) "active"}}"
+    class="vod-chapters-chapter {{if (eq chapter this.activeChapter) "active"}}"
     {{action "cueTo" chapter}}
   >
     <h4>
@@ -16,7 +16,7 @@
       {{chapter.body}}
     </p>
   </div>
-  {{#unless (eq chapter chapters.lastObject)}}
+  {{#unless (eq chapter this.chapters.lastObject)}}
     <hr class="vod-chapters-seperator">
   {{/unless}}
 {{/each}}

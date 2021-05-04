@@ -1,8 +1,16 @@
-import DS from 'ember-data';
+import classic from 'ember-classic-decorator';
+import RESTSerializer, {
+  EmbeddedRecordsMixin,
+} from '@ember-data/serializer/rest';
 
-export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
-  isNewSerializerAPI: true,
-	attrs: {
-    fieldDisplays: {embedded: 'always'}
-  }
-});
+const attrs = {
+  fieldDisplays: { embedded: 'always' },
+};
+
+@classic
+export default class PublicSite extends RESTSerializer.extend(
+  EmbeddedRecordsMixin
+) {
+  isNewSerializerAPI = true;
+  attrs = attrs;
+}

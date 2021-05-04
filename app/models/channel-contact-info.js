@@ -1,15 +1,38 @@
-import DS from 'ember-data';
+import classic from 'ember-classic-decorator';
+import Model, { attr } from '@ember-data/model';
 
-export default DS.Model.extend({
-  name: DS.attr('string'),
-  description: DS.attr('string'),
-  address: DS.attr('string'),
-  city: DS.attr('string'),
-  zipcode: DS.attr('string'),
-  state: DS.attr('string'),
-  phone: DS.attr('string'),
-  email: DS.attr('string'),
-  web: DS.attr('string'),
-  twitter: DS.attr('string'),
-  facebook: DS.attr('string')
-});
+@classic
+export default class ChannelContactInfo extends Model {
+  @attr('string')
+  name;
+
+  @attr('string')
+  description;
+
+  @attr('string')
+  address;
+
+  @attr('string')
+  city;
+
+  @attr('string')
+  zipcode;
+
+  @attr('string')
+  state;
+
+  @attr('string')
+  phone;
+
+  @attr('string')
+  email;
+
+  @attr('string')
+  web;
+
+  @attr('string')
+  twitter;
+
+  @attr('string')
+  facebook;
+}

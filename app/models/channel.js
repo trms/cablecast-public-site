@@ -1,13 +1,17 @@
+import classic from 'ember-classic-decorator';
+import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 
-import DS from 'ember-data';
-// import Ember from 'ember';
+@classic
+export default class Channel extends Model {
+  @attr('string')
+  name;
 
-// var ArrayProxy = Ember.ArrayProxy.extend(Ember.PromiseProxyMixin);
+  @attr()
+  primaryLocation;
 
-export default DS.Model.extend({
-	name: DS.attr('string'),
-	primaryLocation: DS.attr(),
-	publicSite: DS.belongsTo('public-site', {async: false}),
-	liveStreams: DS.hasMany('live-stream', {async: true}),
+  @belongsTo('public-site', { async: false })
+  publicSite;
 
-});
+  @hasMany('live-stream', { async: true })
+  liveStreams;
+}

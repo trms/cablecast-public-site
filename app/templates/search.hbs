@@ -1,12 +1,12 @@
+{{page-title "Search Results"}}
 <div class="search-page">
-  {{paginated-show-list
-    title='Search Results'
-    loading=model.isPending
-    meta=meta
-    shows=model
-    page=page
-    pageSize=50
-    total=meta.count
-    goToPage=(action 'goToPage')
-  }}
+  <PaginatedShowList
+    @title="Search Results"
+    @loading={{this.model.isPending}}
+    @meta={{this.meta}}
+    @shows={{this.model}}
+    @page={{this.page}}
+    @pageSize={{50}}
+    @total={{this.meta.count}}
+    @goToPage={{action "goToPage"}} />
 </div>

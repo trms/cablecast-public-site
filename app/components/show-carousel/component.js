@@ -1,11 +1,17 @@
+import classic from 'ember-classic-decorator';
+import { tagName } from '@ember-decorators/component';
 import { inject as service } from '@ember/service';
+import jQuery from 'jquery';
 import Component from '@ember/component';
 
-export default Component.extend({
-  fastboot: service(),
+@classic
+@tagName('')
+export default class ShowCarousel extends Component {
+  @service
+  fastboot;
 
-  didInsertElement(){
-    this.$('#carousel').carousel('cycle');
+  didInsertElement() {
+    super.didInsertElement(...arguments);
+    jQuery('#carousel').carousel('cycle');
   }
-
-});
+}

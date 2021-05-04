@@ -1,21 +1,26 @@
+import classic from 'ember-classic-decorator';
+import { tagName } from '@ember-decorators/component';
+import { action, computed } from '@ember/object';
 import Component from '@ember/component';
-import { computed } from '@ember/object';
 
-export default Component.extend({
-  total: 0,
-  pageSize: 0,
-  offset: 0,
-  maxPageButtons: 9,
-  showPrevNextButtons: true,
-  showFirstLastButtons: true,
-  displayFirstLastAsNumber: false,
+@classic
+@tagName('')
+export default class PaginationControl extends Component {
+  total = 0;
+  pageSize = 0;
+  offset = 0;
+  maxPageButtons = 9;
+  showPrevNextButtons = true;
+  showFirstLastButtons = true;
+  displayFirstLastAsNumber = false;
 
-  pages: computed(function () {
+  @computed('count', 'currentPage', 'maxPageButtons', 'pageCount', 'pageSize')
+  get pages() {
     var result = [],
-      pageCount = this.get('pageCount'),
-      currentPage = this.get('currentPage'),
-      maxPageButtons = this.get('maxPageButtons'),
-      length = (pageCount >= maxPageButtons) ? maxPageButtons : pageCount,
+      pageCount = this.pageCount,
+      currentPage = this.currentPage,
+      maxPageButtons = this.maxPageButtons,
+      length = pageCount >= maxPageButtons ? maxPageButtons : pageCount,
       startPos = 1;
 
     var offset = Math.floor(maxPageButtons / 2);
@@ -35,64 +40,81 @@ export default Component.extend({
     // Go through all of the pages and make an entry into the array
     for (var i = 0; i < length; i++) {
       var pageNum = i + startPos,
-        isActive = (pageNum === currentPage),
+        isActive = pageNum === currentPage,
         page = { number: pageNum, active: isActive };
 
       result.push(page);
     }
 
     return result;
+  }
 
-  }).property('currentPage', 'pageSize', 'count'),
+  @computed('count', 'pageSize')
+  get hideControl() {
+    return this.count <= this.pageSize;
+  }
 
-  hideControl: computed(function () {
-    return this.get('count') <= this.get('pageSize');
-  }).property('count', 'pageSize'),
+  @computed('pageSize', 'count')
+  get pageCount() {
+    return Math.ceil(this.count / this.pageSize);
+  }
 
-  pageCount: computed(function () {
-    return Math.ceil(this.get('count') / this.get('pageSize'));
-  }).property('pageSize', 'count'),
+  @computed('pages', 'displayFirstLastAsNumber', 'showFirstLastButtons')
+  get hideFirst() {
+    var pages = this.pages;
+    var displayFirstLastAsNumber = this.displayFirstLastAsNumber;
+    var showFirstLastButtons = this.showFirstLastButtons;
+    return (
+      showFirstLastButtons === false ||
+      (displayFirstLastAsNumber && pages.findBy('number', 1))
+    );
+  }
 
-  hideFirst: computed(function () {
-    var pages = this.get('pages');
-    var displayFirstLastAsNumber = this.get('displayFirstLastAsNumber');
-    var showFirstLastButtons = this.get('showFirstLastButtons');
-    return showFirstLastButtons === false || (displayFirstLastAsNumber && pages.findBy('number', 1));
-  }).property('pages', 'displayFirstLastAsNumber', 'showFirstLastButtons'),
+  @computed(
+    'pages',
+    'pageCount',
+    'displayFirstLastAsNumber',
+    'showFirstLastButtons'
+  )
+  get hideLast() {
+    var pages = this.pages;
+    var displayFirstLastAsNumber = this.displayFirstLastAsNumber;
+    var pageCount = this.pageCount;
+    var showFirstLastButtons = this.showFirstLastButtons;
+    return (
+      showFirstLastButtons === false ||
+      (displayFirstLastAsNumber && pages.findBy('number', pageCount))
+    );
+  }
 
-  hideLast: computed(function () {
-    var pages = this.get('pages');
-    var displayFirstLastAsNumber = this.get('displayFirstLastAsNumber');
-    var pageCount = this.get('pageCount');
-    var showFirstLastButtons = this.get('showFirstLastButtons');
-    return showFirstLastButtons === false || (displayFirstLastAsNumber && pages.findBy('number', pageCount));
-  }).property('pages', 'pageCount', 'displayFirstLastAsNumber', 'showFirstLastButtons'),
+  @computed('currentPage')
+  get disablePrev() {
+    return this.currentPage === 1;
+  }
 
-  disablePrev: computed(function () {
-    return this.get('currentPage') === 1;
-  }).property('currentPage'),
+  @computed('currentPage', 'pageCount')
+  get disableNext() {
+    return this.currentPage === this.pageCount;
+  }
 
-  disableNext: computed(function () {
-    return this.get('currentPage') === this.get('pageCount');
-  }).property('currentPage', 'pageCount'),
-
-  actions: {
-    prev: function () {
-      var newPage = this.get('currentPage') - 1;
-      if (newPage >= 1) {
-        this.sendAction('on-page-select', this.get('currentPage') - 1);
-      }
-    },
-
-    next: function () {
-      var newPage = this.get('currentPage') + 1;
-      if (newPage <= this.get('pageCount')) {
-        this.sendAction('on-page-select', this.get('currentPage') + 1);
-      }
-    },
-
-    gotoPage: function (page) {
-      this.sendAction('on-page-select', page);
+  @action
+  prev() {
+    var newPage = this.currentPage - 1;
+    if (newPage >= 1) {
+      this.onPageSelect(this.currentPage - 1);
     }
   }
-});
+
+  @action
+  next() {
+    var newPage = this.currentPage + 1;
+    if (newPage <= this.pageCount) {
+      this.onPageSelect(this.currentPage + 1);
+    }
+  }
+
+  @action
+  gotoPage(page) {
+    this.onPageSelect(page);
+  }
+}

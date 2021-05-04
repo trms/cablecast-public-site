@@ -1,29 +1,30 @@
+import classic from 'ember-classic-decorator';
 /* globals PDFJS */
 import { debounce } from '@ember/runloop';
 import $ from 'jquery';
 import Component from '@ember/component';
 
-
-
-export default Component.extend({
+@classic
+export default class PdfViewer extends Component {
   didInsertElement() {
-    let url = this.get('url');
+    super.didInsertElement(...arguments);
+    let url = this.url;
     let container = this.element.getElementsByClassName('pdf-wrapper')[0];
     let pdfLinkService = new PDFJS.PDFLinkService();
 
     let pdfViewer = new PDFJS.PDFViewer({
       container: container,
-      linkService: pdfLinkService
+      linkService: pdfLinkService,
     });
     window.viewer = pdfViewer;
     pdfLinkService.setViewer(pdfViewer);
 
     let pdfHistory = new PDFJS.PDFHistory({
-      linkService: pdfLinkService
+      linkService: pdfLinkService,
     });
     pdfLinkService.setHistory(pdfHistory);
     let pdfFindController = new PDFJS.PDFFindController({
-      pdfViewer
+      pdfViewer,
     });
     pdfViewer.setFindController(pdfFindController);
     PDFJS.getDocument(url).then(function (pdf) {
@@ -35,20 +36,22 @@ export default Component.extend({
       pdfHistory.initialize(pdf.fingerprint);
     });
     this.set('pdfViewer', pdfViewer);
-    $(window).on('resize.' + this.get('elementId'), this._handleResizeEvent.bind(this));
-  },
+    $(window).on(
+      'resize.' + this.elementId,
+      this._handleResizeEvent.bind(this)
+    );
+  }
 
-  willDestroyElement: function () {
-    this._super();
-    $(window).off('resize.' + this.get('elementId'));
-
-  },
+  willDestroyElement() {
+    super.willDestroyElement();
+    $(window).off('resize.' + this.elementId);
+  }
 
   _handleResizeEvent() {
     debounce(this, this.rescalePdf, 150);
-  },
+  }
 
   rescalePdf() {
-    this.get('pdfViewer').currentScaleValue = 'auto';
+    this.pdfViewer.currentScaleValue = 'auto';
   }
-});
+}

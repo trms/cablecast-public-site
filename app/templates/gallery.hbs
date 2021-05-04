@@ -1,11 +1,10 @@
 <div class="search-page">
-  {{paginated-show-list
-    title=model.gallery.displayName
-    loading=model.isPending
-    page=page
-    pageSize=50
-    total=model.gallery.savedShowSearch.results.length
-    shows=model.shows
-    goToPage=(action "goToPage")
-  }}
+  <PaginatedShowList
+    @title={{this.model.gallery.displayName}}
+    @loading={{this.model.isPending}}
+    @page={{this.page}}
+    @pageSize={{50}}
+    @total={{this.model.gallery.savedShowSearch.results.length}}
+    @shows={{this.model.shows}}
+    @goToPage={{action "goToPage"}} />
 </div>

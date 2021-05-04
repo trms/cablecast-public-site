@@ -1,5 +1,5 @@
-import DS from 'ember-data';
+import classic from 'ember-classic-decorator';
+import Model from '@ember-data/model';
 
-export default DS.Model.extend({
-  
-});
+@classic
+export default class Search extends Model {}

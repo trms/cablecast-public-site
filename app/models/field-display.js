@@ -1,10 +1,23 @@
-import DS from 'ember-data';
+import classic from 'ember-classic-decorator';
+import Model, { attr, belongsTo } from '@ember-data/model';
 
-export default DS.Model.extend({
-  label: DS.attr(),
-  field: DS.attr(),
-  publicSite: DS.belongsTo('public-site', {async: true}),
-  showField: DS.attr('number'),
-  widget: DS.attr(),
-  order: DS.attr('number')
-});
+@classic
+export default class FieldDisplay extends Model {
+  @attr()
+  label;
+
+  @attr()
+  field;
+
+  @belongsTo('public-site', { async: true })
+  publicSite;
+
+  @attr('number')
+  showField;
+
+  @attr()
+  widget;
+
+  @attr('number')
+  order;
+}

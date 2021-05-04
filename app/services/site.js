@@ -1,5 +1,5 @@
+import classic from 'ember-classic-decorator';
 import Service from '@ember/service';
 
-export default Service.extend({
-
-});
+@classic
+export default class SiteService extends Service {}

@@ -1,30 +1,40 @@
-import { get } from '@ember/object';
+import classic from 'ember-classic-decorator';
 import { inject as service } from '@ember/service';
 import Helper from '@ember/component/helper';
 import toTimecode from 'cablecast-public-site/utils/timecode';
 
-export default Helper.extend({
-  store: service(),
+@classic
+export default class ShowField extends Helper {
+  @service
+  store;
+
   lookupCustom(show, fieldDisplay) {
     let value = show.get('customFields').find((field) => {
-      return get(field, 'showField') === fieldDisplay.get('showField');
+      return field.showField === fieldDisplay.get('showField');
     });
 
     if (value) {
-      switch(value.type) {
+      switch (value.type) {
         case 'file': {
-          let file =  this.get('store').peekRecord('web-file', value.value);
-          return get(file || {}, 'url');}
+          if (value.value == null) {
+            return;
+          }
+
+          let file = this.store.peekRecord('web-file', value.value);
+          return (file || {}).url;
+        }
         case 'producer': {
-          let producer = this.get('store').findRecord('producer', value.value);
-          return get(producer || {}, 'name');}
+          let producer = this.store.findRecord('producer', value.value);
+          return (producer || {}).name;
+        }
         default:
           return value.value;
       }
     }
-  },
+  }
+
   compute([show, fieldDisplay]) {
-    switch(fieldDisplay.get('field')) {
+    switch (fieldDisplay.get('field')) {
       case 'localId':
         return show.get('localId');
       case 'showId':
@@ -55,4 +65,4 @@ export default Helper.extend({
         return `Unhandled Field ${fieldDisplay.get('field')}`;
     }
   }
-});
+}

@@ -1,12 +1,19 @@
+import classic from 'ember-classic-decorator';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
-import DS from 'ember-data';
+import RESTAdapter from '@ember-data/adapter/rest';
 import ENV from 'cablecast-public-site/config/environment';
 
-export default DS.RESTAdapter.extend({
-  fastboot: service(),
-	namespace: 'cablecastapi/v1',
-  host: computed('fastboot.isFastBoot', function() {
+@classic
+export default class Application extends RESTAdapter {
+  @service
+  fastboot;
+
+  namespace = 'cablecastapi/v1';
+
+  /* eslint-disable getter-return */
+  @computed('fastboot.isFastBoot')
+  get host() {
     if (ENV.environment === 'production' && this.get('fastboot.isFastBoot')) {
       return 'http://localhost:55001';
     }
@@ -15,5 +22,6 @@ export default DS.RESTAdapter.extend({
     } else if (ENV.environment === 'development') {
       return 'http://localhost:4200';
     }
-  })
-});
+  }
+  /* eslint-enable getter-return */
+}

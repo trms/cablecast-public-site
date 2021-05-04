@@ -1,10 +1,14 @@
+import classic from 'ember-classic-decorator';
+import { tagName } from '@ember-decorators/component';
 import { computed } from '@ember/object';
 import Component from '@ember/component';
 import ENV from 'cablecast-public-site/config/environment';
 
-export default Component.extend({
-  classNames: ['show-stub'],
-  rootURL: computed(function() {
+@classic
+@tagName('')
+export default class ShowStub extends Component {
+  @computed
+  get rootURL() {
     return ENV.rootURL;
-  })
-});
+  }
+}
