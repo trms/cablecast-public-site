@@ -1,6 +1,11 @@
-import DS from 'ember-data';
+import classic from 'ember-classic-decorator';
+import Model, { attr } from '@ember-data/model';
 
-export default DS.Model.extend({
-  url: DS.attr('string'),
-  name: DS.attr('string')
-});
+@classic
+export default class WebFile extends Model {
+  @attr('string')
+  url;
+
+  @attr('string')
+  name;
+}

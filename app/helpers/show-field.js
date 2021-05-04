@@ -1,28 +1,40 @@
-import Ember from 'ember';
-import toTimecode from 'public/utils/timecode';
+import classic from 'ember-classic-decorator';
+import { inject as service } from '@ember/service';
+import Helper from '@ember/component/helper';
+import toTimecode from 'cablecast-public-site/utils/timecode';
 
-export default Ember.Helper.extend({
-  store: Ember.inject.service(),
+@classic
+export default class ShowField extends Helper {
+  @service
+  store;
+
   lookupCustom(show, fieldDisplay) {
     let value = show.get('customFields').find((field) => {
-      return Ember.get(field, 'showField') === fieldDisplay.get('showField');
+      return field.showField === fieldDisplay.get('showField');
     });
 
     if (value) {
-      switch(value.type) {
-        case 'file':
-          let file =  this.get('store').peekRecord('web-file', value.value);
-          return Ember.get(file || {}, 'url');
-        case 'producer':
-          let producer = this.get('store').findRecord('producer', value.value);
-          return Ember.get(producer || {}, 'name');
+      switch (value.type) {
+        case 'file': {
+          if (value.value == null) {
+            return;
+          }
+
+          let file = this.store.peekRecord('web-file', value.value);
+          return (file || {}).url;
+        }
+        case 'producer': {
+          let producer = this.store.findRecord('producer', value.value);
+          return (producer || {}).name;
+        }
         default:
           return value.value;
       }
     }
-  },
+  }
+
   compute([show, fieldDisplay]) {
-    switch(fieldDisplay.get('field')) {
+    switch (fieldDisplay.get('field')) {
       case 'localId':
         return show.get('localId');
       case 'showId':
@@ -53,4 +65,4 @@ export default Ember.Helper.extend({
         return `Unhandled Field ${fieldDisplay.get('field')}`;
     }
   }
-});
+}

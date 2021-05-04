@@ -1,14 +1,23 @@
-import Ember from 'ember';
-import ENV from 'public/config/environment';
+import classic from 'ember-classic-decorator';
+import { tagName } from '@ember-decorators/component';
+import { inject as service } from '@ember/service';
+import jQuery from 'jquery';
+import Component from '@ember/component';
+import ENV from 'cablecast-public-site/config/environment';
 
-export default Ember.Component.extend({
-  fastboot: Ember.inject.service(),
+@classic
+@tagName('')
+export default class UpdateChannelStyles extends Component {
+  @service
+  fastboot;
+
   didReceiveAttrs() {
+    super.didReceiveAttrs();
     let rootURL = ENV.rootURL;
-    let channelID = this.get('channel-id');
+    let channelID = this['channel-id'];
     if (this.get('fastboot.isFastBoot') === false) {
-      let custom = Ember.$('[data-channel-custom]')[0];
-      let colors = Ember.$('[data-channel-colors]')[0];
+      let custom = jQuery('[data-channel-custom]')[0];
+      let colors = jQuery('[data-channel-colors]')[0];
       if (custom) {
         custom.href = `${rootURL}custom-${channelID}.css`;
       }
@@ -17,4 +26,4 @@ export default Ember.Component.extend({
       }
     }
   }
-});
+}

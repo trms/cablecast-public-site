@@ -1,25 +1,32 @@
-import Ember from 'ember';
+import classic from 'ember-classic-decorator';
+import { tagName } from '@ember-decorators/component';
+import { computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
-  classNames: ['show-thumbnail'],
-	tagName: 'img',
-	quality: 'Small',
-	attributeBindings: ['src'],
-	src: Ember.computed.alias('thumbnailPath'),
+@classic
+@tagName('')
+export default class ShowThumbnail extends Component {
+  quality = 'Small';
 
-	show: null,
+  @alias('thumbnailPath')
+  src;
 
-	thumbnailPath: Ember.computed('show.showThumbnails.@each.quality', 'quality', {
-		get: function() {
-			var thumbnail = this.get('show.showThumbnails').findBy('quality', this.get('quality'));
-			
-			// If we can't find the specifiec quality default to first thumbnail
-			if (!thumbnail) {
-			  thumbnail = this.get('show.showThumbnails.firstObject');
-			}
+  show = null;
 
-			// If we have a thumbnail return the url.
-			return thumbnail.get('url');
-		}
-	})
-});
+  @computed('show.showThumbnails.@each.quality', 'quality')
+  get thumbnailPath() {
+    var thumbnail = this.get('show.showThumbnails').findBy(
+      'quality',
+      this.quality
+    );
+
+    // If we can't find the specifiec quality default to first thumbnail
+    if (!thumbnail) {
+      thumbnail = this.get('show.showThumbnails.firstObject');
+    }
+
+    // If we have a thumbnail return the url.
+    return thumbnail.get('url');
+  }
+}

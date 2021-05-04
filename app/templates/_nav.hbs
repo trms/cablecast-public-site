@@ -1,6 +1,14 @@
 <nav>
-  {{#link-to "index" class="main"}}<img src={{model.logoUrl}}>{{/link-to}}
-	<div class="menu">
-		{{input value=tempQuery }} <button {{action 'navSearch' tempQuery}}>Search</button> <button {{action "watch"}}>Watch Live</button>
-	</div>
+  <LinkTo @route="index" class="main">
+    <img src={{this.model.logoUrl}} alt="Site logo">
+  </LinkTo>
+  <div class="menu">
+    <Input @value={{this.tempQuery}} />
+    <button type="button" {{action "navSearch" this.tempQuery}}>
+      Search
+    </button>
+    <button type="button" {{action "watch"}}>
+      Watch Live
+    </button>
+  </div>
 </nav>

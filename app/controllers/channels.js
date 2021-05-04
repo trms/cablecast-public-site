@@ -1,12 +1,16 @@
-import Ember from 'ember';
+import classic from 'ember-classic-decorator';
+import { computed } from '@ember/object';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-
-  allChannels: Ember.computed(function(){
+@classic
+export default class ChannelsController extends Controller {
+  @computed('store')
+  get allChannels() {
     return this.store.peekAll('channel');
-  }),
+  }
 
-  publicChannels: Ember.computed('allChannels.[]',function(){
-    return this.get('allChannels').filterBy('publicSite.includeInIndex',true);
-  }),
-});
+  @computed('allChannels.[]')
+  get publicChannels() {
+    return this.allChannels.filterBy('publicSite.includeInIndex', true);
+  }
+}

@@ -1,46 +1,55 @@
-import Ember from 'ember';
-import {task} from 'ember-concurrency';
+import classic from 'ember-classic-decorator';
+import { tagName } from '@ember-decorators/component';
+import { action, computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
+import { task } from 'ember-concurrency';
 
-export default Ember.Component.extend({
-  store: Ember.inject.service(),
+@classic
+@tagName('')
+export default class ShowsGallery extends Component {
+  @service
+  store;
 
-  classNames: ['shows-gallery'],
+  init() {
+    super.init(...arguments);
+    this.showsTask.perform();
+  }
 
-  init(){
-    this._super(...arguments);
-    this.get('showsTask').perform();
-  },
+  collapsed = false;
 
-  collapsed:false,
-
-  showsTask: task(function * (){
+  @task(function* () {
     let search = this.get('gallery.savedShowSearch');
+    if (!search) {
+      return;
+    }
     let limit = this.get('gallery.displayLimit') * 3;
-    let showIds = search.get('results').slice(0,limit);
+    let showIds = search.get('results').slice(0, limit);
 
-    if(showIds.length === 0){
+    if (showIds.length === 0) {
       return;
     }
 
-    let shows = this.get('store')
-      .query('show',{
-        ids: showIds,
-        include: 'thumbnail,vod,category,project,producer,reel',
-        page_size: limit
-      });
+    let shows = this.store.query('show', {
+      ids: showIds,
+      include: 'thumbnail,vod,category,project,producer,reel',
+      page_size: limit,
+    });
 
     yield shows;
-    this.set('shows',shows);
-  }),
+    this.set('shows', shows);
+  })
+  showsTask;
 
-  filteredShows: Ember.computed('shows.[]',function(){
-    let shows = this.get('shows') || [];
+  @computed('gallery.displayLimit', 'shows.[]')
+  get filteredShows() {
+    let shows = this.shows || [];
     let limit = this.get('gallery.displayLimit');
-    return shows.filterBy('showThumbnails.length').splice(0,limit);
-  }),
-  actions:{
-    collapseGallery(){
-      this.toggleProperty('collapsed');
-    }
+    return shows.filterBy('showThumbnails.length').splice(0, limit);
   }
-});
+
+  @action
+  collapseGallery() {
+    this.toggleProperty('collapsed');
+  }
+}

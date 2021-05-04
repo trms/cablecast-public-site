@@ -1,31 +1,31 @@
 <div>
   <div class="show-player clearfix">
-  	   <div class="col-sm-6 col-lg-8 u-no-padding">
-    	<div class="embed-responsive embed-responsive-16by9">
-      	{{#if carouselShows.length}}
-					{{show-carousel shows=carouselShows}}
-				{{/if}}
+    <div class="col-sm-6 col-lg-8 u-no-padding">
+      <div class="embed-responsive embed-responsive-16by9">
+        {{#if this.carouselShows.length}}
+          <ShowCarousel @shows={{this.carouselShows}} />
+        {{/if}}
       </div>
     </div>
-      <div class="col-sm-6 col-lg-4 u-no-padding">
+    <div class="col-sm-6 col-lg-4 u-no-padding">
       <div class="additional-info u-truncate-text">
-        {{preview-schedule channel=channel futureRuns=model.futureRuns}}
+        <PreviewSchedule @channel={{this.channel}} @futureRuns={{this.model.futureRuns}} />
       </div>
     </div>
   </div>
 </div>
-
-{{#if siteGalleries.length}}
-  {{#each siteGalleries as |gallery|}}
+{{#if this.siteGalleries.length}}
+  {{#each this.siteGalleries as |gallery|}}
     {{#if (gt gallery.savedShowSearch.results.length 0)}}
-      {{ shows-gallery gallery=gallery}}
+      <ShowsGallery @gallery={{gallery}} />
     {{/if}}
   {{/each}}
 {{else}}
-  {{shows-gallery gallery=(hash displayName="Recent Shows" displayLimit=12) shows=model.defaultShows}}
+  <ShowsGallery
+    @gallery={{hash displayName="Recent Shows" displayLimit=12}}
+    @shows={{this.model.defaultShows}} />
 {{/if}}
-
 <div class="social-wrapper">
-  {{#fb-share-button}}Share{{/fb-share-button}}
-  {{#twitter-share-button}}Tweet{{/twitter-share-button}}
+  <FbShareButton>Share</FbShareButton>
+  <TwitterShareButton>Tweet</TwitterShareButton>
 </div>

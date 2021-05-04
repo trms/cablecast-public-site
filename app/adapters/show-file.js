@@ -1,7 +1,9 @@
-import ApplicationAdapter from 'public/adapters/application';
+import classic from 'ember-classic-decorator';
+import ApplicationAdapter from 'cablecast-public-site/adapters/application';
 
-export default ApplicationAdapter.extend({
-  pathForType: function(/*type*/) {
-      return 'show/files';
+@classic
+export default class ShowFile extends ApplicationAdapter {
+  pathForType() /*type*/ {
+    return 'show/files';
   }
-});
+}

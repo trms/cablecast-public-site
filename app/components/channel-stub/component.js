@@ -1,13 +1,21 @@
-import Ember from 'ember';
+import classic from 'ember-classic-decorator';
+import { tagName } from '@ember-decorators/component';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
-  classNames: ['channel-stub'],
-
-  siteName: Ember.computed('channel.publicSite.siteName','channel.name',function(){
+@classic
+@tagName('')
+export default class ChannelStub extends Component {
+  @computed('channel.{publicSite.siteName,name}')
+  get siteName() {
     return this.get('channel.publicSite.siteName') || this.get('channel.name');
-  }),
+  }
 
-  logo: Ember.computed('channel.publicSite.{logo,squareLogo}',function(){
-    return this.get('channel.publicSite.squareLogo.url') || this.get('channel.publicSite.logo.url');
-  }),
-});
+  @computed('channel.publicSite.logo.url', 'channel.publicSite.squareLogo.url')
+  get logo() {
+    return (
+      this.get('channel.publicSite.squareLogo.url') ||
+      this.get('channel.publicSite.logo.url')
+    );
+  }
+}

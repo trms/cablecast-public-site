@@ -1,10 +1,20 @@
-import DS from 'ember-data';
+import classic from 'ember-classic-decorator';
+import Model, { attr, belongsTo } from '@ember-data/model';
 
-export default DS.Model.extend({
-	name: DS.attr('string'),
-	reflectBaseUrl: DS.attr('string'),
-	embedTemplate: DS.attr('string'),
+@classic
+export default class Livestream extends Model {
+  @attr('string')
+  name;
 
-	show: DS.belongsTo('show', {async: true}),
-	channel: DS.belongsTo('channel', {async: true}),
-});
+  @attr('string')
+  reflectBaseUrl;
+
+  @attr('string')
+  embedTemplate;
+
+  @belongsTo('show', { async: true })
+  show;
+
+  @belongsTo('channel', { async: true })
+  channel;
+}

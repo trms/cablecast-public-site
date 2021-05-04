@@ -1,6 +1,6 @@
-import Ember from 'ember';
-import toTimecode from 'public/utils/timecode';
+import { helper as buildHelper } from '@ember/component/helper';
+import toTimecode from 'cablecast-public-site/utils/timecode';
 
-export default Ember.Helper.helper(function(input) {
-	return toTimecode(input);
+export default buildHelper(function (input) {
+  return toTimecode(input);
 });

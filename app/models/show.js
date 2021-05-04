@@ -1,58 +1,87 @@
-/* globals moment */
-import DS from 'ember-data';
-import Ember from 'ember';
+import classic from 'ember-classic-decorator';
+import { computed } from '@ember/object';
+import Model, { hasMany, belongsTo, attr } from '@ember-data/model';
+import moment from 'moment';
 
-export default DS.Model.extend({
-	vods: DS.hasMany('vod', {async: true}),
-	producer: DS.belongsTo('producer', {async: true}),
-	category: DS.belongsTo('category', {async: true}),
-	project: DS.belongsTo('project', {async: true}),
-	reels: DS.hasMany('reel', {async: true}),
-  customFields: DS.attr(),
+@classic
+export default class Show extends Model {
+  @hasMany('vod', { async: true })
+  vods;
 
-	cgTitle: DS.attr('string'),
-	cgExempt: DS.attr('boolean'),
-	comments: DS.attr('string'),
-	title: DS.attr('string'),
-	eventDate: DS.attr('string'),
-  totalRunTime: DS.attr('number'),
-  runCount: DS.attr('number'),
-	showThumbnails: DS.hasMany('thumbnail', {async: true}),
-  firstRuns: DS.hasMany('first-run',{async: true}),
-  absoluteFirstRun: Ember.computed('firstRuns.@each.runDateTime', function() {
-    var sorted =  this.get('firstRuns').sortBy('runDateTime');
+  @belongsTo('producer', { async: true })
+  producer;
+
+  @belongsTo('category', { async: true })
+  category;
+
+  @belongsTo('project', { async: true })
+  project;
+
+  @hasMany('reel', { async: true })
+  reels;
+
+  @attr()
+  customFields;
+
+  @attr('string')
+  cgTitle;
+
+  @attr('boolean')
+  cgExempt;
+
+  @attr('string')
+  comments;
+
+  @attr('string')
+  title;
+
+  @attr('string')
+  eventDate;
+
+  @attr('number')
+  totalRunTime;
+
+  @attr('number')
+  runCount;
+
+  @hasMany('thumbnail', { async: true })
+  showThumbnails;
+
+  @hasMany('first-run', { async: true })
+  firstRuns;
+
+  @computed('firstRuns.@each.runDateTime')
+  get absoluteFirstRun() {
+    var sorted = this.firstRuns.sortBy('runDateTime');
     return sorted.get('firstObject');
-  }),
-	thumbnail: Ember.computed('showThumbnails.@each.quality', {
-		get: function() {
-			var thumbnail = this.get('showThumbnails').findBy('quality', 'Large');
-			// If we still don't have a thumbnail return a placeholder image
-			if (!thumbnail) {
-				return 'http://placehold.it/720x480';
-			}
+  }
 
-			return thumbnail.get('url');
-		}
-	}),
+  @computed('showThumbnails.@each.quality')
+  get thumbnail() {
+    var thumbnail = this.showThumbnails.findBy('quality', 'Large');
+    // If we still don't have a thumbnail return a placeholder image
+    if (!thumbnail) {
+      return 'http://placehold.it/720x480';
+    }
 
-	eventDateString: function(){
-		return moment(this.get('eventDate')).format('l');
-	}.property('eventDate'),
+    return thumbnail.get('url');
+  }
 
-	hasVod: function(){
-		// This doens't work. Not sure why yet.
-		return this.get('vods');
-	}.property('vods'),
+  @computed('eventDate')
+  get eventDateString() {
+    return moment(this.eventDate).format('l');
+  }
 
-	schedule: function(){
-		var today = moment();
+  @computed('id', 'store')
+  get schedule() {
+    var today = moment();
 
-    	var _start = moment(today).startOf('day').format();
+    var _start = moment(today).startOf('day').format();
 
-    	return this.store.query('schedule-item', {
-	    	show: this.id,
-    		start: _start,
-    		page_size: 5
-	    });
-	}.property()
-});
+    return this.store.query('schedule-item', {
+      show: this.id,
+      start: _start,
+      page_size: 5,
+    });
+  }
+}

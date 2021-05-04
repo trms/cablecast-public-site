@@ -1,5 +1,5 @@
-import Ember from 'ember';
+import classic from 'ember-classic-decorator';
+import Service from '@ember/service';
 
-export default Ember.Service.extend({
-
-});
+@classic
+export default class SiteService extends Service {}

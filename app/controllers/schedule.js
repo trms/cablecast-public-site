@@ -1,39 +1,60 @@
-/* globals moment */
-import Ember from 'ember';
-import ENV from 'public/config/environment';
+import classic from 'ember-classic-decorator';
+import { action, computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import moment from 'moment';
 
-export default Ember.Controller.extend({
-	queryParams: ['currentDay'],
-	currentDay: moment().format('YYYY-MM-DD'),
-  fastboot: Ember.inject.service(),
-  rootURL: Ember.computed(function() {
+import Controller from '@ember/controller';
+import ENV from 'cablecast-public-site/config/environment';
+
+const currentDay = moment().format('YYYY-MM-DD');
+
+@classic
+export default class ScheduleController extends Controller {
+  queryParams = ['currentDay'];
+  currentDay = currentDay;
+
+  @service
+  fastboot;
+
+  @computed
+  get rootURL() {
     return ENV.rootURL;
-  }),
+  }
 
-	currentDate: Ember.computed('currentDay', function() {
-		return moment(this.get('currentDay'), 'YYYY-MM-DD').toDate();
-	}),
+  @computed('currentDay')
+  get currentDate() {
+    return moment(this.currentDay, 'YYYY-MM-DD').toDate();
+  }
 
-  prevDateString: Ember.computed('currentDay', function() {
-    var current = moment(this.get('currentDay'));
+  @computed('currentDay')
+  get prevDateString() {
+    var current = moment(this.currentDay);
     return current.add(-1, 'days').format('YYYY-MM-DD');
-  }),
+  }
 
-  nextDateString: Ember.computed('currentDay', function() {
-    var current = moment(this.get('currentDay'));
+  @computed('currentDay')
+  get nextDateString() {
+    var current = moment(this.currentDay);
     return current.add(1, 'days').format('YYYY-MM-DD');
-  }),
+  }
 
-	actions: {
-		prevDay: function() {
-			var current = moment(this.get('currentDay'));
-			current.add(-1, 'days');
-			this.set('currentDay', current.format('YYYY-MM-DD'));
-		},
-		nextDay: function() {
-			var current = moment(this.get('currentDay'));
-			current.add(1, 'days');
-			this.set('currentDay', current.format('YYYY-MM-DD'));
-		}
-	}
-});
+  @action
+  changeDate(date) {
+    let current = moment(date);
+    this.set('currentDay', current.format('YYYY-MM-DD'));
+  }
+
+  @action
+  prevDay() {
+    var current = moment(this.currentDay);
+    current.add(-1, 'days');
+    this.set('currentDay', current.format('YYYY-MM-DD'));
+  }
+
+  @action
+  nextDay() {
+    var current = moment(this.currentDay);
+    current.add(1, 'days');
+    this.set('currentDay', current.format('YYYY-MM-DD'));
+  }
+}

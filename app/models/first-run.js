@@ -1,8 +1,17 @@
-import DS from 'ember-data';
+import classic from 'ember-classic-decorator';
+import Model, { belongsTo, attr } from '@ember-data/model';
 
-export default DS.Model.extend({
-  channel: DS.belongsTo('channel', {async: true}),
-	show: DS.belongsTo('show', {async: true}),
-	scheduleItem: DS.belongsTo('schedule-item', {async: true}),
-  runDateTime: DS.attr('date')
-});
+@classic
+export default class FirstRun extends Model {
+  @belongsTo('channel', { async: true })
+  channel;
+
+  @belongsTo('show', { async: true })
+  show;
+
+  @belongsTo('schedule-item', { async: true })
+  scheduleItem;
+
+  @attr('date')
+  runDateTime;
+}

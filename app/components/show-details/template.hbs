@@ -1,18 +1,29 @@
-{{#each orderedFields as |fd|}}
-  {{#with (show-field show fd) as |value|}}
-  {{#unless (eq fd.widget 'pdf')}}
-    <div class="show-field-display {{unless (eq fd.widget) 'block-text' 'u-truncate-text'}}">
-      <label>{{fd.label}}</label>
-      {{#if (eq fd.widget 'link')}}
-        <a href={{value}} target=_blank>{{value}}</a>
-      {{else if (eq fd.widget 'date')}}
-        {{moment-format value 'l'}}
-      {{else if (eq fd.widget 'block-text')}}
-        <p>{{value}}</p>
-      {{else}}
-        {{value}}
-      {{/if}}
-    </div>
-  {{/unless}}
-  {{/with}}
-{{/each}}
+<div ...attributes>
+  {{#each this.orderedFields as |fd|}}
+    {{#with (show-field @show fd) as |value|}}
+      {{#unless (eq fd.widget "pdf")}}
+        <div
+          class="show-field-display
+            {{unless (eq fd.widget) "block-text" "u-truncate-text"}}"
+        >
+          <label>
+            {{fd.label}}
+          </label>
+          {{#if (eq fd.widget "link")}}
+            <a href={{value}} target="_blank" rel="noopener noreferrer">
+              {{value}}
+            </a>
+          {{else if (eq fd.widget "date")}}
+            {{moment-format value "l"}}
+          {{else if (eq fd.widget "block-text")}}
+            <p>
+              {{value}}
+            </p>
+          {{else}}
+            {{value}}
+          {{/if}}
+        </div>
+      {{/unless}}
+    {{/with}}
+  {{/each}}
+</div>

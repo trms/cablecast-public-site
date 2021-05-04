@@ -1,21 +1,35 @@
-/* globals moment */
-import Ember from 'ember';
+import classic from 'ember-classic-decorator';
+import { tagName } from '@ember-decorators/component';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import moment from 'moment';
 
-export default Ember.Component.extend({
-  site: Ember.inject.service(),
-  orderedFields: Ember.computed('site.publicSite.fieldDisplays.@each.order', function() {
+import Component from '@ember/component';
+
+@classic
+@tagName('')
+export default class ShowDetails extends Component {
+  @service
+  site;
+
+  @computed('site.publicSite.fieldDisplays.@each.order')
+  get orderedFields() {
     return this.get('site.publicSite.fieldDisplays').sortBy('order');
-  }),
-  firstRun: Ember.computed('show','currentChannelId',function(){
-    let currentChannelId = this.get('currentChannelId');
-    let firstRun = this.get('show.firstRuns').filterBy('channel.id',currentChannelId).get('firstObject');
-    return firstRun;
-  }),
+  }
 
-  firstRunIsFuture: Ember.computed('firstRun.runDateTime',function(){
+  @computed('currentChannelId', 'show.firstRuns')
+  get firstRun() {
+    let currentChannelId = this.currentChannelId;
+    let firstRun = this.get('show.firstRuns')
+      .filterBy('channel.id', currentChannelId)
+      .get('firstObject');
+    return firstRun;
+  }
+
+  @computed('firstRun.runDateTime')
+  get firstRunIsFuture() {
     let runDateTime = this.get('firstRun.runDateTime');
     let now = moment();
     return now.isBefore(runDateTime);
-  }),
-
-});
+  }
+}

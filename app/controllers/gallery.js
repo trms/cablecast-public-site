@@ -1,19 +1,23 @@
-import Ember from 'ember';
+import classic from 'ember-classic-decorator';
+import { action } from '@ember/object';
+import { alias } from '@ember/object/computed';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-    queryParams: ['page'],
-    page: 1,
+@classic
+export default class GalleryController extends Controller {
+  queryParams = ['page'];
+  page = 1;
 
-    meta: Ember.computed.alias('model.shows.meta'),
+  @alias('model.shows.meta')
+  meta;
 
+  @action
+  submitSearch(query) {
+    this.set('query', query);
+  }
 
-
-    actions: {
-      submitSearch: function (query){
-        this.set('query', query);
-      },
-      goToPage: function(page) {
-        this.set('page', page);
-      }
-    },
-});
+  @action
+  goToPage(page) {
+    this.set('page', page);
+  }
+}

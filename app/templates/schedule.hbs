@@ -1,31 +1,38 @@
+{{page-title "Schedule"}}
 <div class="schedule-page">
   <div class="row">
     <div class="col-xs-12 col-lg-8">
-      <h2 class="schedule-header">Schedule - {{moment-format currentDate 'LL'}}</h2>
+      <h2 class="schedule-header">Schedule - {{moment-format this.currentDate 'LL'}}</h2>
     </div>
     <div class="col-xs-12 col-lg-4">
       <div class="schedule-date-picker">
-			  <a href="{{rootURL}}schedule?channel={{channel.id}}&currentDay={{prevDateString}}" class="picker glyphicon glyphicon-triangle-left" aria-hidden="true" {{action 'prevDay'}}></a>
-        {{#if fastboot.isFastBoot}}
-        <form action="{{rootURL}}schedule" method="GET" class="multi-wide">
-          <input type='hidden' value={{channel.id}} name='channel'/>
-          <input value={{moment-format currentDay 'YYYY-MM-DD'}} name='currentDay'/>
-          <input type="submit" style="display:none"/>
+        <a href="{{this.rootURL}}schedule?channel={{this.channel.id}}&currentDay={{this.prevDateString}}"
+          class="picker glyphicon glyphicon-triangle-left"
+          aria-hidden="true"
+          {{action 'prevDay' }}></a>
+        {{#if this.fastboot.isFastBoot}}
+        <form action="{{this.rootURL}}schedule" method="GET" class="multi-wide">
+          <input type='hidden' value={{this.channel.id}} name='channel' />
+          <input value={{moment-format this.currentDay 'YYYY-MM-DD' }} name='currentDay' />
+          <input type="submit" style="display:none" />
         </form>
         {{else}}
-          {{date-picker date=currentDay valueFormat='YYYY-MM-DD'}}
+          <PikadayInput @onSelection={{action 'changeDate'}} @value={{this.currentDay}} @format='YYYY-MM-DD' />
         {{/if}}
-				<a href="{{rootURL}}schedule?channel={{channel.id}}&currentDay={{nextDateString}}"  class="picker glyphicon glyphicon-triangle-right" aria-hidden="true" {{action 'nextDay'}}></a>
+        <a href="{{this.rootURL}}schedule?channel={{this.channel.id}}&currentDay={{this.nextDateString}}"
+          class="picker glyphicon glyphicon-triangle-right"
+          aria-hidden="true"
+          {{action 'nextDay' }}></a>
       </div>
     </div>
   </div>
   <div class="schedule-wrapper clearfix">
-		<div class="col-xs-12">
-      {{shows-schedule schedule=model class="shows-schedule is-desktop"}}
+    <div class="col-xs-12">
+      <ShowsSchedule @schedule={{this.model}} class="shows-schedule is-desktop" />
     </div>
   </div>
   <div class="social-wrapper">
-    {{#fb-share-button}}Share{{/fb-share-button}}
-    {{#twitter-share-button}}Tweet{{/twitter-share-button}}
+    <FbShareButton>Share</FbShareButton>
+    <TwitterShareButton>Tweet</TwitterShareButton>
   </div>
 </div>

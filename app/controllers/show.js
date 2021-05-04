@@ -1,54 +1,83 @@
-import Ember from 'ember';
+import classic from 'ember-classic-decorator';
+import { inject as service } from '@ember/service';
+import { alias } from '@ember/object/computed';
+import { action, computed } from '@ember/object';
+import Controller, { inject as controller } from '@ember/controller';
 
-export default Ember.Controller.extend({
-  site: Ember.inject.service(),
-  activeTab: 'details',
-  application: Ember.inject.controller(),
+@classic
+export default class ShowController extends Controller {
+  @service
+  site;
 
-  show: Ember.computed.alias('model.show'),
-  runs: Ember.computed.alias('model.runs'),
+  activeTab = 'details';
 
-  currentChannelId: Ember.computed.alias('application.channel'),
+  @controller
+  application;
 
-  vodChapters: Ember.computed('model.show.vods.firstObject.chapters.@each.deleted', 'model.show.vods.firstObject.chaptersPublished', function() {
+  @alias('model.show')
+  show;
+
+  @alias('model.runs')
+  runs;
+
+  @alias('application.channel')
+  currentChannelId;
+
+  @computed(
+    'model.show.vods.firstObject.{chapters.@each.deleted,chaptersPublished}'
+  )
+  get vodChapters() {
     if (!this.get('model.show.vods.firstObject.chaptersPublished')) {
       return [];
     }
-    let chapters =  this.get('model.show.vods.firstObject.chapters') || [];
+    let chapters = this.get('model.show.vods.firstObject.chapters') || [];
     return chapters.rejectBy('deleted').rejectBy('quickAdded').sortBy('offset');
-  }),
+  }
 
-  queryParams: ['seekto'],
-  seekto: null,
+  queryParams = ['seekto'];
+  seekto = null;
 
-  embededPdf: Ember.computed('model.show.customFields', 'site.publicSite.fieldDisplays.[]', function() {
-    let pdfDisplays = this.get('site.publicSite.fieldDisplays').sortBy('order').filterBy('widget', 'pdf');
+  //TODO - fix this code later
+  /* eslint-disable getter-return */
+  @computed(
+    'model.show.customFields',
+    'site.publicSite.fieldDisplays.[]',
+    'store'
+  )
+  get embededPdf() {
+    let pdfDisplays = this.get('site.publicSite.fieldDisplays')
+      .sortBy('order')
+      .filterBy('widget', 'pdf');
     for (let i = 0; i < pdfDisplays.length; i++) {
       let fd = pdfDisplays[i];
       let fileField = this.get('model.show.customFields').find((field) => {
         return field.type === 'file' && fd.get('showField') === field.showField;
       });
       if (fileField && fileField.value) {
-        let file = this.get('store').peekRecord('web-file', fileField.value);
+        let file = this.store.peekRecord('web-file', fileField.value);
         if (/.+\.pdf$/.test(file.get('name'))) {
           return {
-            url: Ember.get(file || {}, 'url'),
-            fieldDisplay: pdfDisplays[i]
+            url: (file || {}).url,
+            fieldDisplay: pdfDisplays[i],
           };
         }
       }
     }
-  }),
+  }
+  /* eslint-enable getter-return */
 
-	actions: {
-		showChapters: function() {
-      this.set('activeTab', 'chapters');
-		},
-		showDetails: function() {
-			this.set('activeTab', 'details');
-		},
-    setSeekTo: function(chapterId) {
-      this.set('seekto', chapterId);
-    }
-	}
-});
+  @action
+  showChapters() {
+    this.set('activeTab', 'chapters');
+  }
+
+  @action
+  showDetails() {
+    this.set('activeTab', 'details');
+  }
+
+  @action
+  setSeekTo(chapterId) {
+    this.set('seekto', chapterId);
+  }
+}

@@ -1,13 +1,26 @@
-import DS from 'ember-data';
-var attr = DS.attr;
+import classic from 'ember-classic-decorator';
+import Model, { attr, belongsTo } from '@ember-data/model';
 
-export default DS.Model.extend({
-	vod: DS.belongsTo('vod', {async: true}),
-	title: attr('string', {defaultValue: 'New Chapter'}),
-	body: attr('string', {defaultValue: ''}),
-	link: attr('string', {defaultValue: ''}),
-	offset: attr('number', {defaultValue: 0}),
-	quickAdded: attr('boolean', {defaultValue: false}),
-	deleted: attr('boolean', {defaultValue: false}),
+@classic
+export default class Chapter extends Model {
+  @belongsTo('vod', { async: true })
+  vod;
 
-});
+  @attr('string', { defaultValue: 'New Chapter' })
+  title;
+
+  @attr('string', { defaultValue: '' })
+  body;
+
+  @attr('string', { defaultValue: '' })
+  link;
+
+  @attr('number', { defaultValue: 0 })
+  offset;
+
+  @attr('boolean', { defaultValue: false })
+  quickAdded;
+
+  @attr('boolean', { defaultValue: false })
+  deleted;
+}

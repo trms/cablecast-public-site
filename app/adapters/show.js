@@ -1,9 +1,12 @@
-import ApplicationAdapter from 'public/adapters/application';
+import classic from 'ember-classic-decorator';
+import ApplicationAdapter from 'cablecast-public-site/adapters/application';
 
-export default ApplicationAdapter.extend({
-  coalesceFindRequests: true,
-	buildURL: function(modelName, id, snapshot, requestType, query) {
-		var url = this._super(modelName, id, snapshot, requestType, query);
+@classic
+export default class Show extends ApplicationAdapter {
+  coalesceFindRequests = true;
+
+  buildURL(modelName, id, snapshot, requestType, query) {
+    var url = super.buildURL(modelName, id, snapshot, requestType, query);
     switch (requestType) {
       case 'findMany':
         url += '?include=reel,webfile';
@@ -11,6 +14,6 @@ export default ApplicationAdapter.extend({
       default:
         break;
     }
-		return url;
-	}
-});
+    return url;
+  }
+}

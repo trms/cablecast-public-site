@@ -1,9 +1,16 @@
-import Ember from 'ember';
-import ENV from 'public/config/environment';
+import classic from 'ember-classic-decorator';
+import { tagName } from '@ember-decorators/component';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
+import ENV from 'cablecast-public-site/config/environment';
 
-export default Ember.Component.extend({
-  rootURL: Ember.computed(function() {
+@classic
+@tagName('')
+export default class ContactUs extends Component {
+  @computed
+  get rootURL() {
     return ENV.rootURL;
-  }),
-	channelContactInfo: null
-});
+  }
+
+  channelContactInfo = null;
+}

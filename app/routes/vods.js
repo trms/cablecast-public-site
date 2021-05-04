@@ -1,13 +1,9 @@
-import Ember from 'ember';
-import SetPageTitle from 'public/mixins/set-page-title';
+import classic from 'ember-classic-decorator';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend(SetPageTitle, {
-
-	afterModel() {
-		this.setTitle('Vods');
-	},
-
-	model: function() {
+@classic
+export default class VodsRoute extends Route {
+  model() {
     return this.store.findAll('vod');
   }
-});
+}

@@ -1,33 +1,19 @@
-import Ember from 'ember';
-import config from './config/environment';
+import EmberRouter from '@ember/routing/router';
+import config from 'cablecast-public-site/config/environment';
 
-var Router = Ember.Router.extend({
-  headData: Ember.inject.service(),
-  location: config.locationType,
-  rootURL: config.rootURL,
-  metrics: Ember.inject.service(),
-  didTransition() {
-    this._super(...arguments);
-    this._trackPage();
-  },
+class Router extends EmberRouter {
+  location = config.locationType;
+  rootURL = config.rootURL;
+}
 
-  _trackPage() {
-    Ember.run.scheduleOnce('afterRender', this, () => {
-      let page = this.get('url');
-      let title = document.title;
-      Ember.get(this, 'metrics').trackPage({ page, title });
-    });
-  }
-});
-
-Router.map(function() {
+Router.map(function () {
   this.route('podcasts');
   this.route('schedule');
-  this.route('show', {path: 'show/:id'});
-  this.route('watch-now', { path:'watch/:stream_id' });
+  this.route('show', { path: 'show/:id' });
+  this.route('watch-now', { path: 'watch/:stream_id' });
   this.route('vods');
   this.route('search');
-  this.route('gallery',{path: 'gallery/:id'});
+  this.route('gallery', { path: 'gallery/:id' });
 });
 
 export default Router;

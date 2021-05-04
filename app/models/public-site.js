@@ -1,23 +1,62 @@
-import DS from 'ember-data';
+import classic from 'ember-classic-decorator';
+import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 
-export default DS.Model.extend({
-  siteName: DS.attr('string'),
-  logo: DS.belongsTo('web-file', {async: true}),
-  squareLogo: DS.belongsTo('web-file', {async: true}),
-  carouselSavedSearch: DS.belongsTo('saved-show-search', {async: true}),
-  aboutPageDescription: DS.attr('string'),
-  aboutPageShortDescription: DS.attr('string'),
-  customColor1: DS.attr('string'),
-  customColor2: DS.attr('string'),
-  customColor3: DS.attr('string'),
-  customColor4: DS.attr('string'),
-  twitterUrl: DS.attr('string'),
-  facebookUrl: DS.attr('string'),
-  blogUrl: DS.attr('string'),
-  contactEmail: DS.attr('string'),
-  contactPhone: DS.attr('string'),
-  includeInIndex: DS.attr(),
-  siteGalleries: DS.hasMany('site-gallery'),
-  fieldDisplays: DS.hasMany('field-display'),
-  googleAnalyticsId: DS.attr('string')
-});
+@classic
+export default class PublicSite extends Model {
+  @attr('string')
+  siteName;
+
+  @belongsTo('web-file', { async: true })
+  logo;
+
+  @belongsTo('web-file', { async: true })
+  squareLogo;
+
+  @belongsTo('saved-show-search', { async: true })
+  carouselSavedSearch;
+
+  @attr('string')
+  aboutPageDescription;
+
+  @attr('string')
+  aboutPageShortDescription;
+
+  @attr('string')
+  customColor1;
+
+  @attr('string')
+  customColor2;
+
+  @attr('string')
+  customColor3;
+
+  @attr('string')
+  customColor4;
+
+  @attr('string')
+  twitterUrl;
+
+  @attr('string')
+  facebookUrl;
+
+  @attr('string')
+  blogUrl;
+
+  @attr('string')
+  contactEmail;
+
+  @attr('string')
+  contactPhone;
+
+  @attr()
+  includeInIndex;
+
+  @hasMany('site-gallery')
+  siteGalleries;
+
+  @hasMany('field-display')
+  fieldDisplays;
+
+  @attr('string')
+  googleAnalyticsId;
+}

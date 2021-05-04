@@ -1,21 +1,22 @@
-import Ember from 'ember';
-import SetPageTitle from 'public/mixins/set-page-title';
-import GetFutureRuns from 'public/mixins/channel-future-runs-promise';
+import classic from 'ember-classic-decorator';
+import { inject as service } from '@ember/service';
+import { hash } from 'rsvp';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend(SetPageTitle, GetFutureRuns,{
-  headData: Ember.inject.service(),
+@classic
+export default class WatchNowRoute extends Route {
+  @service
+  headData;
 
-  afterModel(model) {
-    this.setTitle(model.liveStream.get('name'));
-  },
+  @service
+  futureRuns;
 
   model(params) {
-    let {channel} = this.modelFor('application');
+    let { channel } = this.modelFor('application');
 
-    return Ember.RSVP.hash({
-      futureRuns:this.getFutureRuns(channel),
-      liveStream:this.store.findRecord('live-stream', params.stream_id),
+    return hash({
+      futureRuns: this.futureRuns.fetch(channel),
+      liveStream: this.store.findRecord('live-stream', params.stream_id),
     });
   }
-
-});
+}

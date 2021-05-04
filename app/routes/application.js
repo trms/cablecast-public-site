@@ -1,22 +1,46 @@
-import Ember from 'ember';
-import ENV from 'public/config/environment';
-import ResetScroll from 'public/mixins/reset-scroll';
+import { inject as service } from '@ember/service';
+import { hash } from 'rsvp';
+import Route from '@ember/routing/route';
+import ENV from 'cablecast-public-site/config/environment';
 
-export default Ember.Route.extend(ResetScroll,{
-  site: Ember.inject.service(),
-  fastboot: Ember.inject.service(),
-  headData: Ember.inject.service(),
-  metrics: Ember.inject.service(),
+export default class ApplicationRoute extends Route {
+  @service
+  site;
 
-  queryParams: {
+  @service
+  fastboot;
+
+  @service
+  headData;
+
+  @service
+  metrics;
+
+  @service
+  router;
+
+  queryParams = {
     channel: {
-      refreshModel: true
-    }
-  },
+      refreshModel: true,
+    },
+  };
+
+  constructor() {
+    super(...arguments);
+    let router = this.router;
+    router.on('routeDidChange', () => {
+      if (!this.fastboot.isFastBoot) {
+        let page = router.currentURL;
+        let title = document.title;
+
+        this.metrics.trackPage({ page, title });
+      }
+    });
+  }
 
   getCanonicalUrl() {
     let url = '';
-    let fastboot = this.get('fastboot');
+    let fastboot = this.fastboot;
 
     if (fastboot.get('isFastBoot')) {
       let protocol = fastboot.get('request.protocol');
@@ -27,20 +51,23 @@ export default Ember.Route.extend(ResetScroll,{
       url = document.location.href;
     }
     return url;
-  },
+  }
 
   appendJsonLD(publicSite) {
     let pageUrl = this.getCanonicalUrl();
     let jsonLD = {
-      "@context": "http://schema.org",
-      "@type": "WebSite",
-      url: encodeURI(pageUrl)
+      '@context': 'http://schema.org',
+      '@type': 'WebSite',
+      url: encodeURI(pageUrl),
     };
-    let logo = publicSite.get('squareLogo.content') || publicSite.get('logo.content');
+    let logo =
+      publicSite.get('squareLogo.content') || publicSite.get('logo.content');
     if (logo) {
       jsonLD.thumbnailUrl = encodeURI(logo.get('url'));
     }
-    let about = publicSite.get('aboutPageShortDescription') || publicSite.get('aboutPageDescription');
+    let about =
+      publicSite.get('aboutPageShortDescription') ||
+      publicSite.get('aboutPageDescription');
     if (about) {
       jsonLD.about = about;
     }
@@ -48,9 +75,9 @@ export default Ember.Route.extend(ResetScroll,{
     if (headline) {
       jsonLD.headline = headline;
     }
-    let headData = this.get('headData');
-		headData.set('jsonLD', JSON.stringify(jsonLD));
-  },
+    let headData = this.headData;
+    headData.set('jsonLD', JSON.stringify(jsonLD));
+  }
 
   setHeadData(channel) {
     let publicSite = channel.get('publicSite');
@@ -58,13 +85,14 @@ export default Ember.Route.extend(ResetScroll,{
       type: 'website',
       card: 'summary',
       title: publicSite.get('siteName'),
-      description: publicSite.get('aboutPageDescription')
+      description: publicSite.get('aboutPageDescription'),
     };
-    let logo = publicSite.get('squareLogo.content') || publicSite.get('logo.content');
+    let logo =
+      publicSite.get('squareLogo.content') || publicSite.get('logo.content');
     if (logo) {
       data.image = encodeURI(logo.get('url'));
     }
-    let headData = this.get('headData');
+    let headData = this.headData;
     headData.set('socialMedia', data);
 
     this.appendJsonLD(publicSite);
@@ -73,14 +101,15 @@ export default Ember.Route.extend(ResetScroll,{
     headData.set('url', encodeURI(url));
     headData.set('channelID', channel.get('id'));
     headData.set('rootURL', encodeURI(ENV.rootURL));
-  },
+  }
 
-  model: function(params) {
-    return Ember.RSVP.hash({
-      channels: this.get('store').query('channel', {include: 'publicsite,webfile,thumbnail,sitegallery,savedshowsearch'}),
-      projects: this.get('store').findAll('project')
-    })
-    .then((result) => {
+  model(params) {
+    return hash({
+      channels: this.store.query('channel', {
+        include: 'publicsite,webfile,thumbnail,sitegallery,savedshowsearch',
+      }),
+      projects: this.store.findAll('project'),
+    }).then((result) => {
       let channels = result.channels;
       let channel = channels.findBy('id', params.channel + '');
       if (!channel) {
@@ -88,37 +117,42 @@ export default Ember.Route.extend(ResetScroll,{
       }
       return {
         channel: channel,
-        projects: result.projects
+        projects: result.projects,
+        pageTitle: channel.get('publicSite.siteName') || channel.get('name'),
       };
     });
-  },
+  }
 
   afterModel(model) {
     let publicSite = model.channel.get('publicSite');
-    this.set('site.publicSite', publicSite);
+    this.site.publicSite = publicSite;
     this.setHeadData(model.channel);
     this._setupMetrics(publicSite);
-  },
+  }
 
   _setupMetrics(site) {
-    if (Ember.get(site, 'googleAnalyticsId')) {
-      let metrics = Ember.get(this, 'metrics');
-      let id = Ember.get(site, 'googleAnalyticsId');
+    if (site.googleAnalyticsId) {
+      let metrics = this.metrics;
+      let id = site.googleAnalyticsId;
 
       metrics.activateAdapters([
         {
           name: 'GoogleAnalytics',
-          environments: ['all'],
+          environments: ['production'],
           config: {
-            id
-          }
-        }
+            id,
+          },
+        },
+        {
+          name: 'ConsoleAdapter',
+          environments: ['development'],
+        },
       ]);
     }
-  },
+  }
 
   setupController(controller, model) {
-    this._super(...arguments);
+    super.setupController(...arguments);
     controller.set('channel', model.channel.id);
   }
-});
+}

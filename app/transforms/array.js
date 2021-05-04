@@ -1,11 +1,13 @@
-import DS from 'ember-data';
+import classic from 'ember-classic-decorator';
+import Transform from '@ember-data/serializer/transform';
 
-export default DS.Transform.extend({
-  deserialize: function(serialized) {
+@classic
+export default class Array extends Transform {
+  deserialize(serialized) {
     return serialized;
-  },
+  }
 
-  serialize: function(deserialized) {
+  serialize(deserialized) {
     return deserialized;
   }
-});
+}
