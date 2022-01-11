@@ -19,6 +19,10 @@ export default Ember.Component.extend({
       this.seekTo(this.get('seekto'));
     }
 
+    if (event.data.message === 'seek' && event.data.seconds >= 0) {
+      this.seekTo(event.data.seconds);
+    }
+
     if (event.data.message === 'timeupdate') {
       var chapters = this.get('chapters').toArray();
       var activeChapter = null;
