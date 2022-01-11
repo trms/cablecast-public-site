@@ -1,4 +1,4 @@
-{{#if embededPdf}}
+{{#if (or embediFrame embededPdf)}}
 <div class="row show-page">
   <div class="col-sm-12">
     <h2 class="show-page-header">{{show.cgTitle}}</h2>
@@ -61,7 +61,12 @@
     </div>
   </div>
   <div class="col-sm-7 col-sm-pull-5">
-    {{pdf-viewer url=embededPdf.url class="hidden-xs"}}
+    {{#if embededPdf}}
+      {{pdf-viewer url=embededPdf.url class="hidden-xs"}}
+    {{/if}}
+    {{#if embediFrame}}
+      <iframe class="pdf-wrapper" src={{embediFrame.url}}></iframe>
+    {{/if}}
     {{!pdf-js pdf=documentUrl toolbarComponent=null}}
   </div>
 </div>

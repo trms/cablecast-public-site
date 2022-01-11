@@ -1,6 +1,6 @@
 {{#each orderedFields as |fd|}}
   {{#with (show-field show fd) as |value|}}
-  {{#unless (eq fd.widget 'pdf')}}
+  {{#unless (or (eq fd.widget 'pdf') (eq fd.widget 'iframe'))}}
     <div class="show-field-display {{unless (eq fd.widget) 'block-text' 'u-truncate-text'}}">
       <label>{{fd.label}}</label>
       {{#if (eq fd.widget 'link')}}
