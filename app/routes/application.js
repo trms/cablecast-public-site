@@ -2,6 +2,7 @@ import { inject as service } from '@ember/service';
 import { hash } from 'rsvp';
 import Route from '@ember/routing/route';
 import ENV from 'cablecast-public-site/config/environment';
+import fetch from 'fetch';
 
 export default class ApplicationRoute extends Route {
   @service
@@ -79,55 +80,42 @@ export default class ApplicationRoute extends Route {
     headData.set('jsonLD', JSON.stringify(jsonLD));
   }
 
-  setHeadData(channel) {
-    let publicSite = channel.get('publicSite');
+  setHeadData(siteConfig) {
     let data = {
       type: 'website',
       card: 'summary',
-      title: publicSite.get('siteName'),
-      description: publicSite.get('aboutPageDescription'),
+      title: siteConfig.title,
+      description: siteConfig.description,
     };
-    let logo =
-      publicSite.get('squareLogo.content') || publicSite.get('logo.content');
+    // TODO - Square logo 
+    let logo = siteConfig.logo;
     if (logo) {
-      data.image = encodeURI(logo.get('url'));
+      data.image = encodeURI(logo);
     }
     let headData = this.headData;
     headData.set('socialMedia', data);
+    headData.colorsCss = siteConfig.siteColorsCssLink;
 
-    this.appendJsonLD(publicSite);
+    // this.appendJsonLD(publicSite);
 
-    let url = this.getCanonicalUrl();
-    headData.set('url', encodeURI(url));
-    headData.set('channelID', channel.get('id'));
-    headData.set('rootURL', encodeURI(ENV.rootURL));
+    // let url = this.getCanonicalUrl();
+    // headData.set('url', encodeURI(url));
+    // headData.set('channelID', channel.get('id'));
+    // headData.set('rootURL', encodeURI(ENV.rootURL));
   }
 
-  model(params) {
-    return hash({
-      channels: this.store.query('channel', {
-        include: 'publicsite,webfile,thumbnail,sitegallery,savedshowsearch',
-      }),
-      projects: this.store.findAll('project'),
-    }).then((result) => {
-      let channels = result.channels;
-      let channel = channels.findBy('id', params.channel + '');
-      if (!channel) {
-        channel = channels.get('firstObject');
-      }
-      return {
-        channel: channel,
-        projects: result.projects,
-        pageTitle: channel.get('publicSite.siteName') || channel.get('name'),
-      };
-    });
+  async model(params) {
+    let result = await fetch(`/api/publicsitedata?host=${params.host}`);
+    let json = await result.json();
+    
+    return json;
   }
 
   afterModel(model) {
-    let publicSite = model.channel.get('publicSite');
-    this.site.publicSite = publicSite;
-    this.setHeadData(model.channel);
-    this._setupMetrics(publicSite);
+    // let publicSite = model.channel.get('publicSite');
+    // this.site.publicSite = publicSite;
+    this.setHeadData(model);
+    // this._setupMetrics(publicSite);
   }
 
   _setupMetrics(site) {
@@ -151,8 +139,8 @@ export default class ApplicationRoute extends Route {
     }
   }
 
-  setupController(controller, model) {
-    super.setupController(...arguments);
-    controller.set('channel', model.channel.id);
-  }
+  // setupController(controller, model) {
+  //   super.setupController(...arguments);
+  //   controller.set('channel', model.channel.id);
+  // }
 }

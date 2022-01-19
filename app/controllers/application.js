@@ -4,7 +4,7 @@ import Controller from '@ember/controller';
 
 @classic
 export default class ApplicationController extends Controller {
-  queryParams = ['channel', 'showOtherChannels'];
+  queryParams = ['host', 'channel', 'showOtherChannels'];
   showOtherChannels = true;
 
   @computed('model.channel.primaryLocation.id', 'model.projects')
@@ -26,6 +26,7 @@ export default class ApplicationController extends Controller {
 
   @computed('projects.[]')
   get hasPodcasts() {
+    return false;
     return (
       this.projects.filter(function (project) {
         // Test that a project has a name and is marked for podcasting.

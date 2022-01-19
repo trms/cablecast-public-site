@@ -1,5 +1,6 @@
 {{page-title this.model.pageTitle}}
-<NavMenu @channel={{this.model.channel}} @onSearch={{action "navSearch"}} />
+<HeadLayout />
+<NavMenu @siteConfig={{this.model}} @onSearch={{action "navSearch"}} />
 <div class="container-wrapper">
   <div class="container">
     {{outlet}}

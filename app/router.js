@@ -10,7 +10,7 @@ Router.map(function () {
   this.route('podcasts');
   this.route('schedule');
   this.route('show', { path: 'show/:id' });
-  this.route('watch-now', { path: 'watch/:stream_id' });
+  this.route('watch-now');
   this.route('vods');
   this.route('search');
   this.route('gallery', { path: 'gallery/:id' });

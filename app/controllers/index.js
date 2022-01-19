@@ -13,6 +13,7 @@ export default class IndexController extends Controller {
 
   @computed('model.{carouselShows.[],defaultShows.[]}')
   get carouselShows() {
+    return [];
     if (this.get('model.carouselShows.length')) {
       return this.get('model.carouselShows');
     }
@@ -21,6 +22,7 @@ export default class IndexController extends Controller {
 
   @computed('channel.publicSite.siteGalleries.@each.position')
   get siteGalleries() {
+    return [];
     return this.get('channel.publicSite.siteGalleries').sortBy('position');
   }
 }

@@ -6,13 +6,13 @@
 <link
   data-channel-colors
   rel="stylesheet"
-  href="{{this.model.rootURL}}colors-{{this.model.channelID}}.css"
+  href="{{this.model.colorsCss}}"
 >
-<link
+{{!-- <link
   data-channel-custom
   rel="stylesheet"
   href="{{this.model.rootURL}}custom-{{this.model.channelID}}.css"
->
+> --}}
 <meta name="twitter:card" content={{this.model.socialMedia.card}} >
 {{!-- template-lint-disable no-unnecessary-concat --}}
 <meta name="twitter:title" content="{{this.model.socialMedia.title}}" >
@@ -23,9 +23,9 @@
 <meta property="og:type" content={{this.model.socialMedia.type}} >
 <meta property="og:title" content={{this.model.socialMedia.title}} >
 {{#if this.model.socialMedia.description}}
-  <meta property="og:description" content={{this.model.socialMedia.description}} >
+  <meta property="og:description" content={{this.model.socialMedia.description}}>
 {{/if}}
-{{#if this.model.socialMedia.image}}ç
+{{#if this.model.socialMedia.image}}
   <meta property="og:image" content={{this.model.socialMedia.image}} >
 {{/if}}
 <meta property="og:url" content={{this.model.url}} >

@@ -12,6 +12,7 @@ export default class UpdateChannelStyles extends Component {
   fastboot;
 
   didReceiveAttrs() {
+    return;
     super.didReceiveAttrs();
     let rootURL = ENV.rootURL;
     let channelID = this['channel-id'];

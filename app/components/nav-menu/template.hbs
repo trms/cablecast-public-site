@@ -5,9 +5,9 @@
         <div class="col-xs-12 col-sm-4">
           <div class="header-logo-wrapper">
             <LinkTo @route="index" class="main">
-              {{#if @channel.publicSite.logo.url}}
+              {{#if @siteConfig.logo}}
                 <img
-                  src={{@channel.publicSite.logo.url}}
+                  src={{@siteConfig.logo}}
                   class="header-logo-img"
                   alt="Site Logo"
                 >
@@ -24,7 +24,7 @@
         <div class="col-xs-12 col-sm-8 pull-right">
           <div class="row">
             <div class="col-xs-12 header-controls pull-right">
-              {{#if @channel.liveStreams}}
+              {{#if @siteConfig.liveUrl}}
                 <LinkTo
                   @route="watch-now"
                   @model={{@channel.liveStreams.firstObject.id}}
