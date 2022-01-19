@@ -85,7 +85,7 @@
     "pdfjs-dist": "1.7.331"
   },
   "engines": {
-    "node": "10.* || >= 12"
+    "node": "12.x || 14.x"
   },
   "ember": {
     "edition": "octane"
