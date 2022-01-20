@@ -58,9 +58,11 @@ module.exports = function (environment) {
     ENV.APP.autoboot = false;
   }
 
-  if (environment === 'production') {
-    ENV.rootURL = '/CablecastPublicSite/';
-  }
+  // We may still need the this in Cablecast, but for cloud deployments we do not
+
+  // if (environment === 'production') {
+  //   ENV.rootURL = '/CablecastPublicSite/';
+  // }
 
   return ENV;
 };
