@@ -16,7 +16,8 @@ export default class IndexRoute extends Route {
   @service futureRuns;
 
   async model(params) {
-    let result = await fetch(`/api/publicsitedata?host=${params.host}`);
+    let host = params.host || 'watch.pittsfield.org';
+    let result = await fetch(`https://cablecast-cloud-pr-120.herokuapp.com/api/publicsitedata?host=${host}`);
     let json = await result.json();
     
     return json;

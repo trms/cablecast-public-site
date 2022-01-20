@@ -18,7 +18,7 @@
     "lint:hbs:fix": "ember-template-lint . --fix",
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
-    "start": "ember serve",
+    "start": "node fastboot-server.js",
     "test": "npm-run-all lint test:*",
     "test:ember": "FASTBOOT_DISABLED=true && ember test"
   },
@@ -82,6 +82,7 @@
   },
   "dependencies": {
     "broccoli-funnel": "^1.1.0",
+    "fastboot-app-server": "^3.0.0",
     "pdfjs-dist": "1.7.331"
   },
   "engines": {
