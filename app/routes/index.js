@@ -4,6 +4,7 @@ import Route from '@ember/routing/route';
 import { get } from '@ember/object';
 import { inject as service } from '@ember/service';
 import fetch from 'fetch';
+import ENV from 'cablecast-public-site/config/environment';
 
 function filterShows(shows) {
   return shows.filter(function (show) {
@@ -21,7 +22,7 @@ export default class IndexRoute extends Route {
     if (ENV.environment === 'development') {
       base = "http://localhost:5000";
     }
-    let result = await fetch(`${base}api/publicsitedata?host=${host}`);
+    let result = await fetch(`${base}/api/publicsitedata?host=${host}`);
     let json = await result.json();
     
     return json;
