@@ -14,7 +14,7 @@ export default class ShowController extends Controller {
   @controller
   application;
 
-  @alias('model.show')
+  @alias('model')
   show;
 
   @alias('model.runs')
@@ -45,24 +45,25 @@ export default class ShowController extends Controller {
     'store'
   )
   get embededPdf() {
-    let pdfDisplays = this.get('site.publicSite.fieldDisplays')
-      .sortBy('order')
-      .filterBy('widget', 'pdf');
-    for (let i = 0; i < pdfDisplays.length; i++) {
-      let fd = pdfDisplays[i];
-      let fileField = this.get('model.show.customFields').find((field) => {
-        return field.type === 'file' && fd.get('showField') === field.showField;
-      });
-      if (fileField && fileField.value) {
-        let file = this.store.peekRecord('web-file', fileField.value);
-        if (/.+\.pdf$/.test(file.get('name'))) {
-          return {
-            url: (file || {}).url,
-            fieldDisplay: pdfDisplays[i],
-          };
-        }
-      }
-    }
+    return false;
+    // let pdfDisplays = this.get('site.publicSite.fieldDisplays')
+    //   .sortBy('order')
+    //   .filterBy('widget', 'pdf');
+    // for (let i = 0; i < pdfDisplays.length; i++) {
+    //   let fd = pdfDisplays[i];
+    //   let fileField = this.get('model.show.customFields').find((field) => {
+    //     return field.type === 'file' && fd.get('showField') === field.showField;
+    //   });
+    //   if (fileField && fileField.value) {
+    //     let file = this.store.peekRecord('web-file', fileField.value);
+    //     if (/.+\.pdf$/.test(file.get('name'))) {
+    //       return {
+    //         url: (file || {}).url,
+    //         fieldDisplay: pdfDisplays[i],
+    //       };
+    //     }
+    //   }
+    // }
   }
   /* eslint-enable getter-return */
 

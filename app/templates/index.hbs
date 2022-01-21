@@ -2,8 +2,8 @@
   <div class="show-player clearfix">
     <div class="col-sm-6 col-lg-8 u-no-padding">
       <div class="embed-responsive embed-responsive-16by9">
-        {{#if this.carouselShows.length}}
-          <ShowCarousel @shows={{this.carouselShows}} />
+        {{#if this.model.slideShow.length}}
+          <ShowCarousel @shows={{this.model.slideShow}} />
         {{/if}}
       </div>
     </div>
@@ -14,17 +14,11 @@
     </div>
   </div>
 </div>
-{{#if this.siteGalleries.length}}
-  {{#each this.siteGalleries as |gallery|}}
-    {{#if (gt gallery.savedShowSearch.results.length 0)}}
-      <ShowsGallery @gallery={{gallery}} />
-    {{/if}}
-  {{/each}}
-{{else}}
-  <ShowsGallery
-    @gallery={{hash displayName="Recent Shows" displayLimit=12}}
-    @shows={{this.model.defaultShows}} />
-{{/if}}
+{{#each this.model.galleries as |gallery|}}
+  {{#if (gt gallery.shows.length 0)}}
+    <ShowsGallery @gallery={{gallery}} />
+  {{/if}}
+{{/each}}
 <div class="social-wrapper">
   <FbShareButton>Share</FbShareButton>
   <TwitterShareButton>Tweet</TwitterShareButton>

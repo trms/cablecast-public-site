@@ -1,60 +1,12 @@
 <div class="show-stub" ...attributes>
-  {{#if @show.showThumbnails}}
-    <LinkTo @route="show" @model={{@show.id}} class="thumbnail-responsive">
-      <ShowThumbnail @show={{@show}} @quality="Large" class="img-responsive" />
+  {{#if @show.thumbnail}}
+    <LinkTo @route="show" @model={{@show.showId}} class="thumbnail-responsive">
+      <img src={{@show.thumbnail}} class="img-response" />
     </LinkTo>
   {{else}}
     <div class="thumbnail-responsive"></div>
   {{/if}}
   <h3 class="show-stub-title-header u-break-text">
-    <LinkTo @route="show" @model={{@show.id}} class="show-stub-title-link">{{@show.cgTitle}}</LinkTo>
+    <LinkTo @route="show" @model={{@show.showId}} class="show-stub-title-link">{{@show.title}}</LinkTo>
   </h3>
-  <div class="show-stub-property show-stub-eventdate">
-    <span class="show-stub-property-title">
-      Date:
-    </span>
-    <span class="show-stub-property-value">
-      {{@show.eventDateString}}
-    </span>
-  </div>
-  <div class="show-stub-property show-stub-length">
-    <div class="show-stub-property-title">
-      Length:
-    </div>
-    <span class="show-stub-property-value">
-      {{#each @show.reels as |reel|}}
-        {{reel.trt}}
-      {{/each}}
-    </span>
-  </div>
-  {{#if @show.producer.name}}
-    <div class="show-stub-property show-stub-producer">
-      <div class="show-stub-property-title">
-        Producer:
-      </div>
-      <span class="show-stub-property-value">
-        {{@show.producer.name}}
-      </span>
-    </div>
-  {{/if}}
-  {{#if @show.project.name}}
-    <div class="show-stub-property show-stub-project">
-      <div class="show-stub-property-title">
-        Project:
-      </div>
-      <span class="show-stub-property-value">
-        {{@show.project.name}}
-      </span>
-    </div>
-  {{/if}}
-  {{#if @show.category.name}}
-    <div class="show-stub-property show-stub-category">
-      <div class="show-stub-property-title">
-        Category:
-      </div>
-      <span class="show-stub-property-value">
-        {{@show.category.name}}
-      </span>
-    </div>
-  {{/if}}
 </div>

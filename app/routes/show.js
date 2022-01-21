@@ -2,6 +2,8 @@ import classic from 'ember-classic-decorator';
 import { hash, all } from 'rsvp';
 import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
+import fetch from 'fetch';
+import ENV from 'cablecast-public-site/config/environment';
 
 @classic
 export default class ShowRoute extends Route {
@@ -11,12 +13,9 @@ export default class ShowRoute extends Route {
     let data = {
       type: 'video.episode',
       card: 'summary_large_image',
-      description: show.get('comments') || show.get('cgTitle'),
+      description: show.description || show.title,
+      image: show.thumbnail
     };
-    let thumbnailUrl = this.findAThumbnailUrl(show);
-    if (thumbnailUrl) {
-      data.image = thumbnailUrl;
-    }
     let headData = this.headData;
     headData.set('socialMedia', data);
 
@@ -42,10 +41,11 @@ export default class ShowRoute extends Route {
     if (data.image) {
       jsonLD.thumbnailUrl = data.image;
     }
-    let eventDate = show.get('eventDateString');
-    if (eventDate) {
-      jsonLD.datePublished = eventDate;
-    }
+    // TODO date
+    // let eventDate = show.get('eventDateString');
+    // if (eventDate) {
+    //   jsonLD.datePublished = eventDate;
+    // }
     if (data.title) {
       jsonLD.headline = data.title;
     }
@@ -53,56 +53,20 @@ export default class ShowRoute extends Route {
     headData.set('jsonLD', JSON.stringify(jsonLD));
   }
 
-  model(params) {
-    var appParams = this.paramsFor('application');
-    var start = new Date();
-    var self = this;
-    return hash({
-      shows: this.store.query('show', {
-        ids: [params.id],
-        include:
-          'vod,vodtransaction,scheduleitem,thumbnail,chapter,firstrun,producer',
-      }),
-      runs: this.store.query('schedule-item', {
-        show: params.id,
-        start: start.toISOString(),
-        page_size: 5,
-        channel: appParams.channel,
-      }),
-      channels: this.store.findAll('channel'),
-    }).then(({ runs }) => {
-      let show = self.store.peekRecord('show', params.id);
-      return hash({
-        show: show,
-        runs: runs,
-      });
-    });
+  async model(params) {
+    let host = params.host || 'watch.pittsfield.org';
+    let base = "https://cablecast-cloud-pr-120.herokuapp.com";
+    if (ENV.environment === 'development') {
+      base = "http://localhost:5000";
+    }
+    let result = await fetch(`${base}/api/publicsitedata/shows/${params.id}?host=${host}`);
+    let json = await result.json();
+    
+    return json;
   }
 
   afterModel(model) {
-    this.setHeadData(model.show);
-    return this.loadCustomFieldRecords(model.show);
-  }
-
-  loadCustomFieldRecords(show) {
-    let records = [];
-    show.get('customFields').forEach((field) => {
-      if (field.type === 'file' && field.value) {
-        records.push(this.store.findRecord('web-file', field.value));
-      } else if (field.type === 'producer' && field.value) {
-        records.push(this.store.findRecord('producer', field.value));
-      }
-    });
-    return all(records);
-  }
-
-  setupController(controller, model) {
-    let chapters = model.show.get('vods.firstObject.chapters') || [];
-    chapters = chapters.rejectBy('deleted');
-    if (chapters.length) {
-      controller.set('activeTab', 'chapters');
-    }
-    controller.set('model', model);
+    this.setHeadData(model);
   }
 
   resetController(controller) {

@@ -106,7 +106,11 @@ export default class ApplicationRoute extends Route {
 
   async model(params) {
     let host = params.host || 'watch.pittsfield.org';
-    let result = await fetch(`https://cablecast-cloud-pr-120.herokuapp.com/api/publicsitedata?host=${host}`);
+    let base = "https://cablecast-cloud-pr-120.herokuapp.com";
+    if (ENV.environment === 'development') {
+      base = "http://localhost:5000";
+    }
+    let result = await fetch(`${base}/api/publicsitedata?host=${host}`);
     let json = await result.json();
     
     return json;

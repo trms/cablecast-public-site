@@ -14,7 +14,9 @@ export default class ShowDetails extends Component {
 
   @computed('site.publicSite.fieldDisplays.@each.order')
   get orderedFields() {
-    return this.get('site.publicSite.fieldDisplays').sortBy('order');
+    // FIXME
+    return [];
+    //return this.get('site.publicSite.fieldDisplays').sortBy('order');
   }
 
   @computed('currentChannelId', 'show.firstRuns')

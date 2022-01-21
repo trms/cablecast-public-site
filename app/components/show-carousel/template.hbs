@@ -20,18 +20,19 @@
     <div class="carousel-inner" role="listbox">
       {{#each @shows as |item key|}}
         <div class="item {{if (eq key 0) "active"}}">
-          <LinkTo @route="show" @model={{item.id}}>
+          <LinkTo @route="show" @model={{item.showId}}>
             <div class="embed-responsive embed-responsive-16by9">
-              <ShowThumbnail
+              <img src={{item.thumbnail}} />
+              {{!-- <ShowThumbnail
                 @show={{item}}
                 @quality="Large"
                 class="embed-responsive-item"
-              />
+              /> --}}
             </div>
           </LinkTo>
           <div class="carousel-caption">
             <h3 class="carousel-caption-header">
-              <LinkTo @route="show" @model={{item.id}} class="carousel-caption-link">{{item.cgTitle}}</LinkTo>
+              <LinkTo @route="show" @model={{item.showId}} class="carousel-caption-link">{{item.title}}</LinkTo>
             </h3>
           </div>
         </div>

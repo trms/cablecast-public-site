@@ -1,9 +1,9 @@
-{{page-title this.show.cgTitle}}
+{{page-title this.show.title}}
 {{#if this.embededPdf}}
   <div class="row show-page">
     <div class="col-sm-12">
       <h2 class="show-page-header">
-        {{this.show.cgTitle}}
+        {{this.show.title}}
       </h2>
       <div class="show-page-social-links hidden-xs">
         <FbShareButton>Share</FbShareButton>
@@ -21,11 +21,11 @@
           }}
             <div class="embed-responsive embed-responsive-16by9">
               {{! template-lint-disable no-triple-curlies }}
-              {{{this.show.vods.firstObject.embedCode}}}
+              {{{this.show.embedCode}}}
             </div>
           {{else}}
             <div class="embed-responsive embed-responsive-16by9">
-              <ShowThumbnail @show={{this.show}} @quality="large" class="img-responsive" />
+              <img src={{this.show.thumbnail}} class="img-responsive" />
             </div>
           {{/if}}
           <div class="show-page-social-links visible-xs-block">
@@ -110,15 +110,14 @@
 {{else}}
   <div class="row show-page">
     <div class="col-sm-12">
-      {{#if (or this.show.vods.firstObject.isWatchable this.show.vods.firstObject.isReady)
-      }}
+      {{#if this.show.embedCode}}
         <div class="embed-responsive embed-responsive-16by9">
           {{! template-lint-disable no-triple-curlies }}
-          {{{this.show.vods.firstObject.embedCode}}}
+          {{{this.show.embedCode}}}
         </div>
-      {{else if this.show.showThumbnails}}
+      {{else if this.show.thumbnail}}
         <div class="embed-responsive embed-responsive-16by9">
-          <ShowThumbnail @show={{this.show}} @quality="Large" class="img-responsive" />
+          <img src={{this.show.thumbnail}} class="img-responsive" />
         </div>
       {{/if}}
     </div>
@@ -126,7 +125,7 @@
   <div class="row show-page">
     <div class="col-sm-12">
       <h2 class="show-page-header">
-        {{this.show.cgTitle}}
+        {{this.show.title}}
       </h2>
       <div class="show-page-social-links">
         <FbShareButton>Share</FbShareButton>

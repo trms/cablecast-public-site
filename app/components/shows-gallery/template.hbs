@@ -4,7 +4,7 @@
       <div class="col-sm-8 col-sm-offset-2">
         {{!-- template-lint-disable no-invalid-interactive --}}
         <h1 class="gallery-title-header" {{action "collapseGallery"}}>
-          {{@gallery.displayName}}
+          {{@gallery.title}}
           {{#if this.collapsed}}
             {{fa-icon "chevron-up"}}
           {{else}}
@@ -24,17 +24,13 @@
   <div class="gallery-wrapper">
     {{#unless this.collapsed}}
       <div class="show-stub-container">
-        {{#if this.showsTask.isRunning}}
-          <LoadingSpinner />
+        {{#each @gallery.shows as |show|}}
+          <ShowStub @show={{show}} />
         {{else}}
-          {{#each this.filteredShows as |show|}}
-            <ShowStub @show={{show}} />
-          {{else}}
-            <h2 class="gallery-no-shows-warning">
-              No Shows Available
-            </h2>
-          {{/each}}
-        {{/if}}
+          <h2 class="gallery-no-shows-warning">
+            No Shows Available
+          </h2>
+        {{/each}}
       </div>
     {{/unless}}
   </div>
