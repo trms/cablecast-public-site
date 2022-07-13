@@ -21,14 +21,14 @@ export default Ember.Controller.extend({
   queryParams: ['seekto'],
   seekto: null,
 
-  embediFrame: Ember.computed('model.show.customFields', 'site.publicSite.fieldDisplays.[]', function () {
+  embediFrame: Ember.computed('model.show.agendaLinkEmbed', 'site.publicSite.fieldDisplays.[]', function () {
     let iframeDisplays = this.get('site.publicSite.fieldDisplays').sortBy('order').filterBy('widget', 'iframe');
     for (let i = 0; i < iframeDisplays.length; i++) {
-      let iframeDisplay = iframeDisplays[i];
-      if (iframeDisplay.link) {
-          return {
-            url: iframeDisplay.link
-          };
+      let embedLink = this.get('model.show.agendaLinkEmbed');
+      if (embedLink) {
+        return {
+          url: embedLink
+        };
       }
     }
   }),
