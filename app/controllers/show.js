@@ -25,9 +25,9 @@ export default Ember.Controller.extend({
     let iframeDisplays = this.get('site.publicSite.fieldDisplays').sortBy('order').filterBy('widget', 'iframe');
     for (let i = 0; i < iframeDisplays.length; i++) {
       let iframeDisplay = iframeDisplays[i];
-      if (iframeDisplay.link) {
+      if (iframeDisplay.value) {
           return {
-            url: iframeDisplay.link
+            url: iframeDisplay.value
           };
       }
     }

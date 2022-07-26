@@ -7,5 +7,4 @@ export default DS.Model.extend({
   showField: DS.attr('number'),
   widget: DS.attr(),
   order: DS.attr('number'),
-  link: DS.attr()
 });
