@@ -9,6 +9,7 @@ export default DS.Model.extend({
 	project: DS.belongsTo('project', {async: true}),
 	reels: DS.hasMany('reel', {async: true}),
   customFields: DS.attr(),
+	agendaLinkEmbed: DS.attr('string'),
 
 	cgTitle: DS.attr('string'),
 	cgExempt: DS.attr('boolean'),

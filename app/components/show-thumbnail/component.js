@@ -19,7 +19,12 @@ export default Ember.Component.extend({
 			}
 
 			// If we have a thumbnail return the url.
-			return thumbnail.get('url');
+			if (thumbnail) {
+				return thumbnail.get('url');
+			}
+			else {
+				return "";
+			}
 		}
 	})
 });
