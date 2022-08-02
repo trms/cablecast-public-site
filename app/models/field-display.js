@@ -6,5 +6,5 @@ export default DS.Model.extend({
   publicSite: DS.belongsTo('public-site', {async: true}),
   showField: DS.attr('number'),
   widget: DS.attr(),
-  order: DS.attr('number')
-})
+  order: DS.attr('number'),
+});
