@@ -1,58 +1,56 @@
 {{#if (or embediFrame embededPdf)}}
-<div class="row show-page">
-  <div class="col-sm-12">
-    <h2 class="show-page-header">{{show.cgTitle}}</h2>
-    <div class="show-page-social-links hidden-xs">
-      {{#fb-share-button}}Share{{/fb-share-button}}
-      {{#twitter-share-button}}Tweet{{/twitter-share-button}}
+  <div class="row show-page">
+    <div class="col-sm-12">
+      <h2 class="show-page-header">{{show.cgTitle}}</h2>
+      <div class="show-page-social-links hidden-xs">
+        {{#fb-share-button}}Share{{/fb-share-button}}
+        {{#twitter-share-button}}Tweet{{/twitter-share-button}}
+      </div>
     </div>
   </div>
-</div>
 
-<div class="row show-page show-page-last-row">
-  <div class="col-sm-5 col-sm-push-7">
-    <div class="row show-page show-page-video-col">
-      {{! VOD or Image}}
-      <div class="col-sm-12">
-        {{#if (or show.vods.firstObject.isWatchable show.vods.firstObject.isReady)}}
-    			<div class="embed-responsive embed-responsive-16by9">
-            {{{show.vods.firstObject.embedCode}}}
-    			</div>
-    		{{else}}
-          <div class="embed-responsive embed-responsive-16by9">
-            {{show-thumbnail show=show quality='Large' class="img-responsive"}}
-          </div>
-    		{{/if}}
-        <div class="show-page-social-links visible-xs-block">
-          {{#fb-share-button adaptive=false}}Share{{/fb-share-button}}
-          {{#twitter-share-button adaptive=false}}Tweet{{/twitter-share-button}}
+  <div class="row show-page">
+    {{! VOD or Image}}
+    <div class="col-sm-8">
+      {{#if (or show.vods.firstObject.isWatchable show.vods.firstObject.isReady)}}
+        <div class="embed-responsive embed-responsive-16by9">
+          {{{show.vods.firstObject.embedCode}}}
         </div>
-      </div>
-
-      {{!Chapters / details Tabs}}
-      <div class="col-sm-12">
-        <div class="show-page-section-btns-wrapper clearfix">
-          {{#if vodChapters}}
-              <button type="button" class="btn show-page-section-btn pull-left {{if (eq activeTab 'details') 'btn-primary' 'btn-default'}}" {{action 'showDetails'}}>Show Details</button>
-              <button type="button" class="btn show-page-section-btn pull-right {{if (eq activeTab 'chapters') 'btn-primary' 'btn-default'}}" {{action 'showChapters'}}>Chapters</button>
-              <a href={{embededPdf.url}} class="btn show-page-section-btn btn-default visible-xs-inline-block">Open {{embededPdf.fieldDisplay.label}} {{fa-icon 'external-link'}} </a>
-          {{else}}
-            <h3 class="show-page-show-details-header">Show Details</h3>
-          {{/if}}
+      {{else}}
+        <div class="embed-responsive embed-responsive-16by9">
+          {{show-thumbnail show=show quality='Large' class="img-responsive"}}
         </div>
+      {{/if}}
+      <div class="show-page-social-links visible-xs-block">
+        {{#fb-share-button adaptive=false}}Share{{/fb-share-button}}
+        {{#twitter-share-button adaptive=false}}Tweet{{/twitter-share-button}}
       </div>
+    </div>
 
-      <div class="col-sm-12">
-      {{! Show Details / Chapters}}
+    {{!Chapters / details Tabs}}
+    <div class="col-sm-4">
+      <div class="show-page-section-btns-wrapper clearfix">
+        {{#if vodChapters}}
+            <button type="button" class="btn show-page-section-btn pull-left {{if (eq activeTab 'details') 'btn-primary' 'btn-default'}}" {{action 'showDetails'}}>Show Details</button>
+            <button type="button" class="btn show-page-section-btn pull-right {{if (eq activeTab 'chapters') 'btn-primary' 'btn-default'}}" {{action 'showChapters'}}>Chapters</button>
+            <a href={{embededPdf.url}} class="btn show-page-section-btn btn-default visible-xs-inline-block">Open {{embededPdf.fieldDisplay.label}} {{fa-icon 'external-link'}} </a>
+        {{else}}
+          <h3 class="show-page-show-details-header">Show Details</h3>
+        {{/if}}
+      </div>
+    </div> 
+
+    {{! Show Details / Chapters}}
+    <div class="col-sm-4">
       {{#if (eq activeTab 'details')}}
           {{show-details show=show producer=producer reels=reels runs=runs currentChannelId=currentChannelId}}
           <h3 class="show-page-airtimes-header">Upcoming air times</h3>
           {{#each runs as |run|}}
-          	<div class="show-future-runs-container">
-          		{{moment-calendar run.runDateTime}}
-          	</div>
+            <div class="show-future-runs-container">
+              {{moment-calendar run.runDateTime}}
+            </div>
           {{else}}
-          	There are currently no upcoming air times.
+            There are currently no upcoming air times.
           {{/each}}
       {{else}}
         {{vod-chapters chapters=vodChapters seekto=seekto setSeekTo=(action 'setSeekTo')}}
@@ -60,62 +58,65 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-7 col-sm-pull-5">
-    {{#if embededPdf}}
-      {{pdf-viewer url=embededPdf.url class="hidden-xs"}}
-    {{/if}}
-    {{#if embediFrame}}
-      <iframe class="pdf-wrapper" src={{embediFrame.url}}></iframe>
-    {{/if}}
-    {{!pdf-js pdf=documentUrl toolbarComponent=null}}
-  </div>
-</div>
-{{else}}
-<div class="row show-page">
-  <div class="col-sm-12">
-    {{#if (or show.vods.firstObject.isWatchable show.vods.firstObject.isReady)}}
-      <div class="embed-responsive embed-responsive-16by9">
-        {{{show.vods.firstObject.embedCode}}}
-      </div>
-    {{else}}
-      {{#if show.showThumbnails}}
-      <div class="embed-responsive embed-responsive-16by9">
-        {{show-thumbnail show=show quality='Large' class="img-responsive"}}
-      </div>
-      {{/if}}
-    {{/if}}
-  </div>
-</div>
 
-<div class="row show-page">
-  <div class="col-sm-12">
-    <h2 class="show-page-header">{{show.cgTitle}}</h2>
-    <div class="show-page-social-links">
-      {{#fb-share-button}}Share{{/fb-share-button}}
-      {{#twitter-share-button}}Tweet{{/twitter-share-button}}
+  <div class="row show-page show-page-last-row">
+    <div class="col-sm-12">
+      {{#if embededPdf}}
+        {{pdf-viewer url=embededPdf.url class="hidden-xs"}}
+        {{!pdf-js pdf=documentUrl toolbarComponent=null}}
+      {{/if}}
+      {{#if embediFrame}}
+        <iframe class="pdf-wrapper" src={{embediFrame.url}}></iframe>
+      {{/if}}
     </div>
   </div>
-</div>
 
-<div class="row show-page show-page-last-row">
-  <div class="col-sm-6">
-    <h3 class="show-page-show-details-header">Show Details</h3>
-      {{show-details show=show producer=producer reels=reels runs=runs currentChannelId=currentChannelId}}
+{{else}}
+  <div class="row show-page">
+    <div class="col-sm-12">
+      {{#if (or show.vods.firstObject.isWatchable show.vods.firstObject.isReady)}}
+        <div class="embed-responsive embed-responsive-16by9">
+          {{{show.vods.firstObject.embedCode}}}
+        </div>
+      {{else}}
+        {{#if show.showThumbnails}}
+        <div class="embed-responsive embed-responsive-16by9">
+          {{show-thumbnail show=show quality='Large' class="img-responsive"}}
+        </div>
+        {{/if}}
+      {{/if}}
+    </div>
   </div>
-  <div class="col-sm-6">
-    {{#if (and show.vods.firstObject.chapters show.vods.firstObject.chaptersPublished)}}
-      <h3 class="show-details-chapters-header">Chapters</h3>
-      {{vod-chapters chapters=vodChapters seekto=seekto setSeekTo=(action 'setSeekTo')}}
-      <hr />
-    {{/if}}
-    <h3 class="show-page-airtimes-header">Upcoming air times</h3>
-    {{#each runs as |run|}}
-    	<div class="show-future-runs-container">
-    		{{moment-calendar run.runDateTime}}
-    	</div>
-    {{else}}
-    	There are currently no upcoming air times.
-    {{/each}}
+
+  <div class="row show-page">
+    <div class="col-sm-12">
+      <h2 class="show-page-header">{{show.cgTitle}}</h2>
+      <div class="show-page-social-links">
+        {{#fb-share-button}}Share{{/fb-share-button}}
+        {{#twitter-share-button}}Tweet{{/twitter-share-button}}
+      </div>
+    </div>
   </div>
-</div>
+
+  <div class="row show-page show-page-last-row">
+    <div class="col-sm-6">
+      <h3 class="show-page-show-details-header">Show Details</h3>
+        {{show-details show=show producer=producer reels=reels runs=runs currentChannelId=currentChannelId}}
+    </div>
+    <div class="col-sm-6">
+      {{#if (and show.vods.firstObject.chapters show.vods.firstObject.chaptersPublished)}}
+        <h3 class="show-details-chapters-header">Chapters</h3>
+        {{vod-chapters chapters=vodChapters seekto=seekto setSeekTo=(action 'setSeekTo')}}
+        <hr />
+      {{/if}}
+      <h3 class="show-page-airtimes-header">Upcoming air times</h3>
+      {{#each runs as |run|}}
+        <div class="show-future-runs-container">
+          {{moment-calendar run.runDateTime}}
+        </div>
+      {{else}}
+        There are currently no upcoming air times.
+      {{/each}}
+    </div>
+  </div>
 {{/if}}
